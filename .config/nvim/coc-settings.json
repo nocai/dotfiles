@@ -1,0 +1,44 @@
+{
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "suggest.noselect": true,
+  "snippets.priority": 200,
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "typescriptreact": ["typescript"]
+  },
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.format.enabled": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "json",
+    "yml",
+    "yaml",
+    "markdown",
+    "sh",
+    "python",
+    "lua"
+  ],
+  "diagnostic-languageserver.formatters": {
+    "lua-format": {
+      "command": "lua-format",
+      "args": ["-i"]
+    }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "markdown": "write-good",
+    "sh": "shellcheck",
+    "vim": "vint"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt",
+    "lua": "lua-format"
+  },
+  "python.formatting.provider": "black"
+}

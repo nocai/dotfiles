@@ -1,0 +1,47 @@
+alias zshsrc="zgen reset && exec zsh"
+
+alias vm="vifm ."
+
+alias npmi="npm install"
+alias npmu="npm uninstall"
+alias npmU="npm update"
+alias npmid="npm install --save-dev"
+alias yd="yarn add"
+alias ydd="yarn add --dev"
+alias npmr="npm run"
+
+alias nv="nvim"
+alias nvf="nvim -c Files"
+alias nvr="nvim -c Rg"
+
+alias b="brew"
+alias bi="brew install"
+alias bu="brew uninstall"
+alias bci="brew install --cask"
+alias bcu="brew uninstall --cask"
+alias bubu="brew update && brew upgrade"
+alias bs="brew services"
+alias bss="brew search"
+
+alias exa="exa --classify"
+alias ext='exa --tree --level'
+
+alias tl="tmux list-sessions"
+alias tksv="tmux kill-server"
+alias tkss="tmux kill-session -t"
+
+alias mx="tmuxp"
+alias mxl="tmuxp load"
+alias mxf="tmuxp freeze"
+alias mxd="tmuxp load -d"
+
+alias g="git"
+alias ga="git add"
+alias gc="git commit -v"
+alias gco="git checkout"
+alias gm="git merge"
+alias gp="git push"
+alias gf="git fetch"
+alias gl="git pull"
+alias gst="git status"
+alias lg="lazygit"

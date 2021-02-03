@@ -1,0 +1,66 @@
+# hyper + hjkl: focus windows
+rctrl + ralt + rshift + rcmd - h: yabai -m window --focus west
+rctrl + ralt + rshift + rcmd - j: yabai -m window --focus south
+rctrl + ralt + rshift + rcmd - k: yabai -m window --focus north
+rctrl + ralt + rshift + rcmd - l: yabai -m window --focus east
+
+# hyper + backslash: focus previous window
+rctrl + ralt + rshift + rcmd - 0x2A : yabai -m window --focus recent
+
+# add left option to swap windows
+rctrl + ralt + rshift + rcmd + lalt - k: yabai -m window --swap north
+rctrl + ralt + rshift + rcmd + lalt - j: yabai -m window --swap south
+rctrl + ralt + rshift + rcmd + lalt - l: yabai -m window --swap east
+rctrl + ralt + rshift + rcmd + lalt - h: yabai -m window --swap west
+
+# add left shift to warp windows (force them to share space w/ other windows)
+rctrl + ralt + rshift + rcmd + lshift - k: yabai -m window --warp north
+rctrl + ralt + rshift + rcmd + lshift - j: yabai -m window --warp south
+rctrl + ralt + rshift + rcmd + lshift - l: yabai -m window --warp east
+rctrl + ralt + rshift + rcmd + lshift - h: yabai -m window --warp west
+
+# hyper + enter: toggle fullscreen
+rctrl + ralt + rshift + rcmd - return: yabai -m window --toggle zoom-fullscreen
+# hyper + f: toggle float
+rctrl + ralt + rshift + rcmd - f: yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2
+
+# right hyper + q/e: go to previous/next space
+lctrl + lalt + lshift + lcmd - q: yabai -m space --focus prev
+lctrl + lalt + lshift + lcmd - e: yabai -m space --focus next
+# add right shift to bring window
+lctrl + lalt + lshift + lcmd + rshift - q: yabai -m window --space prev && yabai -m space --focus prev
+lctrl + lalt + lshift + lcmd + rshift - e: yabai -m window --space next && yabai -m space --focus next
+
+# right hyper + 12345: focus space
+lctrl + lalt + lshift + lcmd - 1: yabai -m space --focus 1
+lctrl + lalt + lshift + lcmd - 2: yabai -m space --focus 2
+lctrl + lalt + lshift + lcmd - 3: yabai -m space --focus 3
+lctrl + lalt + lshift + lcmd - 4: yabai -m space --focus 4
+lctrl + lalt + lshift + lcmd - 5: yabai -m space --focus 5
+# add right shift to bring window
+lctrl + lalt + lshift + lcmd + rshift - 1: yabai -m window --space 1 && yabai -m space --focus 1
+lctrl + lalt + lshift + lcmd + rshift - 2: yabai -m window --space 2 && yabai -m space --focus 2
+lctrl + lalt + lshift + lcmd + rshift - 3: yabai -m window --space 3 && yabai -m space --focus 3
+lctrl + lalt + lshift + lcmd + rshift - 4: yabai -m window --space 4 && yabai -m space --focus 4
+lctrl + lalt + lshift + lcmd + rshift - 5: yabai -m window --space 5 && yabai -m space --focus 5
+
+# right hyper + spacebar: focus previous space
+lctrl + lalt + lshift + lcmd - 0x31 : yabai -m space --focus recent
+
+# right hyper + o/p: focus previous/next display
+lctrl + lalt + lshift + lcmd - p: yabai -m display --focus next
+lctrl + lalt + lshift + lcmd - o: yabai -m display --focus prev
+# add right shift to send window
+lctrl + lalt + lshift + lcmd + rshift - p: yabai -m window --display next && yabai -m display --focus next
+lctrl + lalt + lshift + lcmd + rshift - o: yabai -m window --display prev && yabai -m display --focus prev
+
+# fn + shortcut: execute arbitrary shell command (mostly used to open apps)
+fn - f: open ~/
+fn - a: open -a iTerm
+fn - x: open -a Firefox
+fn - d: open -a 'Day One'
+fn - k: open -a Bitwarden
+fn - m: open -a Messages
+fn - i: open -a Music
+# comma
+fn - 0x2B : open -a 'System Preferences'

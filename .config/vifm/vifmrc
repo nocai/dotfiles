@@ -1,0 +1,63 @@
+" basic options
+set vicmd=$EDITOR
+set syscalls
+set trash
+set history=100
+set undolevels=100
+set sortnumbers
+set vimhelp
+set wildmenu
+set wildstyle=popup
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set scrolloff=4
+set fastrun
+
+set statusline="%-35f%10E%20d%15A"
+set timefmt=%m/%d\ %H:%M
+
+fileviewer *[^/] env -uCOLORTERM bat --color always --wrap never --pager never %c --number
+
+mark h ~/
+mark d ~/Downloads
+mark g ~/git
+mark l ~/Local
+mark c ~/.config
+
+set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+    \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+
+nnoremap s :shell<CR>
+nnoremap S :sort<CR>
+nnoremap w :view<CR>
+vnoremap w :view<CR>gv
+nnoremap go :!open -g %f<CR>
+nnoremap yd :!printf %d | pbcopy<CR>
+nnoremap yf :!printf %c:p | pbcopy<CR>
+nnoremap cc cw<c-u>
+nnoremap e :edit<Space>
+nnoremap E :!$EDITOR %f<CR>
+nnoremap H :cd -<CR>
+nnoremap a :touch<Space>
+nnoremap A :mkdir<Space>
+nnoremap A :mkdir<Space>
+nnoremap M :move<CR>
+vnoremap M :move<CR>
+nnoremap C :copy<CR>
+vnoremap C :copy<CR>
+nnoremap <Space> :
+vnoremap <Space> :
+nnoremap - h
+nnoremap . za
+nnoremap cw cW
+nnoremap cW cw
+nnoremap zs :sync<CR>
+nnoremap zo :sync %c<CR>
+nnoremap q :q<CR>
+
+command ln ln -s %f:p %D
+
+colorscheme dracula
