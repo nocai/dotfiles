@@ -17,7 +17,6 @@ MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 export ZSH_AUTOSUGGEST_USE_ASYNC=true
-bindkey '^@' autosuggest-accept
 
 # prompt
 export PURE_CMD_MAX_EXEC_TIME=1
@@ -30,6 +29,7 @@ if ! zgen saved; then
     zgen load zdharma/fast-syntax-highlighting
     zgen load hlissner/zsh-autopair
     zgen load softmoth/zsh-vim-mode
+    zgen load zsh-users/zsh-autosuggestions
 
     zgen load ~/.zsh/opts.zsh
     zgen load ~/.zsh/aliases.zsh
@@ -44,5 +44,7 @@ _evalcache fasd --init auto
 
 autoload -U promptinit; promptinit
 prompt pure
+
+bindkey '^@' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
