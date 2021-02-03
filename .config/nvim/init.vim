@@ -8,6 +8,7 @@ set history=100
 set undofile undolevels=100 undoreload=100
 set number relativenumber
 set tabstop=4 shiftwidth=4 expandtab
+set termguicolors
 
 set nobackup nowritebackup
 set updatetime=300
@@ -21,10 +22,6 @@ set noshowcmd
 set noshowmode
 set pumheight=10
 set showtabline=2
-
-" enable true colors in tmux
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" | let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " }}}
 
 " commands and autocommands {{{
