@@ -8,7 +8,8 @@ macOS.
 I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS
 (as long as you're careful about enabling GPU rendering).
 
-- zsh + a handful of plugins managed with [zgen](https://github.com/tarjoilija/zgen)
+- zsh + a handful of plugins managed with
+- [zgen](https://github.com/tarjoilija/zgen)
 
 - Neovim + what I consider a reasonable number of plugins, most notably
   [coc.nvim](https://github.com/neoclide/coc.nvim), which single-handedly makes
@@ -36,3 +37,8 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS
 
 - [MacVim](https://github.com/macvim-dev/macvim) with a simple yabai rule for
   quick edits (since Neovim + plugins is heavy)
+
+- [qutebrowser](https://github.com/qutebrowser/qutebrowser) for most browsing
+  (and Firefox with [Vimium
+  C](https://addons.mozilla.org/en-US/firefox/addon/vimium-c/) when I have to
+  log in)
