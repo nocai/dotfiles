@@ -33,3 +33,6 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
   remap keys (imagine living without caps lock to escape on press, control on
   hold)
+
+- [MacVim](https://github.com/macvim-dev/macvim) with a simple yabai rule for
+  quick edits (since Neovim + plugins is heavy)

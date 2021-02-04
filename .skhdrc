@@ -62,5 +62,6 @@ fn - d: open -a 'Day One'
 fn - k: open -a Bitwarden
 fn - m: open -a Messages
 fn - i: open -a Music
+fn - v: gvim -c startinsert
 # comma
 fn - 0x2B : open -a 'System Preferences'

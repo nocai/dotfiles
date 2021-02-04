@@ -32,6 +32,7 @@ yr app="^Activity Monitor$" manage=off
 yr app="^Bitwarden$" manage=off
 yr app="^Calculator$" manage=off
 yr app="^Streaks$" manage=off
+yr app="^MacVim$" manage=off
 
 yr title="/Preferences/" manage=off
 yr title="/Settings/" manage=off
