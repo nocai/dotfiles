@@ -7,6 +7,13 @@ rctrl + ralt + rshift + rcmd - l: yabai -m window --focus east
 # hyper + backslash: focus previous window
 rctrl + ralt + rshift + rcmd - 0x2A : yabai -m window --focus recent
 
+# hyper + 0: balance window size
+rctrl + ralt + rshift + rcmd - 0 : yabai -m space --balance
+
+# hyper + brackets: focus first / last window
+rctrl + ralt + rshift + rcmd - 0x21 : yabai -m window --focus first
+rctrl + ralt + rshift + rcmd - 0x1E : yabai -m window --focus last
+
 # add left option to swap windows
 rctrl + ralt + rshift + rcmd + lalt - k: yabai -m window --swap north
 rctrl + ralt + rshift + rcmd + lalt - j: yabai -m window --swap south
@@ -58,6 +65,7 @@ lctrl + lalt + lshift + lcmd + rshift - o: yabai -m window --display prev && yab
 fn - f: open ~/
 fn - a: open -a iTerm
 fn - x: open -a Firefox
+fn - q: open -a qutebrowser
 fn - d: open -a 'Day One'
 fn - k: open -a Bitwarden
 fn - m: open -a Messages
