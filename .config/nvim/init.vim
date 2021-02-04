@@ -123,6 +123,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " visual
     Plug 'sainnhe/sonokai'
+    Plug 'sainnhe/forest-night'
+    Plug 'sainnhe/edge'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ap/vim-buftabline'
 
