@@ -13,6 +13,7 @@ config.set("url.default_page", "https://google.com")
 config.set("url.start_pages", "https://google.com")
 config.set("auto_save.session", False)
 config.set("search.incremental", False)
+config.set("qt.highdpi", True)
 
 # logical horizontal tab navigation
 config.bind("J", "tab-prev")
