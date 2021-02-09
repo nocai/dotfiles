@@ -178,6 +178,8 @@ nmap <silent> ga <Plug>(coc-codeaction-selected)
 xmap <silent> ga <Plug>(coc-codeaction-selected)
 nmap <silent> gA <Plug>(coc-codeaction)
 nmap <silent> gs :CocCommand editor.action.organizeImport<CR>
+nmap <silent> gq <Plug>(coc-fix-current)
+nnoremap gQ gq
 
 " leader maps
 nmap <silent> <Leader>ca :CocList diagnostics<CR>
@@ -189,7 +191,6 @@ nmap <silent> <Leader>cr :CocRestart<CR>
 nmap <silent> <Leader>cc :CocConfig<CR>
 nmap <silent> <Leader>cx :CocList extensions<CR>
 nmap <silent> <Leader>ci :CocInfo<CR>
-nmap <silent> <Leader>cq <Plug>(coc-fix-current)
 
 " show vim documentation or lsp hover
 nnoremap <silent> K :call <SID>show_documentation()<CR>
