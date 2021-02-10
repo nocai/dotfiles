@@ -5,8 +5,8 @@ macOS.
 
 ## Terminal
 
-I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS
-(as long as you're careful about enabling GPU rendering).
+I use [alacritty](https://github.com/alacritty/alacritty), which is faster than
+iTerm2 to the point that I don't have a choice.
 
 - zsh + a handful of plugins managed with
 - [zgen](https://github.com/tarjoilija/zgen)
@@ -15,8 +15,8 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS
   [coc.nvim](https://github.com/neoclide/coc.nvim), which single-handedly makes
   Vim into the ideal TypeScript development environment
 
-- tmux + a select number of plugins (try
-  [extrakto](https://github.com/laktak/extrakto) if you haven't)
+- tmux + [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage
+  sessions
 
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
@@ -34,9 +34,6 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
   remap keys (imagine living without caps lock to escape on press, control on
   hold)
-
-- [MacVim](https://github.com/macvim-dev/macvim) with a simple yabai rule for
-  quick edits (since Neovim + plugins is heavy)
 
 - [qutebrowser](https://github.com/qutebrowser/qutebrowser) for most browsing
   (and Firefox with [Vimium
