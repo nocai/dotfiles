@@ -1,7 +1,6 @@
 alias zshsrc="zgen reset && exec zsh"
 
-alias vifm="TERM=screen-256color vifm"
-alias vm="vifm ."
+alias n="nnn"
 
 alias npmi="npm install"
 alias npmu="npm uninstall"

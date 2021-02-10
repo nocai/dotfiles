@@ -12,6 +12,12 @@ MODE_CURSOR_VICMD="steady block"
 MODE_CURSOR_SEARCH="#ff00ff steady underline"
 MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
+MODE_INDICATOR=""
+
+# nnn
+export NNN_BMS='d:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config'
+export NNN_PLUG='d:diffs;c:fzcd;b:bulknew;p:preview-tui;s:suedit;t:treeview;o:organize;r:renamer'
+export NNN_FIFO=/tmp/nnn.fifo
 
 # zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"

@@ -92,14 +92,16 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Raimondi/delimitMate'
 
     " additional functionality
-    Plug 'christoomey/vim-tmux-navigator'
     Plug 'vim-scripts/ReplaceWithRegister'
     Plug 'svermeulen/vim-cutlass'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
     Plug 'ntpeters/vim-better-whitespace', { 'for': [ 'vim', 'zsh', 'tmux', 'snippets' ] }
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
-    Plug 'justinmk/vim-dirvish'
+
+    " integrations
+    Plug 'mcchrish/nnn.vim'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
     " text objects
     Plug 'kana/vim-textobj-user'
@@ -295,27 +297,17 @@ nmap <silent> <Leader>pu :PlugUpdate<CR>
 nmap <silent> <Leader>ps :PlugStatus<CR>
 " }}}
 
-" dirvish {{{
-" always sort folders first
-let g:dirvish_mode = ':sort ,^.*[\/],'
-" replace netrw
-let g:loaded_netrwPlugin = 1
-command! -nargs=? -complete=dir Explore Dirvish <args>
-command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
-
+" nnn {{{
+" open in floating window
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Directory' } }
+" enable additional actions
+let g:nnn#action = {
+      \ '<C-t>': 'tab split',
+      \ '<C-x>': 'split',
+      \ '<C-v>': 'vsplit' }
 " maps
-augroup dirvish_bindings
-    autocmd!
-    autocmd FileType dirvish nnoremap <buffer> a :!touch %
-    autocmd FileType dirvish nnoremap <buffer> A :!mkdir %
-    autocmd FileType dirvish nnoremap <buffer> S :Shdo<Space>
-    autocmd FileType dirvish xnoremap <buffer> S :Shdo<Space>
-    autocmd FileType dirvish nnoremap <silent><buffer> v :call dirvish#open('vsplit', 0)<CR>
-    autocmd FileType dirvish xnoremap <silent><buffer> v :call dirvish#open('vsplit', 0)<CR>
-    autocmd FileType dirvish nnoremap <silent><buffer> s :call dirvish#open('split', 0)<CR>
-    autocmd FileType dirvish xnoremap <silent><buffer> s :call dirvish#open('split', 0)<CR>
-augroup END
+nmap <silent> - :NnnPicker %<CR>
+nmap <silent> <Leader>n :NnnPicker<CR>
 " }}}
 
 " theme {{{

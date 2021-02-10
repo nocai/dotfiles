@@ -21,8 +21,8 @@ iTerm2 to the point that I don't have a choice.
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
 
-- [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
-  but certainly the most Vim-like option
+- [nnn](https://github.com/jarun/nnn), a faster vifm alternative with a
+  solid Vim plugin
 
 ## macOS
 
