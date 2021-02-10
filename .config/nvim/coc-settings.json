@@ -18,6 +18,7 @@
     "typescriptreact",
     "html",
     "json",
+    "jsonc",
     "yml",
     "yaml",
     "markdown",
@@ -32,7 +33,7 @@
     }
   },
   "diagnostic-languageserver.filetypes": {
-    "markdown": "write-good",
+    "markdown": ["write-good", "markdownlint"],
     "sh": "shellcheck",
     "vim": "vint"
   },
