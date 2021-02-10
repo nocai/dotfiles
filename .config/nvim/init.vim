@@ -10,6 +10,7 @@ set number relativenumber
 set tabstop=4 shiftwidth=4 expandtab
 set termguicolors
 set cursorline
+set foldlevelstart=99
 
 set nobackup nowritebackup
 set updatetime=300
@@ -109,8 +110,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Julian/vim-textobj-variable-segment'
 
     " development
-    Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
-    Plug 'mattn/emmet-vim', {'for': [ 'html', 'javascriptreact', 'typescriptreact' ] }
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/nvim-compe'
+    Plug 'mhartington/formatter.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'sheerun/vim-polyglot'
     Plug 'airblade/vim-gitgutter'
 
@@ -136,78 +140,6 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 nnoremap gm m
-" }}}
-
-" coc {{{
-command! CR CocRestart
-command! CC CocConfig
-command! -nargs=0 Format :call CocAction('format')
-
-" maps
-nmap <silent> [a <Plug>(coc-diagnostic-prev)
-nmap <silent> ]a <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gI <Plug>(coc-implementation)
-nmap <silent> gi <Plug>(coc-references)
-nmap <silent> ga <Plug>(coc-codeaction-selected)
-xmap <silent> ga <Plug>(coc-codeaction-selected)
-nmap <silent> gA <Plug>(coc-codeaction)
-nmap <silent> gs :CocCommand editor.action.organizeImport<CR>
-nmap <silent> gq <Plug>(coc-fix-current)
-nnoremap gQ gq
-
-" leader maps
-nmap <silent> <Leader>ca :CocList diagnostics<CR>
-nmap <silent> <Leader>cv :CocList outline<CR>
-nmap <silent> <Leader>cp :CocList snippets<CR>
-nmap <silent> <Leader>cs :CocCommand snippets.editSnippets<CR>
-xmap <silent> <Leader>cs <Plug>(coc-convert-snippet)
-nmap <silent> <Leader>cr <Plug>(coc-rename)
-nmap <silent> <Leader>cR :CocCommand workspace.renameCurrentFile<CR>
-nmap <silent> <Leader>cx :CocList extensions<CR>
-nmap <silent> <Leader>ci :CocInfo<CR>
-
-" show vim documentation or lsp hover
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . ' ' . expand('<cword>')
-  endif
-endfunction
-
-" text objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" range select
-nmap <silent> <C-n> <Plug>(coc-range-select)
-xmap <silent> <C-n> <Plug>(coc-range-select)
-
-" VS Code-like tab behavior
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<Tab>'
-
-" <C-Space> to show suggestions
-inoremap <silent><expr> <C-Space> coc#refresh()
 " }}}
 
 " fzf {{{
@@ -317,4 +249,8 @@ let g:sonokai_diagnostic_text_highlight = 1
 let g:sonokai_better_performance = 1
 colorscheme sonokai
 " }}}
+" }}}
+
+" lua {{{
+lua require("init")
 " }}}
