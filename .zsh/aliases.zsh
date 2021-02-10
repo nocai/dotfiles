@@ -2,10 +2,11 @@ alias zshsrc="zgen reset && exec zsh"
 
 alias n="nnn"
 
-alias npmi="npm install"
-alias npmu="npm uninstall"
-alias npmU="npm update"
-alias npmid="npm install --save-dev"
+alias ni="npm install"
+alias nid="npm install --save-dev"
+alias ng="npm install -g"
+alias nr="npm run"
+alias ns="npm start"
 alias yd="yarn add"
 alias ydd="yarn add --dev"
 alias npmr="npm run"
@@ -22,6 +23,8 @@ alias bcu="brew uninstall --cask"
 alias bubu="brew update && brew upgrade"
 alias bs="brew services"
 alias bss="brew search"
+
+alias btm="btm --battery"
 
 alias exa="exa --classify"
 alias ext='exa --tree --level'
