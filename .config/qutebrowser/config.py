@@ -14,6 +14,17 @@ config.set("url.start_pages", "https://google.com")
 config.set("auto_save.session", False)
 config.set("search.incremental", False)
 config.set("qt.highdpi", True)
+config.set(
+    "editor.command",
+    [
+        "alacritty",
+        "--title",
+        "HOVER",
+        "--command",
+        "nvim",
+        "{}",
+    ],
+)
 
 # logical horizontal tab navigation
 config.bind("J", "tab-prev")
