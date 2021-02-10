@@ -9,19 +9,20 @@ set undofile undolevels=100 undoreload=100
 set number relativenumber
 set tabstop=4 shiftwidth=4 expandtab
 set termguicolors
+set cursorline
 
 set nobackup nowritebackup
 set updatetime=300
-set cursorline
 set splitbelow splitright
 set hidden
 set shortmess+=c
 set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
-set noshowcmd
-set noshowmode
 set pumheight=10
 set showtabline=2
+
+let g:python_host_prog = $HOME . '/.pyenv/shims/python'
+let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
 " }}}
 
 " commands and autocommands {{{
@@ -36,10 +37,7 @@ command! Remove call delete(expand('%')) | bdelete!
 " statusline {{{
 set statusline=\ %f
 set statusline+=\ %m
-set statusline+=\ %{FugitiveHead()}
-set statusline+=\ %{GitgutterStatus()}
 set statusline+=%=
-set statusline+=%{StatusDiagnostic()}
 set statusline+=\ %p%%
 set statusline+=\ %l:%c
 " }}}
@@ -68,10 +66,9 @@ nnoremap <BS> <C-^>
 inoremap <S-Tab> <C-o>A
 nmap <silent> <Leader>x :bd<CR>
 nnoremap Y y$
-nnoremap <silent> <Esc> :noh<CR><Esc>
+nnoremap <silent> <Esc> :nohl<CR>
 noremap <Bslash> ,
 nnoremap ZZ :wqall<CR>
-nnoremap <C-w>x :q<CR>
 
 " <CR> to save, except in quickfix buffers
 nnoremap <silent> <expr> <CR> (&buftype is# "quickfix" ? "<CR>" : ":w<CR>")
@@ -96,35 +93,27 @@ call plug#begin('~/.config/nvim/plugged')
 
     " additional functionality
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'svermeulen/vim-subversive'
+    Plug 'vim-scripts/ReplaceWithRegister'
     Plug 'svermeulen/vim-cutlass'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'ntpeters/vim-better-whitespace', { 'for': [ 'vim', 'zsh', 'tmux', 'snippets' ] }
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
     Plug 'justinmk/vim-dirvish'
-    Plug 'vifm/vifm.vim'
 
     " text objects
-    Plug 'wellle/targets.vim'
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire'
-    Plug 'beloglazov/vim-textobj-punctuation'
     Plug 'Julian/vim-textobj-variable-segment'
-    Plug 'inside/vim-textobj-jsxattr', { 'for': [ 'javascriptreact', 'typescriptreact' ] }
 
     " development
     Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
     Plug 'mattn/emmet-vim', {'for': [ 'html', 'javascriptreact', 'typescriptreact' ] }
     Plug 'sheerun/vim-polyglot'
     Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/gv.vim', { 'on': 'GV' }
 
     " visual
     Plug 'sainnhe/sonokai'
-    Plug 'sainnhe/forest-night'
-    Plug 'sainnhe/edge'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ap/vim-buftabline'
 
@@ -138,18 +127,6 @@ call plug#end()
 let g:delimitMate_expand_cr = 1
 " }}}
 
-" subversive {{{
-" s for substitute
-nmap s <Plug>(SubversiveSubstitute)
-xmap s <Plug>(SubversiveSubstitute)
-nmap ss <Plug>(SubversiveSubstituteLine)
-nmap S <Plug>(SubversiveSubstituteToEndOfLine)
-" <Leader>s to substitute over range
-nmap <silent> <Leader>s <Plug>(SubversiveSubstituteRange)
-xmap <silent> <Leader>s <Plug>(SubversiveSubstituteRange)
-nmap <silent> <Leader>ss <Plug>(SubversiveSubstituteWordRange)
-" }}}
-
 " cutlass {{{
 " m for move (default d behavior)
 nnoremap m d
@@ -157,7 +134,6 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 nnoremap gm m
-nnoremap gmm m'
 " }}}
 
 " coc {{{
@@ -169,11 +145,9 @@ command! -nargs=0 Format :call CocAction('format')
 nmap <silent> [a <Plug>(coc-diagnostic-prev)
 nmap <silent> ]a <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-rename)
-nmap <silent> gR :CocCommand workspace.renameCurrentFile<CR>
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gI <Plug>(coc-references)
+nmap <silent> gI <Plug>(coc-implementation)
+nmap <silent> gi <Plug>(coc-references)
 nmap <silent> ga <Plug>(coc-codeaction-selected)
 xmap <silent> ga <Plug>(coc-codeaction-selected)
 nmap <silent> gA <Plug>(coc-codeaction)
@@ -187,8 +161,8 @@ nmap <silent> <Leader>cv :CocList outline<CR>
 nmap <silent> <Leader>cp :CocList snippets<CR>
 nmap <silent> <Leader>cs :CocCommand snippets.editSnippets<CR>
 xmap <silent> <Leader>cs <Plug>(coc-convert-snippet)
-nmap <silent> <Leader>cr :CocRestart<CR>
-nmap <silent> <Leader>cc :CocConfig<CR>
+nmap <silent> <Leader>cr <Plug>(coc-rename)
+nmap <silent> <Leader>cR :CocCommand workspace.renameCurrentFile<CR>
 nmap <silent> <Leader>cx :CocList extensions<CR>
 nmap <silent> <Leader>ci :CocInfo<CR>
 
@@ -218,29 +192,20 @@ omap ac <Plug>(coc-classobj-a)
 nmap <silent> <C-n> <Plug>(coc-range-select)
 xmap <silent> <C-n> <Plug>(coc-range-select)
 
-" coc-snippets: <Tab> to select / jump, <C-Space> to select / refresh
-inoremap <silent><expr> <TAB>
+" VS Code-like tab behavior
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ "\<TAB>"
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 let g:coc_snippet_next = '<Tab>'
 
-inoremap <silent><expr> <C-Space>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#refresh()
-
-" statusline integration
-function! StatusDiagnostic() abort
-  let info = get(b:, 'coc_diagnostic_info', {})
-  if empty(info) | return '' | endif
-  let msgs = []
-  if get(info, 'error', 0)
-    call add(msgs, 'E' . info['error'])
-  endif
-  if get(info, 'warning', 0)
-    call add(msgs, 'W' . info['warning'])
-  endif
-  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
-endfunction
+" <C-Space> to show suggestions
+inoremap <silent><expr> <C-Space> coc#refresh()
 " }}}
 
 " fzf {{{
@@ -273,12 +238,14 @@ let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 
 " maps
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
-omap f <Plug>Sneak_s
-omap F <Plug>Sneak_S
-omap z <Plug>Sneak_f
-omap Z <Plug>Sneak_F
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
 nmap t <Plug>Sneak_t
 nmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
@@ -321,14 +288,6 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 " }}}
 
-" gitgutter {{{
-" statusline integration
-function! GitgutterStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-" }}}
-
 " vim-plug {{{
 nmap <silent> <Leader>pp :PlugInstall<CR>
 nmap <silent> <Leader>pc :PlugClean<CR>
@@ -359,12 +318,8 @@ augroup dirvish_bindings
 augroup END
 " }}}
 
-" vifm {{{
-nmap <Leader>v :Vifm<CR>
-" }}}
-
 " theme {{{
-let g:sonokai_style = 'shusia'
+let g:sonokai_style = 'default'
 let g:sonokai_enable_italic = 1
 let g:sonokai_diagnostic_text_highlight = 1
 let g:sonokai_better_performance = 1
