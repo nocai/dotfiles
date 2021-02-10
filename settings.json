@@ -1,0 +1,237 @@
+{
+  "customizeUI.font.monospace": "Iosevka Term",
+  "customizeUI.font.regular": "Iosevka",
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "Iosevka Term",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
+  "editor.inlineHints.fontFamily": "monospace",
+  "editor.lineNumbers": "relative",
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.snippetSuggestions": "top",
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "first",
+  "editor.tabCompletion": "on",
+  "files.autoSave": "onFocusChange",
+  "jest.autoEnable": false,
+  "jest.showCoverageOnLoad": true,
+  "telemetry.enableCrashReporter": false,
+  "telemetry.enableTelemetry": false,
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontSize": 13,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Monokai Pro",
+  "workbench.iconTheme": "Monokai Pro Icons",
+  "workbench.list.keyboardNavigation": "filter",
+  "workbench.startupEditor": "newUntitledFile",
+  // vim
+  "vim.camelCaseMotion.enable": true,
+  "vim.gdefault": true,
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.leader": ",",
+  "vim.replaceWithRegister": true,
+  "vim.sneak": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.useSystemClipboard": true,
+  // vim bindings
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<Leader>", "c"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["<Leader>", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<CR>"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<Esc>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["<BS>"],
+      "commands": ["workbench.action.openPreviousEditorFromHistory"]
+    },
+    {
+      "before": ["[", "a"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["]", "a"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
+    {
+      "before": ["]", "c"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["editor.action.organizeImports"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<Tab>"],
+      "after": ["%"]
+    },
+    {
+      "before": ["<Space>"],
+      "after": [":"]
+    },
+    {
+      "before": ["Y"],
+      "after": ["y", "$"]
+    },
+    // m for "move" (default d behavior)
+    // everything else deletes to black hole register
+    {
+      "before": ["g", "m"],
+      "after": ["m"]
+    },
+    {
+      "before": ["m", "m"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d", "d"],
+      "after": ["\"", "_", "d", "d"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c", "c"],
+      "after": ["\"", "_", "c", "c"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<Tab>"],
+      "after": ["%"]
+    },
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<Space>"],
+      "after": [":"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
+    }
+  ],
+  "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<Tab>"],
+      "after": ["%"]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    { "before": ["<C-h>"], "after": ["<Left>"] },
+    { "before": ["<C-j>"], "after": ["<Down>"] },
+    { "before": ["<C-k>"], "after": ["<Up>"] },
+    { "before": ["<C-l>"], "after": ["<Right>"] }
+  ]
+}

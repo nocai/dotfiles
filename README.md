@@ -3,9 +3,13 @@
 My dotfiles for VS Code, Neovim, zsh, tmux, and friends, optimized for web
 development on macOS.
 
+## VS Code
+
+I use most of the basic webdev extensions + the [Vim extension](https://github.com/VSCodeVim/Vim) with a handful of bindings meant to make the most of otherwise useless keys.
+
 ## Terminal
 
-I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
+I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not the fastest) terminal emulator for macOS.
 
 - zsh + a handful of plugins managed with [zgen](https://github.com/tarjoilija/zgen)
 
