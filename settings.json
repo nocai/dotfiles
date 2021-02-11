@@ -1,24 +1,39 @@
 {
+  "breadcrumbs.enabled": false,
   "customizeUI.font.monospace": "Iosevka Term",
   "customizeUI.font.regular": "Iosevka",
+  "editor.autoClosingBrackets": "beforeWhitespace",
+  "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "Iosevka Term",
   "editor.fontLigatures": true,
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
   "editor.formatOnSave": true,
   "editor.inlineHints.fontFamily": "monospace",
   "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
+  "editor.renderLineHighlight": "all",
+  "editor.renderWhitespace": "selection",
   "editor.snippetSuggestions": "top",
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
+  "editor.wordWrap": "on",
+  "explorer.openEditors.visible": 0,
+  "files.autoGuessEncoding": false,
   "files.autoSave": "onFocusChange",
+  "files.trimFinalNewlines": false,
+  "files.trimTrailingWhitespace": true,
   "jest.autoEnable": false,
   "jest.showCoverageOnLoad": true,
+  "settingsSync.keybindingsPerPlatform": false,
+  "settingsSync.ignoredSettings": [
+    "workbench.colorTheme",
+    "workbench.iconTheme"
+  ],
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "terminal.external.osxExec": "iTerm.app",
@@ -26,21 +41,24 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Monokai Pro",
+  "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "Monokai Pro Icons",
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
+  "workbench.tips.enabled": false,
   // vim
   "vim.camelCaseMotion.enable": true,
   "vim.gdefault": true,
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
-  "vim.leader": ",",
+  "vim.leader": "<Space>",
   "vim.replaceWithRegister": true,
   "vim.sneak": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
   "vim.useSystemClipboard": true,
   // vim bindings
   "vim.normalModeKeyBindings": [
+    // leader bindings
     {
       "before": ["<Leader>", "c"],
       "commands": ["workbench.action.showCommands"]
@@ -49,6 +67,15 @@
       "before": ["<Leader>", "f"],
       "commands": ["workbench.action.quickOpen"]
     },
+    {
+      "before": ["<Leader>", "b"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<Leader>", "j"],
+      "commands": ["workbench.action.togglePanel"]
+    },
+    // other
     {
       "before": ["<CR>"],
       "commands": ["workbench.action.files.save"]
@@ -94,10 +121,6 @@
     {
       "before": ["<Tab>"],
       "after": ["%"]
-    },
-    {
-      "before": ["<Space>"],
-      "after": [":"]
     },
     {
       "before": ["Y"],
@@ -176,10 +199,6 @@
     {
       "before": ["L"],
       "after": ["$"]
-    },
-    {
-      "before": ["<Space>"],
-      "after": [":"]
     },
     {
       "before": ["m"],
