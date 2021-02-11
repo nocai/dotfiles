@@ -40,7 +40,7 @@
   "terminal.integrated.fontSize": 13,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Monokai Pro",
+  "workbench.colorTheme": "Night Owl",
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "Monokai Pro Icons",
   "workbench.list.keyboardNavigation": "filter",
