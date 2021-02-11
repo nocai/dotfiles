@@ -40,7 +40,7 @@
             ]
           },
           {
-            "description": "left control to hyper (all modifiers)",
+            "description": "left control to hyper (all right modifiers)",
             "manipulators": [
               {
                 "from": {
@@ -51,11 +51,11 @@
                 },
                 "to": [
                   {
-                    "key_code": "left_shift",
+                    "key_code": "right_shift",
                     "modifiers": [
-                      "left_command",
-                      "left_control",
-                      "left_option"
+                      "right_command",
+                      "right_control",
+                      "right_option"
                     ]
                   }
                 ],
@@ -64,7 +64,46 @@
             ]
           },
           {
-            "description": "fn + number key to corresponding function key",
+            "description": "right option to hyper (all left modifiers)",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "right_option",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "right control to fn",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "right_control",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "fn"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Map fn + number keys to their corresponding function keys (rev 1)",
             "manipulators": [
               {
                 "from": {
