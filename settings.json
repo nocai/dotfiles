@@ -2,6 +2,10 @@
   "breadcrumbs.enabled": false,
   "customizeUI.font.monospace": "Iosevka Term",
   "customizeUI.font.regular": "Iosevka",
+  "customizeUI.fontSizeMap": {
+    "tab-title": "12px"
+  },
+  "customizeUI.titleBar": "frameless",
   "editor.autoClosingBrackets": "beforeWhitespace",
   "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.cursorBlinking": "phase",
@@ -9,7 +13,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "Iosevka Term",
   "editor.fontLigatures": true,
-  "editor.fontSize": 14,
+  "editor.fontSize": 12,
   "editor.formatOnSave": true,
   "editor.inlineHints.fontFamily": "monospace",
   "editor.lineNumbers": "relative",
@@ -29,6 +33,7 @@
   "files.trimTrailingWhitespace": true,
   "jest.autoEnable": false,
   "jest.showCoverageOnLoad": true,
+  "python.languageServer": "Pylance",
   "settingsSync.keybindingsPerPlatform": false,
   "settingsSync.ignoredSettings": [
     "workbench.colorTheme",
@@ -39,6 +44,7 @@
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontSize": 13,
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Night Owl",
   "workbench.editor.labelFormat": "short",
