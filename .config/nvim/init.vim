@@ -8,6 +8,7 @@ set number relativenumber
 set tabstop=4 shiftwidth=4 expandtab
 set termguicolors
 set cursorline
+set hidden
 
 " commands and autocommands
 augroup highlight_yank
