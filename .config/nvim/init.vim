@@ -1,5 +1,5 @@
 " options
-let mapleader='<Space>'
+let mapleader=" "
 set mouse=a
 set clipboard+=unnamedplus
 set ignorecase smartcase
@@ -105,12 +105,5 @@ nmap s <Plug>Sneak_s
 nmap S <Plug>Sneak_S
 omap s <Plug>Sneak_s
 omap S <Plug>Sneak_S
-" }}}
 
-" theme {{{
-let g:sonokai_style = 'shusia'
-let g:sonokai_enable_italic = 1
-let g:sonokai_better_performance = 1
-colorscheme sonokai
-" }}}
-" }}}
+source ~/.config/nvim/theme.vim
