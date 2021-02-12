@@ -14,6 +14,8 @@ alias npmr="npm run"
 
 alias nv="nvim"
 alias nvf="nvim -c Files"
+alias nvr="nvim -c Rg"
+alias nvn="nvim -c NnnPicker"
 
 alias b="brew"
 alias bi="brew install"

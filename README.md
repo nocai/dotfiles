@@ -1,40 +1,38 @@
 # dotfiles
 
-My dotfiles for VS Code, Neovim, zsh, tmux, and friends, optimized for web
-development on macOS.
-
-## VS Code
-
-I use most of the basic webdev extensions + the [Vim
-extension](https://github.com/VSCodeVim/Vim) with a handful of bindings.
+My dotfiles for Neovim, zsh, tmux, and friends, optimized for web development on
+macOS.
 
 ## Terminal
 
-I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not
-the fastest) terminal emulator for macOS.
+I use [alacritty](https://github.com/alacritty/alacritty), which is faster than
+iTerm2 to the point that I don't have a choice.
 
 - zsh + a handful of plugins managed with
-  [zgen](https://github.com/tarjoilija/zgen)
+- [zgen](https://github.com/tarjoilija/zgen)
 
-- Neovim + a few plugins for in-terminal edits
+- Neovim + what I consider a reasonable number of plugins, most notably
+  [coc.nvim](https://github.com/neoclide/coc.nvim), which single-handedly makes
+  Vim into the ideal TypeScript development environment
 
 - tmux + [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage
   sessions
 
-- [lazygit](https://github.com/jesseduffield/lazygit), the least painful way
-  to use git
+- [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
+  use git
 
-- [nnn](https://github.com/jarun/nnn), a faster vifm alternative
+- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
+  solid Vim plugin
 
 ## macOS
 
 - [yabai](https://github.com/koekeishiya/yabai) for tiling window management
 
-- [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard
-  shortcuts (and controlling yabai)
+- [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard shortcuts
+  (and controlling yabai)
 
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
-  remap otherwise useless keys
+  remap keys
 
 - [qutebrowser](https://github.com/qutebrowser/qutebrowser) for most browsing
   (and Firefox with [Vimium

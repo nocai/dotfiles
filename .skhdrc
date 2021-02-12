@@ -63,12 +63,14 @@ lctrl + lalt + lshift + lcmd + rshift - o: yabai -m window --display prev && yab
 
 # fn + shortcut: execute shell command
 fn - f: open ~/
-fn - a: open -a iTerm
+fn - a: open -a Alacritty
 fn - x: open -a Firefox
 fn - q: open -a qutebrowser
 fn - d: open -a 'Day One'
 fn - k: open -a Bitwarden
 fn - m: open -a Messages
 fn - i: open -a Music
+fn - h: alacritty --title HOVER
+fn - v: alacritty --title HOVER --command nvim -c startinsert -c 'set filetype=markdown'
 # comma
 fn - 0x2B : open -a 'System Preferences'
