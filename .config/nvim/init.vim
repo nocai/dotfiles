@@ -127,7 +127,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'sheerun/vim-polyglot'
-    Plug 'airblade/vim-gitgutter'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'lewis6991/gitsigns.nvim'
 
     " visual
     Plug 'sainnhe/sonokai'
