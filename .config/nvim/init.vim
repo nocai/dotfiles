@@ -130,6 +130,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'sheerun/vim-polyglot'
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascriptreact', 'typescriptreact'] }
 
     " visual
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
@@ -215,6 +216,11 @@ let g:nnn#action = {
       \ '<C-x>': 'split',
       \ '<C-v>': 'vsplit' }
 " }}}
+
+" emmet {{{
+let g:user_emmet_leader_key='<C-z>'
+" }}}
+
 
 " vsnip {{{
 nmap <Leader>v :VsnipOpenVsplit<CR>
