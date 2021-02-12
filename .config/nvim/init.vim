@@ -20,15 +20,26 @@ set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 set pumheight=10
 set showtabline=2
+set foldlevelstart=99
+
+let g:python_host_prog = $HOME . '/.pyenv/shims/python'
+let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
 " }}}
 
 " commands and autocommands {{{
+" lua yank highlighting
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
 augroup END
 
 command! Remove call delete(expand('%')) | bdelete!
+
+" automatically create nonexistent directories on :e
+augroup create_directory
+    autocmd!
+    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
 " }}}
 
 " statusline {{{
@@ -111,11 +122,14 @@ call plug#begin('~/.config/nvim/plugged')
     " development
     Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
     Plug 'mattn/emmet-vim', {'for': [ 'html', 'javascriptreact', 'typescriptreact' ] }
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'sheerun/vim-polyglot'
     Plug 'airblade/vim-gitgutter'
 
     " visual
     Plug 'sainnhe/sonokai'
+    Plug 'sainnhe/edge'
+    Plug 'sainnhe/forest-night'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ap/vim-buftabline'
 
@@ -311,6 +325,10 @@ nmap <silent> <Leader>pp :PlugInstall<CR>
 nmap <silent> <Leader>pc :PlugClean<CR>
 nmap <silent> <Leader>pu :PlugUpdate<CR>
 nmap <silent> <Leader>ps :PlugStatus<CR>
+" }}}
+
+" treesitter {{{
+lua require("treesitter-config")
 " }}}
 
 " nnn {{{
