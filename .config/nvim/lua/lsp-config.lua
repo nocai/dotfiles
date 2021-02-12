@@ -18,9 +18,13 @@ local on_attach = function(_, bufnr)
     map('n', 'gs', '<cmd>lua require("lsp-functions").organize_imports()<CR>',
         opts)
     map('n', '<Leader>a', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    map('i', '<C-x><C-x>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = -- disable virtual text
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+                 {virtual_text = false, underline = true, signs = true})
 
     vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-    vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 end
 
 nvim_lsp.tsserver.setup {
