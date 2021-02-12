@@ -160,6 +160,8 @@ nmap <silent> [a <Plug>(coc-diagnostic-prev)
 nmap <silent> ]a <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-rename)
+nmap <silent> gR :CocCommand workspace.renameCurrentFile<CR>
 nmap <silent> gI <Plug>(coc-implementation)
 nmap <silent> gi <Plug>(coc-references)
 nmap <silent> ga <Plug>(coc-codeaction-selected)
@@ -173,8 +175,6 @@ nmap <silent> <Leader>cv :CocList outline<CR>
 nmap <silent> <Leader>cp :CocList snippets<CR>
 nmap <silent> <Leader>cs :CocCommand snippets.editSnippets<CR>
 xmap <silent> <Leader>cs <Plug>(coc-convert-snippet)
-nmap <silent> <Leader>cr <Plug>(coc-rename)
-nmap <silent> <Leader>cR :CocCommand workspace.renameCurrentFile<CR>
 nmap <silent> <Leader>cx :CocList extensions<CR>
 nmap <silent> <Leader>ci :CocInfo<CR>
 nmap <silent> <Leader>q  <Plug>(coc-fix-current)
@@ -332,10 +332,9 @@ nmap <silent> <Leader>ps :PlugStatus<CR>
 " }}}
 
 " theme {{{
-let g:sonokai_style = 'default'
-let g:sonokai_enable_italic = 1
-let g:sonokai_diagnostic_text_highlight = 1
-let g:sonokai_better_performance = 1
-colorscheme sonokai
+let theme_path = '~/.config/nvim/theme.vim'
+if filereadable(expand(theme_path))
+    execute 'source' theme_path
+endif
 " }}}
 " }}}
