@@ -61,7 +61,7 @@ lctrl + lalt + lshift + lcmd - o: yabai -m display --focus prev
 lctrl + lalt + lshift + lcmd + rshift - p: yabai -m window --display next && yabai -m display --focus next
 lctrl + lalt + lshift + lcmd + rshift - o: yabai -m window --display prev && yabai -m display --focus prev
 
-# fn + shortcut: execute arbitrary shell command (mostly used to open apps)
+# fn + shortcut: execute shell command
 fn - f: open ~/
 fn - a: open -a Alacritty
 fn - x: open -a Firefox

@@ -1,5 +1,6 @@
 alias zshsrc="zgen reset && exec zsh"
 
+alias nnn="TERM=xterm-256color nnn"
 alias n="nnn"
 
 alias ni="npm install"

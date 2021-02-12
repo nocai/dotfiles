@@ -21,18 +21,26 @@ set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 set pumheight=10
 set showtabline=2
+set foldlevelstart=99
 
 let g:python_host_prog = $HOME . '/.pyenv/shims/python'
 let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
 " }}}
 
 " commands and autocommands {{{
+" lua yank highlighting
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
 augroup END
 
 command! Remove call delete(expand('%')) | bdelete!
+
+" automatically create nonexistent directories on :e
+augroup create_directory
+    autocmd!
+    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
 " }}}
 
 " statusline {{{
@@ -93,7 +101,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Raimondi/delimitMate'
 
     " additional functionality
-    Plug 'vim-scripts/ReplaceWithRegister'
+    Plug 'svermeulen/vim-subversive'
     Plug 'svermeulen/vim-cutlass'
     Plug 'ntpeters/vim-better-whitespace', { 'for': [ 'vim', 'zsh', 'tmux', 'snippets' ] }
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
@@ -105,9 +113,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/fzf.vim'
 
     " text objects
+    Plug 'wellle/targets.vim'
     Plug 'kana/vim-textobj-user'
     Plug 'kana/vim-textobj-entire'
+    Plug 'beloglazov/vim-textobj-punctuation'
     Plug 'Julian/vim-textobj-variable-segment'
+    Plug 'inside/vim-textobj-jsxattr', { 'for': [ 'javascriptreact', 'typescriptreact' ] }
 
     " development
     Plug 'neovim/nvim-lspconfig'
@@ -115,11 +126,16 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mhartington/formatter.nvim'
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+||||||| e840957
+    Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+    Plug 'mattn/emmet-vim', {'for': [ 'html', 'javascriptreact', 'typescriptreact' ] }
     Plug 'sheerun/vim-polyglot'
     Plug 'airblade/vim-gitgutter'
 
     " visual
     Plug 'sainnhe/sonokai'
+    Plug 'sainnhe/edge'
+    Plug 'sainnhe/forest-night'
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ap/vim-buftabline'
 
@@ -133,6 +149,18 @@ call plug#end()
 let g:delimitMate_expand_cr = 1
 " }}}
 
+" subversive {{{
+" s for substitute
+nmap s <Plug>(SubversiveSubstitute)
+xmap s <Plug>(SubversiveSubstitute)
+nmap ss <Plug>(SubversiveSubstituteLine)
+nmap S <Plug>(SubversiveSubstituteToEndOfLine)
+" <Leader>s to substitute over range
+nmap <silent> <Leader>s <Plug>(SubversiveSubstituteRange)
+xmap <silent> <Leader>s <Plug>(SubversiveSubstituteRange)
+nmap <silent> <Leader>ss <Plug>(SubversiveSubstituteWordRange)
+" }}}
+
 " cutlass {{{
 " m for move (default d behavior)
 nnoremap m d
@@ -140,6 +168,79 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 nnoremap gm m
+" }}}
+
+||||||| e840957
+" coc {{{
+command! CR CocRestart
+command! CC CocConfig
+command! -nargs=0 Format :call CocAction('format')
+
+" maps
+nmap <silent> [a <Plug>(coc-diagnostic-prev)
+nmap <silent> ]a <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gI <Plug>(coc-implementation)
+nmap <silent> gi <Plug>(coc-references)
+nmap <silent> ga <Plug>(coc-codeaction-selected)
+xmap <silent> ga <Plug>(coc-codeaction-selected)
+nmap <silent> gA <Plug>(coc-codeaction)
+nmap <silent> gs :CocCommand editor.action.organizeImport<CR>
+nmap <silent> gq <Plug>(coc-fix-current)
+nnoremap gQ gq
+
+" leader maps
+nmap <silent> <Leader>ca :CocList diagnostics<CR>
+nmap <silent> <Leader>cv :CocList outline<CR>
+nmap <silent> <Leader>cp :CocList snippets<CR>
+nmap <silent> <Leader>cs :CocCommand snippets.editSnippets<CR>
+xmap <silent> <Leader>cs <Plug>(coc-convert-snippet)
+nmap <silent> <Leader>cr <Plug>(coc-rename)
+nmap <silent> <Leader>cR :CocCommand workspace.renameCurrentFile<CR>
+nmap <silent> <Leader>cx :CocList extensions<CR>
+nmap <silent> <Leader>ci :CocInfo<CR>
+
+" show vim documentation or lsp hover
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . ' ' . expand('<cword>')
+  endif
+endfunction
+
+" text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" range select
+nmap <silent> <C-n> <Plug>(coc-range-select)
+xmap <silent> <C-n> <Plug>(coc-range-select)
+
+" VS Code-like tab behavior
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<Tab>'
+
+" <C-Space> to show suggestions
+inoremap <silent><expr> <C-Space> coc#refresh()
 " }}}
 
 " fzf {{{
@@ -172,14 +273,12 @@ let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
 
 " maps
-nmap s <Plug>Sneak_s
-nmap S <Plug>Sneak_S
-omap s <Plug>Sneak_s
-omap S <Plug>Sneak_S
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
+omap f <Plug>Sneak_s
+omap F <Plug>Sneak_S
+omap z <Plug>Sneak_f
+omap Z <Plug>Sneak_F
 nmap t <Plug>Sneak_t
 nmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
@@ -229,9 +328,11 @@ nmap <silent> <Leader>pu :PlugUpdate<CR>
 nmap <silent> <Leader>ps :PlugStatus<CR>
 " }}}
 
+" treesitter {{{
+lua require("treesitter-config")
+" }}}
+
 " nnn {{{
-" open in floating window
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Directory' } }
 " enable additional actions
 let g:nnn#action = {
       \ '<C-t>': 'tab split',
@@ -242,12 +343,18 @@ nmap <silent> - :NnnPicker %<CR>
 nmap <silent> <Leader>n :NnnPicker<CR>
 " }}}
 
+" vim-plug {{{
+nmap <silent> <Leader>pp :PlugInstall<CR>
+nmap <silent> <Leader>pc :PlugClean<CR>
+nmap <silent> <Leader>pu :PlugUpdate<CR>
+nmap <silent> <Leader>ps :PlugStatus<CR>
+" }}}
+
 " theme {{{
-let g:sonokai_style = 'default'
-let g:sonokai_enable_italic = 1
-let g:sonokai_diagnostic_text_highlight = 1
-let g:sonokai_better_performance = 1
-colorscheme sonokai
+let theme_path = '~/.config/nvim/theme.vim'
+if filereadable(expand(theme_path))
+    execute 'source' theme_path
+endif
 " }}}
 " }}}
 

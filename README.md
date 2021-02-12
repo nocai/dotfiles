@@ -21,7 +21,7 @@ iTerm2 to the point that I don't have a choice.
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
 
-- [nnn](https://github.com/jarun/nnn), a faster vifm alternative with a
+- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
   solid Vim plugin
 
 ## macOS
@@ -32,8 +32,7 @@ iTerm2 to the point that I don't have a choice.
   (and controlling yabai)
 
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
-  remap keys (imagine living without caps lock to escape on press, control on
-  hold)
+  remap keys
 
 - [qutebrowser](https://github.com/qutebrowser/qutebrowser) for most browsing
   (and Firefox with [Vimium

@@ -1,4 +1,6 @@
 # pyright: reportUndefinedVariable=false
+import os.path
+
 # basic
 config.set("content.notifications", False)
 config.set("content.geolocation", False)
@@ -26,6 +28,7 @@ config.set(
     ],
 )
 
+
 # logical horizontal tab navigation
 config.bind("J", "tab-prev")
 config.bind("K", "tab-next")
@@ -43,10 +46,11 @@ config.bind("zo", "set-cmd-text -s :open -b")
 config.bind("zO", "set-cmd-text :open -b -r {url:pretty}")
 
 # leader bindings
-config.bind(",R", "restart")
-config.bind(",d", "download-open ;; download-clear")
-config.bind(",D", "download-clear")
-config.bind(",r", "config-cycle colors.webpage.darkmode.enabled ;; restart")
+config.bind(",r", "restart")
+config.bind(",w", "download-open ;; download-clear")
+config.bind(",c", "download-clear")
+config.bind(",d", "config-cycle colors.webpage.darkmode.enabled ;; restart")
+config.bind("<Space>", "set-cmd-text :")
 
 # other
 config.bind("b", "hint all tab-bg")
@@ -55,10 +59,12 @@ config.bind("<Ctrl+p>", "completion-item-focus prev", mode="command")
 
 # visual
 config.set("fonts.default_family", "Iosevka")
-config.set("fonts.default_size", "13pt")
+config.set("fonts.default_size", "12pt")
 config.set("completion.height", "20%")
 
 # continue loading autoconfig to allow persistent cycling
 config.load_autoconfig()
+
 # load theme
-config.source("theme.py")
+if os.path.isfile(os.path.expanduser("~") + "/.qutebrowser/theme.py"):
+    config.source("theme.py")

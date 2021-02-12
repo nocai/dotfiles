@@ -9,8 +9,6 @@
   },
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.format.enabled": false,
-  "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
