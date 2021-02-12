@@ -11,9 +11,7 @@ iTerm2 to the point that I don't have a choice.
 - zsh + a handful of plugins managed with
 - [zgen](https://github.com/tarjoilija/zgen)
 
-- Neovim + what I consider a reasonable number of plugins, most notably
-  [coc.nvim](https://github.com/neoclide/coc.nvim), which single-handedly makes
-  Vim into the ideal TypeScript development environment
+- Neovim + a (finally!) functional TypeScript setup for its built-in LSP
 
 - tmux + [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage
   sessions
