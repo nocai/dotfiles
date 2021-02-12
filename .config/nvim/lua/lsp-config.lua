@@ -8,16 +8,16 @@ local on_attach = function(_, bufnr)
     map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    map('i', '<C-x><C-x>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     map('n', '<Leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     map('n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     map('n', '[a', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     map('n', ']a', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    map('n', '<Leader>a',
-        '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    map("n", "gs", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    map('n', '<Leader>a', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+    vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
+    vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 end
 
 nvim_lsp.tsserver.setup {
