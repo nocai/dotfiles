@@ -128,7 +128,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
     Plug 'nvim-treesitter/nvim-treesitter'
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'hrsh7th/vim-vsnip'
@@ -189,6 +188,8 @@ nmap <silent> <Leader>r :Rg<CR>
 " enable autoformat on save
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+" disable weird quickfix integration
+let g:prettier#quickfix_enabled = 0
 " }}}
 
 " close-buffers {{{
