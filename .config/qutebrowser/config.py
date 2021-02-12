@@ -58,8 +58,6 @@ config.bind("<Ctrl+n>", "completion-item-focus next", mode="command")
 config.bind("<Ctrl+p>", "completion-item-focus prev", mode="command")
 
 # visual
-config.set("fonts.default_family", "Iosevka")
-config.set("fonts.default_size", "12pt")
 config.set("completion.height", "20%")
 
 # continue loading autoconfig to allow persistent cycling
