@@ -50,8 +50,14 @@ nvim_lsp.sumneko_lua.setup {
 
 nvim_lsp.efm.setup({
     on_attach = on_attach,
-    cmd = {"efm-langserver", "-logfile", "/tmp/efm.log"},
-    init_options = {documentFormatting = true},
+    rootMarkers = {".git/"},
+    init_options = {
+        documentFormatting = true,
+        hover = true,
+        documentSymbol = true,
+        codeAction = true,
+        completion = true
+    },
     settings = {languages = efm_languages},
     filetypes = vim.tbl_keys(efm_languages)
 })
