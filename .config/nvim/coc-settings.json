@@ -21,8 +21,15 @@
     "yaml",
     "markdown",
     "sh",
-    "python"
+    "python",
+    "lua"
   ],
+  "diagnostic-languageserver.formatters": {
+    "lua-format": {
+      "command": "lua-format",
+      "args": ["-i"]
+    }
+  },
   "diagnostic-languageserver.filetypes": {
     "markdown": ["write-good", "markdownlint"],
     "sh": "shellcheck",
