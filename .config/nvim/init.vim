@@ -77,7 +77,7 @@ nmap <silent> <Leader>x :bd<CR>
 nnoremap Y y$
 nnoremap <silent> <Esc> :nohl<CR>
 noremap <Bslash> ,
-nnoremap ZZ :wqall<CR>
+noremap <S-CR> :wqall<CR>
 
 inoremap (; (<CR>)<C-c>O
 inoremap {; {<CR>}<C-c>O
