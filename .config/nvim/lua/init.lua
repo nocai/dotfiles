@@ -1,4 +1,4 @@
-require("lsp-config")
-require("treesitter-config")
-require("compe-config")
-require("gitsigns-config")
+require("lsp")
+require("plugins/treesitter")
+require("plugins/compe")
+require("plugins/gitsigns")

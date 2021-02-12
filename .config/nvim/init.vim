@@ -129,7 +129,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'hrsh7th/vim-vsnip'
-    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'sheerun/vim-polyglot'
 
     " visual
@@ -171,11 +170,6 @@ nmap <silent> <Leader>r :Rg<CR>
 command! -bang -nargs=* Rg
     \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
     \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
-" }}}
-
-" prettier {{{
-" disable weird quickfix integration
-let g:prettier#quickfix_enabled = 0
 " }}}
 
 " close-buffers {{{
