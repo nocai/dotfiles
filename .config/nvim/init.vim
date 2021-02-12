@@ -28,13 +28,14 @@ let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
 " }}}
 
 " commands and autocommands {{{
+command! Remove call delete(expand('%')) | bdelete!
+command! Trim %s/ \+$//
+
 " lua yank highlighting
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=500}
 augroup END
-
-command! Remove call delete(expand('%')) | bdelete!
 
 " automatically create nonexistent directories on :e
 augroup create_directory
@@ -72,12 +73,15 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 nnoremap <BS> <C-^>
-inoremap <S-Tab> <C-o>A
 nmap <silent> <Leader>x :bd<CR>
 nnoremap Y y$
 nnoremap <silent> <Esc> :nohl<CR>
 noremap <Bslash> ,
 nnoremap ZZ :wqall<CR>
+
+inoremap (; (<CR>)<C-c>O
+inoremap {; {<CR>}<C-c>O
+inoremap [; [<CR>]<C-c>O
 
 " <CR> to save, except in quickfix buffers
 nnoremap <silent> <expr> <CR> (&buftype is# "quickfix" ? "<CR>" : ":w<CR>")
@@ -97,24 +101,18 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
-    Plug 'justinmk/vim-sneak'
-    Plug 'Raimondi/delimitMate'
+    Plug 'phaazon/hop.nvim'
 
     " additional functionality
     Plug 'svermeulen/vim-subversive'
     Plug 'svermeulen/vim-cutlass'
-    Plug 'ntpeters/vim-better-whitespace', { 'for': [ 'vim', 'zsh', 'tmux', 'snippets' ] }
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
 
     " integrations
     Plug 'mcchrish/nnn.vim'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-
 
     " text objects
     Plug 'wellle/targets.vim'
@@ -147,20 +145,12 @@ call plug#end()
 " }}}
 
 " plugin options {{{
-" delimitMate {{{
-let g:delimitMate_expand_cr = 1
-" }}}
-
 " subversive {{{
 " s for substitute
 nmap s <Plug>(SubversiveSubstitute)
 xmap s <Plug>(SubversiveSubstitute)
 nmap ss <Plug>(SubversiveSubstituteLine)
 nmap S <Plug>(SubversiveSubstituteToEndOfLine)
-" <Leader>s to substitute over range
-nmap <silent> <Leader>s <Plug>(SubversiveSubstituteRange)
-xmap <silent> <Leader>s <Plug>(SubversiveSubstituteRange)
-nmap <silent> <Leader>ss <Plug>(SubversiveSubstituteWordRange)
 " }}}
 
 " cutlass {{{
@@ -173,21 +163,17 @@ nnoremap gm m
 " }}}
 
 " fzf {{{
-" :Rg only searches file contents, not names
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-    \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
-" maps
 nmap <silent> <Leader>f :Files<CR>
 nmap <silent> <Leader>m :Buffers<CR>
 nmap <silent> <Leader>l :BLines<CR>
 nmap <silent> <Leader>r :Rg<CR>
+" :Rg only searches file contents, not names
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+    \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 " }}}
 
 " prettier {{{
-" enable autoformat on save
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
 " disable weird quickfix integration
 let g:prettier#quickfix_enabled = 0
 " }}}
@@ -196,35 +182,9 @@ let g:prettier#quickfix_enabled = 0
 nmap <silent> <Leader>b :Bdelete menu<CR>
 " }}}
 
-" sneak {{{
-" enable label mode
-let g:sneak#label = 1
-" obey smart case
-let g:sneak#use_ic_scs = 1
-
-" maps
-nmap f <Plug>Sneak_s
-nmap F <Plug>Sneak_S
-omap f <Plug>Sneak_s
-omap F <Plug>Sneak_S
-omap z <Plug>Sneak_f
-omap Z <Plug>Sneak_F
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
-" }}}
-
-" better-whitespace {{{
-" enable seamless fixing on save
-let g:strip_whitespace_confirm = 0
-" also trim empty lines
-let g:strip_whitelines_at_eof = 1
-" enable when lazy loaded by vim-plug
-augroup EnableWhitespacePlugin
-    autocmd!
-    autocmd User vim-better-whitespace EnableStripWhitespaceOnSave
-augroup END
+" hop {{{
+nmap <silent> f :HopChar2<CR>
+nmap <silent> F :HopWord<CR>
 " }}}
 
 " maximizer {{{
@@ -252,33 +212,25 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 " }}}
 
 " nnn {{{
+nmap <silent> - :NnnPicker %<CR>
+nmap <silent> <Leader>n :NnnPicker<CR>
 " enable additional actions
 let g:nnn#action = {
       \ '<C-t>': 'tab split',
       \ '<C-x>': 'split',
       \ '<C-v>': 'vsplit' }
-" maps
-nmap <silent> - :NnnPicker %<CR>
-nmap <silent> <Leader>n :NnnPicker<CR>
-" }}}
-
-" vim-plug {{{
-nmap <silent> <Leader>pp :PlugInstall<CR>
-nmap <silent> <Leader>pc :PlugClean<CR>
-nmap <silent> <Leader>pu :PlugUpdate<CR>
-nmap <silent> <Leader>ps :PlugStatus<CR>
 " }}}
 
 " vsnip {{{
+nmap <Leader>v :VsnipOpenVsplit<CR>
 " extend filetypes
 let g:vsnip_filetypes = { 'javascriptreact': ['javascript'], 'typescriptreact': ['typescript'] }
-
-" tab to expand or jump when available
+" <Tab> / <S-Tab> to expand or jump when available
 imap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
 smap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
-
-" other maps
-nmap <Leader>v :VsnipOpenVsplit<CR>
+imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'
+smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'
+" }}}
 " }}}
 
 " theme {{{
@@ -286,7 +238,6 @@ let theme_path = '~/.config/nvim/theme.vim'
 if filereadable(expand(theme_path))
     execute 'source' theme_path
 endif
-" }}}
 " }}}
 
 " lua {{{

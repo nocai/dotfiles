@@ -32,7 +32,6 @@ if ! zgen saved; then
     zgen load mroth/evalcache
     zgen load unixorn/autoupdate-zgen
     zgen load zdharma/fast-syntax-highlighting
-    zgen load hlissner/zsh-autopair
     zgen load softmoth/zsh-vim-mode
     zgen load zsh-users/zsh-autosuggestions
 
