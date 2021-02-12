@@ -10,10 +10,13 @@ local on_attach = function(_, bufnr)
     map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     map('n', '<Leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    map('n', 'gr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     map('n', 'gR', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     map('n', '[a', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     map('n', ']a', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    map('n', 'gs', '<cmd>lua require("lsp-functions").organize_imports()<CR>',
+        opts)
     map('n', '<Leader>a', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
     vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
