@@ -105,12 +105,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'svermeulen/vim-cutlass'
     Plug 'ntpeters/vim-better-whitespace', { 'for': [ 'vim', 'zsh', 'tmux', 'snippets' ] }
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
     " integrations
     Plug 'mcchrish/nnn.vim'
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
 
     " text objects
     Plug 'wellle/targets.vim'
@@ -168,18 +169,17 @@ nnoremap M D
 nnoremap gm m
 " }}}
 
-" fzf {{{
-" :Rg only searches file contents, not names
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-    \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+" telescope {{{
+command! Files Telescope find_files find_command=rg,--ignore,--hidden,--files
+command! Rg Telescope live_grep
+command! Buffers Telescope buffers
+command! History Telescope oldfiles
+command! BLines Telescope current_buffer_fuzzy_find
 " maps
 nmap <silent> <Leader>f :Files<CR>
 nmap <silent> <Leader>m :Buffers<CR>
 nmap <silent> <Leader>l :BLines<CR>
-nmap <silent> <Leader>L :Lines<CR>
 nmap <silent> <Leader>r :Rg<CR>
-nmap <silent> <Leader>H :History<CR>
 " }}}
 
 " close-buffers {{{
