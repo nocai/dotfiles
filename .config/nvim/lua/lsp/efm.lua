@@ -1,23 +1,26 @@
 local tools = {
     eslint = {
-        lintCommand = 'eslint_d --stdin --stdin-filename ${INPUT} -f unix',
+        lintCommand = "eslint_d --stdin --stdin-filename ${INPUT} -f unix",
         lintStdin = true,
         lintIgnoreExitCode = true
     },
     prettier = {
-        formatCommand = 'prettier --stdin-filepath ${INPUT}',
+        formatCommand = "prettier --stdin-filepath ${INPUT}",
         formatStdin = true
     },
-    luaFormat = {formatCommand = 'lua-format -i', formatStdin = true},
+    luaFormat = {
+        formatCommand = "lua-format --single-quote-to-double-quote -i",
+        formatStdin = true
+    },
     vint = {
-        lintCommand = 'vint -',
+        lintCommand = "vint -",
         lintStdin = true,
-        lintFormats = {'%f:%l:%c: %m'}
+        lintFormats = {"%f:%l:%c: %m"}
     },
     markdownlint = {
-        lintCommand = 'markdownlint -s',
+        lintCommand = "markdownlint -s",
         lintStdin = true,
-        lintFormats = {'%f:%l %m', '%f:%l:%c %m', '%f: %l: %m'}
+        lintFormats = {"%f:%l %m", "%f:%l:%c %m", "%f: %l: %m"}
     },
     shellcheck = {
         lintCommand = "shellcheck -f gcc -x -",
@@ -27,7 +30,7 @@ local tools = {
             "%f:%l:%c: %tote: %m"
         }
     },
-    shfmt = {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
+    shfmt = {formatCommand = "shfmt -ci -s -bn", formatStdin = true}
 }
 
 local languages = {
