@@ -48,6 +48,7 @@ nvim_lsp.sumneko_lua.setup {
 }
 
 nvim_lsp.diagnosticls.setup {
+    on_attach = on_attach,
     filetypes = {
         "typescript", "typescriptreact", 'sh', 'vim', 'markdown', 'lua'
     },
