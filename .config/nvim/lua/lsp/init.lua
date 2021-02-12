@@ -1,4 +1,4 @@
-local nvim_lsp = require "lspconfig"
+local nvim_lsp = require("lspconfig")
 local efm_languages = require("lsp.efm")
 local sumneko_config = require("lsp.sumneko")
 
@@ -6,8 +6,8 @@ local on_attach = function(client, bufnr)
     local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = {noremap = true, silent = true}
 
-    map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
@@ -19,7 +19,9 @@ local on_attach = function(client, bufnr)
     map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     map('n', 'gs', '<cmd>lua require("lsp.functions").organize_imports()<CR>',
         opts)
-    map('n', '<Leader>a', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+    map('n', '<Leader>a',
+        '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    map('n', '<Leader>A', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     map('i', '<C-x><C-x>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
     if client.resolved_capabilities.document_formatting then
@@ -29,6 +31,8 @@ local on_attach = function(client, bufnr)
             .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
         vim.api.nvim_command [[augroup END]]
     end
+
+    require('illuminate').on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {

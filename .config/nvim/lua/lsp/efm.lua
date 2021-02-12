@@ -4,7 +4,6 @@ local tools = {
         lintStdin = true,
         lintIgnoreExitCode = true
     },
-
     prettier = {
         formatCommand = 'prettier --stdin-filepath ${INPUT}',
         formatStdin = true

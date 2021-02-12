@@ -132,11 +132,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'sheerun/vim-polyglot'
 
     " visual
+    Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
+    Plug 'ap/vim-buftabline'
+    Plug 'RRethy/vim-illuminate'
     Plug 'sainnhe/sonokai'
     Plug 'sainnhe/edge'
     Plug 'sainnhe/forest-night'
-    Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
-    Plug 'ap/vim-buftabline'
 
     " other
     Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown', 'do': 'cd app && yarn install'  }
@@ -177,8 +178,8 @@ nmap <silent> <Leader>b :Bdelete menu<CR>
 " }}}
 
 " hop {{{
-nmap <silent> f :HopChar2<CR>
-nmap <silent> F :HopWord<CR>
+nmap <silent> <Leader>s :HopWord<CR>
+nmap <silent> <Leader>S :HopChar2<CR>
 " }}}
 
 " maximizer {{{
