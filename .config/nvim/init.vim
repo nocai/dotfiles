@@ -112,6 +112,9 @@ call plug#begin('~/.config/nvim/plugged')
     " integrations
     Plug 'mcchrish/nnn.vim'
     Plug 'christoomey/vim-tmux-navigator'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+
 
     " text objects
     Plug 'wellle/targets.vim'
@@ -124,13 +127,13 @@ call plug#begin('~/.config/nvim/plugged')
     " development
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
-    Plug 'mhartington/formatter.nvim'
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'sheerun/vim-polyglot'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'hrsh7th/vim-vsnip'
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+    Plug 'sheerun/vim-polyglot'
 
     " visual
     Plug 'sainnhe/sonokai'
@@ -170,17 +173,22 @@ nnoremap M D
 nnoremap gm m
 " }}}
 
-" telescope {{{
-command! Files Telescope find_files find_command=rg,--ignore,--hidden,--files
-command! Rg Telescope live_grep
-command! Buffers Telescope buffers
-command! History Telescope oldfiles
-command! BLines Telescope current_buffer_fuzzy_find
+" fzf {{{
+" :Rg only searches file contents, not names
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+    \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 " maps
 nmap <silent> <Leader>f :Files<CR>
 nmap <silent> <Leader>m :Buffers<CR>
 nmap <silent> <Leader>l :BLines<CR>
 nmap <silent> <Leader>r :Rg<CR>
+" }}}
+
+" prettier {{{
+" enable autoformat on save
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 " }}}
 
 " close-buffers {{{

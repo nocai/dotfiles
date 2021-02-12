@@ -19,6 +19,7 @@ local on_attach = function(client, bufnr)
     map('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     map('n', 'gs', '<cmd>lua require("lsp-functions").organize_imports()<CR>',
         opts)
+    map('n', 'gq', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opts)
     map('n', '<Leader>a', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
@@ -47,7 +48,9 @@ nvim_lsp.sumneko_lua.setup {
 }
 
 nvim_lsp.diagnosticls.setup {
-    filetypes = {"typescript", "typescriptreact"},
+    filetypes = {
+        "typescript", "typescriptreact", 'sh', 'vim', 'markdown', 'lua'
+    },
     init_options = {
         filetypes = {
             sh = "shellcheck",
@@ -138,7 +141,9 @@ nvim_lsp.diagnosticls.setup {
                     {line = 1, column = 2, message = 3}
                 }
             }
-        }
+        },
+        formatters = {luaFormat = {command = "lua-format", args = {"-i"}}},
+        formatFiletypes = {lua = "luaFormat"}
     }
 }
 
