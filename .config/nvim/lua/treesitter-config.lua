@@ -33,4 +33,3 @@ vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.cmd('command! TR write | edit | TSBufEnable highlight')
-||||||| e840957

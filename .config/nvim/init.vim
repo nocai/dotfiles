@@ -126,9 +126,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mhartington/formatter.nvim'
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-||||||| e840957
-    Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
-    Plug 'mattn/emmet-vim', {'for': [ 'html', 'javascriptreact', 'typescriptreact' ] }
     Plug 'sheerun/vim-polyglot'
     Plug 'airblade/vim-gitgutter'
 
@@ -170,79 +167,6 @@ nnoremap M D
 nnoremap gm m
 " }}}
 
-||||||| e840957
-" coc {{{
-command! CR CocRestart
-command! CC CocConfig
-command! -nargs=0 Format :call CocAction('format')
-
-" maps
-nmap <silent> [a <Plug>(coc-diagnostic-prev)
-nmap <silent> ]a <Plug>(coc-diagnostic-next)
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gI <Plug>(coc-implementation)
-nmap <silent> gi <Plug>(coc-references)
-nmap <silent> ga <Plug>(coc-codeaction-selected)
-xmap <silent> ga <Plug>(coc-codeaction-selected)
-nmap <silent> gA <Plug>(coc-codeaction)
-nmap <silent> gs :CocCommand editor.action.organizeImport<CR>
-nmap <silent> gq <Plug>(coc-fix-current)
-nnoremap gQ gq
-
-" leader maps
-nmap <silent> <Leader>ca :CocList diagnostics<CR>
-nmap <silent> <Leader>cv :CocList outline<CR>
-nmap <silent> <Leader>cp :CocList snippets<CR>
-nmap <silent> <Leader>cs :CocCommand snippets.editSnippets<CR>
-xmap <silent> <Leader>cs <Plug>(coc-convert-snippet)
-nmap <silent> <Leader>cr <Plug>(coc-rename)
-nmap <silent> <Leader>cR :CocCommand workspace.renameCurrentFile<CR>
-nmap <silent> <Leader>cx :CocList extensions<CR>
-nmap <silent> <Leader>ci :CocInfo<CR>
-
-" show vim documentation or lsp hover
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . ' ' . expand('<cword>')
-  endif
-endfunction
-
-" text objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" range select
-nmap <silent> <C-n> <Plug>(coc-range-select)
-xmap <silent> <C-n> <Plug>(coc-range-select)
-
-" VS Code-like tab behavior
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<Tab>'
-
-" <C-Space> to show suggestions
-inoremap <silent><expr> <C-Space> coc#refresh()
-" }}}
-
 " fzf {{{
 " :Rg only searches file contents, not names
 command! -bang -nargs=* Rg
@@ -255,11 +179,6 @@ nmap <silent> <Leader>l :BLines<CR>
 nmap <silent> <Leader>L :Lines<CR>
 nmap <silent> <Leader>r :Rg<CR>
 nmap <silent> <Leader>H :History<CR>
-" }}}
-
-" emmet {{{
-" don't load at all, since coc-emmet doesn't need it
-let g:user_emmet_install_global = 0
 " }}}
 
 " close-buffers {{{
@@ -319,17 +238,6 @@ nmap <leader>7 <Plug>BufTabLine.Go(7)
 nmap <leader>8 <Plug>BufTabLine.Go(8)
 nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
-" }}}
-
-" vim-plug {{{
-nmap <silent> <Leader>pp :PlugInstall<CR>
-nmap <silent> <Leader>pc :PlugClean<CR>
-nmap <silent> <Leader>pu :PlugUpdate<CR>
-nmap <silent> <Leader>ps :PlugStatus<CR>
-" }}}
-
-" treesitter {{{
-lua require("treesitter-config")
 " }}}
 
 " nnn {{{
