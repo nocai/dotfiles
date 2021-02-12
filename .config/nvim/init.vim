@@ -130,6 +130,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'sheerun/vim-polyglot'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'lewis6991/gitsigns.nvim'
+    Plug 'hrsh7th/vim-vsnip'
 
     " visual
     Plug 'sainnhe/sonokai'
@@ -257,6 +258,18 @@ nmap <silent> <Leader>pp :PlugInstall<CR>
 nmap <silent> <Leader>pc :PlugClean<CR>
 nmap <silent> <Leader>pu :PlugUpdate<CR>
 nmap <silent> <Leader>ps :PlugStatus<CR>
+" }}}
+
+" vsnip {{{
+" extend filetypes
+let g:vsnip_filetypes = { 'javascriptreact': ['javascript'], 'typescriptreact': ['typescript'] }
+
+" tab to expand or jump when available
+imap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+smap <expr> <Tab> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'
+
+" other maps
+nmap <Leader>v :VsnipOpenVsplit<CR>
 " }}}
 
 " theme {{{

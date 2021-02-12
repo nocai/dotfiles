@@ -12,11 +12,17 @@ require"compe".setup {
         path = true,
         buffer = true,
         calc = true,
-        ultisnips = true,
-        vsnip = false,
+        vsnip = true,
         nvim_lsp = true,
         nvim_lua = true,
         spell = true,
         tags = true
     }
 }
+
+vim.api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()',
+                        {expr = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-y>', 'compe#confirm("<C-y>")',
+                        {expr = true, silent = true})
+vim.api.nvim_set_keymap('i', '<C-e>', 'compe#confirm("<C-e>")',
+                        {expr = true, silent = true})
