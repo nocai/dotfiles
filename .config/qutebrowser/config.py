@@ -1,3 +1,6 @@
+# pyright: reportUndefinedVariable=false
+import os.path
+
 # basic
 config.set("content.notifications", False)
 config.set("content.geolocation", False)
@@ -31,10 +34,11 @@ config.bind("zo", "set-cmd-text -s :open -b")
 config.bind("zO", "set-cmd-text :open -b -r {url:pretty}")
 
 # leader bindings
-config.bind("<Space>r", "restart")
-config.bind("<Space>w", "download-open ;; download-clear")
-config.bind("<Space>c", "download-clear")
-config.bind("<Space>d", "config-cycle colors.webpage.darkmode.enabled ;; restart")
+config.bind(",r", "restart")
+config.bind(",w", "download-open ;; download-clear")
+config.bind(",c", "download-clear")
+config.bind(",d", "config-cycle colors.webpage.darkmode.enabled ;; restart")
+config.bind("<Space>", "set-cmd-text :")
 
 # other
 config.bind("b", "hint all tab-bg")
@@ -48,5 +52,7 @@ config.set("completion.height", "20%")
 
 # continue loading autoconfig to allow persistent cycling
 config.load_autoconfig()
+
 # load theme
-config.source("theme.py")
+if os.path.isfile(os.path.expanduser("~") + "/.qutebrowser/theme.py"):
+    config.source("theme.py")
