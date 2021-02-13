@@ -42,6 +42,15 @@ augroup create_directory
     autocmd!
     autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 augroup END
+
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+nmap <silent> <Leader>q :call ToggleQuickFix()<CR>
 " }}}
 
 " statusline {{{
