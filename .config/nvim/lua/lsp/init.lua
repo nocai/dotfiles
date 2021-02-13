@@ -2,6 +2,19 @@ local nvim_lsp = require("lspconfig")
 local efm_languages = require("lsp.efm")
 local sumneko_config = require("lsp.sumneko")
 
+vim.lsp.handlers["textDocument/formatting"] =
+    function(err, _, result, _, bufnr)
+        if err ~= nil or result == nil then return end
+        if not vim.api.nvim_buf_get_option(bufnr, "modified") then
+            local view = vim.fn.winsaveview()
+            vim.lsp.util.apply_text_edits(result, bufnr)
+            vim.fn.winrestview(view)
+            if bufnr == vim.api.nvim_get_current_buf() then
+                vim.api.nvim_command("noautocmd :update")
+            end
+        end
+    end
+
 local on_attach = function(client, bufnr)
     local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = {noremap = true, silent = true}
@@ -22,8 +35,15 @@ local on_attach = function(client, bufnr)
     map("n", "<Leader>a",
         "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
     map("n", "<Leader>A", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    map("n", "<Leader>w", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     map("i", "<C-x><C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+
+    if client.resolved_capabilities.document_formatting then
+        vim.api.nvim_command [[augroup Format]]
+        vim.api.nvim_command [[autocmd! * <buffer>]]
+        vim.api
+            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        vim.api.nvim_command [[augroup END]]
+    end
 
     require("illuminate").on_attach(client)
 end
@@ -43,14 +63,8 @@ nvim_lsp.sumneko_lua.setup {
 
 nvim_lsp.efm.setup({
     on_attach = on_attach,
-    rootMarkers = {".git/"},
-    init_options = {
-        documentFormatting = true,
-        hover = true,
-        documentSymbol = true,
-        codeAction = true,
-        completion = true
-    },
+    rootMarkers = nvim_lsp.util.root_pattern(".git/"),
+    init_options = {documentFormatting = true},
     settings = {languages = efm_languages},
     filetypes = vim.tbl_keys(efm_languages)
 })
