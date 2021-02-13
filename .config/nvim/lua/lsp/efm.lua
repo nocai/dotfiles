@@ -40,7 +40,8 @@ local languages = {
     lua = {tools.luaFormat},
     vim = {tools.vint},
     sh = {tools.shellcheck, tools.shfmt},
-    json = {tools.prettier}
+    json = {tools.prettier},
+    yaml = {tools.prettier}
 }
 
 return languages

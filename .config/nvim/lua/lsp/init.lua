@@ -22,15 +22,8 @@ local on_attach = function(client, bufnr)
     map("n", "<Leader>a",
         "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
     map("n", "<Leader>A", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+    map("n", "<Leader>w", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     map("i", "<C-x><C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-
-    if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_command [[augroup FormatOnSave]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api
-            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync(null, 500)]]
-        vim.api.nvim_command [[augroup END]]
-    end
 
     require("illuminate").on_attach(client)
 end
