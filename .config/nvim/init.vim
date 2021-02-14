@@ -22,9 +22,6 @@ set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 set pumheight=10
 set foldlevelstart=99
-
-let g:python_host_prog = $HOME . '/.pyenv/shims/python'
-let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
 " }}}
 
 " commands and autocommands {{{
