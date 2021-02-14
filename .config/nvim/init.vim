@@ -116,11 +116,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'svermeulen/vim-subversive'
     Plug 'svermeulen/vim-cutlass'
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
-
-    " integrations
     Plug 'christoomey/vim-tmux-navigator'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
     " text objects
     Plug 'wellle/targets.vim'
@@ -169,17 +167,6 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 nnoremap gm m
-" }}}
-
-" fzf {{{
-nmap <silent> <Leader>f :Files<CR>
-nmap <silent> <Leader>m :Buffers<CR>
-nmap <silent> <Leader>l :BLines<CR>
-nmap <silent> <Leader>r :Rg<CR>
-" :Rg only searches file contents, not names
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-    \ fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 " }}}
 
 " close-buffers {{{
