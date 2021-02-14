@@ -21,7 +21,6 @@ set shortmess+=c
 set signcolumn=yes
 set completeopt=menuone,noinsert,noselect
 set pumheight=10
-set showtabline=2
 set foldlevelstart=99
 
 let g:python_host_prog = $HOME . '/.pyenv/shims/python'
@@ -133,7 +132,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " visual
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
-    Plug 'ap/vim-buftabline'
+    Plug 'akinsho/nvim-bufferline.lua'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'glepnir/galaxyline.nvim'
     Plug 'RRethy/vim-illuminate'
@@ -175,26 +174,6 @@ nmap <silent> <Leader>S :HopChar2<CR>
 
 " maximizer {{{
 nnoremap <silent> <C-w>z :MaximizerToggle<CR>
-" }}}
-
-" buftabline {{{
-" always show
-let g:buftabline_show = 2
-" show ordinal numbers
-let g:buftabline_numbers = 2
-" show buffer state
-let g:buftabline_indicators = 1
-" bindings
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
 " }}}
 
 " emmet {{{
