@@ -1,3 +1,5 @@
+local nvim_config_dir = vim.fn.getenv("HOME") .. "/.config/nvim/lua/"
+
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
 
 local get_map_options = function(opts)
@@ -11,8 +13,8 @@ M.g = vim.g
 M.cmd = vim.cmd
 M.gvar = vim.api.nvim_set_var
 
-M.file_exists = function(name)
-    local f = io.open(name, "r")
+M.config_file_exists = function(name)
+    local f = io.open(nvim_config_dir .. name, "r")
     if f ~= nil then
         io.close(f)
         return true
@@ -20,8 +22,6 @@ M.file_exists = function(name)
         return false
     end
 end
-
-M.nvim_config_dir = vim.fn.getenv("HOME") .. "/.config/nvim/lua/"
 
 M.map = function(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, get_map_options(opts))

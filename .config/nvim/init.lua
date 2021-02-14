@@ -61,6 +61,7 @@ cmd [[autocmd!]]
 cmd [[autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')]]
 cmd [[augroup END]]
 
+-- bindings
 map("n", "H", "^")
 map("o", "H", "^")
 map("x", "H", "^")
@@ -88,18 +89,22 @@ map("n", "<Leader>x", ":bd<CR>", {silent = true})
 map("n", "<Esc>", ":nohl<CR>", {silent = true})
 map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>")
 
+-- expand pairs
 map("i", "(;", "(<CR>)<C-c>O")
 map("i", "{;", "{<CR>}<C-c>O")
 map("i", "[;", "[<CR>]<C-c>O")
 
+-- save w/ <CR> in non-quickfix buffers
 map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')", {expr = true})
 
+-- add jumps > 1 to jump list
 map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
+-- expand current file's directory to quickly edit file
 map("n", "<Leader>e", ":edit <C-r>=expand('%:h')<CR>/")
 
-if (utils.file_exists(utils.nvim_config_dir .. "theme.lua")) then
-    require("theme")
-end
-if (utils.file_exists(utils.nvim_config_dir .. "init.lua")) then require("init") end
+-- load remaining lua config
+if (utils.config_file_exists("theme.lua")) then require("theme") end
+if (utils.config_file_exists("plugins/init.lua")) then require("plugins") end
+if (utils.config_file_exists("lsp/init.lua")) then require("lsp") end
