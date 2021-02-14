@@ -118,7 +118,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'Asheq/close-buffers.vim', { 'on': 'Bdelete' }
 
     " integrations
-    Plug 'mcchrish/nnn.vim'
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -216,20 +215,9 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 " }}}
 
-" nnn {{{
-nmap <silent> - :NnnPicker %<CR>
-nmap <silent> <Leader>n :NnnPicker<CR>
-" enable additional actions
-let g:nnn#action = {
-      \ '<C-t>': 'tab split',
-      \ '<C-x>': 'split',
-      \ '<C-v>': 'vsplit' }
-" }}}
-
 " emmet {{{
 let g:user_emmet_leader_key='<C-z>'
 " }}}
-
 
 " vsnip {{{
 nmap <Leader>v :VsnipOpenVsplit<CR>
