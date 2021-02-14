@@ -11,6 +11,7 @@ set tabstop=4 shiftwidth=4 expandtab
 set termguicolors
 set cursorline
 set foldlevelstart=99
+set noshowcmd noshowmode
 
 set nobackup nowritebackup
 set updatetime=300
@@ -51,14 +52,6 @@ function! ToggleQuickFix()
     endif
 endfunction
 nmap <silent> <Leader>q :call ToggleQuickFix()<CR>
-" }}}
-
-" statusline {{{
-set statusline=\ %f
-set statusline+=\ %m
-set statusline+=%=
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
 " }}}
 
 " maps {{{
@@ -141,6 +134,8 @@ call plug#begin('~/.config/nvim/plugged')
     " visual
     Plug 'szw/vim-maximizer', { 'on': 'MaximizerToggle' }
     Plug 'ap/vim-buftabline'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'glepnir/galaxyline.nvim'
     Plug 'RRethy/vim-illuminate'
     Plug 'sainnhe/sonokai'
     Plug 'sainnhe/edge'
