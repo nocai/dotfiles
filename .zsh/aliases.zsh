@@ -27,7 +27,7 @@ alias bss="brew search"
 
 alias btm="btm --battery"
 
-alias exa="exa --classify"
+alias exa="exa --classify --icons"
 alias ext='exa --tree --level'
 
 alias tl="tmux list-sessions"
