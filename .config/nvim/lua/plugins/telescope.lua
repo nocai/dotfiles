@@ -1,4 +1,7 @@
 local actions = require("telescope.actions")
+local utils = require("utils")
+local cmd = utils.cmd
+local map = utils.map
 
 require("telescope").setup {
     defaults = {
@@ -16,22 +19,22 @@ function _G.find_files()
 end
 
 -- fzf-like aliases
-vim.cmd("command! Files lua find_files()")
-vim.cmd("command! BLines Telescope current_buffer_fuzzy_find")
-vim.cmd("command! History Telescope oldfiles")
-vim.cmd("command! Buffers Telescope buffers")
-vim.cmd("command! Rg Telescope live_grep")
-vim.cmd("command! LspRef Telescope lsp_references")
-vim.cmd("command! LspSym Telescope lsp_workspace_symbols")
+cmd("command! Files lua find_files()")
+cmd("command! BLines Telescope current_buffer_fuzzy_find")
+cmd("command! History Telescope oldfiles")
+cmd("command! Buffers Telescope buffers")
+cmd("command! Rg Telescope live_grep")
+cmd("command! LspRef Telescope lsp_references")
+cmd("command! LspSym Telescope lsp_workspace_symbols")
 -- unmapped
-vim.cmd("command! BCommits Telescope git_bcommits")
-vim.cmd("command! Commits Telescope git_commits")
-vim.cmd("command! LspAct Telescope lsp_code_actions")
+cmd("command! BCommits Telescope git_bcommits")
+cmd("command! Commits Telescope git_commits")
+cmd("command! LspAct Telescope lsp_code_actions")
 
-vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Files<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fg", "<cmd>Rg<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fb", "<cmd>Buffers<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fh", "<cmd>History<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fl", "<cmd>BLines<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fr", "<cmd>LspRef<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fs", "<cmd>LspSym<CR>", {silent = true})
+map("n", "<Leader>ff", "<cmd>Files<CR>", {silent = true})
+map("n", "<Leader>fg", "<cmd>Rg<CR>", {silent = true})
+map("n", "<Leader>fb", "<cmd>Buffers<CR>", {silent = true})
+map("n", "<Leader>fh", "<cmd>History<CR>", {silent = true})
+map("n", "<Leader>fl", "<cmd>BLines<CR>", {silent = true})
+map("n", "<Leader>fr", "<cmd>LspRef<CR>", {silent = true})
+map("n", "<Leader>fs", "<cmd>LspSym<CR>", {silent = true})

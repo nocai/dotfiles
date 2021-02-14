@@ -3,6 +3,7 @@ local opt = utils.opt
 local cmd = utils.cmd
 local map = utils.map
 
+-- options
 utils.g.mapleader = ","
 opt("o", "mouse", "a")
 opt("o", "clipboard", "unnamedplus")
@@ -30,9 +31,10 @@ opt("w", "number", true)
 opt("w", "relativenumber", true)
 opt("w", "cursorline", true)
 opt("w", "signcolumn", "yes")
-
+-- not sure how to set this without vim.cmd
 cmd("set shortmess+=c")
 
+-- functions, commands, and autocommands
 cmd("command! Remove call delete(expand('%')) | bdelete!")
 
 function _G.HighlightOnYank()
@@ -43,23 +45,21 @@ function _G.ToggleQuickFix()
     local closed = vim.api.nvim_eval(
                        "empty(filter(getwininfo(), 'v:val.quickfix'))")
     if closed == 1 then
-        vim.cmd("copen")
+        cmd("copen")
     else
-        vim.cmd("cclose")
+        cmd("cclose")
     end
 end
-map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>")
 
-vim.api.nvim_command [[augroup YankHighlight]]
-vim.api.nvim_command [[autocmd!]]
-vim.api.nvim_command [[autocmd TextYankPost * silent! lua HighlightOnYank()]]
-vim.api.nvim_command [[augroup END]]
+cmd [[augroup YankHighlight]]
+cmd [[autocmd!]]
+cmd [[autocmd TextYankPost * silent! lua HighlightOnYank()]]
+cmd [[augroup END]]
 
-vim.api.nvim_command [[augroup CreateDirectory]]
-vim.api.nvim_command [[autocmd!]]
-vim.api
-    .nvim_command [[autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')]]
-vim.api.nvim_command [[augroup END]]
+cmd [[augroup CreateDirectory]]
+cmd [[autocmd!]]
+cmd [[autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')]]
+cmd [[augroup END]]
 
 map("n", "H", "^")
 map("o", "H", "^")
@@ -86,6 +86,7 @@ map("n", "<Bslash>", ",")
 map("n", "ZZ", ":wqall<CR>")
 map("n", "<Leader>x", ":bd<CR>", {silent = true})
 map("n", "<Esc>", ":nohl<CR>", {silent = true})
+map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>")
 
 map("i", "(;", "(<CR>)<C-c>O")
 map("i", "{;", "{<CR>}<C-c>O")

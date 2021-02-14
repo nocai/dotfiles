@@ -1,8 +1,17 @@
-local g = vim.g
-local cmd = vim.cmd
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
 
-local function file_exists(name)
+local get_map_options = function(opts)
+    local options = {noremap = true}
+    if opts then options = vim.tbl_extend("force", options, opts) end
+    return options
+end
+
+local M = {}
+M.g = vim.g
+M.cmd = vim.cmd
+M.gvar = vim.api.nvim_set_var
+
+M.file_exists = function(name)
     local f = io.open(name, "r")
     if f ~= nil then
         io.close(f)
@@ -11,24 +20,20 @@ local function file_exists(name)
         return false
     end
 end
-local nvim_config_dir = vim.fn.getenv("HOME") .. "/.config/nvim/lua/"
 
-local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend("force", options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+M.nvim_config_dir = vim.fn.getenv("HOME") .. "/.config/nvim/lua/"
+
+M.map = function(mode, lhs, rhs, opts)
+    vim.api.nvim_set_keymap(mode, lhs, rhs, get_map_options(opts))
 end
 
-local function opt(scope, key, value)
+M.buf_map = function(bufnr, mode, lhs, rhs, opts)
+    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
+end
+
+M.opt = function(scope, key, value)
     scopes[scope][key] = value
     if scope ~= "o" then scopes["o"][key] = value end
 end
 
-return {
-    g = g,
-    cmd = cmd,
-    file_exists = file_exists,
-    nvim_config_dir = nvim_config_dir,
-    map = map,
-    opt = opt
-}
+return M

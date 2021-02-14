@@ -1,9 +1,11 @@
+local utils = require("utils")
+
 require"nvim-treesitter.configs".setup {
     ensure_installed = "maintained",
     highlight = {enable = true}
 }
 
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+utils.opt("w", "foldmethod", "expr")
+utils.opt("w", "foldexpr", "nvim_treesitter#foldexpr()")
 
-vim.cmd("command! TR write | edit | TSBufEnable highlight")
+utils.cmd("command! TR write | edit | TSBufEnable highlight")

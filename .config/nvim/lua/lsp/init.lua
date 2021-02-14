@@ -1,48 +1,39 @@
 local nvim_lsp = require("lspconfig")
 local efm_languages = require("lsp.efm")
 local sumneko_config = require("lsp.sumneko")
+local utils = require("utils")
+local buf_map = utils.buf_map
+local cmd = utils.cmd
 
 vim.lsp.handlers["textDocument/formatting"] =
-    function(err, _, result, _, bufnr)
-        if err ~= nil or result == nil then return end
-        if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-            local view = vim.fn.winsaveview()
-            vim.lsp.util.apply_text_edits(result, bufnr)
-            vim.fn.winrestview(view)
-            if bufnr == vim.api.nvim_get_current_buf() then
-                vim.api.nvim_command("noautocmd :update")
-            end
-        end
-    end
+    require("lsp.functions").format_async
 
 local on_attach = function(client, bufnr)
-    local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local opts = {noremap = true, silent = true}
-
-    map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    map("n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    map("n", "<Leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    map("n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    map("n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    map("n", "[a", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-    map("n", "]a", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    map("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    map("n", "gs", "<cmd>lua require(\"lsp.functions\").organize_imports()<CR>",
-        opts)
-    map("n", "<Leader>a",
-        "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-    map("n", "<Leader>A", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-    map("i", "<C-x><C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+    buf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+    buf_map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+    buf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+    buf_map(bufnr, "n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+    buf_map(bufnr, "n", "<Leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+    buf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+    buf_map(bufnr, "n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>")
+    buf_map(bufnr, "n", "[a", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+    buf_map(bufnr, "n", "]a", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+    buf_map(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+    buf_map(bufnr, "n", "gs",
+            "<cmd>lua require(\"lsp.functions\").organize_imports()<CR>")
+    buf_map(bufnr, "n", "<Leader>a",
+            "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    buf_map(bufnr, "n", "<Leader>A",
+            "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
+    buf_map(bufnr, "i", "<C-x><C-x>",
+            "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
     if client.resolved_capabilities.document_formatting then
-        vim.api.nvim_command [[augroup Format]]
-        vim.api.nvim_command [[autocmd! * <buffer>]]
-        vim.api
-            .nvim_command [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
-        vim.api.nvim_command [[augroup END]]
+        cmd [[augroup Format]]
+        cmd [[autocmd! * <buffer>]]
+        cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
+        cmd [[augroup END]]
     end
 
     require("illuminate").on_attach(client)
