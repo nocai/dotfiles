@@ -24,15 +24,5 @@ the fastest) terminal emulator for macOS.
 
 ## macOS
 
-- [yabai](https://github.com/koekeishiya/yabai) for tiling window management
-
-- [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard shortcuts
-  (and controlling yabai)
-
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
   remap keys
-
-- [qutebrowser](https://github.com/qutebrowser/qutebrowser) for most browsing
-  (and Firefox with [Vimium
-  C](https://addons.mozilla.org/en-US/firefox/addon/vimium-c/) when I have to
-  log in)
