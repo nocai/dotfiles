@@ -14,18 +14,18 @@ local on_attach = function(client, bufnr)
     buf_map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
     buf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
     buf_map(bufnr, "n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-    buf_map(bufnr, "n", "<Leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
     buf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
     buf_map(bufnr, "n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>")
     buf_map(bufnr, "n", "[a", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
     buf_map(bufnr, "n", "]a", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
     buf_map(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     buf_map(bufnr, "n", "gs",
-            "<cmd>lua require(\"lsp.functions\").organize_imports()<CR>")
+            "<cmd>lua require('lsp.functions').organize_imports()<CR>")
     buf_map(bufnr, "n", "<Leader>a",
             "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
     buf_map(bufnr, "n", "<Leader>A",
             "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>")
+    buf_map(bufnr, "n", "<Leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
     buf_map(bufnr, "i", "<C-x><C-x>",
             "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
