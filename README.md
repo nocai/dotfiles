@@ -5,8 +5,8 @@ macOS.
 
 ## Terminal
 
-I use [alacritty](https://github.com/alacritty/alacritty), which is faster than
-iTerm2 to the point that I don't have a choice.
+I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not
+the fastest) terminal emulator for macOS.
 
 - zsh + a handful of plugins managed with
 - [zgen](https://github.com/tarjoilija/zgen)

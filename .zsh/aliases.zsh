@@ -1,6 +1,6 @@
 alias zshsrc="zgen reset && exec zsh"
 
-alias vm="vifm ."
+alias vm="TERM=xterm-256color vifm ."
 
 alias ni="npm install"
 alias nid="npm install --save-dev"
@@ -27,7 +27,7 @@ alias bss="brew search"
 
 alias btm="btm --battery"
 
-alias exa="exa --classify --icons"
+alias exa="exa --classify"
 alias ext='exa --tree --level'
 
 alias tl="tmux list-sessions"
