@@ -1,10 +1,10 @@
-local utils = require("utils")
-local opt = utils.opt
-local cmd = utils.cmd
-local map = utils.map
+local u = require("utils")
+local opt = u.opt
+local cmd = u.cmd
+local map = u.map
 
 -- options
-utils.g.mapleader = ","
+u.g.mapleader = ","
 opt("o", "mouse", "a")
 opt("o", "clipboard", "unnamedplus")
 opt("o", "ignorecase", true)
@@ -107,9 +107,9 @@ map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")
 map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
 
 -- load remaining lua config
-if (utils.config_file_exists("theme.lua")) then require("theme") end
-if (utils.config_file_exists("plugins/init.lua")) then
+if (u.config_file_exists("theme.lua")) then require("theme") end
+if (u.config_file_exists("plugins/init.lua")) then
     require("plugins")
     map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
 end
-if (utils.config_file_exists("lsp/init.lua")) then require("lsp") end
+if (u.config_file_exists("lsp/init.lua")) then require("lsp") end
