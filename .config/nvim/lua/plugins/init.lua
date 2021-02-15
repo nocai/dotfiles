@@ -1,9 +1,4 @@
-local utils = require("utils")
-local map = utils.map
-local gvar = utils.gvar
-
 vim.cmd [[packadd packer.nvim]]
-
 return require("packer").startup(function()
     -- basic
     use {"wbthomason/packer.nvim", opt = true}
@@ -16,35 +11,42 @@ return require("packer").startup(function()
     use {
         "phaazon/hop.nvim",
         config = function()
-            map("n", "<Leader>s", ":HopWord<CR>", {silent = true})
-            map("n", "<Leader>S", ":HopChar2<CR>", {silent = true})
+            vim.api.nvim_set_keymap("n", "<Leader>s", ":HopWord<CR>",
+                                    {silent = true})
+            vim.api.nvim_set_keymap("n", "<Leader>S", ":HopChar2<CR>",
+                                    {silent = true})
         end
     }
     use {
         "svermeulen/vim-subversive",
         config = function()
-            map("n", "s", "<Plug>(SubversiveSubstitute)", {noremap = false})
-            map("x", "s", "<Plug>(SubversiveSubstitute)", {noremap = false})
-            map("n", "ss", "<Plug>(SubversiveSubstituteLine)", {noremap = false})
-            map("n", "S", "<Plug>SubversiveSubstituteToEndOfLine",
-                {noremap = false})
+            vim.api.nvim_set_keymap("n", "s", "<Plug>(SubversiveSubstitute)",
+                                    {noremap = false})
+            vim.api.nvim_set_keymap("x", "s", "<Plug>(SubversiveSubstitute)",
+                                    {noremap = false})
+            vim.api.nvim_set_keymap("n", "ss",
+                                    "<Plug>(SubversiveSubstituteLine)",
+                                    {noremap = false})
+            vim.api.nvim_set_keymap("n", "S",
+                                    "<Plug>SubversiveSubstituteToEndOfLine",
+                                    {noremap = false})
         end
     }
     use {
         "svermeulen/vim-cutlass",
         config = function()
-            map("n", "m", "d")
-            map("x", "m", "d")
-            map("n", "mm", "dd")
-            map("n", "M", "D")
-            map("n", "gm", "m")
+            vim.api.nvim_set_keymap("n", "m", "d", {noremap = true})
+            vim.api.nvim_set_keymap("x", "m", "d", {noremap = true})
+            vim.api.nvim_set_keymap("n", "mm", "dd", {noremap = true})
+            vim.api.nvim_set_keymap("n", "M", "D", {noremap = true})
+            vim.api.nvim_set_keymap("n", "gm", "m", {noremap = true})
         end
     }
     use {
         "Asheq/close-buffers.vim",
-        cmd = {"Bdelete"},
         config = function()
-            map("n", "<Leader>b", ":Bdelete menu<CR>", {silent = true})
+            vim.api.nvim_set_keymap("n", "<Leader>b", ":Bdelete menu<CR>",
+                                    {silent = true})
         end
     }
     use "christoomey/vim-tmux-navigator"
@@ -52,6 +54,19 @@ return require("packer").startup(function()
         "nvim-telescope/telescope.nvim",
         requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
         config = function() require("plugins.telescope") end
+    }
+    use {
+        "voldikss/vim-floaterm",
+        config = function()
+            vim.api.nvim_set_var("floaterm_width", 0.8)
+            vim.api.nvim_set_var("floaterm_height", 0.8)
+
+            vim.api.nvim_set_keymap("n", "<Leader>tf", ":FloatermToggle<CR>",
+                                    {silent = true})
+            vim.api.nvim_set_keymap("t", "<Leader>tf",
+                                    "<C-\\><C-n>:FloatermToggle<CR>",
+                                    {silent = true})
+        end
     }
 
     -- text objects
@@ -87,31 +102,46 @@ return require("packer").startup(function()
     use {
         "hrsh7th/vim-vsnip",
         config = function()
-            gvar("vsnip_filetypes", {
+            vim.api.nvim_set_var("vsnip_filetypes", {
                 javascriptreact = {"javascript"},
                 typescriptreact = {"typescript"}
             })
 
-            map("n", "<Leader>v", ":VsnipOpenSplit<CR>", {silent = true})
-            map("i", "<Tab>",
-                "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
-                {silent = true, expr = true})
-            map("s", "<Tab>",
-                "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
-                {silent = true, expr = true})
-            map("i", "<S-Tab>",
-                "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'",
-                {silent = true, expr = true})
-            map("s", "<S-Tab>",
-                "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'",
-                {silent = true, expr = true})
+            vim.api.nvim_set_keymap("n", "<Leader>v", ":VsnipOpenSplit<CR>",
+                                    {silent = true})
+            vim.api.nvim_set_keymap("i", "<Tab>",
+                                    "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
+                                    {silent = true, expr = true})
+            vim.api.nvim_set_keymap("s", "<Tab>",
+                                    "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
+                                    {silent = true, expr = true})
+            vim.api.nvim_set_keymap("i", "<S-Tab>",
+                                    "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'",
+                                    {silent = true, expr = true})
+            vim.api.nvim_set_keymap("s", "<S-Tab>",
+                                    "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'",
+                                    {silent = true, expr = true})
         end
     }
     use "sheerun/vim-polyglot"
     use {
         "mattn/emmet-vim",
         ft = {"html", "javascriptreact", "typescriptreact"},
-        config = function() gvar("user_emmet_leader_key", "<C-z") end
+        config = function()
+            vim.api.nvim_set_var("user_emmet_leader_key", "<C-z")
+        end
+    }
+    use {
+        "vim-test/vim-test",
+        config = function()
+            vim.api.nvim_set_var("test#strategy", "floaterm")
+            vim.api.nvim_set_keymap("n", "<Leader>tn", ":TestNearest<CR>",
+                                    {silent = true})
+            vim.api.nvim_set_keymap("n", "<Leader>tt", ":TestFile<CR>",
+                                    {silent = true})
+            vim.api.nvim_set_keymap("n", "<Leader>ts", ":TestSuite<CR>",
+                                    {silent = true})
+        end
     }
 
     -- visual
@@ -119,7 +149,8 @@ return require("packer").startup(function()
         "szw/vim-maximizer",
         cmd = {"MaximizerToggle"},
         config = function()
-            map("n", "<C-w>z", ":MaximizerToggle<CR>", {silent = true})
+            vim.api.nvim_set_keymap("n", "<C-w>z", ":MaximizerToggle<CR>",
+                                    {silent = true})
         end
     }
     use {
