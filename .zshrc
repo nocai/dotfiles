@@ -1,5 +1,9 @@
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+REVERSE_TAB="--bind tab:toggle-out,shift-tab:toggle-in"
+SWITCH_SOURCES="--bind 'ctrl-d:reload(fd . --type d),ctrl-f:reload($FZF_DEFAULT_COMMAND)'"
+export FZF_DEFAULT_OPTS="$REVERSE_TAB $SWITCH_SOURCES"
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 # zsh-vim-mode
 MODE_CURSOR_VIINS="steady bar"

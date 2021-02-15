@@ -11,8 +11,6 @@ opt("o", "ignorecase", true)
 opt("o", "smartcase", true)
 opt("o", "termguicolors", true)
 opt("o", "foldlevelstart", 99)
-opt("o", "showcmd", false)
-opt("o", "showmode", false)
 opt("o", "backup", false)
 opt("o", "writebackup", false)
 opt("o", "updatetime", 300)
@@ -21,6 +19,8 @@ opt("o", "splitright", true)
 opt("o", "hidden", true)
 opt("o", "completeopt", "menuone,noinsert,noselect")
 opt("o", "pumheight", 10)
+opt("o", "statusline", [[%f %m%= %p%% %l:%c ]])
+opt("o", "showtabline", 2)
 
 opt("b", "undofile", true)
 opt("b", "tabstop", 4)
@@ -102,9 +102,14 @@ map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
 -- expand current file's directory to quickly edit file
-map("n", "<Leader>e", ":edit <C-r>=expand('%:h')<CR>/")
+map("n", "<Leader>ee", ":edit <C-r>=expand('%:h')<CR>/")
+map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")
+map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
 
 -- load remaining lua config
 if (utils.config_file_exists("theme.lua")) then require("theme") end
-if (utils.config_file_exists("plugins/init.lua")) then require("plugins") end
+if (utils.config_file_exists("plugins/init.lua")) then
+    require("plugins")
+    map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
+end
 if (utils.config_file_exists("lsp/init.lua")) then require("lsp") end

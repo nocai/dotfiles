@@ -1,72 +1,35 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
     -- basic
-    use {"wbthomason/packer.nvim", opt = true}
+    use "wbthomason/packer.nvim"
     use "tpope/vim-commentary"
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
 
     -- additional functionality
-    use {
-        "phaazon/hop.nvim",
-        config = function()
-            vim.api.nvim_set_keymap("n", "<Leader>s", ":HopWord<CR>",
-                                    {silent = true})
-            vim.api.nvim_set_keymap("n", "<Leader>S", ":HopChar2<CR>",
-                                    {silent = true})
-        end
-    }
+    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
     use {
         "svermeulen/vim-subversive",
-        config = function()
-            vim.api.nvim_set_keymap("n", "s", "<Plug>(SubversiveSubstitute)",
-                                    {noremap = false})
-            vim.api.nvim_set_keymap("x", "s", "<Plug>(SubversiveSubstitute)",
-                                    {noremap = false})
-            vim.api.nvim_set_keymap("n", "ss",
-                                    "<Plug>(SubversiveSubstituteLine)",
-                                    {noremap = false})
-            vim.api.nvim_set_keymap("n", "S",
-                                    "<Plug>SubversiveSubstituteToEndOfLine",
-                                    {noremap = false})
-        end
+        config = function() require("plugins.subversive") end
     }
     use {
         "svermeulen/vim-cutlass",
-        config = function()
-            vim.api.nvim_set_keymap("n", "m", "d", {noremap = true})
-            vim.api.nvim_set_keymap("x", "m", "d", {noremap = true})
-            vim.api.nvim_set_keymap("n", "mm", "dd", {noremap = true})
-            vim.api.nvim_set_keymap("n", "M", "D", {noremap = true})
-            vim.api.nvim_set_keymap("n", "gm", "m", {noremap = true})
-        end
+        config = function() require("plugins.cutlass") end
     }
     use {
         "Asheq/close-buffers.vim",
-        config = function()
-            vim.api.nvim_set_keymap("n", "<Leader>b", ":Bdelete menu<CR>",
-                                    {silent = true})
-        end
+        config = function() require("plugins.close-buffers") end
     }
     use "christoomey/vim-tmux-navigator"
     use {
-        "nvim-telescope/telescope.nvim",
-        requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
-        config = function() require("plugins.telescope") end
+        "junegunn/fzf.vim",
+        requires = {"/usr/local/opt/fzf"},
+        config = function() require("plugins.fzf") end
     }
     use {
         "voldikss/vim-floaterm",
-        config = function()
-            vim.api.nvim_set_var("floaterm_width", 0.8)
-            vim.api.nvim_set_var("floaterm_height", 0.8)
-
-            vim.api.nvim_set_keymap("n", "<Leader>tf", ":FloatermToggle<CR>",
-                                    {silent = true})
-            vim.api.nvim_set_keymap("t", "<Leader>tf",
-                                    "<C-\\><C-n>:FloatermToggle<CR>",
-                                    {silent = true})
-        end
+        config = function() require("plugins.floaterm") end
     }
 
     -- text objects
@@ -91,76 +54,36 @@ return require("packer").startup(function()
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {
         "nvim-treesitter/nvim-treesitter",
+        {"nvim-treesitter/nvim-treesitter-textobjects"},
         run = ":TSUpdate",
         config = function() require("plugins.treesitter") end
     }
     use {
         "lewis6991/gitsigns.nvim",
-        requires = {{"nvim-lua/plenary.nvim"}},
+        requires = {"nvim-lua/plenary.nvim"},
         config = function() require("plugins.gitsigns") end
     }
-    use {
-        "hrsh7th/vim-vsnip",
-        config = function()
-            vim.api.nvim_set_var("vsnip_filetypes", {
-                javascriptreact = {"javascript"},
-                typescriptreact = {"typescript"}
-            })
-
-            vim.api.nvim_set_keymap("n", "<Leader>v", ":VsnipOpenSplit<CR>",
-                                    {silent = true})
-            vim.api.nvim_set_keymap("i", "<Tab>",
-                                    "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
-                                    {silent = true, expr = true})
-            vim.api.nvim_set_keymap("s", "<Tab>",
-                                    "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<Tab>'",
-                                    {silent = true, expr = true})
-            vim.api.nvim_set_keymap("i", "<S-Tab>",
-                                    "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'",
-                                    {silent = true, expr = true})
-            vim.api.nvim_set_keymap("s", "<S-Tab>",
-                                    "vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-o>A'",
-                                    {silent = true, expr = true})
-        end
-    }
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use "sheerun/vim-polyglot"
     use {
         "mattn/emmet-vim",
         ft = {"html", "javascriptreact", "typescriptreact"},
-        config = function()
-            vim.api.nvim_set_var("user_emmet_leader_key", "<C-z")
-        end
+        config = function() require("plugins.emmet") end
     }
     use {
         "vim-test/vim-test",
-        config = function()
-            vim.api.nvim_set_var("test#strategy", "floaterm")
-            vim.api.nvim_set_keymap("n", "<Leader>tn", ":TestNearest<CR>",
-                                    {silent = true})
-            vim.api.nvim_set_keymap("n", "<Leader>tt", ":TestFile<CR>",
-                                    {silent = true})
-            vim.api.nvim_set_keymap("n", "<Leader>ts", ":TestSuite<CR>",
-                                    {silent = true})
-        end
+        config = function() require("plugins.vim-test") end
     }
 
     -- visual
     use {
         "szw/vim-maximizer",
         cmd = {"MaximizerToggle"},
-        config = function()
-            vim.api.nvim_set_keymap("n", "<C-w>z", ":MaximizerToggle<CR>",
-                                    {silent = true})
-        end
+        config = function() require("plugins.maximizer") end
     }
     use {
-        "akinsho/nvim-bufferline.lua",
-        config = function() require("plugins/bufferline") end
-    }
-    use {
-        "glepnir/galaxyline.nvim",
-        requires = {"kyazdani42/nvim-web-devicons"},
-        config = function() require("plugins/galaxyline") end
+        "ap/vim-buftabline",
+        config = function() require("plugins.buftabline") end
     }
     use "RRethy/vim-illuminate"
     use "sainnhe/sonokai"
