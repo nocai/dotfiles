@@ -15,6 +15,7 @@ MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 MODE_INDICATOR=""
 
 # prompt
+fpath+=$HOME/.zsh/pure
 export PURE_CMD_MAX_EXEC_TIME=1
 autoload -U promptinit; promptinit
 prompt pure
@@ -35,6 +36,4 @@ if ! zgen saved; then
     zgen save
 fi
 
-_evalcache rbenv init -
-_evalcache pyenv init -
 _evalcache fasd --init auto
