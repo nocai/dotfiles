@@ -24,7 +24,8 @@ return require("packer").startup(function()
     use "christoomey/vim-tmux-navigator"
     use {
         "junegunn/fzf.vim",
-        requires = {"/usr/local/opt/fzf"},
+        requires = {"junegunn/fzf"},
+        run = "fzf#install()",
         config = function() require("plugins.fzf") end
     }
     use {
