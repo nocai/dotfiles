@@ -1,5 +1,7 @@
 alias zshsrc="zgen reset && exec zsh"
 
+alias mkdir="mkdir -p"
+
 alias vm="TERM=xterm-256color vifm ."
 
 alias ni="npm install"
@@ -43,6 +45,7 @@ alias g="git"
 alias ga="git add"
 alias gc="git commit -v"
 alias gco="git checkout"
+alias gcl="git clone"
 alias gm="git merge"
 alias gp="git push"
 alias gf="git fetch"
