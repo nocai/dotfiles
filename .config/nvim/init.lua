@@ -10,7 +10,6 @@ opt("o", "clipboard", "unnamedplus")
 opt("o", "ignorecase", true)
 opt("o", "smartcase", true)
 opt("o", "termguicolors", true)
-opt("o", "foldlevelstart", 99)
 opt("o", "backup", false)
 opt("o", "writebackup", false)
 opt("o", "updatetime", 300)
@@ -51,15 +50,19 @@ function _G.ToggleQuickFix()
     end
 end
 
-cmd [[augroup YankHighlight]]
-cmd [[autocmd!]]
-cmd [[autocmd TextYankPost * silent! lua HighlightOnYank()]]
-cmd [[augroup END]]
+u.exec([[
+augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua HighlightOnYank()
+augroup END
+]])
 
-cmd [[augroup CreateDirectory]]
-cmd [[autocmd!]]
-cmd [[autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')]]
-cmd [[augroup END]]
+u.exec([[
+augroup CreateDirectory
+    autocmd!
+    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
+]])
 
 -- bindings
 map("n", "H", "^")
