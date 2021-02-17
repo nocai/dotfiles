@@ -91,6 +91,8 @@ map("n", "ZZ", ":wqall<CR>")
 map("n", "<Leader>x", ":bd<CR>", {silent = true})
 map("n", "<Esc>", ":nohl<CR>", {silent = true})
 map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>")
+-- restarts lsp
+map("n", "<Leader>r", ":w | :e<CR>")
 
 -- expand pairs
 map("i", "(;", "(<CR>)<C-c>O")
