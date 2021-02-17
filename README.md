@@ -21,8 +21,3 @@ the fastest) terminal emulator for macOS.
 
 - [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
   but certainly the most Vim-like one
-
-## macOS
-
-- [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
-  remap keys
