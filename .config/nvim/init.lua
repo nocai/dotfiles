@@ -4,7 +4,7 @@ local cmd = u.cmd
 local map = u.map
 
 -- options
-u.g.mapleader = ","
+vim.g.mapleader = ","
 opt("o", "mouse", "a")
 opt("o", "clipboard", "unnamedplus")
 opt("o", "ignorecase", true)

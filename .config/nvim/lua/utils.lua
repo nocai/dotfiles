@@ -9,10 +9,8 @@ local get_map_options = function(opts)
 end
 
 local M = {}
-M.g = vim.g
 M.cmd = vim.cmd
 M.exec = function(command) vim.api.nvim_exec(command, true) end
-M.gvar = vim.api.nvim_set_var
 
 M.config_file_exists = function(name)
     local f = io.open(nvim_config_dir .. name, "r")
