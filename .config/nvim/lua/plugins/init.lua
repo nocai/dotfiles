@@ -54,12 +54,6 @@ return require("packer").startup(function()
     use "neovim/nvim-lspconfig"
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {
-        "nvim-treesitter/nvim-treesitter",
-        {"nvim-treesitter/nvim-treesitter-textobjects"},
-        run = ":TSUpdate",
-        config = function() require("plugins.treesitter") end
-    }
-    use {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
         config = function() require("plugins.gitsigns") end
