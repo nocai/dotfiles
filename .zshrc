@@ -20,6 +20,8 @@ export PURE_CMD_MAX_EXEC_TIME=1
 autoload -U promptinit; promptinit
 prompt pure
 
+autoload -U +X compinit && compinit
+
 source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
     zgen load Aloxaf/fzf-tab
