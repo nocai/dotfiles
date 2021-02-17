@@ -1,5 +1,3 @@
-alias zshsrc="zgen reset && exec zsh"
-
 alias mkdir="mkdir -p"
 
 alias vm="TERM=xterm-256color vifm ."

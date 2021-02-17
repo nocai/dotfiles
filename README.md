@@ -9,7 +9,7 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not
 the fastest) terminal emulator for macOS.
 
 - zsh + a handful of plugins managed with
-- [zgen](https://github.com/tarjoilija/zgen)
+  [znap](https://github.com/marlonrichert/zsh-snap)
 
 - Neovim + a (finally!) functional TypeScript setup for its built-in LSP
 

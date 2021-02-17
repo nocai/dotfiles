@@ -16,26 +16,19 @@ MODE_INDICATOR=""
 
 # prompt
 fpath+=$HOME/.zsh/pure
-export PURE_CMD_MAX_EXEC_TIME=1
-autoload -U promptinit; promptinit
-prompt pure
 
-autoload -U +X compinit && compinit
+# znap plugins
+zstyle ':znap:*' plugins-dir ~/.znap
+source ~/.znap/zsh-snap/znap.zsh
 
-source "${HOME}/.zgen/zgen.zsh"
-if ! zgen saved; then
-    zgen load Aloxaf/fzf-tab
-    zgen load mroth/evalcache
-    zgen load unixorn/autoupdate-zgen
-    zgen load softmoth/zsh-vim-mode
+znap prompt pure
+znap source Aloxaf/fzf-tab
+znap source zdharma/fast-syntax-highlighting
 
-    zgen load ~/.zsh/opts.zsh
-    zgen load ~/.zsh/aliases.zsh
-    zgen load ~/.zsh/functions.zsh
+znap eval fasd-init 'fasd --init auto'
 
-    zgen load ~/.fzf.zsh
-    zgen load zdharma/fast-syntax-highlighting
-    zgen save
-fi
-
-_evalcache fasd --init auto
+# other sources
+source ~/.zsh/opts.zsh
+source ~/.zsh/aliases.zsh
+source ~/.zsh/functions.zsh
+source ~/.fzf.zsh
