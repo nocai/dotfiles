@@ -21,13 +21,8 @@ alias nvn="nvim -c NnnPicker"
 alias b="brew"
 alias bi="brew install"
 alias bu="brew uninstall"
-alias bci="brew install --cask"
-alias bcu="brew uninstall --cask"
 alias bubu="brew update && brew upgrade"
-alias bs="brew services"
-alias bss="brew search"
-
-alias btm="btm --battery"
+alias bs="brew search"
 
 alias exa="exa --classify"
 alias ext='exa --tree --level'
