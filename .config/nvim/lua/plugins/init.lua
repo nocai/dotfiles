@@ -52,6 +52,7 @@ return require("packer").startup(function()
 
     -- development
     use "neovim/nvim-lspconfig"
+    use {"RishabhRD/nvim-lsputils", requires = {"RishabhRD/popfix"}}
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {
         "lewis6991/gitsigns.nvim",
@@ -60,11 +61,6 @@ return require("packer").startup(function()
     }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use "sheerun/vim-polyglot"
-    use {
-        "mattn/emmet-vim",
-        ft = {"html", "javascriptreact", "typescriptreact"},
-        config = function() require("plugins.emmet") end
-    }
     use {
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
@@ -83,7 +79,6 @@ return require("packer").startup(function()
     use "RRethy/vim-illuminate"
     use "sainnhe/sonokai"
     use "sainnhe/edge"
-    use "sainnhe/forest-night"
 
     -- other
     use {
