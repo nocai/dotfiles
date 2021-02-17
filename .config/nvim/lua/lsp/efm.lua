@@ -12,11 +12,6 @@ local tools = {
         formatCommand = "lua-format --single-quote-to-double-quote -i",
         formatStdin = true
     },
-    vint = {
-        lintCommand = "vint -",
-        lintStdin = true,
-        lintFormats = {"%f:%l:%c: %m"}
-    },
     markdownlint = {
         lintCommand = "markdownlint -s",
         lintStdin = true,
@@ -38,7 +33,6 @@ local languages = {
     typescript = {tools.eslint, tools.prettier},
     typescriptreact = {tools.eslint, tools.prettier},
     lua = {tools.luaFormat},
-    vim = {tools.vint},
     sh = {tools.shellcheck, tools.shfmt},
     json = {tools.prettier},
     yaml = {tools.prettier}

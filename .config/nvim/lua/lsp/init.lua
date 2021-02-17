@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
             "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
     if client.resolved_capabilities.document_formatting then
-        cmd [[augroup Format]]
+        cmd [[augroup FormatOnSave]]
         cmd [[autocmd! * <buffer>]]
         cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
         cmd [[augroup END]]
@@ -60,7 +60,6 @@ nvim_lsp.efm.setup({
     filetypes = vim.tbl_keys(efm_languages)
 })
 
-nvim_lsp.vimls.setup {on_attach = on_attach}
 nvim_lsp.bashls.setup {on_attach = on_attach}
 nvim_lsp.jsonls.setup {on_attach = on_attach}
 nvim_lsp.yamlls.setup {on_attach = on_attach}
