@@ -2,6 +2,9 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-search
+
 function chpwd() {
     emulate -L zsh
     exa

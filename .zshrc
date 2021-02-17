@@ -1,19 +1,18 @@
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
-REVERSE_TAB="--bind tab:toggle-out,shift-tab:toggle-in"
-SWITCH_SOURCES="--bind 'ctrl-d:reload(fd . --type d),ctrl-f:reload($FZF_DEFAULT_COMMAND)'"
-export FZF_DEFAULT_OPTS="$REVERSE_TAB $SWITCH_SOURCES"
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 # prompt
 fpath+=$HOME/.zsh/pure
+zstyle :prompt:pure:git:stash show yes
 
 # znap
 zstyle ':znap:*' plugins-dir ~/.znap
 source ~/.znap/zsh-snap/znap.zsh
 
 znap prompt pure
+znap source zsh-users/zsh-completions
 znap source Aloxaf/fzf-tab
+znap source wookayin/fzf-fasd
 znap source zdharma/fast-syntax-highlighting
 
 znap eval fasd-init 'fasd --init auto'
