@@ -1,12 +1,28 @@
 local nvim_lsp = require("lspconfig")
 local efm_languages = require("lsp.efm")
 local sumneko_config = require("lsp.sumneko")
-local utils = require("utils")
-local buf_map = utils.buf_map
-local cmd = utils.cmd
+local u = require("utils")
+local buf_map = u.buf_map
 
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
+
+vim.lsp.handlers["textDocument/codeAction"] =
+    require"lsputil.codeAction".code_action_handler
+vim.lsp.handlers["textDocument/references"] =
+    require"lsputil.locations".references_handler
+vim.lsp.handlers["textDocument/definition"] =
+    require"lsputil.locations".definition_handler
+vim.lsp.handlers["textDocument/declaration"] =
+    require"lsputil.locations".declaration_handler
+vim.lsp.handlers["textDocument/typeDefinition"] =
+    require"lsputil.locations".typeDefinition_handler
+vim.lsp.handlers["textDocument/implementation"] =
+    require"lsputil.locations".implementation_handler
+vim.lsp.handlers["textDocument/documentSymbol"] =
+    require"lsputil.symbols".document_handler
+vim.lsp.handlers["workspace/symbol"] =
+    require"lsputil.symbols".workspace_handler
 
 local on_attach = function(client, bufnr)
     buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -29,11 +45,19 @@ local on_attach = function(client, bufnr)
     buf_map(bufnr, "i", "<C-x><C-x>",
             "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
+    -- disable virtual text
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+                     {virtual_text = false, underline = true, signs = true})
+
+    -- enable format on save
     if client.resolved_capabilities.document_formatting then
-        cmd [[augroup FormatOnSave]]
-        cmd [[autocmd! * <buffer>]]
-        cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()]]
-        cmd [[augroup END]]
+        u.exec([[
+        augroup FormatOnSave
+            autocmd! * <buffer>
+            autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
+        augroup END
+        ]])
     end
 
     require("illuminate").on_attach(client)
