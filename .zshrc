@@ -9,7 +9,14 @@ zstyle :prompt:pure:git:stash show yes
 zstyle ':znap:*' plugins-dir ~/.znap
 source ~/.znap/zsh-snap/znap.zsh
 
+# autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+bindkey '^ ' autosuggest-accept
+
 znap prompt pure
+znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-completions
 znap source Aloxaf/fzf-tab
 znap source wookayin/fzf-fasd
