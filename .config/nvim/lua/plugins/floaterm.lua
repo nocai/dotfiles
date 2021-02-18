@@ -1,3 +1,4 @@
+vim.api.nvim_set_var("floaterm_autoclose", 0)
 vim.api.nvim_set_var("floaterm_width", 0.8)
 vim.api.nvim_set_var("floaterm_height", 0.8)
 
