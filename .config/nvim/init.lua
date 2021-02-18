@@ -33,8 +33,6 @@ vim.wo.signcolumn = "yes"
 vim.cmd("set shortmess+=c")
 
 -- functions, commands, and autocommands
-vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
-
 function _G.HighlightOnYank()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
 end
@@ -92,11 +90,6 @@ u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
 u.map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>", {silent = true})
 -- restarts lsp
 u.map("n", "<Leader>r", ":w | :e<CR>")
-
--- expand pairs
-u.map("i", "(;", "(<CR>)<C-c>O")
-u.map("i", "{;", "{<CR>}<C-c>O")
-u.map("i", "[;", "[<CR>]<C-c>O")
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",

@@ -6,9 +6,14 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
+    use "tpope/vim-eunuch"
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("plugins.autopairs") end
+    }
 
     -- additional functionality
-    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
+    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "svermeulen/vim-subversive",
         config = function() require("plugins.subversive") end
@@ -23,10 +28,9 @@ return require("packer").startup(function()
     }
     use "christoomey/vim-tmux-navigator"
     use {
-        "junegunn/fzf.vim",
-        requires = {"junegunn/fzf"},
-        run = "fzf#install()",
-        config = function() require("plugins.fzf") end
+        "nvim-telescope/telescope.nvim",
+        requires = {{"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"}},
+        config = function() require("plugins.telescope") end
     }
     use {
         "voldikss/vim-floaterm",
