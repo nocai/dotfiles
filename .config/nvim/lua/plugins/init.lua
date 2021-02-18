@@ -88,7 +88,9 @@ return require("packer").startup(function()
     use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && yarn install",
+        opt = true,
         cmd = "MarkdownPreview"
     }
     use "antoinemadec/FixCursorHold.nvim"
+    use {"rafcamlet/nvim-luapad", opt = true, cmd = {"Luapad", "LuaRun", "Lua"}}
 end)
