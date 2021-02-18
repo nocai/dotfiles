@@ -14,12 +14,12 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins 
+    zle -K viins
     echo -ne "\e[6 q"
 }
 zle -N zle-line-init
-echo -ne '\e[6 q' 
-preexec() { echo -ne '\e[6 q' ;} 
+echo -ne '\e[6 q'
+preexec() { echo -ne '\e[6 q' ;}
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search

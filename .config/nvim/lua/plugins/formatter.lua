@@ -13,10 +13,7 @@ local lua_format = function()
     }
 end
 local trim_whitespace = function()
-    return {
-        exe = "awk",
-        args = {"'{$1=$1;print}'", vim.api.nvim_buf_get_name(0)}
-    }
+    return {exe = "awk", args = {[['{ sub(/[ \t]+$/, ""); print }']]}}
 end
 
 local filetype = {
