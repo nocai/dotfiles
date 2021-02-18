@@ -18,10 +18,11 @@ vim.o.pumheight = 10
 vim.o.statusline = [[%f %y %m %= %p%% %l:%c ]]
 vim.o.showtabline = 2
 
-vim.bo.undofile = true
-vim.bo.tabstop = 4
-vim.bo.shiftwidth = 4
-vim.bo.expandtab = true
+-- vim.bo isn't working; investigate
+vim.cmd("set undofile")
+vim.cmd("set tabstop=4")
+vim.cmd("set shiftwidth=4")
+vim.cmd("set expandtab")
 
 vim.wo.number = true
 vim.wo.relativenumber = true
