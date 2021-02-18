@@ -1,40 +1,38 @@
 local u = require("utils")
-local opt = u.opt
-local cmd = u.cmd
-local map = u.map
 
 -- options
 vim.g.mapleader = ","
-opt("o", "mouse", "a")
-opt("o", "clipboard", "unnamedplus")
-opt("o", "ignorecase", true)
-opt("o", "smartcase", true)
-opt("o", "termguicolors", true)
-opt("o", "backup", false)
-opt("o", "writebackup", false)
-opt("o", "updatetime", 300)
-opt("o", "splitbelow", true)
-opt("o", "splitright", true)
-opt("o", "hidden", true)
-opt("o", "completeopt", "menuone,noinsert,noselect")
-opt("o", "pumheight", 10)
-opt("o", "statusline", [[%f %m%= %p%% %l:%c ]])
-opt("o", "showtabline", 2)
+vim.o.mouse = "a"
+vim.o.clipboard = "unnamedplus"
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.termguicolors = true
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.updatetime = 300
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.hidden = true
+vim.o.completeopt = "menuone,noinsert,noselect"
+vim.o.pumheight = 10
+vim.o.statusline = [[%f %m%= %p%% %l:%c ]]
+vim.o.showtabline = 2
 
-opt("b", "undofile", true)
-opt("b", "tabstop", 4)
-opt("b", "shiftwidth", 4)
-opt("b", "expandtab", true)
+vim.bo.undofile = true
+vim.bo.tabstop = 4
+vim.bo.shiftwidth = 4
+vim.bo.expandtab = true
 
-opt("w", "number", true)
-opt("w", "relativenumber", true)
-opt("w", "cursorline", true)
-opt("w", "signcolumn", "yes")
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.cursorline = true
+vim.wo.signcolumn = "yes"
+
 -- not sure how to set this without vim.cmd
-cmd("set shortmess+=c")
+vim.cmd("set shortmess+=c")
 
 -- functions, commands, and autocommands
-cmd("command! Remove call delete(expand('%')) | bdelete!")
+vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 
 function _G.HighlightOnYank()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
@@ -44,9 +42,9 @@ function _G.ToggleQuickFix()
     local closed = vim.api.nvim_eval(
                        "empty(filter(getwininfo(), 'v:val.quickfix'))")
     if closed == 1 then
-        cmd("copen")
+        vim.cmd("copen")
     else
-        cmd("cclose")
+        vim.cmd("cclose")
     end
 end
 
@@ -65,56 +63,57 @@ augroup END
 ]])
 
 -- bindings
-map("n", "H", "^")
-map("o", "H", "^")
-map("x", "H", "^")
-map("n", "L", "$")
-map("o", "L", "$")
-map("x", "L", "$")
+u.map("n", "H", "^")
+u.map("o", "H", "^")
+u.map("x", "H", "^")
+u.map("n", "L", "$")
+u.map("o", "L", "$")
+u.map("x", "L", "$")
 
-map("n", "<Space>", ":")
-map("v", "<Space>", ":")
+u.map("n", "<Space>", ":")
+u.map("v", "<Space>", ":")
 
-map("n", "<Tab>", "%")
-map("x", "<Tab>", "%")
-map("o", "<Tab>", "%")
+u.map("n", "<Tab>", "%")
+u.map("x", "<Tab>", "%")
+u.map("o", "<Tab>", "%")
 
-map("i", "<C-h>", "<Left>")
-map("i", "<C-j>", "<Down>")
-map("i", "<C-k>", "<Up>")
-map("i", "<C-l>", "<Right>")
+u.map("i", "<C-h>", "<Left>")
+u.map("i", "<C-j>", "<Down>")
+u.map("i", "<C-k>", "<Up>")
+u.map("i", "<C-l>", "<Right>")
 
-map("n", "<BS>", "<C-^>")
-map("n", "Y", "y$")
-map("n", "<Bslash>", ",")
-map("n", "ZZ", ":wqall<CR>")
-map("n", "<Leader>x", ":bd<CR>", {silent = true})
-map("n", "<Esc>", ":nohl<CR>", {silent = true})
-map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>")
+u.map("n", "<BS>", "<C-^>")
+u.map("n", "Y", "y$")
+u.map("n", "<Bslash>", ",")
+u.map("n", "ZZ", ":wqall<CR>")
+u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
+u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
+u.map("n", "<Leader>q", ":lua ToggleQuickFix()<CR>", {silent = true})
 -- restarts lsp
-map("n", "<Leader>r", ":w | :e<CR>")
+u.map("n", "<Leader>r", ":w | :e<CR>")
 
 -- expand pairs
-map("i", "(;", "(<CR>)<C-c>O")
-map("i", "{;", "{<CR>}<C-c>O")
-map("i", "[;", "[<CR>]<C-c>O")
+u.map("i", "(;", "(<CR>)<C-c>O")
+u.map("i", "{;", "{<CR>}<C-c>O")
+u.map("i", "[;", "[<CR>]<C-c>O")
 
 -- save w/ <CR> in non-quickfix buffers
-map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')", {expr = true})
+u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",
+      {expr = true})
 
 -- add jumps > 1 to jump list
-map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
-map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
+u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
+u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
 -- expand current file's directory to quickly edit file
-map("n", "<Leader>ee", ":edit <C-r>=expand('%:h')<CR>/")
-map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")
-map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
+u.map("n", "<Leader>ee", ":edit <C-r>=expand('%:h')<CR>/")
+u.map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")
+u.map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
 
 -- load remaining lua config
 if (u.config_file_exists("theme.lua")) then require("theme") end
 if (u.config_file_exists("plugins/init.lua")) then
     require("plugins")
-    map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
+    u.map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
 end
 if (u.config_file_exists("lsp/init.lua")) then require("lsp") end

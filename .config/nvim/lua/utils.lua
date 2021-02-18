@@ -9,7 +9,6 @@ local get_map_options = function(opts)
 end
 
 local M = {}
-M.cmd = vim.cmd
 M.exec = function(command) vim.api.nvim_exec(command, true) end
 
 M.config_file_exists = function(name)
@@ -28,11 +27,6 @@ end
 
 M.buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
-end
-
-M.opt = function(scope, key, value)
-    scopes[scope][key] = value
-    if scope ~= "o" then scopes["o"][key] = value end
 end
 
 return M
