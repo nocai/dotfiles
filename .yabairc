@@ -15,12 +15,9 @@ yc auto_balance on
 # mouse
 yc focus_follows_mouse off
 yc mouse_follows_focus on
-yc mouse_modifier fn
-yc mouse_action1 move
-yc mouse_drop_action swap
 
 # visual
-yc window_gap 5
+yc window_gap 2
 yc window_shadow on
 yc window_opacity off
 
