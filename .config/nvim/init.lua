@@ -15,7 +15,7 @@ vim.o.splitright = true
 vim.o.hidden = true
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.pumheight = 10
-vim.o.statusline = [[%f %m%= %p%% %l:%c ]]
+vim.o.statusline = [[%f %y %m %= %p%% %l:%c ]]
 vim.o.showtabline = 2
 
 vim.bo.undofile = true
