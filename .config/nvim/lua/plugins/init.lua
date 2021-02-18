@@ -65,6 +65,10 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
+    use {
+        "mhartington/formatter.nvim",
+        config = function() require("plugins.format") end
+    }
 
     -- visual
     use {
