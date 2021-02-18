@@ -67,7 +67,7 @@ return require("packer").startup(function()
     }
     use {
         "mhartington/formatter.nvim",
-        config = function() require("plugins.format") end
+        config = function() require("plugins.formatter") end
     }
 
     -- visual
