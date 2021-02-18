@@ -7,49 +7,53 @@ local u = require("utils")
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
                  {virtual_text = false, underline = true, signs = true})
--- replace default handlers w/ lsputil versions
-vim.lsp.handlers["textDocument/codeAction"] =
-    require"lsputil.codeAction".code_action_handler
-vim.lsp.handlers["textDocument/references"] =
-    require"lsputil.locations".references_handler
-vim.lsp.handlers["textDocument/definition"] =
-    require"lsputil.locations".definition_handler
-vim.lsp.handlers["textDocument/declaration"] =
-    require"lsputil.locations".declaration_handler
-vim.lsp.handlers["textDocument/typeDefinition"] =
-    require"lsputil.locations".typeDefinition_handler
-vim.lsp.handlers["textDocument/implementation"] =
-    require"lsputil.locations".implementation_handler
-vim.lsp.handlers["textDocument/documentSymbol"] =
-    require"lsputil.symbols".document_handler
-vim.lsp.handlers["workspace/symbol"] =
-    require"lsputil.symbols".workspace_handler
 
 local on_attach = function(client, bufnr)
     -- bindings
-    u.buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-    u.buf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-    u.buf_map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-    u.buf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
     u.buf_map(bufnr, "n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-    u.buf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
-    u.buf_map(bufnr, "n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>")
-    u.buf_map(bufnr, "n", "[a", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-    u.buf_map(bufnr, "n", "]a", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-    u.buf_map(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     u.buf_map(bufnr, "n", "gs",
               "<cmd>lua require('lsp.functions').organize_imports()<CR>")
+    -- saga bindings
+    u.buf_map(bufnr, "n", "gh",
+              "<cmd>lua require('lspsaga.provider').lsp_finder()<CR>")
+    u.buf_map(bufnr, "n", "<C-f>",
+              "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
+    u.buf_map(bufnr, "n", "<C-b>",
+              "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
+    u.buf_map(bufnr, "n", "ga",
+              "<cmd>lua require('lspsaga.codeaction').code_action()<CR>")
+    u.buf_map(bufnr, "v", "ga",
+              "<cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR")
+    u.buf_map(bufnr, "n", "K",
+              "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
+    u.buf_map(bufnr, "n", "gr",
+              "<cmd>lua require('lspsaga.rename').rename()<CR>")
+    u.buf_map(bufnr, "n", "gd",
+              "<cmd>lua require('lspsaga.provider').preview_definition()<CR>")
+    u.buf_map(bufnr, "n", "[a",
+              "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>")
+    u.buf_map(bufnr, "n", "]a",
+              "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<CR>")
     u.buf_map(bufnr, "n", "<Leader>a",
-              "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-    u.buf_map(bufnr, "n", "<Leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>")
+              "<cmd>lua require('lspsaga.diagnostic').show_line_diagnostics()<CR>")
     u.buf_map(bufnr, "i", "<C-x><C-x>",
-              "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+              "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>")
 
+    -- saga cursor hold autocommands
+    vim.api.nvim_exec([[
+        augroup LspSaga
+            autocmd!
+            autocmd! CursorHoldI * lua require('lspsaga.signaturehelp').signature_help()
+        augroup END
+    ]], true)
+
+    -- enable illuminate highlighting for buffer
     require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {
     on_attach = function(client)
+        -- disable to prevent formatting issues
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
     end
