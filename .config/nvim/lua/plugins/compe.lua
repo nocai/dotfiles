@@ -39,7 +39,7 @@ _G.s_tab_complete = function()
     elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
         return t("<Plug>(vsnip-jump-prev)")
     else
-        return t("<S-Tab>")
+        return t("<C-o>A")
     end
 end
 
