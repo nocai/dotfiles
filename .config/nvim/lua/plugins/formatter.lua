@@ -19,6 +19,9 @@ end
 local filetype = {
     typescript = {prettier},
     typescriptreact = {prettier},
+    json = {prettier},
+    yaml = {prettier},
+    markdown = {prettier},
     lua = {lua_format},
     tmux = {trim_whitespace},
     zsh = {trim_whitespace}
