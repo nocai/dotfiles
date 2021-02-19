@@ -67,5 +67,9 @@ nvim_lsp.diagnosticls.setup {
 }
 
 nvim_lsp.bashls.setup {on_attach = on_attach}
-nvim_lsp.jsonls.setup {on_attach = on_attach}
+nvim_lsp.jsonls.setup {
+    on_attach = on_attach,
+    filetypes = {"json", "jsonc"},
+    init_options = {provideFormatter = false}
+}
 nvim_lsp.yamlls.setup {on_attach = on_attach}

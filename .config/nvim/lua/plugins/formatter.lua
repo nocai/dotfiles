@@ -20,6 +20,7 @@ local filetype = {
     typescript = {prettier},
     typescriptreact = {prettier},
     json = {prettier},
+    jsonc = {prettier},
     yaml = {prettier},
     markdown = {prettier},
     lua = {lua_format},
