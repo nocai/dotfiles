@@ -4,7 +4,7 @@ saga.init_lsp_saga {
         open = "<CR>",
         vsplit = "s",
         split = "i",
-        quit = "q",
+        quit = {"<Esc>", "q"},
         scroll_down = "<C-f>",
         scroll_up = "<C-b>"
     }

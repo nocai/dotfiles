@@ -119,6 +119,10 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["<Esc>"],
+      "commands": [":nohl"]
+    },
+    {
       "before": ["H"],
       "after": ["^"]
     },

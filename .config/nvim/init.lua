@@ -70,6 +70,9 @@ u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
 
+u.map("n", "<C-n>", ":bprev<CR>")
+u.map("n", "<C-p>", ":bnext<CR>")
+
 u.map("n", "<Space>", ":")
 u.map("v", "<Space>", ":")
 

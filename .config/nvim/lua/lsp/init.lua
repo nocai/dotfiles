@@ -28,8 +28,7 @@ local on_attach = function(client, bufnr)
               "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
     u.buf_map(bufnr, "n", "gr",
               "<cmd>lua require('lspsaga.rename').rename()<CR>")
-    u.buf_map(bufnr, "n", "gd",
-              "<cmd>lua require('lspsaga.provider').preview_definition()<CR>")
+    u.buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
     u.buf_map(bufnr, "n", "[a",
               "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<CR>")
     u.buf_map(bufnr, "n", "]a",
