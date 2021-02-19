@@ -19,6 +19,8 @@ end
 local filetype = {
     typescript = {prettier},
     typescriptreact = {prettier},
+    javascript = {prettier},
+    javascriptreact = {prettier},
     json = {prettier},
     jsonc = {prettier},
     yaml = {prettier},
