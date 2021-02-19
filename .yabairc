@@ -29,6 +29,8 @@ yr app="^Activity Monitor$" manage=off
 yr app="^Keychain Access$" manage=off
 yr app="^Calculator$" manage=off
 yr app="^Streaks$" manage=off
+yr app="^Contacts$" manage=off
+yr app="^Font Book$" manage=off
 
 yr title="/Preferences/" manage=off
 yr title="/Settings/" manage=off
