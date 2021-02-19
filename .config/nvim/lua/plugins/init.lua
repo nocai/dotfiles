@@ -95,8 +95,9 @@ return require("packer").startup(function()
     -- other
     use {
         "iamcco/markdown-preview.nvim",
+        ft = {"md", "mkdn", "markdown"},
+        config = {"vim.cmd[[doautocmd BufEnter]]", "vim.cmd[[MarkdownPreview]]"},
         run = "cd app && yarn install",
-        opt = true,
         cmd = "MarkdownPreview"
     }
     use "antoinemadec/FixCursorHold.nvim"
