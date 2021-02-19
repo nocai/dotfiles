@@ -90,6 +90,7 @@ return require("packer").startup(function()
     }
     use "RRethy/vim-illuminate"
     use "sainnhe/sonokai"
+    use "ghifarit53/tokyonight-vim"
     use "sainnhe/edge"
 
     -- other
