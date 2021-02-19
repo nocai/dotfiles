@@ -39,14 +39,6 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "i", "<C-x><C-x>",
               "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>")
 
-    -- saga cursor hold autocommands
-    vim.api.nvim_exec([[
-        augroup LspSaga
-            autocmd!
-            autocmd! CursorHoldI * lua require('lspsaga.signaturehelp').signature_help()
-        augroup END
-    ]], true)
-
     -- enable illuminate highlighting for buffer
     require("illuminate").on_attach(client)
 end
