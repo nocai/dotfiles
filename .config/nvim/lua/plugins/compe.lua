@@ -1,5 +1,5 @@
 require"compe".setup {
-    preselect = false,
+    preselect = "always",
     source = {
         path = true,
         buffer = true,
@@ -24,7 +24,7 @@ end
 
 _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then
-        return t("<C-n>")
+        return vim.fn["compe#confirm"]()
     elseif vim.fn.call("vsnip#available", {1}) == 1 then
         return t("<Plug>(vsnip-expand-or-jump)")
     elseif check_back_space() then
@@ -33,20 +33,9 @@ _G.tab_complete = function()
         return vim.fn["compe#complete"]()
     end
 end
-_G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t("<C-p>")
-    elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-        return t("<Plug>(vsnip-jump-prev)")
-    else
-        return t("<C-o>A")
-    end
-end
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 local npairs = require("nvim-autopairs")
 OnEnter = function()
