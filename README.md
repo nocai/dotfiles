@@ -5,17 +5,18 @@ macOS (M1).
 
 ## Terminal
 
-I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not
-the fastest) terminal emulator for macOS.
+I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not the
+fastest) terminal emulator for macOS.
 
 - zsh + a handful of plugins managed with
   [znap](https://github.com/marlonrichert/zsh-snap)
 
-- Neovim + a functional TypeScript setup for its built-in LSP,
-  written entirely in (non-idiomatic) Lua
+- Neovim on its [master branch](https://github.com/neovim/neovim/commits/master)
+  with a functional TypeScript setup for its built-in LSP, written entirely in
+  (non-idiomatic) Lua
 
-- tmux + [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage
-  sessions
+- [tmux](https://github.com/tmux/tmux) +
+  [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage sessions
 
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
@@ -33,3 +34,7 @@ the fastest) terminal emulator for macOS.
 
 - [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard shortcuts
   (and controlling yabai)
+
+- [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
+  [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (when I don't
+  want to let myself mess around with my dotfiles)
