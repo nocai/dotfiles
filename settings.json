@@ -41,6 +41,7 @@
   "telemetry.enableTelemetry": false,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontSize": 12,
+  "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
