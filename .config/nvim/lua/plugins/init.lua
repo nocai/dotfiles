@@ -57,10 +57,6 @@ return require("packer").startup(function()
 
     -- development
     use "neovim/nvim-lspconfig"
-    use {
-        "glepnir/lspsaga.nvim",
-        config = function() require("plugins.lspsaga") end
-    }
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {
         "lewis6991/gitsigns.nvim",
