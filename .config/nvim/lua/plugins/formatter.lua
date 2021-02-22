@@ -25,6 +25,7 @@ local filetype = {
     jsonc = {prettier},
     yaml = {prettier},
     markdown = {prettier},
+    html = {prettier},
     lua = {lua_format},
     tmux = {trim_whitespace},
     zsh = {trim_whitespace}
