@@ -69,11 +69,6 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
-    use {
-        "prettier/vim-prettier",
-        config = function() require("plugins.prettier") end,
-        run = "yarn install"
-    }
 
     -- visual
     use {

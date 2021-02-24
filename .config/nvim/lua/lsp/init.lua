@@ -8,6 +8,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
                  {virtual_text = false, underline = true, signs = true})
 
+vim.lsp.handlers["textDocument/formatting"] =
+    require("lsp.functions").format_async
+
 local on_attach = function(client, bufnr)
     -- bindings
     u.buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
@@ -31,7 +34,7 @@ local on_attach = function(client, bufnr)
         u.exec([[
          augroup FormatOnSave
              autocmd! * <buffer>
-             autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync()
+             autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
          augroup END
          ]])
     end

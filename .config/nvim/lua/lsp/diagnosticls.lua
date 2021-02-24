@@ -4,7 +4,8 @@ M.filetypes = {
     typescript = "eslint",
     typescriptreact = "eslint",
     markdown = {"markdownlint", "writeGood"},
-    lua = ""
+    lua = "",
+    sh = ""
 }
 
 M.linters = {
@@ -59,8 +60,16 @@ M.formatters = {
     luaFormat = {
         command = "lua-format",
         args = {"--single-quote-to-double-quote", "-i"}
-    }
+    },
+    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}},
+    shfmt = {command = "shfmt"}
 }
-M.formatFiletypes = {lua = "luaFormat"}
+
+M.formatFiletypes = {
+    lua = "luaFormat",
+    typescript = "prettier",
+    typescriptreact = "prettier",
+    sh = "shfmt"
+}
 
 return M
