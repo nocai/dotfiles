@@ -7,7 +7,7 @@
     "13px": "12px",
     "monospace": "12px"
   },
-  "customizeUI.titleBar": "frameless",
+  "customizeUI.titleBar": "inline",
   "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.cursorBlinking": "phase",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -45,7 +45,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Tokyo Night",
+  "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
   "workbench.list.keyboardNavigation": "filter",
