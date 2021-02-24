@@ -29,12 +29,6 @@ fastest) terminal emulator for macOS.
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
   remap keys
 
-- [yabai](https://github.com/koekeishiya/yabai) for tiling window management
-  (no space management on M1 yet, but still a necessity)
-
-- [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard shortcuts
-  (and controlling yabai)
-
 - [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
-  [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (when I don't
-  want to let myself mess around with my dotfiles)
+  [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (i.e. when I
+  don't want to mess around with my dotfiles)

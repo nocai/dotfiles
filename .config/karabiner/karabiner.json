@@ -40,7 +40,7 @@
             ]
           },
           {
-            "description": "caps lock to hyper (all right modifiers)",
+            "description": "caps lock to right hyper (all right modifiers)",
             "manipulators": [
               {
                 "from": {
@@ -64,7 +64,7 @@
             ]
           },
           {
-            "description": "right command to hyper (all left modifiers)",
+            "description": "right command to left hyper (all left modifiers)",
             "manipulators": [
               {
                 "from": {
@@ -226,10 +226,10 @@
       "parameters": {
         "delay_milliseconds_before_open_device": 1000
       },
-      "selected": false,
+      "selected": true,
       "simple_modifications": [],
       "virtual_hid_keyboard": {
-        "country_code": 0,
+        "country_code": 45,
         "indicate_sticky_modifier_keys_state": true,
         "mouse_key_xy_scale": 100
       }
@@ -269,7 +269,7 @@
             ]
           },
           {
-            "description": "left control to hyper (all right modifiers)",
+            "description": "left control to right hyper (all right modifiers)",
             "manipulators": [
               {
                 "from": {
@@ -293,7 +293,7 @@
             ]
           },
           {
-            "description": "right alt to hyper (all left modifiers)",
+            "description": "right alt to left hyper (all left modifiers)",
             "manipulators": [
               {
                 "from": {
@@ -306,25 +306,6 @@
                   {
                     "key_code": "left_shift",
                     "modifiers": ["left_command", "left_control", "left_option"]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "right control to fn",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "right_control",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "fn"
                   }
                 ],
                 "type": "basic"
@@ -474,7 +455,7 @@
       "parameters": {
         "delay_milliseconds_before_open_device": 1000
       },
-      "selected": true,
+      "selected": false,
       "simple_modifications": [],
       "virtual_hid_keyboard": {
         "country_code": 0,
