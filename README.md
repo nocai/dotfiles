@@ -16,7 +16,7 @@ fastest) terminal emulator for macOS.
   (non-idiomatic) Lua
 
 - [tmux](https://github.com/tmux/tmux) +
-  [tmuxinator](https://github.com/tmuxinator/tmuxinator) to manage sessions
+  [tmuxp](https://github.com/tmux-python/tmuxp) to manage sessions
 
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git

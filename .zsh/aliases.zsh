@@ -30,10 +30,9 @@ alias tl="tmux list-sessions"
 alias tksv="tmux kill-server"
 alias tkss="tmux kill-session -t"
 
-alias mx="tmuxinator"
-alias mxs="tmuxinator start"
-alias mxn="tmuxinator new"
-alias mxe="tmuxinator edit"
+alias mx="tmuxp"
+alias mxs="tmuxp load"
+alias mxf="tmuxp freeze"
 
 alias g="git"
 alias ga="git add"
