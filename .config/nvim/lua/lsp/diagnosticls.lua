@@ -5,7 +5,10 @@ M.filetypes = {
     typescriptreact = "eslint",
     markdown = {"markdownlint", "writeGood"},
     lua = "",
-    sh = ""
+    sh = "",
+    yaml = "",
+    json = "",
+    jsonc = ""
 }
 
 M.linters = {
@@ -69,6 +72,10 @@ M.formatFiletypes = {
     lua = "luaFormat",
     typescript = "prettier",
     typescriptreact = "prettier",
+    markdown = "prettier",
+    yaml = "prettier",
+    json = "prettier",
+    jsonc = "prettier",
     sh = "shfmt"
 }
 
