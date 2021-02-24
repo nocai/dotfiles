@@ -1,5 +1,4 @@
 bindkey -v
-export KEYTIMEOUT=1
 
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
@@ -23,6 +22,8 @@ preexec() { echo -ne '\e[6 q' ;}
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-search
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M viins 'kj' vi-cmd-mode
 
 function chpwd() {
     emulate -L zsh

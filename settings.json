@@ -265,7 +265,7 @@
       "after": ["%"]
     }
   ],
-  "vim.insertModeKeyBindings": [
+  "vim.insertModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-h>"],
       "after": ["<Left>"]
@@ -281,6 +281,14 @@
     {
       "before": ["<C-l>"],
       "after": ["<Right>"]
+    },
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["k", "j"],
+      "after": ["<Esc>"]
     }
   ]
 }

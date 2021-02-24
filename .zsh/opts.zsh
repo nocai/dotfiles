@@ -16,7 +16,7 @@ setopt HIST_FCNTL_LOCK
 setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 
-export KEYTIMEOUT=1
+export KEYTIMEOUT=10
 export DISABLE_AUTO_TITLE=true
 export HISTSIZE=1000
 export HISTFILE=~/.zsh_history

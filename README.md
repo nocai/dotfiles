@@ -26,9 +26,6 @@ fastest) terminal emulator for macOS.
 
 ## macOS
 
-- [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
-  remap keys
-
 - [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
   [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (i.e. when I
   don't want to mess around with my dotfiles)
