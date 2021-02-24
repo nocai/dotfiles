@@ -57,6 +57,7 @@
   "vim.leader": ",",
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
+  "vim.showMarksInGutter": true,
   "vim.normalModeKeyBindings": [
     {
       "before": ["<CR>"],
@@ -288,5 +289,5 @@
       "before": ["<C-l>"],
       "after": ["<Right>"]
     }
-  ]
+  ],
 }
