@@ -22,8 +22,19 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     u.buf_map(bufnr, "n", "gs",
               "<cmd>lua require('lsp.functions').organize_imports()<CR>")
-    -- enable illuminate highlighting for buffer
-    require("illuminate").on_attach(client)
+    u.buf_map(bufnr, "n", "<Leader>a",
+              "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    u.buf_map(bufnr, "i", "<C-x><C-x>",
+              "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+
+    if client.resolved_capabilities.document_formatting then
+        u.exec([[
+         augroup FormatOnSave
+             autocmd! * <buffer>
+             autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync()
+         augroup END
+         ]])
+    end
 end
 
 nvim_lsp.tsserver.setup {
@@ -44,7 +55,9 @@ nvim_lsp.diagnosticls.setup {
     filetypes = vim.tbl_keys(diagnosticls.filetypes),
     init_options = {
         filetypes = diagnosticls.filetypes,
-        linters = diagnosticls.linters
+        linters = diagnosticls.linters,
+        formatters = diagnosticls.formatters,
+        formatFiletypes = diagnosticls.formatFiletypes
     }
 }
 

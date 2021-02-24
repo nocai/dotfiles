@@ -70,8 +70,9 @@ return require("packer").startup(function()
         config = function() require("plugins.vim-test") end
     }
     use {
-        "mhartington/formatter.nvim",
-        config = function() require("plugins.formatter") end
+        "prettier/vim-prettier",
+        config = function() require("plugins.prettier") end,
+        run = "yarn install"
     }
 
     -- visual
@@ -84,10 +85,7 @@ return require("packer").startup(function()
         "ap/vim-buftabline",
         config = function() require("plugins.buftabline") end
     }
-    use "RRethy/vim-illuminate"
     use "sainnhe/sonokai"
-    use "sainnhe/edge"
-    use "embark-theme/vim"
     use "ghifarit53/tokyonight-vim"
 
     -- other
@@ -98,6 +96,4 @@ return require("packer").startup(function()
         run = "cd app && yarn install",
         cmd = "MarkdownPreview"
     }
-    use "antoinemadec/FixCursorHold.nvim"
-    use {"rafcamlet/nvim-luapad", opt = true, cmd = {"Luapad", "LuaRun", "Lua"}}
 end)

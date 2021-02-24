@@ -3,7 +3,8 @@ local M = {}
 M.filetypes = {
     typescript = "eslint",
     typescriptreact = "eslint",
-    markdown = {"markdownlint", "writeGood"}
+    markdown = {"markdownlint", "writeGood"},
+    lua = ""
 }
 
 M.linters = {
@@ -53,5 +54,13 @@ M.linters = {
         }
     }
 }
+
+M.formatters = {
+    luaFormat = {
+        command = "lua-format",
+        args = {"--single-quote-to-double-quote", "-i"}
+    }
+}
+M.formatFiletypes = {lua = "luaFormat"}
 
 return M
