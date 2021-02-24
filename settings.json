@@ -191,6 +191,10 @@
     {
       "before": ["C"],
       "after": ["\"", "_", "C"]
+    },
+    {
+      "before": ["K"],
+      "after": ["g", "h"]
     }
   ],
   "vim.visualModeKeyBindings": [
