@@ -1,13 +1,6 @@
 // vim: ft=jsonc
 {
   "breadcrumbs.enabled": false,
-  "customizeUI.font.regular": "PragmataPro",
-  "customizeUI.font.monospace": "PragmataPro Mono",
-  "customizeUI.fontSizeMap": {
-    "13px": "12px",
-    "monospace": "12px"
-  },
-  "customizeUI.titleBar": "inline",
   "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.cursorBlinking": "phase",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -289,5 +282,5 @@
       "before": ["<C-l>"],
       "after": ["<Right>"]
     }
-  ],
+  ]
 }
