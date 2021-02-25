@@ -23,7 +23,7 @@ alias bu="brew uninstall"
 alias bubu="brew update && brew upgrade"
 alias bs="brew search"
 
-alias exa="exa --classify --icons"
+alias exa="exa --classify"
 alias ext='exa --tree --level'
 
 alias tl="tmux list-sessions"
