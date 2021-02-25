@@ -43,7 +43,6 @@ return require("packer").startup(function()
     }
 
     -- text objects
-    use "wellle/targets.vim"
     use {"kana/vim-textobj-entire", requires = {"kana/vim-textobj-user"}}
     use {
         "beloglazov/vim-textobj-punctuation",
@@ -64,10 +63,19 @@ return require("packer").startup(function()
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {
         "lewis6991/gitsigns.nvim",
-        requires = {"nvim-lua/plenary.nvim"},
+        requires = "nvim-lua/plenary.nvim",
         config = function() require("plugins.gitsigns") end
     }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function() require("plugins.treesitter") end
+    }
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
     use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
