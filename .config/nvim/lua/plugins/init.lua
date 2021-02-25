@@ -92,6 +92,7 @@ return require("packer").startup(function()
         "ap/vim-buftabline",
         config = function() require("plugins.buftabline") end
     }
+    use "kyazdani42/nvim-web-devicons"
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
 
