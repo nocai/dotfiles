@@ -34,8 +34,12 @@ return require("packer").startup(function()
         config = function() require("plugins.fzf") end
     }
     use {
-        "voldikss/vim-floaterm",
-        config = function() require("plugins.floaterm") end
+        "kyazdani42/nvim-tree.lua",
+        config = function() require("plugins.nvim-tree") end
+    }
+    use {
+        "christoomey/vim-tmux-runner",
+        config = function() require("plugins.vtr") end
     }
 
     -- text objects
