@@ -28,10 +28,9 @@ return require("packer").startup(function()
     }
     use "christoomey/vim-tmux-navigator"
     use {
-        "junegunn/fzf.vim",
-        requires = {"junegunn/fzf"},
-        run = "fzf#install()",
-        config = function() require("plugins.fzf") end
+        "nvim-telescope/telescope.nvim",
+        requires = {"nvim-lua/popup.nvim", "nvim-lua/plenary.nvim"},
+        config = function() require("plugins.telescope") end
     }
     use {
         "kyazdani42/nvim-tree.lua",
