@@ -58,8 +58,8 @@ u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
 
-u.map("n", "<C-n>", ":bprev<CR>", {silent = true})
-u.map("n", "<C-p>", ":bnext<CR>", {silent = true})
+u.map("n", "gT", ":bprev<CR>", {silent = true})
+u.map("n", "gt", ":bnext<CR>", {silent = true})
 
 u.map("n", "<Space>", ":")
 u.map("v", "<Space>", ":")
