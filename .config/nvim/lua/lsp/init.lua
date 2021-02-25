@@ -14,21 +14,20 @@ vim.lsp.handlers["textDocument/formatting"] =
 local on_attach = function(client, bufnr)
     -- bindings
     u.buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-    u.buf_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-    u.buf_map(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-    u.buf_map(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-    u.buf_map(bufnr, "n", "gy", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-    u.buf_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.rename()<CR>")
-    u.buf_map(bufnr, "n", "gR", "<cmd>lua vim.lsp.buf.references()<CR>")
+    u.buf_map(bufnr, "n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
     u.buf_map(bufnr, "n", "[a", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
     u.buf_map(bufnr, "n", "]a", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
     u.buf_map(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-    u.buf_map(bufnr, "n", "gs",
-              "<cmd>lua require('lsp.functions').organize_imports()<CR>")
     u.buf_map(bufnr, "n", "<Leader>a",
               "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
     u.buf_map(bufnr, "i", "<C-x><C-x>",
               "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+
+    vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
+    vim.cmd("command! LspOrganize lua require'lsp.functions'.organize_imports()")
+    vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
+    vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
+    vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
 
     if client.resolved_capabilities.document_formatting then
         u.exec([[

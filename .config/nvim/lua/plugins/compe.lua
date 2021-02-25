@@ -3,7 +3,7 @@ require"compe".setup {
     source = {
         path = true,
         buffer = true,
-        vsnip = true,
+        vsnip = {priority = 9999},
         nvim_lsp = true,
         nvim_lua = true
     }

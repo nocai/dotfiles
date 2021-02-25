@@ -18,14 +18,6 @@ return require("packer").startup(function()
         "svermeulen/vim-subversive",
         config = function() require("plugins.subversive") end
     }
-    use {
-        "svermeulen/vim-cutlass",
-        config = function() require("plugins.cutlass") end
-    }
-    use {
-        "Asheq/close-buffers.vim",
-        config = function() require("plugins.close-buffers") end
-    }
     use "christoomey/vim-tmux-navigator"
     use {
         "junegunn/fzf.vim",
@@ -72,10 +64,6 @@ return require("packer").startup(function()
         run = ":TSUpdate",
         config = function() require("plugins.treesitter") end
     }
-    use {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        requires = "nvim-treesitter/nvim-treesitter"
-    }
     use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
@@ -83,11 +71,6 @@ return require("packer").startup(function()
     }
 
     -- visual
-    use {
-        "szw/vim-maximizer",
-        cmd = {"MaximizerToggle"},
-        config = function() require("plugins.maximizer") end
-    }
     use {
         "ap/vim-buftabline",
         config = function() require("plugins.buftabline") end

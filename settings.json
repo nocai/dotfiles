@@ -45,9 +45,10 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
   // vim
-  "vim.highlightedyank.enable": true,
-  "vim.hlsearch": true,
   "vim.leader": ",",
+  "vim.highlightedyank.enable": true,
+  "vim.easymotion": true,
+  "vim.hlsearch": true,
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
   "vim.showMarksInGutter": true,
@@ -61,10 +62,9 @@
       "commands": ["workbench.action.openPreviousEditorFromHistory"]
     },
     {
-      "before": ["g", "s"],
-      "commands": ["editor.action.organizeImports"]
+      "before": ["<Space>"],
+      "commands": ["workbench.action.showCommands"]
     },
-    // unimpaired-like bindings
     {
       "before": ["[", "a"],
       "commands": ["editor.action.marker.prev"]
@@ -81,42 +81,12 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.nextChange"]
     },
-    // leader bindings
-    {
-      "before": ["<Leader>", "f"],
-      "commands": ["workbench.action.quickOpen"]
-    },
-    {
-      "before": ["<Leader>", "c"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "before": ["<Leader>", "b", "o"],
-      "commands": ["workbench.action.closeOtherEditors"]
-    },
-    {
-      "before": ["<Leader>", "b", "a"],
-      "commands": ["workbench.action.closeAllEditors"]
-    },
-    // subversive bindings for replaceWithRegister
-    {
-      "before": ["s"],
-      "after": ["g", "r"]
-    },
-    {
-      "before": ["s", "s"],
-      "after": ["g", "r", "r"]
-    },
-    {
-      "before": ["S"],
-      "after": ["g", "r", "$"]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<Esc>"],
       "commands": [":nohl"]
-    },
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["H"],
       "after": ["^"]
@@ -126,79 +96,12 @@
       "after": ["$"]
     },
     {
-      "before": ["<Tab>"],
-      "after": ["%"]
-    },
-    {
       "before": ["Y"],
       "after": ["y", "$"]
     },
     {
-      "before": ["<Space>"],
-      "after": [":"]
-    },
-    // cutlass bindings
-    {
-      "before": ["g", "m"],
-      "after": ["m"]
-    },
-    {
-      "before": ["m", "m"],
-      "after": ["d", "d"]
-    },
-    {
-      "before": ["m"],
-      "after": ["d"]
-    },
-    {
-      "before": ["M"],
-      "after": ["D"]
-    },
-    {
-      "before": ["d", "d"],
-      "after": ["\"", "_", "d", "d"]
-    },
-    {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
-    },
-    {
-      "before": ["D"],
-      "after": ["\"", "_", "D"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"", "_", "x"]
-    },
-    {
-      "before": ["X"],
-      "after": ["\"", "_", "X"]
-    },
-    {
-      "before": ["c", "c"],
-      "after": ["\"", "_", "c", "c"]
-    },
-    {
-      "before": ["c"],
-      "after": ["\"", "_", "c"]
-    },
-    {
-      "before": ["C"],
-      "after": ["\"", "_", "C"]
-    },
-    {
-      "before": ["K"],
-      "after": ["g", "h"]
-    }
-  ],
-  "vim.visualModeKeyBindings": [
-    {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
-    },
-    {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "before": ["<Tab>"],
+      "after": ["%"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -213,42 +116,6 @@
     {
       "before": ["L"],
       "after": ["$"]
-    },
-    {
-      "before": ["<Space>"],
-      "after": [":"]
-    },
-    {
-      "before": ["m"],
-      "after": ["d"]
-    },
-    {
-      "before": ["M"],
-      "after": ["D"]
-    },
-    {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
-    },
-    {
-      "before": ["D"],
-      "after": ["\"", "_", "D"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"", "_", "x"]
-    },
-    {
-      "before": ["X"],
-      "after": ["\"", "_", "X"]
-    },
-    {
-      "before": ["c"],
-      "after": ["\"", "_", "c"]
-    },
-    {
-      "before": ["C"],
-      "after": ["\"", "_", "C"]
     }
   ],
   "vim.operatorPendingModeKeyBindingsNonRecursive": [
@@ -281,14 +148,6 @@
     {
       "before": ["<C-l>"],
       "after": ["<Right>"]
-    },
-    {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
-    },
-    {
-      "before": ["k", "j"],
-      "after": ["<Esc>"]
     }
   ]
 }
