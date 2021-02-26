@@ -69,6 +69,11 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
+    use {
+        "mfussenegger/nvim-dap",
+        config = function() require("plugins.dap") end
+    }
+    use {"theHamsta/nvim-dap-virtual-text", requires = "mfussenegger/nvim-dap"}
 
     -- visual
     use {
