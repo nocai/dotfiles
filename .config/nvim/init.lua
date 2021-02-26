@@ -18,32 +18,37 @@ vim.o.pumheight = 10
 vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 vim.o.showtabline = 2
 vim.o.foldlevelstart = 99
-
--- vim.bo isn't working; investigate
-vim.cmd("set undofile")
-vim.cmd("set tabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set expandtab")
+vim.o.undofile = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.shortmess = "filnxtToOFcA"
 
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
 
--- not sure how to set this without vim.cmd
-vim.cmd("set shortmess+=c")
-
 -- autocommands and commands
 vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#")
+vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 
 function _G.HighlightOnYank()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
 end
+
 u.exec([[
 augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua HighlightOnYank()
+augroup END
+]])
+
+u.exec([[
+augroup CreateDirectory
+    autocmd!
+    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 augroup END
 ]])
 
@@ -57,9 +62,6 @@ u.map("x", "H", "^")
 u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
-
-u.map("n", "gT", ":bprev<CR>", {silent = true})
-u.map("n", "gt", ":bnext<CR>", {silent = true})
 
 u.map("n", "<Space>", ":")
 u.map("v", "<Space>", ":")
@@ -75,17 +77,24 @@ u.map("i", "<C-l>", "<Right>")
 
 u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
-u.map("n", "mm", "m'")
 u.map("n", "<Bslash>", ",")
+u.map("n", "ZZ", ":wqall<CR>")
 u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
--- restarts lsp
+u.map("i", "<S-Tab>", "<C-o>A")
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",
       {expr = true})
 
+-- add jumps > 1 to jump list
+u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
+u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
+
 -- load remaining lua config
 if (u.config_file_exists("theme.lua")) then require("theme") end
-if (u.config_file_exists("plugins/init.lua")) then require("plugins") end
+if (u.config_file_exists("plugins/init.lua")) then
+    require("plugins")
+    u.map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
+end
 if (u.config_file_exists("lsp/init.lua")) then require("lsp") end

@@ -6,18 +6,29 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
-    use "tpope/vim-eunuch"
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("plugins.autopairs") end
-    }
 
     -- additional functionality
     use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
+        "windwp/nvim-autopairs",
+        config = function() require("plugins.autopairs") end
+    }
+    use {
         "svermeulen/vim-subversive",
         config = function() require("plugins.subversive") end
     }
+    use {
+        "svermeulen/vim-cutlass",
+        config = function() require("plugins.cutlass") end
+    }
+    use {
+        "kyazdani42/nvim-tree.lua",
+        config = function() require("plugins.nvim-tree") end
+    }
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+
+    -- integrations
     use "christoomey/vim-tmux-navigator"
     use {
         "junegunn/fzf.vim",
@@ -26,15 +37,12 @@ return require("packer").startup(function()
         config = function() require("plugins.fzf") end
     }
     use {
-        "kyazdani42/nvim-tree.lua",
-        config = function() require("plugins.nvim-tree") end
-    }
-    use {
         "christoomey/vim-tmux-runner",
         config = function() require("plugins.vtr") end
     }
 
     -- text objects
+    use "wellle/targets.vim"
     use {"kana/vim-textobj-entire", requires = {"kana/vim-textobj-user"}}
     use {
         "beloglazov/vim-textobj-punctuation",
@@ -52,13 +60,11 @@ return require("packer").startup(function()
 
     -- development
     use "neovim/nvim-lspconfig"
-    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function() require("plugins.gitsigns") end
     }
-    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -82,6 +88,8 @@ return require("packer").startup(function()
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
+    use "RRethy/vim-illuminate"
+    use "antoinemadec/FixCursorHold.nvim"
 
     -- other
     use {

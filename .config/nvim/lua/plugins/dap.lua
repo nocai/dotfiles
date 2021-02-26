@@ -19,23 +19,23 @@ dap.configurations.typescript = {node2}
 
 vim.api.nvim_set_var("dap_virtual_text", true)
 
-vim.api.nvim_set_keymap("n", "<Leader>db",
-                        ":lua require'dap'.toggle_breakpoint()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>dc", ":lua require'dap'.continue()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>dr", ":lua require'dap'.repl.open()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>dp",
-                        ":lua require'dap.ui.variables'.scopes()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>dv",
-                        ":lua require'dap.ui.variables'.visual_hover()<CR>",
-                        {silent = true})
+_G.dap_attach = function()
+    print("attaching")
+    require("dap").continue()
+end
+vim.cmd("command! DapAttach v:lua.dap_attach()")
 
-vim.api.nvim_set_keymap("n", "<Leader>dso", ":lua require'dap'.step_out()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>dsi", ":lua require'dap'.step_into()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>dss", ":lua require'dap'.step_over()<CR>",
-                        {silent = true})
+vim.cmd("command! DapBreakpoint lua require'dap'.toggle_breakpoint()")
+vim.cmd("command! DapRepl lua require'dap'.repl.open()")
+vim.cmd("command! DapScopes lua require'dap.ui.variables'.scopes()")
+vim.cmd("command! DapHover lua require'dap.ui.variables'.visual_hover()")
+vim.cmd("command! DapStepOut lua require'dap'.step_out()")
+vim.cmd("command! DapStepOver lua require'dap'.step_over()")
+vim.cmd("command! DapStepInto lua require'dap'.step_into()")
+
+vim.api
+    .nvim_set_keymap("n", "<Leader>db", ":DapBreakpoint<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>dh", ":DapHover<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>dso", ":DapStepOut<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>dsi", ":DapStepInto<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>dss", ":DapStepOver<CR>", {silent = true})

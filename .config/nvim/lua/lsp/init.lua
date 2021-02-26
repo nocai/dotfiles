@@ -12,31 +12,43 @@ vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
 
 local on_attach = function(client, bufnr)
-    -- bindings
-    u.buf_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-    u.buf_map(bufnr, "n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>")
-    u.buf_map(bufnr, "n", "[a", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-    u.buf_map(bufnr, "n", "]a", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
-    u.buf_map(bufnr, "n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-    u.buf_map(bufnr, "n", "<Leader>a",
-              "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-    u.buf_map(bufnr, "i", "<C-x><C-x>",
-              "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-
+    -- commands
+    vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
+    vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+    vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
+    vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
     vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
     vim.cmd("command! LspOrganize lua require'lsp.functions'.organize_imports()")
     vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
     vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
     vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
+    vim.cmd("command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev()")
+    vim.cmd("command! LspDiagNext lua vim.lsp.diagnostic.goto_next()")
+    vim.cmd(
+        "command! LspDiagLine lua vim.lsp.diagnostic.show_line_diagnostics()")
+    vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
+
+    -- bindings
+    u.buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "gr", ":LspRename,CR>", {silent = true})
+    u.buf_map(bufnr, "n", "gs", ":LspOrganize,CR>", {silent = true})
+    u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
+    u.buf_map(bufnr, "i", "<C-x><C-x>", ":LspSignatureHelp<CR>", {silent = true})
 
     if client.resolved_capabilities.document_formatting then
         u.exec([[
          augroup FormatOnSave
              autocmd! * <buffer>
-             autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
+             autocmd BufWritePost <buffer> LspFormatting
          augroup END
          ]])
     end
+
+    require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {
