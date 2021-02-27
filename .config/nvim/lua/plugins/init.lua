@@ -6,6 +6,7 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
+    use "tpope/vim-vinegar"
 
     -- additional functionality
     use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
@@ -20,10 +21,6 @@ return require("packer").startup(function()
     use {
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
-    }
-    use {
-        "kyazdani42/nvim-tree.lua",
-        config = function() require("plugins.nvim-tree") end
     }
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
@@ -80,10 +77,6 @@ return require("packer").startup(function()
         config = function() require("plugins.dap") end
     }
     use {"theHamsta/nvim-dap-virtual-text", requires = "mfussenegger/nvim-dap"}
-    use {
-        "liuchengxu/vista.vim",
-        config = function() require("plugins.vista") end
-    }
 
     -- visual
     use {
