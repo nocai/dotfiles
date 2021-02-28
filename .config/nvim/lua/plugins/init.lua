@@ -77,6 +77,8 @@ return require("packer").startup(function()
         config = function() require("plugins.dap") end
     }
     use {"theHamsta/nvim-dap-virtual-text", requires = "mfussenegger/nvim-dap"}
+    use "tpope/vim-fugitive"
+    use {"junegunn/gv.vim", requires = "tpope/vim-fugitive"}
 
     -- visual
     use {
