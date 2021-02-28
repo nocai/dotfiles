@@ -85,6 +85,7 @@ return require("packer").startup(function()
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
+    use "challenger-deep-theme/vim"
     use "RRethy/vim-illuminate"
     use "antoinemadec/FixCursorHold.nvim"
 

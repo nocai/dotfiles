@@ -15,7 +15,7 @@ gui:
     optionsTextColor:
       - blue
     selectedLineBgColor:
-      - default
+      - reverse
     selectedRangeBgColor:
       - reverse
   commitLength:
