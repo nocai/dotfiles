@@ -85,6 +85,10 @@ return require("packer").startup(function()
         "ap/vim-buftabline",
         config = function() require("plugins.buftabline") end
     }
+    use {
+        "nvim-lua/lsp-status.nvim",
+        config = function() require("plugins.lsp-status") end
+    }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
     use "challenger-deep-theme/vim"

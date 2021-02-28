@@ -50,6 +50,7 @@ local on_attach = function(client, bufnr)
          ]])
     end
 
+    require("lsp-status").on_attach(client)
     require("illuminate").on_attach(client)
 end
 

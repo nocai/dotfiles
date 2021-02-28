@@ -15,7 +15,6 @@ vim.o.splitright = true
 vim.o.hidden = true
 vim.o.completeopt = "menuone,noselect,noinsert"
 vim.o.pumheight = 10
-vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 vim.o.showtabline = 2
 vim.o.foldlevelstart = 99
 vim.o.undofile = true
@@ -29,6 +28,9 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
+
+-- statusline
+vim.o.statusline = [[%f %y %m %= %{LspStatus()} %p%% %l:%c]]
 
 -- autocommands and commands
 vim.cmd("command! Bd %bd")
