@@ -21,6 +21,7 @@ znap source zsh-users/zsh-completions
 znap source Aloxaf/fzf-tab
 znap source wookayin/fzf-fasd
 znap source zdharma/fast-syntax-highlighting
+znap source lukechilds/zsh-better-npm-completion
 
 znap eval fasd-init 'fasd --init auto'
 
