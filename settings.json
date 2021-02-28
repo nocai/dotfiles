@@ -82,8 +82,24 @@
       "commands": ["workbench.action.editor.nextChange"]
     },
     {
+      "before": ["g", "s"],
+      "commands": ["editor.action.organizeImports"]
+    },
+    {
       "before": ["<Esc>"],
       "commands": [":nohl"]
+    },
+    {
+      "before": ["s"],
+      "after": ["g", "r"]
+    },
+    {
+      "before": ["s", "s"],
+      "after": ["g", "r", "r"]
+    },
+    {
+      "before": ["S"],
+      "after": ["g", "r", "$"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -102,6 +118,68 @@
     {
       "before": ["<Tab>"],
       "after": ["%"]
+    },
+    {
+      "before": ["g", "m"],
+      "after": ["m"]
+    },
+    {
+      "before": ["m", "m"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d", "d"],
+      "after": ["\"", "_", "d", "d"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c", "c"],
+      "after": ["\"", "_", "c", "c"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
+    },
+    {
+      "before": ["K"],
+      "after": ["g", "h"]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -130,6 +208,38 @@
     {
       "before": ["<Tab>"],
       "after": ["%"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
     }
   ],
   "vim.insertModeKeyBindingsNonRecursive": [
