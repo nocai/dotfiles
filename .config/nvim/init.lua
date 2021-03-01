@@ -13,7 +13,7 @@ vim.o.updatetime = 300
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.hidden = true
-vim.o.completeopt = "menuone"
+vim.o.completeopt = "menuone,noselect"
 vim.o.pumheight = 10
 vim.o.showtabline = 2
 vim.o.foldlevelstart = 99
@@ -28,6 +28,8 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
+
+vim.bo.omnifunc = "syntaxcomplete#Complete"
 
 -- statusline
 vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]

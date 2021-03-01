@@ -23,6 +23,11 @@ return require("packer").startup(function()
         config = function() require("plugins.cutlass") end
     }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {"hrsh7th/vim-vsnip-integ", requires = "hrsh7th/vim-vsnip"}
+    use {
+        "lifepillar/vim-mucomplete",
+        config = function() require("plugins.mucomplete") end
+    }
 
     -- integrations
     use "christoomey/vim-tmux-navigator"
