@@ -43,6 +43,8 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>",
               {silent = true})
 
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
     if client.resolved_capabilities.document_formatting then
         u.exec([[
          augroup LspAutocommands
@@ -55,7 +57,7 @@ local on_attach = function(client, bufnr)
     end
 
     require("lsp-status").on_attach(client)
-    require("illuminate").on_attach(client)
+    require("completion").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {

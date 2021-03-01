@@ -22,8 +22,12 @@ return require("packer").startup(function()
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
     }
-    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
+    use {
+        "nvim-lua/completion-nvim",
+        config = function() require("plugins.completion") end
+    }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {"hrsh7th/vim-vsnip-integ", requires = "hrsh7th/vim-vsnip"}
 
     -- integrations
     use "christoomey/vim-tmux-navigator"
@@ -40,7 +44,7 @@ return require("packer").startup(function()
 
     -- text objects
     use "wellle/targets.vim"
-    use {"kana/vim-textobj-entire", requires = {"kana/vim-textobj-user"}}
+    use {"kana/vim-textobj-entire", requires = "kana/vim-textobj-user"}
     use {
         "beloglazov/vim-textobj-punctuation",
         requires = {"kana/vim-textobj-user"}
@@ -92,8 +96,6 @@ return require("packer").startup(function()
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
     use "challenger-deep-theme/vim"
-    use "RRethy/vim-illuminate"
-    use "antoinemadec/FixCursorHold.nvim"
 
     -- other
     use {
