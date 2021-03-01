@@ -6,14 +6,8 @@ M.organize_imports = function()
     local params = nvim_lsp.util.make_range_params()
     params.context = {diagnostics = {}, only = {"source.organizeImports"}}
 
-    local responses, err = nvim_lsp.buf_request_sync(0,
-                                                     "textDocument/codeAction",
-                                                     params, 500)
-
-    if err then
-        print("ERROR: " .. err)
-        return
-    end
+    local responses = nvim_lsp.buf_request_sync(0, "textDocument/codeAction",
+                                                params)
 
     if not responses or vim.tbl_isempty(responses) then return end
 
