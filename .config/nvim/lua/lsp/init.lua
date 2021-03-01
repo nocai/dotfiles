@@ -3,13 +3,15 @@ local sumneko = require("lsp.sumneko")
 local diagnosticls = require("lsp.diagnosticls")
 local u = require("utils")
 
--- disable virtual text
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                 {virtual_text = false, underline = true, signs = true})
-
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = true,
+        -- only show errors as virtual text
+        virtual_text = {spacing = 2, severity_limit = "Error"}
+    })
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -43,9 +45,11 @@ local on_attach = function(client, bufnr)
 
     if client.resolved_capabilities.document_formatting then
         u.exec([[
-         augroup FormatOnSave
+         augroup LspAutocommands
              autocmd! * <buffer>
              autocmd BufWritePost <buffer> LspFormatting
+             autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+             autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
          augroup END
          ]])
     end
