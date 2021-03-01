@@ -5,7 +5,6 @@ local u = require("utils")
 
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
@@ -42,6 +41,7 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>",
               {silent = true})
+    u.buf_map(bufnr, "i", "<C-x><C-h>", "<cmd> LspHover<CR>", {silent = true})
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -50,14 +50,9 @@ local on_attach = function(client, bufnr)
          augroup LspAutocommands
              autocmd! * <buffer>
              autocmd BufWritePost <buffer> LspFormatting
-             autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-             autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()
          augroup END
          ]])
     end
-
-    require("lsp-status").on_attach(client)
-    require("completion").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {

@@ -13,7 +13,7 @@ vim.o.updatetime = 300
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.hidden = true
-vim.o.completeopt = "menuone,noinsert"
+vim.o.completeopt = "menuone"
 vim.o.pumheight = 10
 vim.o.showtabline = 2
 vim.o.foldlevelstart = 99
@@ -30,7 +30,7 @@ vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
 
 -- statusline
-vim.o.statusline = [[%f %y %m %= %{LspStatus()} %p%% %l:%c]]
+vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 
 -- autocommands and commands
 vim.cmd("command! Bd %bd")

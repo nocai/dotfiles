@@ -22,12 +22,7 @@ return require("packer").startup(function()
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
     }
-    use {
-        "nvim-lua/completion-nvim",
-        config = function() require("plugins.completion") end
-    }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
-    use {"hrsh7th/vim-vsnip-integ", requires = "hrsh7th/vim-vsnip"}
 
     -- integrations
     use "christoomey/vim-tmux-navigator"
@@ -88,10 +83,6 @@ return require("packer").startup(function()
     use {
         "ap/vim-buftabline",
         config = function() require("plugins.buftabline") end
-    }
-    use {
-        "nvim-lua/lsp-status.nvim",
-        config = function() require("plugins.lsp-status") end
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
