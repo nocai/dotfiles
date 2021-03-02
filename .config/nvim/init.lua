@@ -2,37 +2,38 @@ local u = require("utils")
 
 -- options
 vim.g.mapleader = ","
-vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.termguicolors = true
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.updatetime = 300
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.hidden = true
-vim.o.completeopt = "menuone,noselect"
-vim.o.pumheight = 10
-vim.o.showtabline = 2
-vim.o.foldlevelstart = 99
 vim.o.undofile = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
 vim.o.shortmess = "filnxtToOFcA"
-vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
+vim.o.showcmd = false
 
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.cursorline = true
-vim.wo.signcolumn = "yes"
+if not (u.in_vscode()) then
+    vim.o.mouse = "a"
+    vim.o.splitbelow = true
+    vim.o.splitright = true
+    vim.wo.number = true
+    vim.wo.relativenumber = true
+    vim.wo.cursorline = true
+    vim.wo.signcolumn = "yes"
+    vim.o.showtabline = 2
+    vim.o.showtabline = 2
+    vim.o.backup = false
+    vim.o.writebackup = false
+    vim.o.updatetime = 300
+    vim.o.hidden = true
+    vim.o.completeopt = "menuone,noselect"
+    vim.o.pumheight = 10
+    vim.o.termguicolors = true
+    vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.o.expandtab = true
+    vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 
-vim.bo.omnifunc = "syntaxcomplete#Complete"
-
--- statusline
-vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
+    u.map("i", "<S-Tab>", "<C-o>A")
+    if (u.config_file_exists("theme.lua")) then require("theme") end
+end
 
 -- autocommands and commands
 vim.cmd("command! Bd %bd")
@@ -50,16 +51,6 @@ augroup YankHighlight
 augroup END
 ]])
 
-u.exec([[
-augroup CreateDirectory
-    autocmd!
-    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
-augroup END
-]])
-
--- restarts lsp and treesitter
-vim.cmd("command! R w | :e")
-
 -- bindings
 u.map("n", "H", "^")
 u.map("o", "H", "^")
@@ -75,31 +66,46 @@ u.map("n", "<Tab>", "%")
 u.map("x", "<Tab>", "%")
 u.map("o", "<Tab>", "%")
 
-u.map("i", "<C-h>", "<Left>")
-u.map("i", "<C-j>", "<Down>")
-u.map("i", "<C-k>", "<Up>")
-u.map("i", "<C-l>", "<Right>")
-
 u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
-u.map("n", "<Bslash>", ",")
-u.map("n", "ZZ", ":wqall<CR>")
-u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
+u.map("n", ",,", ",")
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
-u.map("i", "<S-Tab>", "<C-o>A")
 
--- save w/ <CR> in non-quickfix buffers
-u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",
-      {expr = true})
+_G.close_buffer = function()
+    if (u.in_vscode()) then
+        return vim.fn.VSCodeNotify("workbench.action.closeActiveEditor")
+    else
+        return vim.cmd("bd")
+    end
+end
+u.map("n", "<Leader>x", "<cmd> lua close_buffer()<CR>", {silent = true})
+
+_G.save_on_enter = function()
+    if (u.in_vscode()) then
+        return vim.fn.VSCodeNotify("workbench.action.files.save")
+    else
+        return vim.cmd("w")
+    end
+end
+u.map("n", "<CR>", "<cmd> lua save_on_enter()<CR>", {silent = true})
+
+_G.file_picker = function()
+    if (u.in_vscode()) then
+        return vim.fn.VSCodeNotify("workbench.action.quickOpen")
+    else
+        return vim.cmd("Files")
+    end
+end
+u.map("n", "<Leader>f", "<cmd> lua file_picker()<CR>", {silent = true})
+
+if (u.in_vscode()) then
+    u.map("n", "<Leader>c",
+          "<cmd> call VSCodeNotify('workbench.action.showCommands')<CR>",
+          {silent = true})
+end
 
 -- add jumps > 1 to jump list
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
--- load remaining lua config
-if (u.config_file_exists("theme.lua")) then require("theme") end
-if (u.config_file_exists("plugins/init.lua")) then
-    require("plugins")
-    u.map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
-end
-if (u.config_file_exists("lsp/init.lua")) then require("lsp") end
+if (u.config_file_exists("plugins/init.lua")) then require("plugins") end

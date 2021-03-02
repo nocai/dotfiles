@@ -1,4 +1,3 @@
-// vim: ft=jsonc
 {
   "breadcrumbs.enabled": false,
   "editor.autoClosingQuotes": "beforeWhitespace",
@@ -14,12 +13,14 @@
   "editor.minimap.enabled": false,
   "editor.renderLineHighlight": "all",
   "editor.renderWhitespace": "selection",
+  "editor.semanticHighlighting.enabled": true,
   "editor.snippetSuggestions": "top",
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "files.autoGuessEncoding": false,
   "files.autoSave": "onFocusChange",
@@ -27,7 +28,7 @@
   "files.trimTrailingWhitespace": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "jest.autoEnable": false,
-  "jest.enableCodeLens": false,
+  "jest.enableCodeLens": true,
   "jest.showCoverageOnLoad": true,
   "settingsSync.keybindingsPerPlatform": false,
   "telemetry.enableCrashReporter": false,
@@ -36,128 +37,18 @@
   "terminal.integrated.fontSize": 12,
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Ayu Mirage",
   "workbench.editor.labelFormat": "short",
+  "workbench.editor.tabSizing": "shrink",
   "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
-  // vim
-  "vim.leader": ",",
-  "vim.highlightedyank.enable": true,
-  "vim.easymotion": true,
-  "vim.hlsearch": true,
-  "vim.replaceWithRegister": true,
-  "vim.useSystemClipboard": true,
-  "vim.showMarksInGutter": true,
-  "vim.normalModeKeyBindings": [
-    {
-      "before": ["<CR>"],
-      "commands": ["workbench.action.files.save"]
-    },
-    {
-      "before": ["<BS>"],
-      "commands": ["workbench.action.openPreviousEditorFromHistory"]
-    },
-    {
-      "before": ["<Space>"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "before": ["[", "a"],
-      "commands": ["editor.action.marker.prev"]
-    },
-    {
-      "before": ["]", "a"],
-      "commands": ["editor.action.marker.next"]
-    },
-    {
-      "before": ["[", "c"],
-      "commands": ["workbench.action.editor.previousChange"]
-    },
-    {
-      "before": ["]", "c"],
-      "commands": ["workbench.action.editor.nextChange"]
-    }
-  ],
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["H"],
-      "after": ["^"]
-    },
-    {
-      "before": ["L"],
-      "after": ["$"]
-    },
-    {
-      "before": ["Y"],
-      "after": ["y", "$"]
-    },
-    {
-      "before": ["<Tab>"],
-      "after": ["%"]
-    },
-    {
-      "before": ["m", "m"],
-      "after": ["m", "'"]
-    }
-  ],
-  "vim.visualModeKeyBindings": [
-    {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
-    },
-    {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<Tab>"],
-      "after": ["%"]
-    },
-    {
-      "before": ["H"],
-      "after": ["^"]
-    },
-    {
-      "before": ["L"],
-      "after": ["$"]
-    }
-  ],
-  "vim.operatorPendingModeKeyBindingsNonRecursive": [
-    {
-      "before": ["H"],
-      "after": ["^"]
-    },
-    {
-      "before": ["L"],
-      "after": ["$"]
-    },
-    {
-      "before": ["<Tab>"],
-      "after": ["%"]
-    }
-  ],
-  "vim.insertModeKeyBindingsNonRecursive": [
-    {
-      "before": ["<C-h>"],
-      "after": ["<Left>"]
-    },
-    {
-      "before": ["<C-j>"],
-      "after": ["<Down>"]
-    },
-    {
-      "before": ["<C-k>"],
-      "after": ["<Up>"]
-    },
-    {
-      "before": ["<C-l>"],
-      "after": ["<Right>"]
-    }
-  ]
+  "Lua.diagnostics.globals": ["vim", "use"],
+  "[lua]": {
+    "editor.defaultFormatter": "Koihik.vscode-lua-format"
+  }
 }
