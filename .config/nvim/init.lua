@@ -29,8 +29,6 @@ vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
 
-vim.bo.omnifunc = "syntaxcomplete#Complete"
-
 -- statusline
 vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 
@@ -59,7 +57,6 @@ augroup END
 
 -- restarts lsp and treesitter
 vim.cmd("command! R w | :e")
-u.map("n", "<Leader>r", ":R<CR>")
 
 -- bindings
 u.map("n", "H", "^")
@@ -88,6 +85,11 @@ u.map("n", "ZZ", ":wqall<CR>")
 u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
 u.map("i", "<S-Tab>", "<C-o>A")
+u.map("n", "gR", "gr$")
+
+u.map("n", "<Leader>d", "\"_d")
+u.map("n", "<Leader>D", "\"_D")
+u.map("n", "<Leader>dd", "\"_dd")
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",

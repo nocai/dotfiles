@@ -9,34 +9,23 @@ return require("packer").startup(function()
     use "tpope/vim-vinegar"
 
     -- additional functionality
-    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
+    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
     use {
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
     }
-    use {
-        "svermeulen/vim-subversive",
-        config = function() require("plugins.subversive") end
-    }
-    use {
-        "svermeulen/vim-cutlass",
-        config = function() require("plugins.cutlass") end
-    }
+    use "vim-scripts/ReplaceWithRegister"
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
-    use {"hrsh7th/vim-vsnip-integ", requires = "hrsh7th/vim-vsnip"}
-    use {
-        "lifepillar/vim-mucomplete",
-        config = function() require("plugins.mucomplete") end
-    }
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
 
     -- integrations
-    use "christoomey/vim-tmux-navigator"
     use {
         "junegunn/fzf.vim",
         requires = {"junegunn/fzf"},
         run = "fzf#install()",
         config = function() require("plugins.fzf") end
     }
+    use "christoomey/vim-tmux-navigator"
     use {
         "christoomey/vim-tmux-runner",
         config = function() require("plugins.vtr") end
@@ -66,18 +55,11 @@ return require("packer").startup(function()
         requires = "nvim-lua/plenary.nvim",
         config = function() require("plugins.gitsigns") end
     }
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        config = function() require("plugins.treesitter") end
-    }
     use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
-    use "tpope/vim-fugitive"
-    use {"junegunn/gv.vim", requires = "tpope/vim-fugitive"}
 
     -- visual
     use {
@@ -85,8 +67,9 @@ return require("packer").startup(function()
         config = function() require("plugins.buftabline") end
     }
     use "sainnhe/sonokai"
-    use "ghifarit53/tokyonight-vim"
-    use "challenger-deep-theme/vim"
+    use "sainnhe/edge"
+    use "RRethy/vim-illuminate"
+    use "antoinemadec/FixCursorHold.nvim"
 
     -- other
     use {

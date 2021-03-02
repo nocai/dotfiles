@@ -6,11 +6,8 @@ local u = require("utils")
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        -- only show errors as virtual text
-        virtual_text = {spacing = 2, severity_limit = "Error"}
-    })
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+                 {underline = true, virtual_text = false, signs = true})
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -32,18 +29,13 @@ local on_attach = function(client, bufnr)
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
-    u.buf_map(bufnr, "n", "gr", ":LspRename<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
-    u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>", {silent = true})
     u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>", {silent = true})
     u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
     u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>",
               {silent = true})
-    u.buf_map(bufnr, "i", "<C-x><C-h>", "<cmd> LspHover<CR>", {silent = true})
-
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     if client.resolved_capabilities.document_formatting then
         u.exec([[
@@ -53,6 +45,8 @@ local on_attach = function(client, bufnr)
          augroup END
          ]])
     end
+
+    require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {
@@ -78,11 +72,3 @@ nvim_lsp.diagnosticls.setup {
         formatFiletypes = diagnosticls.formatFiletypes
     }
 }
-
-nvim_lsp.bashls.setup {on_attach = on_attach}
-nvim_lsp.jsonls.setup {
-    on_attach = on_attach,
-    filetypes = {"json", "jsonc"},
-    init_options = {provideFormatter = false}
-}
-nvim_lsp.yamlls.setup {on_attach = on_attach}

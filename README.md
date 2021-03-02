@@ -29,6 +29,3 @@ fastest) terminal emulator for macOS.
 - [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
   [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (i.e. when I
   don't want to mess around with my dotfiles)
-
-- [Amethyst](https://github.com/ianyh/Amethyst), a simple tiling window manager
-  that works well on M1
