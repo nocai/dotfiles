@@ -9,6 +9,11 @@ zstyle :prompt:pure:git:stash show yes
 zstyle ':znap:*' plugins-dir ~/.znap
 source ~/.znap/zsh-snap/znap.zsh
 
+# nnn
+ export NNN_BMS='d:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config'
+ export NNN_PLUG='d:diffs;p:preview-tui;s:suedit;t:treeview;r:renamer'
+ export NNN_FIFO=/tmp/nnn.fifo
+
 # autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
