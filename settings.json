@@ -124,6 +124,10 @@
       "after": ["m"]
     },
     {
+      "before": ["g", "m", "m"],
+      "after": ["m", "'"]
+    },
+    {
       "before": ["m", "m"],
       "after": ["d", "d"]
     },
