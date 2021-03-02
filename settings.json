@@ -38,7 +38,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Monokai Pro (Filter Ristretto)",
+  "workbench.colorTheme": "Ayu Mirage",
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
   "workbench.list.keyboardNavigation": "filter",
@@ -80,26 +80,6 @@
     {
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.nextChange"]
-    },
-    {
-      "before": ["g", "s"],
-      "commands": ["editor.action.organizeImports"]
-    },
-    {
-      "before": ["<Esc>"],
-      "commands": [":nohl"]
-    },
-    {
-      "before": ["s"],
-      "after": ["g", "r"]
-    },
-    {
-      "before": ["s", "s"],
-      "after": ["g", "r", "r"]
-    },
-    {
-      "before": ["S"],
-      "after": ["g", "r", "$"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -120,60 +100,8 @@
       "after": ["%"]
     },
     {
-      "before": ["g", "m"],
-      "after": ["m"]
-    },
-    {
-      "before": ["g", "m", "m"],
-      "after": ["m", "'"]
-    },
-    {
       "before": ["m", "m"],
-      "after": ["d", "d"]
-    },
-    {
-      "before": ["m"],
-      "after": ["d"]
-    },
-    {
-      "before": ["M"],
-      "after": ["D"]
-    },
-    {
-      "before": ["d", "d"],
-      "after": ["\"", "_", "d", "d"]
-    },
-    {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
-    },
-    {
-      "before": ["D"],
-      "after": ["\"", "_", "D"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"", "_", "x"]
-    },
-    {
-      "before": ["X"],
-      "after": ["\"", "_", "X"]
-    },
-    {
-      "before": ["c", "c"],
-      "after": ["\"", "_", "c", "c"]
-    },
-    {
-      "before": ["c"],
-      "after": ["\"", "_", "c"]
-    },
-    {
-      "before": ["C"],
-      "after": ["\"", "_", "C"]
-    },
-    {
-      "before": ["K"],
-      "after": ["g", "h"]
+      "after": ["m", "'"]
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -212,38 +140,6 @@
     {
       "before": ["<Tab>"],
       "after": ["%"]
-    },
-    {
-      "before": ["m"],
-      "after": ["d"]
-    },
-    {
-      "before": ["M"],
-      "after": ["D"]
-    },
-    {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
-    },
-    {
-      "before": ["D"],
-      "after": ["\"", "_", "D"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"", "_", "x"]
-    },
-    {
-      "before": ["X"],
-      "after": ["\"", "_", "X"]
-    },
-    {
-      "before": ["c"],
-      "after": ["\"", "_", "c"]
-    },
-    {
-      "before": ["C"],
-      "after": ["\"", "_", "C"]
     }
   ],
   "vim.insertModeKeyBindingsNonRecursive": [
