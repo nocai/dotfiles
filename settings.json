@@ -47,7 +47,8 @@
   // vim
   "vim.leader": ",",
   "vim.highlightedyank.enable": true,
-  "vim.easymotion": true,
+  "vim.sneak": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
   "vim.hlsearch": true,
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
@@ -102,6 +103,10 @@
     {
       "before": ["m", "m"],
       "after": ["m", "'"]
+    },
+    {
+      "before": ["g", "R"],
+      "after": ["g", "r", "$"]
     }
   ],
   "vim.visualModeKeyBindings": [
