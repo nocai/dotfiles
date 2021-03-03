@@ -1,13 +1,15 @@
 {
   "breadcrumbs.enabled": false,
+  "debug.console.fontFamily": "PragmataPro Mono",
   "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.cursorBlinking": "phase",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "PragmataPro Mono Liga",
+  "editor.codeLensFontFamily": "PragmataPro Mono",
   "editor.fontLigatures": true,
   "editor.fontSize": 12,
   "editor.formatOnSave": true,
-  "editor.inlineHints.fontFamily": "monospace",
+  "editor.inlineHints.fontFamily": "PragmataPro Mono",
   "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
@@ -34,6 +36,7 @@
   "telemetry.enableTelemetry": false,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.fontSize": 12,
+  "terminal.integrated.fontFamily": "PragmataPro Mono",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
@@ -49,8 +52,6 @@
   "[lua]": {
     "editor.defaultFormatter": "Koihik.vscode-lua-format"
   },
-  "gitlens.currentLine.enabled": false,
-  "gitlens.hovers.currentLine.over": "line",
   "workbench.colorTheme": "Gruvbox Material Dark",
-  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim"
+  "typescript.format.enable": false
 }
