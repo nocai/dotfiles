@@ -26,19 +26,18 @@ end
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 
-local npairs = require("nvim-autopairs")
 OnEnter = function()
     if vim.fn.pumvisible() == 1 then
         return vim.fn["compe#confirm"]()
     else
-        return npairs.check_break_line_char()
+        return require("nvim-autopairs").check_break_line_char()
     end
 end
 vim.api.nvim_set_keymap("i", "<CR>", "v:lua.OnEnter()", {expr = true})
 
 vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()",
                         {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<C-y>", "compe#confirm(\"<C-y>\")",
+vim.api.nvim_set_keymap("i", "<C-y>", [[compe#confirm("<C-y>")]],
                         {expr = true, silent = true})
-vim.api.nvim_set_keymap("i", "<C-e>", "compe#close(\"<C-e>\")",
+vim.api.nvim_set_keymap("i", "<C-e>", [[compe#confirm("<C-e>")]],
                         {expr = true, silent = true})
