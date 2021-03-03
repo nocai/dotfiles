@@ -42,5 +42,36 @@ return require("packer").startup(function()
         requires = {"kana/vim-textobj-user"},
         ft = {"javascriptreact", "typescriptreact"}
     }
-    use "challenger-deep-theme/vim"
+
+    -- development
+    use "neovim/nvim-lspconfig"
+    use {
+        "lewis6991/gitsigns.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function() require("plugins.gitsigns") end
+    }
+    use "sheerun/vim-polyglot"
+    use {
+        "vim-test/vim-test",
+        config = function() require("plugins.vim-test") end
+    }
+
+    -- visual
+    use {
+        "ap/vim-buftabline",
+        config = function() require("plugins.buftabline") end
+    }
+    use "sainnhe/sonokai"
+    use "sainnhe/edge"
+    use "RRethy/vim-illuminate"
+    use "antoinemadec/FixCursorHold.nvim"
+
+    -- other
+    use {
+        "iamcco/markdown-preview.nvim",
+        ft = {"md", "mkdn", "markdown"},
+        config = {"vim.cmd[[doautocmd BufEnter]]"},
+        run = "cd app && yarn install",
+        cmd = "MarkdownPreview"
+    }
 end)

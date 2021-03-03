@@ -21,14 +21,11 @@ fastest) terminal emulator for macOS.
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
 
-- [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
-  but certainly the most Vim-like one
+- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
+  solid Vim plugin
 
 ## macOS
 
 - [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
   [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (i.e. when I
   don't want to mess around with my dotfiles)
-
-- [Amethyst](https://github.com/ianyh/Amethyst), a simple tiling window manager
-  that works well on M1

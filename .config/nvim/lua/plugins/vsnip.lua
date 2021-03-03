@@ -1,7 +1,7 @@
-vim.api.nvim_set_var("vsnip_filetypes", {
+vim.g.vsnip_filetypes = {
     javascriptreact = {"javascript"},
     typescriptreact = {"typescript"}
-})
+}
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)

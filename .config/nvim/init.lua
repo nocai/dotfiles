@@ -131,6 +131,11 @@ end
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
+-- expand current file's directory to quickly edit / create new files
+u.map("n", "<Leader>ee", ":edit <C-r>=expand('%:h')<CR>/")
+u.map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")
+u.map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
+
 -- load remaining lua config
 if (u.config_file_exists("plugins/init.lua")) then require("plugins") end
 if not (u.is_vscode()) then

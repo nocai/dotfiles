@@ -14,7 +14,7 @@ M.filetypes = {
 M.linters = {
     eslint = {
         sourceName = "eslint",
-        command = "eslint_d",
+        command = "eslint",
         rootPatterns = {".eslintrc.js", "package.json"},
         debounce = 100,
         args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
@@ -64,8 +64,7 @@ M.formatters = {
         command = "lua-format",
         args = {"--single-quote-to-double-quote", "-i"}
     },
-    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}},
-    shfmt = {command = "shfmt"}
+    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
 }
 
 M.formatFiletypes = {
@@ -75,8 +74,7 @@ M.formatFiletypes = {
     markdown = "prettier",
     yaml = "prettier",
     json = "prettier",
-    jsonc = "prettier",
-    sh = "shfmt"
+    jsonc = "prettier"
 }
 
 return M
