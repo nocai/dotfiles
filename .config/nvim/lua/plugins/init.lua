@@ -17,6 +17,7 @@ return require("packer").startup(function()
     use "vim-scripts/ReplaceWithRegister"
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
+    use {"junegunn/vim-slash", config = function() require("plugins.slash") end}
 
     -- integrations
     use {
