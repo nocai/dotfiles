@@ -28,5 +28,15 @@
     "key": "ctrl+y",
     "command": "acceptSelectedSuggestion",
     "when": "suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "escape",
+    "command": "vscode-neovim.escape",
+    "when": "editorTextFocus && neovim.init && !markersNavigationVisible && !parameterHintsVisible"
+  },
+  {
+    "key": "escape",
+    "command": "-vscode-neovim.escape",
+    "when": "editorTextFocus && neovim.init"
   }
 ]
