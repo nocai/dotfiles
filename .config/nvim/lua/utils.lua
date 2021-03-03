@@ -31,7 +31,7 @@ M.buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
 end
 
-M.in_vscode = function()
+M.is_vscode = function()
     local vscode = vim.api.nvim_eval("exists('g:vscode')")
     if (vscode == 1) then
         return true

@@ -13,7 +13,18 @@ return require("packer").startup(function()
         "svermeulen/vim-subversive",
         config = function() require("plugins.subversive") end
     }
-    use {"junegunn/fzf.vim", requires = "junegunn/fzf", run = "fzf#install()"}
+    use "vim-scripts/ReplaceWithRegister"
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
+
+    -- integrations
+    use {"junegunn/fzf.vim", requires = {"junegunn/fzf"}, run = "fzf#install()"}
+    use "christoomey/vim-tmux-navigator"
+    use {
+        "christoomey/vim-tmux-runner",
+        config = function() require("plugins.vtr") end
+    }
+    use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
 
     -- text objects
     use "wellle/targets.vim"

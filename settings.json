@@ -23,7 +23,6 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "files.autoGuessEncoding": false,
-  "files.autoSave": "onFocusChange",
   "files.trimFinalNewlines": false,
   "files.trimTrailingWhitespace": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
@@ -40,7 +39,6 @@
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
   "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Ayu Mirage",
   "workbench.editor.labelFormat": "short",
   "workbench.editor.tabSizing": "shrink",
   "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
@@ -50,5 +48,9 @@
   "Lua.diagnostics.globals": ["vim", "use"],
   "[lua]": {
     "editor.defaultFormatter": "Koihik.vscode-lua-format"
-  }
+  },
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "workbench.colorTheme": "Gruvbox Material Dark",
+  "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim"
 }
