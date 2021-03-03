@@ -16,7 +16,6 @@ vim.o.hidden = true
 vim.o.completeopt = "menuone,noselect"
 vim.o.pumheight = 10
 vim.o.showtabline = 2
-vim.o.foldlevelstart = 99
 vim.o.undofile = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -55,7 +54,7 @@ augroup CreateDirectory
 augroup END
 ]])
 
--- restarts lsp and treesitter
+-- restarts lsp
 vim.cmd("command! R w | :e")
 
 -- bindings

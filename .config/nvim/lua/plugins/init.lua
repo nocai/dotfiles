@@ -6,7 +6,6 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
-    use "tpope/vim-vinegar"
 
     -- additional functionality
     use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
@@ -14,7 +13,14 @@ return require("packer").startup(function()
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
     }
-    use "vim-scripts/ReplaceWithRegister"
+    use {
+        "svermeulen/vim-subversive",
+        config = function() require("plugins.subversive") end
+    }
+    use {
+        "svermeulen/vim-cutlass",
+        config = function() require("plugins.cutlass") end
+    }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {"junegunn/vim-slash", config = function() require("plugins.slash") end}
