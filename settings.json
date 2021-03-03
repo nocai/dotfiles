@@ -45,11 +45,15 @@
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
+  // language-specific settings
+  "Lua.diagnostics.globals": ["vim", "use"],
+  "[lua]": {
+    "editor.defaultFormatter": "Koihik.vscode-lua-format"
+  },
   // vim
   "vim.leader": ",",
   "vim.highlightedyank.enable": true,
-  "vim.sneak": true,
-  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.easymotion": true,
   "vim.hlsearch": true,
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
@@ -67,6 +71,24 @@
       "commands": ["workbench.action.showCommands"]
     },
     {
+      "before": ["<Esc>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["editor.action.organizeImports"]
+    },
+    // leader bindings
+    {
+      "before": ["<Leader>", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<Leader>", "r"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    // unimpaired-like bindings
+    {
       "before": ["[", "a"],
       "commands": ["editor.action.marker.prev"]
     },
@@ -82,17 +104,18 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.nextChange"]
     },
+    // subversive-like bindings
     {
-      "before": ["<Leader>", "f"],
-      "commands": ["workbench.action.quickOpen"]
+      "before": ["s"],
+      "after": ["g", "r"]
     },
     {
-      "before": ["<Leader>", "r"],
-      "commands": ["workbench.action.findInFiles"]
+      "before": ["s", "s"],
+      "after": ["g", "r", "r"]
     },
     {
-      "before": ["g", "s"],
-      "commands": ["editor.action.organizeImports"]
+      "before": ["S"],
+      "after": ["g", "r", "$"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -113,12 +136,61 @@
       "after": ["%"]
     },
     {
-      "before": ["m", "m"],
+      "before": ["K"],
+      "after": ["g", "h"]
+    },
+    // cutlass-like bindings
+    {
+      "before": ["g", "m"],
+      "after": ["m"]
+    },
+    {
+      "before": ["g", "m", "m"],
       "after": ["m", "'"]
     },
     {
-      "before": ["g", "R"],
-      "after": ["g", "r", "$"]
+      "before": ["m", "m"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d", "d"],
+      "after": ["\"", "_", "d", "d"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c", "c"],
+      "after": ["\"", "_", "c", "c"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -143,6 +215,38 @@
     {
       "before": ["L"],
       "after": ["$"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
     }
   ],
   "vim.operatorPendingModeKeyBindingsNonRecursive": [
@@ -176,9 +280,5 @@
       "before": ["<C-l>"],
       "after": ["<Right>"]
     }
-  ],
-  "Lua.diagnostics.globals": ["vim", "use"],
-  "[lua]": {
-    "editor.defaultFormatter": "Koihik.vscode-lua-format"
-  }
+  ]
 }
