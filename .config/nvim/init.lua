@@ -122,8 +122,17 @@ end
 u.map("n", "<Leader>f", "<cmd> lua file_picker()<CR>", {silent = true})
 
 if (u.is_vscode()) then
+    -- remove vscode-neovim multiple cursor bindings
+    vim.api.nvim_del_keymap("x", "ma")
+    vim.api.nvim_del_keymap("x", "mA")
+    vim.api.nvim_del_keymap("x", "mi")
+    vim.api.nvim_del_keymap("x", "mI")
+
     u.map("n", "<Leader>c",
           "<cmd> call VSCodeNotify('workbench.action.showCommands')<CR>",
+          {silent = true})
+    u.map("n", "gs",
+          "<cmd> call VSCodeNotify('editor.action.organizeImports')<CR>",
           {silent = true})
 end
 
