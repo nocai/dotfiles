@@ -1,6 +1,6 @@
-vim.api.nvim_set_var("buftabline_show", 2)
-vim.api.nvim_set_var("buftabline_numbers", 2)
-vim.api.nvim_set_var("buftabline_indicators", 1)
+vim.g.buftabline_show = 2
+vim.g.buftabline_numbers = 2
+vim.g.buftabline_indicators = 1
 
 vim.api.nvim_set_keymap("n", "<Leader>1", "<Plug>BufTabLine.Go(1)", {})
 vim.api.nvim_set_keymap("n", "<Leader>2", "<Plug>BufTabLine.Go(2)", {})
