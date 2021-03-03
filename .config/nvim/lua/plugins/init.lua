@@ -37,7 +37,7 @@ return require("packer").startup(function()
         "christoomey/vim-tmux-runner",
         config = function() require("plugins.vtr") end
     }
-    use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
+    use {"vifm/vifm.vim", config = function() require("plugins.vifm") end}
 
     -- text objects
     use "wellle/targets.vim"
