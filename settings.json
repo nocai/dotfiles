@@ -14,6 +14,7 @@
   "editor.minimap.enabled": false,
   "editor.renderLineHighlight": "all",
   "editor.renderWhitespace": "selection",
+  "editor.semanticHighlighting.enabled": true,
   "editor.snippetSuggestions": "top",
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
@@ -52,7 +53,6 @@
   "vim.hlsearch": true,
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
-  "vim.showMarksInGutter": true,
   "vim.normalModeKeyBindings": [
     {
       "before": ["<CR>"],
@@ -81,6 +81,18 @@
     {
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["<Leader>", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<Leader>", "r"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["editor.action.organizeImports"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -164,5 +176,9 @@
       "before": ["<C-l>"],
       "after": ["<Right>"]
     }
-  ]
+  ],
+  "Lua.diagnostics.globals": ["vim", "use"],
+  "[lua]": {
+    "editor.defaultFormatter": "Koihik.vscode-lua-format"
+  }
 }
