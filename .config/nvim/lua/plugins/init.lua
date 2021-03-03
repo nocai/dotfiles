@@ -76,6 +76,7 @@ return require("packer").startup(function()
     }
     use "sainnhe/sonokai"
     use "sainnhe/edge"
+    use "sainnhe/gruvbox-material"
     use "RRethy/vim-illuminate"
     use "antoinemadec/FixCursorHold.nvim"
 
