@@ -83,7 +83,6 @@ u.map("n", "<Bslash>", ",")
 u.map("n", "ZZ", ":wqall<CR>")
 u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
 u.map("i", "<S-Tab>", "<C-o>A")
-u.map("n", "gR", "gr$")
 
 u.map("n", "<Leader>d", "\"_d")
 u.map("n", "<Leader>D", "\"_D")
