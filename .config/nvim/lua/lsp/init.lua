@@ -6,8 +6,11 @@ local u = require("utils")
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                 {underline = true, virtual_text = false, signs = true})
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = true,
+        -- only show warnings and above as virtual text
+        virtual_text = {spacing = 2, severity_limit = "Warning"}
+    })
 
 local on_attach = function(client, bufnr)
     -- commands
