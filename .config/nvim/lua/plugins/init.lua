@@ -8,7 +8,7 @@ return require("packer").startup(function()
     use "tpope/vim-unimpaired"
 
     -- additional functionality
-    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
+    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
