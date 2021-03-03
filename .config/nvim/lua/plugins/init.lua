@@ -75,8 +75,7 @@ return require("packer").startup(function()
         config = function() require("plugins.buftabline") end
     }
     use "sainnhe/sonokai"
-    use "sainnhe/edge"
-    use "sainnhe/gruvbox-material"
+    use "ghifarit53/tokyonight-vim"
     use "RRethy/vim-illuminate"
     use "antoinemadec/FixCursorHold.nvim"
 
