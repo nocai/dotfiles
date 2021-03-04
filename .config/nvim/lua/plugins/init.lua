@@ -74,13 +74,8 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
-    use {"tpope/vim-fugitive", cmd = {"Git", "GV"}}
-    use {
-        "tpope/vim-rhubarb",
-        requires = "tpope/vim-fugitive",
-        cmd = {"Git", "GV"}
-    }
-    use {"junegunn/gv.vim", requires = "tpope/vim-fugitive", cmd = {"GV"}}
+    use {"tpope/vim-fugitive"}
+    use {"tpope/vim-rhubarb", requires = "tpope/vim-fugitive", cmd = {"Git"}}
 
     -- visual
     use {

@@ -1,5 +1,6 @@
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_OPTS="--bind tab:toggle-out,shift-tab:toggle-in --bind alt-j:preview-down,alt-k:preview-up"
 
 # prompt
 fpath+=$HOME/.zsh/pure
