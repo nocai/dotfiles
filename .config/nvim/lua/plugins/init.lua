@@ -59,6 +59,12 @@ return require("packer").startup(function()
     -- development
     use "neovim/nvim-lspconfig"
     use {
+        "ojroques/nvim-lspfuzzy",
+        requires = {
+            {"junegunn/fzf"}, {"junegunn/fzf.vim"} -- to enable preview (optional)
+        }
+    }
+    use {
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function() require("plugins.gitsigns") end
