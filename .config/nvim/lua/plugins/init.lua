@@ -11,19 +11,7 @@ return require("packer").startup(function()
     use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "windwp/nvim-autopairs",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.autopairs")
-            end
-        end
-    }
-    use {
-        "svermeulen/vim-subversive",
-        config = function() require("plugins.subversive") end
-    }
-    use {
-        "svermeulen/vim-cutlass",
-        config = function() require("plugins.cutlass") end
+        config = function() require("plugins.autopairs") end
     }
     use {
         "svermeulen/vim-subversive",
@@ -42,39 +30,11 @@ return require("packer").startup(function()
     }
 
     -- integrations
-    use {
-        "junegunn/fzf.vim",
-        requires = {"junegunn/fzf"},
-        run = function() vim.fn["fzf#install"]() end,
-        config = function() require("plugins.fzf") end
-    }
-    use {
-        "hrsh7th/nvim-compe",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.compe")
-            end
-        end
-    }
-
-    -- integrations
     use {"junegunn/fzf.vim", requires = {"junegunn/fzf"}, run = "fzf#install()"}
     use "christoomey/vim-tmux-navigator"
     use {
         "christoomey/vim-tmux-runner",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.vtr")
-            end
-        end
-    }
-    use {
-        "mcchrish/nnn.vim",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.nnn")
-            end
-        end
+        config = function() require("plugins.vtr") end
     }
     use {"vifm/vifm.vim", config = function() require("plugins.vifm") end}
 
@@ -104,20 +64,12 @@ return require("packer").startup(function()
     use {
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.gitsigns")
-            end
-        end
+        config = function() require("plugins.gitsigns") end
     }
     use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.vim-test")
-            end
-        end
+        config = function() require("plugins.vim-test") end
     }
     use {"tpope/vim-fugitive"}
     use {"tpope/vim-rhubarb", requires = "tpope/vim-fugitive", cmd = {"Git"}}
@@ -125,11 +77,7 @@ return require("packer").startup(function()
     -- visual
     use {
         "ap/vim-buftabline",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.buftabline")
-            end
-        end
+        config = function() require("plugins.buftabline") end
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
