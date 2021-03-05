@@ -105,6 +105,8 @@ u.map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
 if (u.config_file_exists("theme.lua")) then require("theme") end
 if (u.config_file_exists("plugins/init.lua")) then
     require("plugins")
-    u.map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
+    u.map("n", "<Leader>pu", ":PaqUpdate<CR>", {silent = true})
+    u.map("n", "<Leader>pi", ":PaqInstall<CR>", {silent = true})
+    u.map("n", "<Leader>pc", ":PaqClean<CR>", {silent = true})
 end
 if (u.config_file_exists("lsp/init.lua")) then require("lsp") end
