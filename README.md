@@ -13,7 +13,12 @@ fastest) terminal emulator for macOS.
 
 - Neovim on its [master branch](https://github.com/neovim/neovim/commits/master)
   with a functional TypeScript setup for its built-in LSP, written entirely in
-  (non-idiomatic) Lua
+  (non-idiomatic) Lua.
+
+  _My Neovim config also works seamlessly with
+  [vscode-neovim](https://github.com/asvetliakov/vscode-neovim) thanks to the
+  magic of Lua and [packer.nvim](https://github.com/wbthomason/packer.nvim)'s
+  `cond` option for plugins._
 
 - [tmux](https://github.com/tmux/tmux) +
   [tmuxp](https://github.com/tmux-python/tmuxp) to manage sessions
@@ -23,9 +28,3 @@ fastest) terminal emulator for macOS.
 
 - [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
   but certainly the most Vim-like one
-
-## macOS
-
-- [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
-  [Vim plugin](https://github.com/VSCodeVim/Vim) for serious work (i.e. when I
-  don't want to mess around with my dotfiles)
