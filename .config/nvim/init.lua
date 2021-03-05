@@ -81,12 +81,7 @@ u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
 u.map("n", "<Bslash>", ",")
 u.map("n", "ZZ", ":wqall<CR>")
-u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
 u.map("i", "<S-Tab>", "<C-o>A")
-
-u.map("n", "<Leader>d", "\"_d")
-u.map("n", "<Leader>D", "\"_D")
-u.map("n", "<Leader>dd", "\"_dd")
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",

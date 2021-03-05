@@ -16,6 +16,7 @@ paq {"svermeulen/vim-cutlass", run = require("plugins.cutlass")}
 paq {"hrsh7th/vim-vsnip", run = require("plugins.vsnip")}
 paq {"hrsh7th/nvim-compe", run = require("plugins.compe")}
 paq {"junegunn/vim-slash", run = require("plugins.slash")}
+paq {"ojroques/nvim-bufdel", run = require("plugins.bufdel")}
 
 -- integrations
 paq {"junegunn/fzf"}
