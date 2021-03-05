@@ -48,6 +48,7 @@
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
+  // language-specific settings
   "Lua.diagnostics.globals": ["vim", "use"],
   "[lua]": {
     "editor.defaultFormatter": "Koihik.vscode-lua-format"

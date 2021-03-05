@@ -3,11 +3,16 @@ local sumneko = require("lsp.sumneko")
 local diagnosticls = require("lsp.diagnosticls")
 local u = require("utils")
 
+require("lspfuzzy").setup {}
+
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                 {underline = true, virtual_text = false, signs = true})
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = true,
+        -- only show warnings and above as virtual text
+        virtual_text = {spacing = 2, severity_limit = "Warning"}
+    })
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -17,7 +22,7 @@ local on_attach = function(client, bufnr)
     vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
     vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
     vim.cmd("command! LspOrganize lua require'lsp.functions'.organize_imports()")
-    vim.cmd("command! LspListReferences lua vim.lsp.buf.references()")
+    vim.cmd("command! LspRefs lua vim.lsp.buf.references()")
     vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
     vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
     vim.cmd("command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev()")
@@ -28,6 +33,9 @@ local on_attach = function(client, bufnr)
 
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "gr", ":LspRename<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "gR", ":LspRefs<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
     u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>", {silent = true})
@@ -71,4 +79,12 @@ nvim_lsp.diagnosticls.setup {
         formatters = diagnosticls.formatters,
         formatFiletypes = diagnosticls.formatFiletypes
     }
+
 }
+nvim_lsp.bashls.setup {on_attach = on_attach}
+nvim_lsp.jsonls.setup {
+    on_attach = on_attach,
+    filetypes = {"json", "jsonc"},
+    init_options = {provideFormatter = false}
+}
+nvim_lsp.yamlls.setup {on_attach = on_attach}

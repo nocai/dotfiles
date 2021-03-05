@@ -8,7 +8,7 @@ return require("packer").startup(function()
     use "tpope/vim-unimpaired"
 
     -- additional functionality
-    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
+    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "windwp/nvim-autopairs",
         config = function()
@@ -26,12 +26,27 @@ return require("packer").startup(function()
         config = function() require("plugins.cutlass") end
     }
     use {
-        "hrsh7th/vim-vsnip",
-        config = function()
-            if (vim.api.nvim_eval("exists('g:vscode')") == 0) then
-                require("plugins.vsnip")
-            end
-        end
+        "svermeulen/vim-subversive",
+        config = function() require("plugins.subversive") end
+    }
+    use {
+        "svermeulen/vim-cutlass",
+        config = function() require("plugins.cutlass") end
+    }
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
+    use {"junegunn/vim-slash", config = function() require("plugins.slash") end}
+    use {
+        "ojroques/nvim-bufdel",
+        config = function() require("plugins.bufdel") end
+    }
+
+    -- integrations
+    use {
+        "junegunn/fzf.vim",
+        requires = {"junegunn/fzf"},
+        run = function() vim.fn["fzf#install"]() end,
+        config = function() require("plugins.fzf") end
     }
     use {
         "hrsh7th/nvim-compe",
@@ -61,26 +76,31 @@ return require("packer").startup(function()
             end
         end
     }
+    use {"vifm/vifm.vim", config = function() require("plugins.vifm") end}
 
     -- text objects
     use "wellle/targets.vim"
     use {"kana/vim-textobj-entire", requires = "kana/vim-textobj-user"}
     use {
         "beloglazov/vim-textobj-punctuation",
-        requires = {"kana/vim-textobj-user"}
+        requires = "kana/vim-textobj-user"
     }
     use {
         "Julian/vim-textobj-variable-segment",
-        requires = {"kana/vim-textobj-user"}
+        requires = "kana/vim-textobj-user"
     }
     use {
         "inside/vim-textobj-jsxattr",
-        requires = {"kana/vim-textobj-user"},
+        requires = "kana/vim-textobj-user",
         ft = {"javascriptreact", "typescriptreact"}
     }
 
     -- development
     use "neovim/nvim-lspconfig"
+    use {
+        "ojroques/nvim-lspfuzzy",
+        requires = {{"junegunn/fzf"}, {"junegunn/fzf.vim"}}
+    }
     use {
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
@@ -99,6 +119,8 @@ return require("packer").startup(function()
             end
         end
     }
+    use {"tpope/vim-fugitive"}
+    use {"tpope/vim-rhubarb", requires = "tpope/vim-fugitive", cmd = {"Git"}}
 
     -- visual
     use {
@@ -110,7 +132,7 @@ return require("packer").startup(function()
         end
     }
     use "sainnhe/sonokai"
-    use "sainnhe/edge"
+    use "ghifarit53/tokyonight-vim"
     use "RRethy/vim-illuminate"
     use "antoinemadec/FixCursorHold.nvim"
 

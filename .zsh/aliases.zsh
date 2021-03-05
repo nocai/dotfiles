@@ -1,7 +1,6 @@
 alias mkdir="mkdir -p"
 
-alias nnn="TERM=xterm-256color nnn -e"
-alias n="nnn"
+alias vm="TERM=xterm-256color vifm ."
 
 alias code="code-insiders"
 

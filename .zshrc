@@ -1,5 +1,7 @@
 # fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS="--bind tab:toggle-out,shift-tab:toggle-in,alt-j:preview-down,alt-k:preview-up"
+export FZF_ALT_C_COMMAND='fd --type d --hidden'
 
 # prompt
 fpath+=$HOME/.zsh/pure
@@ -8,11 +10,6 @@ zstyle :prompt:pure:git:stash show yes
 # znap
 zstyle ':znap:*' plugins-dir ~/.znap
 source ~/.znap/zsh-snap/znap.zsh
-
-# nnn
- export NNN_BMS='d:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config'
- export NNN_PLUG='d:diffs;p:preview-tui;s:suedit;t:treeview;r:renamer'
- export NNN_FIFO=/tmp/nnn.fifo
 
 # autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"

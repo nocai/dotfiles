@@ -5,12 +5,12 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "a",
+    "key": "cmd+n",
     "command": "explorer.newFile",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
   },
   {
-    "key": "shift+a",
+    "key": "shift+cmd+n",
     "command": "explorer.newFolder",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
   },
