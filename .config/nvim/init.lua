@@ -18,6 +18,7 @@ if not (u.is_vscode()) then
     vim.o.completeopt = "menuone,noselect"
     vim.o.pumheight = 10
     vim.o.showtabline = 2
+    vim.o.showcmd = false
     vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
     vim.o.tabstop = 4
     vim.o.shiftwidth = 4
