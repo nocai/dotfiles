@@ -111,9 +111,8 @@ return require("packer").startup(function()
 
     -- visual
     use {
-        "ap/vim-buftabline",
-        config = function() require("plugins.buftabline") end,
-        cond = not_vscode
+        "jose-elias-alvarez/buftabline.nvim",
+        config = function() require("plugins.buftabline") end
     }
     use {"sainnhe/sonokai"}
     use {"ghifarit53/tokyonight-vim", cond = not_vscode}
