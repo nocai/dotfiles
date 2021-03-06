@@ -15,10 +15,10 @@ fastest) terminal emulator for macOS.
   with a functional TypeScript setup for its built-in LSP, written entirely in
   (non-idiomatic) Lua.
 
-  _My Neovim config also works seamlessly with
+  My Neovim config also works seamlessly with
   [vscode-neovim](https://github.com/asvetliakov/vscode-neovim) thanks to the
   magic of Lua and [packer.nvim](https://github.com/wbthomason/packer.nvim)'s
-  `cond` option for plugins._
+  `cond` option for plugins.
 
 - [tmux](https://github.com/tmux/tmux) +
   [tmuxp](https://github.com/tmux-python/tmuxp) to manage sessions
