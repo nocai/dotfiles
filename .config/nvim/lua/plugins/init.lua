@@ -68,18 +68,18 @@ return require("packer").startup(function()
 
     -- text objects
     use "wellle/targets.vim"
-    use {"kana/vim-textobj-entire", requires = "kana/vim-textobj-user"}
+    use {"kana/vim-textobj-entire", requires = {"kana/vim-textobj-user"}}
     use {
         "beloglazov/vim-textobj-punctuation",
-        requires = "kana/vim-textobj-user"
+        requires = {"kana/vim-textobj-user"}
     }
     use {
         "Julian/vim-textobj-variable-segment",
-        requires = "kana/vim-textobj-user"
+        requires = {"kana/vim-textobj-user"}
     }
     use {
         "inside/vim-textobj-jsxattr",
-        requires = "kana/vim-textobj-user",
+        requires = {"kana/vim-textobj-user"},
         ft = {"javascriptreact", "typescriptreact"}
     }
 
@@ -91,7 +91,7 @@ return require("packer").startup(function()
     }
     use {
         "lewis6991/gitsigns.nvim",
-        requires = "nvim-lua/plenary.nvim",
+        requires = {"nvim-lua/plenary.nvim"},
         cond = not_vscode,
         config = function() require("plugins.gitsigns") end
     }
@@ -104,7 +104,7 @@ return require("packer").startup(function()
     use {"tpope/vim-fugitive", cond = not_vscode}
     use {
         "tpope/vim-rhubarb",
-        requires = "tpope/vim-fugitive",
+        requires = {"tpope/vim-fugitive"},
         cmd = {"Git"},
         cond = not_vscode
     }
@@ -112,7 +112,8 @@ return require("packer").startup(function()
     -- visual
     use {
         "jose-elias-alvarez/buftabline.nvim",
-        config = function() require("plugins.buftabline") end
+        config = function() require("plugins.buftabline") end,
+        cond = not_vscode
     }
     use {"sainnhe/sonokai"}
     use {"ghifarit53/tokyonight-vim", cond = not_vscode}
