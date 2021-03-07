@@ -1,5 +1,3 @@
-local function not_vscode() return vim.api.nvim_eval("exists('g:vscode')") == 0 end
-
 vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
     -- basic
@@ -8,18 +6,13 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
-    use {"tpope/vim-vinegar", cond = not_vscode}
+    use "tpope/vim-vinegar"
 
     -- additional functionality
-    use {
-        "phaazon/hop.nvim",
-        config = function() require("plugins.hop") end,
-        cond = not_vscode
-    }
+    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "windwp/nvim-autopairs",
-        config = function() require("plugins.autopairs") end,
-        cond = not_vscode
+        config = function() require("plugins.autopairs") end
     }
     use {
         "svermeulen/vim-subversive",
@@ -29,22 +22,13 @@ return require("packer").startup(function()
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
     }
-    use {
-        "hrsh7th/vim-vsnip",
-        config = function() require("plugins.vsnip") end,
-        cond = not_vscode
-    }
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use "rhysd/clever-f.vim"
-    use {
-        "hrsh7th/nvim-compe",
-        config = function() require("plugins.compe") end,
-        cond = not_vscode
-    }
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
     use {"junegunn/vim-slash", config = function() require("plugins.slash") end}
     use {
         "ojroques/nvim-bufdel",
-        config = function() require("plugins.bufdel") end,
-        cond = not_vscode
+        config = function() require("plugins.bufdel") end
     }
 
     -- integrations
@@ -52,15 +36,13 @@ return require("packer").startup(function()
         "junegunn/fzf.vim",
         requires = {"junegunn/fzf"},
         run = function() vim.fn["fzf#install"]() end,
-        config = function() require("plugins.fzf") end,
-        cond = not_vscode
+        config = function() require("plugins.fzf") end
 
     }
-    use {"christoomey/vim-tmux-navigator", cond = not_vscode}
+    use {"christoomey/vim-tmux-navigator"}
     use {
         "christoomey/vim-tmux-runner",
-        config = function() require("plugins.vtr") end,
-        cond = not_vscode
+        config = function() require("plugins.vtr") end
     }
 
     -- text objects
@@ -89,33 +71,25 @@ return require("packer").startup(function()
     use {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
-        cond = not_vscode,
         config = function() require("plugins.gitsigns") end
     }
-    use {"sheerun/vim-polyglot", cond = not_vscode}
+    use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
-        config = function() require("plugins.vim-test") end,
-        cond = not_vscode
+        config = function() require("plugins.vim-test") end
     }
-    use {"tpope/vim-fugitive", cond = not_vscode, cmd = {"Git"}}
-    use {
-        "tpope/vim-rhubarb",
-        requires = {"tpope/vim-fugitive"},
-        cmd = {"Git"},
-        cond = not_vscode
-    }
+    use {"tpope/vim-fugitive", cmd = {"Git"}}
+    use {"tpope/vim-rhubarb", requires = {"tpope/vim-fugitive"}, cmd = {"Git"}}
 
     -- visual
     use {
         "jose-elias-alvarez/buftabline.nvim",
-        config = function() require("plugins.buftabline") end,
-        cond = not_vscode
+        config = function() require("plugins.buftabline") end
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
-    use {"RRethy/vim-illuminate", cond = not_vscode}
-    use {"antoinemadec/FixCursorHold.nvim", cond = not_vscode}
+    use {"RRethy/vim-illuminate"}
+    use {"antoinemadec/FixCursorHold.nvim"}
 
     -- other
     use {
@@ -123,7 +97,6 @@ return require("packer").startup(function()
         ft = {"md", "mkdn", "markdown"},
         config = {"vim.cmd[[doautocmd BufEnter]]"},
         run = "cd app && yarn install",
-        cmd = "MarkdownPreview",
-        cond = not_vscode
+        cmd = "MarkdownPreview"
     }
 end)
