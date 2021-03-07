@@ -8,6 +8,7 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
+    use {"tpope/vim-vinegar", cond = not_vscode}
 
     -- additional functionality
     use {
@@ -33,6 +34,7 @@ return require("packer").startup(function()
         config = function() require("plugins.vsnip") end,
         cond = not_vscode
     }
+    use "rhysd/clever-f.vim"
     use {
         "hrsh7th/nvim-compe",
         config = function() require("plugins.compe") end,
@@ -58,11 +60,6 @@ return require("packer").startup(function()
     use {
         "christoomey/vim-tmux-runner",
         config = function() require("plugins.vtr") end,
-        cond = not_vscode
-    }
-    use {
-        "vifm/vifm.vim",
-        config = function() require("plugins.vifm") end,
         cond = not_vscode
     }
 
@@ -101,7 +98,7 @@ return require("packer").startup(function()
         config = function() require("plugins.vim-test") end,
         cond = not_vscode
     }
-    use {"tpope/vim-fugitive", cond = not_vscode}
+    use {"tpope/vim-fugitive", cond = not_vscode, cmd = {"Git"}}
     use {
         "tpope/vim-rhubarb",
         requires = {"tpope/vim-fugitive"},
@@ -115,8 +112,8 @@ return require("packer").startup(function()
         config = function() require("plugins.buftabline") end,
         cond = not_vscode
     }
-    use {"sainnhe/sonokai"}
-    use {"ghifarit53/tokyonight-vim", cond = not_vscode}
+    use "sainnhe/sonokai"
+    use "ghifarit53/tokyonight-vim"
     use {"RRethy/vim-illuminate", cond = not_vscode}
     use {"antoinemadec/FixCursorHold.nvim", cond = not_vscode}
 
