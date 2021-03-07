@@ -88,7 +88,7 @@ _G.only_buffer = function()
     if (u.is_vscode()) then
         return vim.fn.VSCodeNotify("workbench.action.closeOtherEditors")
     else
-        return vim.cmd("%bd|e#")
+        return vim.cmd("%bd|e#|bd#")
     end
 end
 vim.cmd("command! Bo lua only_buffer()")
