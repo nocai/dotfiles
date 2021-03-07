@@ -4,4 +4,4 @@ vim.g.vsnip_filetypes = {
 }
 
 vim.api
-    .nvim_set_keymap("n", "<Leader>v", ":VsnipOpenSplit<CR>", {silent = true})
+    .nvim_set_keymap("n", "<Leader>V", ":VsnipOpenSplit<CR>", {silent = true})
