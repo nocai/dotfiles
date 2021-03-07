@@ -4,7 +4,7 @@ vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
     -- basic
     use {"wbthomason/packer.nvim", opt = true}
-    use "tpope/vim-commentary"
+    use "b3nj5m1n/kommentary"
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
