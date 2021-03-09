@@ -27,7 +27,6 @@
   "files.trimTrailingWhitespace": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "jest.autoEnable": false,
-  "jest.enableCodeLens": false,
   "jest.showCoverageOnLoad": true,
   "settingsSync.keybindingsPerPlatform": false,
   "telemetry.enableCrashReporter": false,
