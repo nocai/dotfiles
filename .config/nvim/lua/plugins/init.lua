@@ -65,6 +65,10 @@ return require("packer").startup(function()
     -- development
     use "neovim/nvim-lspconfig"
     use {
+        "mfussenegger/nvim-dap",
+        config = function() require("plugins.dap") end
+    }
+    use {
         "ojroques/nvim-lspfuzzy",
         requires = {{"junegunn/fzf"}, {"junegunn/fzf.vim"}}
     }
