@@ -1,6 +1,8 @@
 local M = {}
 
 M.filetypes = {
+    javascript = "eslint",
+    javascriptreact = "eslint",
     typescript = "eslint",
     typescriptreact = "eslint",
     markdown = {"markdownlint", "writeGood"},
@@ -14,7 +16,7 @@ M.filetypes = {
 M.linters = {
     eslint = {
         sourceName = "eslint",
-        command = "eslint_d",
+        command = "eslint",
         rootPatterns = {".eslintrc.js", "package.json"},
         debounce = 100,
         args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
@@ -69,6 +71,8 @@ M.formatters = {
 
 M.formatFiletypes = {
     lua = "luaFormat",
+    javascript = "prettier",
+    javascriptreact = "prettier",
     typescript = "prettier",
     typescriptreact = "prettier",
     markdown = "prettier",
