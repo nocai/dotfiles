@@ -67,7 +67,7 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.sumneko_lua.setup {
     on_attach = on_attach,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
-    settings = {Lua = {diagnostics = {enable = true, globals = {"vim", "use"}}}}
+    settings = sumneko.settings
 }
 
 nvim_lsp.diagnosticls.setup {
