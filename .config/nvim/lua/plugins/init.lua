@@ -1,3 +1,11 @@
+local u = require("utils")
+
+local plugin_config = function(name)
+    if u.config_file_exists("plugins/" .. name .. ".lua") then
+        require("plugins." .. name)
+    end
+end
+
 vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
     -- basic
@@ -9,40 +17,25 @@ return require("packer").startup(function()
     use "tpope/vim-vinegar"
 
     -- additional functionality
-    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
-    use {
-        "windwp/nvim-autopairs",
-        config = function() require("plugins.autopairs") end
-    }
-    use {
-        "svermeulen/vim-subversive",
-        config = function() require("plugins.subversive") end
-    }
-    use {
-        "svermeulen/vim-cutlass",
-        config = function() require("plugins.cutlass") end
-    }
-    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {"phaazon/hop.nvim", config = plugin_config("hop")}
+    use {"windwp/nvim-autopairs", config = plugin_config("autopairs")}
+    use {"svermeulen/vim-subversive", config = plugin_config("subversive")}
+    use {"svermeulen/vim-cutlass", config = plugin_config("cutlass")}
+    use {"hrsh7th/vim-vsnip", config = plugin_config("vsnip")}
     use "rhysd/clever-f.vim"
-    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
-    use {
-        "ojroques/nvim-bufdel",
-        config = function() require("plugins.bufdel") end
-    }
+    use {"hrsh7th/nvim-compe", config = plugin_config("compe")}
+    use {"ojroques/nvim-bufdel", config = plugin_config("bufdel")}
 
     -- integrations
     use {
         "junegunn/fzf.vim",
         requires = {"junegunn/fzf"},
         run = function() vim.fn["fzf#install"]() end,
-        config = function() require("plugins.fzf") end
+        config = plugin_config("fzf")
 
     }
     use {"christoomey/vim-tmux-navigator"}
-    use {
-        "christoomey/vim-tmux-runner",
-        config = function() require("plugins.vtr") end
-    }
+    use {"christoomey/vim-tmux-runner", config = plugin_config("vtr")}
 
     -- text objects
     use "wellle/targets.vim"
@@ -63,27 +56,22 @@ return require("packer").startup(function()
 
     -- development
     use "neovim/nvim-lspconfig"
-    use {
-        "mfussenegger/nvim-dap",
-        config = function() require("plugins.dap") end
-    }
+    use "nvim-lua/plenary.nvim"
+    use {"mfussenegger/nvim-dap", config = plugin_config("dap")}
     use {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
-        config = function() require("plugins.gitsigns") end
+        config = plugin_config("gitsigns")
     }
     use "sheerun/vim-polyglot"
-    use {
-        "vim-test/vim-test",
-        config = function() require("plugins.vim-test") end
-    }
+    use {"vim-test/vim-test", config = plugin_config("vim-test")}
     use {"tpope/vim-fugitive", cmd = {"Git"}}
     use {"tpope/vim-rhubarb", requires = {"tpope/vim-fugitive"}, cmd = {"Git"}}
 
     -- visual
     use {
         "jose-elias-alvarez/buftabline.nvim",
-        config = function() require("plugins.buftabline") end
+        config = plugin_config("buftabline")
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
