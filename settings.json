@@ -14,6 +14,7 @@
   "editor.minimap.enabled": false,
   "editor.renderLineHighlight": "all",
   "editor.renderWhitespace": "selection",
+  "editor.semanticHighlighting.enabled": true,
   "editor.snippetSuggestions": "top",
   "editor.suggest.localityBonus": true,
   "editor.suggestSelection": "first",
@@ -37,21 +38,20 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "window.titleBarStyle": "native",
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.colorTheme": "Horizon",
   "workbench.editor.labelFormat": "short",
   "workbench.iconTheme": "Monokai Pro (Filter Ristretto) Icons",
   "workbench.list.keyboardNavigation": "filter",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
+  "Lua.diagnostics.globals": ["vim", "describe", "it"],
   // vim
   "vim.leader": ",",
   "vim.highlightedyank.enable": true,
-  "vim.sneak": true,
-  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.easymotion": true,
   "vim.hlsearch": true,
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
-  "vim.showMarksInGutter": true,
   "vim.normalModeKeyBindings": [
     {
       "before": ["<CR>"],
@@ -80,6 +80,10 @@
     {
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["editor.action.organizeImports"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
