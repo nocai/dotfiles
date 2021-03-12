@@ -3,8 +3,6 @@ local sumneko = require("lsp.sumneko")
 local diagnosticls = require("lsp.diagnosticls")
 local u = require("utils")
 
-require("lspfuzzy").setup {}
-
 vim.lsp.handlers["textDocument/formatting"] =
     require("lsp.functions").format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
@@ -53,8 +51,6 @@ local on_attach = function(client, bufnr)
          augroup END
          ]])
     end
-
-    require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {

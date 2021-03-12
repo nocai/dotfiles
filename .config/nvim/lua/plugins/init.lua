@@ -25,7 +25,6 @@ return require("packer").startup(function()
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use "rhysd/clever-f.vim"
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
-    use {"junegunn/vim-slash", config = function() require("plugins.slash") end}
     use {
         "ojroques/nvim-bufdel",
         config = function() require("plugins.bufdel") end
@@ -69,10 +68,6 @@ return require("packer").startup(function()
         config = function() require("plugins.dap") end
     }
     use {
-        "ojroques/nvim-lspfuzzy",
-        requires = {{"junegunn/fzf"}, {"junegunn/fzf.vim"}}
-    }
-    use {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
         config = function() require("plugins.gitsigns") end
@@ -92,8 +87,6 @@ return require("packer").startup(function()
     }
     use "sainnhe/sonokai"
     use "ghifarit53/tokyonight-vim"
-    use {"RRethy/vim-illuminate"}
-    use {"antoinemadec/FixCursorHold.nvim"}
 
     -- other
     use {
