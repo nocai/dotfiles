@@ -1,7 +1,7 @@
 local u = require("utils")
 
 local plugin_config = function(name)
-    if u.config_file_exists("plugins/" .. name .. ".lua") then
+    if u.config_file_exists("plugins/" .. name) then
         require("plugins." .. name)
     end
 end
@@ -32,7 +32,6 @@ return require("packer").startup(function()
         requires = {"junegunn/fzf"},
         run = function() vim.fn["fzf#install"]() end,
         config = plugin_config("fzf")
-
     }
     use {"christoomey/vim-tmux-navigator"}
     use {"christoomey/vim-tmux-runner", config = plugin_config("vtr")}

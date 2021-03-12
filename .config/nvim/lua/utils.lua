@@ -14,7 +14,7 @@ M.t =
     end
 
 M.config_file_exists = function(name)
-    local f = io.open(nvim_config_dir .. name, "r")
+    local f = io.open(nvim_config_dir .. name .. ".lua", "r")
     if f ~= nil then
         io.close(f)
         return true

@@ -96,9 +96,9 @@ u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
 -- load remaining lua config
-if (u.config_file_exists("plugins/init.lua")) then
+if (u.config_file_exists("plugins/init")) then
     require("plugins")
     u.map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
 end
-if (u.config_file_exists("theme.lua")) then require("theme") end
-if (u.config_file_exists("lsp/init.lua")) then require("lsp") end
+if (u.config_file_exists("theme")) then require("theme") end
+if (u.config_file_exists("lsp/init")) then require("lsp") end
