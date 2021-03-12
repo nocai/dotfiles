@@ -2,40 +2,36 @@ local u = require("utils")
 
 -- options
 vim.g.mapleader = ","
-vim.o.clipboard = "unnamedplus"
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.undofile = true
-vim.o.shortmess = "filnxtToOFcA"
-
-vim.o.termguicolors = true
 vim.o.backup = false
-vim.o.writebackup = false
-vim.o.updatetime = 100
+vim.o.clipboard = "unnamedplus"
+vim.o.completeopt = "menuone,noselect"
+vim.o.expandtab = true
+vim.o.hidden = true
+vim.o.ignorecase = true
+vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
+vim.o.mouse = "a"
+vim.o.pumheight = 10
+vim.o.shiftwidth = 4
+vim.o.shortmess = "filnxtToOFcA"
+vim.o.showcmd = false
+vim.o.showtabline = 2
+vim.o.smartcase = true
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.hidden = true
-vim.o.completeopt = "menuone,noselect"
-vim.o.pumheight = 10
-vim.o.showtabline = 2
-vim.o.showcmd = false
-vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
+vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.mouse = "a"
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.o.termguicolors = true
+vim.o.undofile = true
+vim.o.updatetime = 100
+vim.o.writebackup = false
 vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
-vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 
 -- (auto)commands
 vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#|bd#")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 vim.cmd("command! R w | :e")
-u.map("n", "<Leader>x", "bd", {silent = true})
 
 function _G.HighlightOnYank()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
@@ -86,6 +82,7 @@ u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
 u.map("n", ",,", ",")
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
+u.map("n", "<Leader>x", "bd", {silent = true})
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",
