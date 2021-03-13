@@ -72,6 +72,7 @@ return require("packer").startup(function()
         config = plugin_config("buftabline")
     }
     use "sainnhe/sonokai"
+    use "challenger-deep-theme/vim"
     use "ghifarit53/tokyonight-vim"
 
     -- other
