@@ -1,3 +1,4 @@
+local u = require("utils")
 local lsp = vim.lsp
 
 local M = {}
@@ -21,6 +22,26 @@ M.format_async = function(err, _, result, _, bufnr)
             vim.api.nvim_command("noautocmd :update")
         end
     end
+end
+
+-- still figuring out what groups look best (and are colorscheme-independent)
+M.set_highlights = function()
+    u.exec([[
+    function! LspHighlights() abort
+        hi def link LspDiagnosticsDefaultError ErrorMsg
+        hi def link LspDiagnosticsDefaultWarning WarningMsg
+        hi def link LspDiagnosticsDefaultInformation Title
+        hi def link LspDiagnosticsDefaultHint EndOfBuffer
+        hi def link LspDiagnosticsUnderlineError ErrorMsg
+        hi def link LspDiagnosticsUnderlineWarning WarningMsg
+        hi def link LspDiagnosticsUnderlineInformation Title
+        hi def link LspDiagnosticsUnderlineHint EndOfBuffer
+    endfunction
+    augroup LspHighlights
+        autocmd!
+        autocmd ColorScheme * call LspHighlights()
+    augroup END
+    ]])
 end
 
 return M

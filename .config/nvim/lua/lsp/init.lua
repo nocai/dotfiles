@@ -1,16 +1,18 @@
+local u = require("utils")
+local functions = require("lsp.functions")
 local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local diagnosticls = require("lsp.diagnosticls")
-local u = require("utils")
 
-vim.lsp.handlers["textDocument/formatting"] =
-    require("lsp.functions").format_async
+vim.lsp.handlers["textDocument/formatting"] = functions.format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         underline = true,
-        -- only show warnings and above as virtual text
-        virtual_text = {spacing = 2, severity_limit = "Warning"}
+        -- only show errors as virtual text
+        virtual_text = {spacing = 2, severity_limit = "Error"},
+        signs = true
     })
+functions.set_highlights()
 
 local on_attach = function(client, bufnr)
     -- commands
