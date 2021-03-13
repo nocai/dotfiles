@@ -31,8 +31,6 @@ local on_attach = function(client, bufnr)
 
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
-    u.buf_map(bufnr, "n", "gr", ":LspRename<CR>", {silent = true})
-    u.buf_map(bufnr, "n", "gR", ":LspRefs<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})

@@ -17,12 +17,11 @@ return require("packer").startup(function()
     use "tpope/vim-vinegar"
 
     -- additional functionality
-    use {"phaazon/hop.nvim", config = plugin_config("hop")}
+    use {"justinmk/vim-sneak", config = plugin_config("sneak")}
     use {"windwp/nvim-autopairs", config = plugin_config("autopairs")}
     use {"svermeulen/vim-subversive", config = plugin_config("subversive")}
     use {"svermeulen/vim-cutlass", config = plugin_config("cutlass")}
     use {"hrsh7th/vim-vsnip", config = plugin_config("vsnip")}
-    use "rhysd/clever-f.vim"
     use {"hrsh7th/nvim-compe", config = plugin_config("compe")}
     use {"ojroques/nvim-bufdel", config = plugin_config("bufdel")}
 

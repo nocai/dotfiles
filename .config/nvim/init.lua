@@ -84,7 +84,6 @@ u.map("i", "<C-l>", "<Right>")
 
 u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
-u.map("n", ",,", ",")
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
 u.map("n", "<Leader>x", "bd", {silent = true})
 
