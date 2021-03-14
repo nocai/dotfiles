@@ -86,6 +86,7 @@ u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
 u.map("n", "<Leader>x", "bd", {silent = true})
+u.map("t", "<C-o>", [[<C-\><C-n>]])
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",

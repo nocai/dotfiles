@@ -14,7 +14,7 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
-    use "tpope/vim-vinegar"
+    use "tpope/vim-eunuch"
 
     -- additional functionality
     use {"justinmk/vim-sneak", config = plugin_config("sneak")}
@@ -23,7 +23,6 @@ return require("packer").startup(function()
     use {"svermeulen/vim-cutlass", config = plugin_config("cutlass")}
     use {"hrsh7th/vim-vsnip", config = plugin_config("vsnip")}
     use {"hrsh7th/nvim-compe", config = plugin_config("compe")}
-    use {"ojroques/nvim-bufdel", config = plugin_config("bufdel")}
 
     -- integrations
     use {
@@ -33,7 +32,6 @@ return require("packer").startup(function()
         config = plugin_config("fzf")
     }
     use {"christoomey/vim-tmux-navigator"}
-    use {"christoomey/vim-tmux-runner", config = plugin_config("vtr")}
 
     -- text objects
     use "wellle/targets.vim"
@@ -64,7 +62,6 @@ return require("packer").startup(function()
     use "sheerun/vim-polyglot"
     use {"vim-test/vim-test", config = plugin_config("vim-test")}
     use {"tpope/vim-fugitive", cmd = {"Git"}}
-    use {"tpope/vim-rhubarb", requires = {"tpope/vim-fugitive"}, cmd = {"Git"}}
 
     -- visual
     use {
