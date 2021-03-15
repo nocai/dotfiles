@@ -54,6 +54,7 @@ return require("packer").startup(function()
     use "neovim/nvim-lspconfig"
     use "nvim-lua/plenary.nvim"
     use {"mfussenegger/nvim-dap", config = plugin_config("dap")}
+    use "~/git/nvim-lsp-ts-utils"
     use {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
