@@ -7,7 +7,7 @@ local get_map_options = function(opts)
 end
 
 local M = {}
-M.exec = function(command) vim.api.nvim_exec(command, true) end
+M.exec = function(command) vim.api.nvim_exec(command, false) end
 M.t =
     function(str)
         return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -30,5 +30,7 @@ end
 M.buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
 end
+
+_G.inspect = function(...) print(vim.inspect(...)) end
 
 return M
