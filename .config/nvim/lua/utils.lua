@@ -32,5 +32,6 @@ M.buf_map = function(bufnr, mode, lhs, rhs, opts)
 end
 
 _G.inspect = function(...) print(vim.inspect(...)) end
+M.inspect = _G.inspect
 
 return M
