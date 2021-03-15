@@ -168,5 +168,8 @@
       "before": ["<C-l>"],
       "after": ["<Right>"]
     }
-  ]
+  ],
+  "mdb.confirmRunAll": false,
+  "mdb.useDefaultTemplateForPlayground": false,
+  "mdb.sendTelemetry": false
 }
