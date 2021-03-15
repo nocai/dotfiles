@@ -12,6 +12,18 @@ M.organize_imports = function()
     vim.lsp.buf.execute_command(params)
 end
 
+M.quickfix_current = function()
+    local params = lsp.util.make_range_params()
+    params.context = {diagnostics = vim.lsp.diagnostic.get_line_diagnostics()}
+
+    local responses = lsp.buf_request_sync(0, "textDocument/codeAction", params)
+    if not responses or vim.tbl_isempty(responses) or not responses[1] or
+        not responses[1].result[1] then return end
+
+    local result = responses[1].result[1]
+    lsp.buf.execute_command(result)
+end
+
 M.format_async = function(err, _, result, _, bufnr)
     if err ~= nil or result == nil then return end
     if not vim.api.nvim_buf_get_option(bufnr, "modified") then

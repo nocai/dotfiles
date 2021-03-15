@@ -30,12 +30,14 @@ local on_attach = function(client, bufnr)
     vim.cmd(
         "command! LspDiagLine lua vim.lsp.diagnostic.show_line_diagnostics()")
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
+    vim.cmd("command! LspQuickfix lua require'lsp.functions'.quickfix_current()")
 
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "qq", ":LspQuickfix<CR>", {silent = true})
     u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>", {silent = true})
     u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>", {silent = true})
     u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
