@@ -1,13 +1,3 @@
-local u = require("utils")
-
-local plugin_config = function(name)
-    return function()
-        if u.config_file_exists("plugins/" .. name) then
-            require("plugins." .. name)
-        end
-    end
-end
-
 vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
     -- basic
@@ -19,19 +9,28 @@ return require("packer").startup(function()
     use "tpope/vim-eunuch"
 
     -- additional functionality
-    use {"justinmk/vim-sneak", config = plugin_config("sneak")}
-    use {"windwp/nvim-autopairs", config = plugin_config("autopairs")}
-    use {"svermeulen/vim-subversive", config = plugin_config("subversive")}
-    use {"svermeulen/vim-cutlass", config = plugin_config("cutlass")}
-    use {"hrsh7th/vim-vsnip", config = plugin_config("vsnip")}
-    use {"hrsh7th/nvim-compe", config = plugin_config("compe")}
+    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("plugins.autopairs") end
+    }
+    use {
+        "svermeulen/vim-subversive",
+        config = function() require("plugins.subversive") end
+    }
+    use {
+        "svermeulen/vim-cutlass",
+        config = function() require("plugins.cutlass") end
+    }
+    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
 
     -- integrations
     use {
         "junegunn/fzf.vim",
         requires = {"junegunn/fzf"},
         run = function() vim.fn["fzf#install"]() end,
-        config = plugin_config("fzf")
+        config = function() require("plugins.fzf") end
     }
     use {"christoomey/vim-tmux-navigator"}
 
@@ -55,21 +54,27 @@ return require("packer").startup(function()
     -- development
     use "neovim/nvim-lspconfig"
     use "nvim-lua/plenary.nvim"
-    use {"mfussenegger/nvim-dap", config = plugin_config("dap")}
-    use "~/git/nvim-lsp-ts-utils"
+    use {
+        "mfussenegger/nvim-dap",
+        config = function() require("plugins.dap") end
+    }
+    -- use "~/git/nvim-lsp-ts-utils"
     use {
         "lewis6991/gitsigns.nvim",
         requires = {"nvim-lua/plenary.nvim"},
-        config = plugin_config("gitsigns")
+        config = function() require("plugins.gitsigns") end
     }
     use "sheerun/vim-polyglot"
-    use {"vim-test/vim-test", config = plugin_config("vim-test")}
+    use {
+        "vim-test/vim-test",
+        config = function() require("plugins.vim-test") end
+    }
     use {"tpope/vim-fugitive", cmd = {"Git"}}
 
     -- visual
     use {
         "jose-elias-alvarez/buftabline.nvim",
-        config = plugin_config("buftabline")
+        config = function() require("plugins.buftabline") end
     }
     use "sainnhe/sonokai"
     use "challenger-deep-theme/vim"
