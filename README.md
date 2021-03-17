@@ -5,8 +5,8 @@ macOS (M1) and Linux (Arch).
 
 ## Terminal
 
-I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not the
-fastest) terminal emulator on macOS and
+On macOS I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though
+not the fastest) terminal emulator for the platform. I use
 [Alacritty](https://github.com/alacritty/alacritty) on Linux.
 
 - zsh + a handful of plugins managed with
@@ -30,3 +30,13 @@ fastest) terminal emulator on macOS and
 - [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
   [Vim plugin](https://github.com/VSCodeVim/Vim) for debugging and testing, two
   tasks that Neovim doesn't (yet) excel at
+
+- [Amethyst](https://github.com/ianyh/Amethyst), a decent tiling window manager
+  with good M1 support
+
+## Arch Linux
+
+- [bspwm](https://github.com/baskerville/bspwm) +
+  [sxhkd](https://github.com/baskerville/sxhkd) for desktop / window management
+
+- [Rofi](https://github.com/davatorium/rofi) as a launcher and window switcher
