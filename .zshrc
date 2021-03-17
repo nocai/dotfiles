@@ -29,7 +29,7 @@ znap source lukechilds/zsh-better-npm-completion
 eval "$(fasd --init auto)"
 
 # other sources
-source ~/.zsh/opts.zsh
-source ~/.zsh/aliases.zsh
-source ~/.zsh/functions.zsh
-source ~/.fzf.zsh
+[ -f ~/.zsh/opts.zsh ] && source ~/.zsh/opts.zsh
+[ -f ~/.zsh/aliases.zsh ] && source ~/.zsh/aliases.zsh
+[ -f ~/.zsh/functions.zsh ] && source ~/.zsh/functions.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
