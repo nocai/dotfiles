@@ -8,8 +8,6 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config pointer_follows_focus true
 
-bspc rule -a Steam desktop=^2 follow=on
-
 killall "sxhkd"
 sxhkd &
 clipmenud &
