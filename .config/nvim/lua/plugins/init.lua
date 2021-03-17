@@ -1,8 +1,10 @@
 local u = require("utils")
 
 local plugin_config = function(name)
-    if u.config_file_exists("plugins/" .. name) then
-        require("plugins." .. name)
+    return function()
+        if u.config_file_exists("plugins/" .. name) then
+            require("plugins." .. name)
+        end
     end
 end
 
