@@ -31,6 +31,10 @@ M.buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
 end
 
+M.get_os = function()
+    return vim.api.nvim_eval([[substitute(system("uname"), "\n", "", "")]])
+end
+
 _G.inspect = function(...) print(vim.inspect(...)) end
 M.inspect = _G.inspect
 

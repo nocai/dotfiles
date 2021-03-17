@@ -1,12 +1,13 @@
 # dotfiles
 
 My dotfiles for Neovim, zsh, tmux, and friends, optimized for web development on
-macOS (M1).
+macOS (M1) and Linux (Arch).
 
 ## Terminal
 
 I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though not the
-fastest) terminal emulator for macOS.
+fastest) terminal emulator on macOS and
+[Alacritty](https://github.com/alacritty/alacritty) on Linux.
 
 - zsh + a handful of plugins managed with
   [znap](https://github.com/marlonrichert/zsh-snap)

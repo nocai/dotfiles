@@ -6,6 +6,8 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden'
 # prompt
 fpath+=$HOME/.zsh/pure
 zstyle :prompt:pure:git:stash show yes
+autoload -U promptinit; promptinit
+prompt pure
 
 # znap
 zstyle ':znap:*' plugins-dir ~/.znap
@@ -17,7 +19,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 bindkey '^ ' autosuggest-accept
 
-znap prompt pure
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-completions
 znap source Aloxaf/fzf-tab
@@ -25,7 +26,7 @@ znap source wookayin/fzf-fasd
 znap source zdharma/fast-syntax-highlighting
 znap source lukechilds/zsh-better-npm-completion
 
-znap eval fasd-init 'fasd --init auto'
+eval "$(fasd --init auto)"
 
 # other sources
 source ~/.zsh/opts.zsh
