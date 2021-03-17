@@ -16,7 +16,8 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 super + {_,shift + }q
-	bspc node -{c,k} super + {_,shift + }{h,j,k,l}
+	bspc node -{c,k}
+super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 super + m
