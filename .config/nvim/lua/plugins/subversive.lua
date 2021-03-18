@@ -1,5 +1,4 @@
-vim.api.nvim_set_keymap("n", "gr", "<Plug>(SubversiveSubstitute)", {})
-vim.api.nvim_set_keymap("x", "gr", "<Plug>(SubversiveSubstitute)", {})
-vim.api.nvim_set_keymap("n", "grr", "<Plug>(SubversiveSubstituteLine)", {})
-vim.api
-    .nvim_set_keymap("n", "gR", "<Plug>(SubversiveSubstituteToEndOfLine)", {})
+vim.api.nvim_set_keymap("n", "s", "<Plug>(SubversiveSubstitute)", {})
+vim.api.nvim_set_keymap("x", "s", "<Plug>(SubversiveSubstitute)", {})
+vim.api.nvim_set_keymap("n", "ss", "<Plug>(SubversiveSubstituteLine)", {})
+vim.api.nvim_set_keymap("n", "S", "<Plug>(SubversiveSubstituteToEndOfLine)", {})
