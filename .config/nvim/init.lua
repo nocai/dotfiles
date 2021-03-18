@@ -34,7 +34,6 @@ vim.wo.signcolumn = "yes"
 -- (auto)commands
 vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#|bd#")
-vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 vim.cmd("command! R w | :e")
 
 function _G.HighlightOnYank()
