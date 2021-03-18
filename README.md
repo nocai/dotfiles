@@ -21,8 +21,8 @@ I use [Alacritty](https://github.com/alacritty/alacritty) on macOS and Linux
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
 
-- [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
-  but certainly the most Vim-like one
+- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
+  solid Vim plugin
 
 ## macOS
 
