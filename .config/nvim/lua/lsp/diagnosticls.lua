@@ -7,7 +7,6 @@ M.filetypes = {
     typescriptreact = "eslint",
     markdown = {"markdownlint", "writeGood"},
     lua = "",
-    sh = "",
     yaml = "",
     json = "",
     jsonc = ""
