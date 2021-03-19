@@ -33,10 +33,10 @@ local on_attach = function(client, bufnr)
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>", {silent = true})
     u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>", {silent = true})
+    u.buf_map(bufnr, "n", "gr", ":LspRename<CR>", {silent = true})
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>", {silent = true})
     u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>", {silent = true})
     u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>", {silent = true})
-    u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>", {silent = true})
     u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>", {silent = true})
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>",
               {silent = true})

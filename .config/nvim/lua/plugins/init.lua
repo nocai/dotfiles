@@ -27,10 +27,9 @@ return require("packer").startup(function()
 
     -- integrations
     use {
-        "junegunn/fzf.vim",
-        requires = {"junegunn/fzf"},
-        run = function() vim.fn["fzf#install"]() end,
-        config = function() require("plugins.fzf") end
+        "nvim-telescope/telescope.nvim",
+        requires = {"nvim-lua/popup.nvim"},
+        config = function() require("plugins.telescope") end
     }
     use {"christoomey/vim-tmux-navigator"}
     use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
@@ -62,7 +61,6 @@ return require("packer").startup(function()
     use "jose-elias-alvarez/nvim-lsp-ts-utils"
     use {
         "lewis6991/gitsigns.nvim",
-        requires = {"nvim-lua/plenary.nvim"},
         config = function() require("plugins.gitsigns") end
     }
     use {
