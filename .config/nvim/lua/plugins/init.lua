@@ -65,6 +65,15 @@ return require("packer").startup(function()
         requires = {"nvim-lua/plenary.nvim"},
         config = function() require("plugins.gitsigns") end
     }
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function() require("plugins.treesitter") end
+    }
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
     use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
@@ -89,4 +98,5 @@ return require("packer").startup(function()
         run = "cd app && yarn install",
         cmd = "MarkdownPreview"
     }
+
 end)
