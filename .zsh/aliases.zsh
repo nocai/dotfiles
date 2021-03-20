@@ -3,8 +3,6 @@ alias mkdir="mkdir -p"
 alias nnn="TERM=xterm-256color nnn -e"
 alias n="nnn"
 
-alias code="code-insiders"
-
 alias ni="npm install"
 alias nid="npm install --save-dev"
 alias ng="npm install -g"

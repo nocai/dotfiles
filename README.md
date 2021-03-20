@@ -30,9 +30,8 @@ I use [Alacritty](https://github.com/alacritty/alacritty) on macOS and Linux
   reasonable compromise I've found between having to use (and develop) modern
   websites and wanting keyboard control
 
-- [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
-  [Vim plugin](https://github.com/VSCodeVim/Vim) for debugging and testing, two
-  tasks that Neovim doesn't (yet) excel at
+- VS Code with its solid [Vim plugin](https://github.com/VSCodeVim/Vim) for
+  debugging and testing, two tasks that Neovim doesn't (yet) excel at
 
 - [bspwm](https://github.com/baskerville/bspwm) +
   [sxhkd](https://github.com/baskerville/sxhkd) for desktop / window management
