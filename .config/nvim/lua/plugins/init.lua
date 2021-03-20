@@ -96,5 +96,6 @@ return require("packer").startup(function()
         run = "cd app && yarn install",
         cmd = "MarkdownPreview"
     }
+    use "tridactyl/vim-tridactyl"
 
 end)

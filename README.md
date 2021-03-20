@@ -24,13 +24,15 @@ I use [Alacritty](https://github.com/alacritty/alacritty) on macOS and Linux
 - [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
   solid Vim plugin
 
-## macOS
+## GUI
+
+- Firefox with [Tridactyl](https://github.com/tridactyl/tridactyl), the most
+  reasonable compromise I've found between having to use (and develop) modern
+  websites and wanting keyboard control
 
 - [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
   [Vim plugin](https://github.com/VSCodeVim/Vim) for debugging and testing, two
   tasks that Neovim doesn't (yet) excel at
-
-## Arch Linux
 
 - [bspwm](https://github.com/baskerville/bspwm) +
   [sxhkd](https://github.com/baskerville/sxhkd) for desktop / window management

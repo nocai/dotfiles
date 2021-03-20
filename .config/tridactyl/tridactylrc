@@ -1,0 +1,12 @@
+set configversion 2.0
+
+set newtab about:blank
+
+bind <Space> fillcmdline_notrail
+bind u scrollpage -0.5
+bind d scrollpage 0.5
+bind x tabclose %
+bind j scrollline 5
+bind k scrollline -5
+
+colorscheme base16-onedark
