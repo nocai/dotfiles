@@ -27,9 +27,10 @@ return require("packer").startup(function()
 
     -- integrations
     use {
-        "nvim-telescope/telescope.nvim",
-        requires = {"nvim-lua/popup.nvim"},
-        config = function() require("plugins.telescope") end
+        "junegunn/fzf.vim",
+        requires = {"junegunn/fzf"},
+        run = function() vim.fn["fzf#install"]() end,
+        config = function() require("plugins.fzf") end
     }
     use {"christoomey/vim-tmux-navigator"}
     use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
