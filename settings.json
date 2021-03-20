@@ -65,6 +65,9 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tips.enabled": false,
   "Lua.diagnostics.globals": ["vim", "describe", "it"],
+  "[lua]": {
+    "editor.defaultFormatter": "Koihik.vscode-lua-format"
+  },
   // vim
   "vim.leader": ",",
   "vim.highlightedyank.enable": true,
