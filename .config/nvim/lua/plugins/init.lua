@@ -34,6 +34,10 @@ return require("packer").startup(function()
     }
     use {"christoomey/vim-tmux-navigator"}
     use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
+    use {
+        "christoomey/vim-tmux-runner",
+        config = function() require("plugins.vtr") end
+    }
 
     -- text objects
     use "wellle/targets.vim"
