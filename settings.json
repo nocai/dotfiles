@@ -50,6 +50,7 @@
   "vim.highlightedyank.enable": true,
   "vim.sneak": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.sneakReplacesF": true,
   "vim.hlsearch": true,
   "vim.replaceWithRegister": true,
   "vim.useSystemClipboard": true,
@@ -85,6 +86,10 @@
     {
       "before": ["g", "s"],
       "commands": ["editor.action.organizeImports"]
+    },
+    {
+      "before": ["g", "i"],
+      "commands": ["editor.action.rename"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -105,12 +110,64 @@
       "after": ["%"]
     },
     {
-      "before": ["m", "m"],
+      "before": ["g", "m"],
+      "after": ["m"]
+    },
+    {
+      "before": ["g", "m", "m"],
       "after": ["m", "'"]
     },
     {
       "before": ["g", "R"],
       "after": ["g", "r", "$"]
+    },
+    {
+      "before": ["K"],
+      "after": ["g", "h"]
+    },
+    {
+      "before": ["m", "m"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d", "d"],
+      "after": ["\"", "_", "d", "d"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c", "c"],
+      "after": ["\"", "_", "c", "c"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -135,6 +192,38 @@
     {
       "before": ["L"],
       "after": ["$"]
+    },
+    {
+      "before": ["m"],
+      "after": ["d"]
+    },
+    {
+      "before": ["M"],
+      "after": ["D"]
+    },
+    {
+      "before": ["d"],
+      "after": ["\"", "_", "d"]
+    },
+    {
+      "before": ["D"],
+      "after": ["\"", "_", "D"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["X"],
+      "after": ["\"", "_", "X"]
+    },
+    {
+      "before": ["c"],
+      "after": ["\"", "_", "c"]
+    },
+    {
+      "before": ["C"],
+      "after": ["\"", "_", "C"]
     }
   ],
   "vim.operatorPendingModeKeyBindingsNonRecursive": [
