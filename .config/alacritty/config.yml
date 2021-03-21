@@ -2,8 +2,8 @@ env:
   TERM: alacritty
 window:
   padding:
-    x: 2
-    y: 4
+    x: 4
+    y: 2
 
 live_config_reload: true
 
@@ -11,4 +11,4 @@ scrolling:
   history: 0
 
 import:
-  - ~/.alacritty/theme.yml
+  - ~/.config/alacritty/theme.yml

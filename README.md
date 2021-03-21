@@ -5,9 +5,8 @@ macOS (M1) and Linux (Arch).
 
 ## Terminal
 
-On macOS I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though
-not the fastest) terminal emulator for the platform. I use
-[Alacritty](https://github.com/alacritty/alacritty) on Linux.
+I use [Alacritty](https://github.com/alacritty/alacritty) on macOS and Linux
+(compiled from source for M1 support).
 
 - zsh + a handful of plugins managed with
   [znap](https://github.com/marlonrichert/zsh-snap)
@@ -22,19 +21,17 @@ not the fastest) terminal emulator for the platform. I use
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
 
-- [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
-  but certainly the most Vim-like one
+- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
+  solid Vim plugin
 
-## macOS
+## GUI
 
-- [VS Code Insiders](https://code.visualstudio.com/insiders/) with its solid
-  [Vim plugin](https://github.com/VSCodeVim/Vim) for debugging and testing, two
-  tasks that Neovim doesn't (yet) excel at
+- Firefox with [Tridactyl](https://github.com/tridactyl/tridactyl), the most
+  reasonable compromise I've found between having to use (and develop) modern
+  websites and wanting keyboard control
 
-- [Amethyst](https://github.com/ianyh/Amethyst), a decent tiling window manager
-  with good M1 support
-
-## Arch Linux
+- VS Code with its solid [Vim plugin](https://github.com/VSCodeVim/Vim) for
+  debugging and testing, two tasks that Neovim doesn't (yet) excel at
 
 - [bspwm](https://github.com/baskerville/bspwm) +
   [sxhkd](https://github.com/baskerville/sxhkd) for desktop / window management

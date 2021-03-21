@@ -33,6 +33,11 @@ return require("packer").startup(function()
         config = function() require("plugins.fzf") end
     }
     use {"christoomey/vim-tmux-navigator"}
+    use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
+    use {
+        "christoomey/vim-tmux-runner",
+        config = function() require("plugins.vtr") end
+    }
 
     -- text objects
     use "wellle/targets.vim"
@@ -61,8 +66,16 @@ return require("packer").startup(function()
     use "jose-elias-alvarez/nvim-lsp-ts-utils"
     use {
         "lewis6991/gitsigns.nvim",
-        requires = {"nvim-lua/plenary.nvim"},
         config = function() require("plugins.gitsigns") end
+    }
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function() require("plugins.treesitter") end
+    }
+    use {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        requires = "nvim-treesitter/nvim-treesitter"
     }
     use "sheerun/vim-polyglot"
     use {
@@ -88,4 +101,6 @@ return require("packer").startup(function()
         run = "cd app && yarn install",
         cmd = "MarkdownPreview"
     }
+    use "tridactyl/vim-tridactyl"
+
 end)

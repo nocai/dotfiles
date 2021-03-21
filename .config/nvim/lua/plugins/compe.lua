@@ -1,7 +1,7 @@
 require"compe".setup {
     preselect = "always",
     source = {
-        path = true,
+        path = {priority = 1},
         buffer = true,
         vsnip = {priority = 9999},
         nvim_lsp = true,

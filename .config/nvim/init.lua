@@ -7,6 +7,7 @@ vim.o.backup = false
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menuone,noselect"
 vim.o.expandtab = true
+vim.o.foldlevelstart = 99
 vim.o.hidden = true
 vim.o.ignorecase = true
 vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
@@ -34,7 +35,6 @@ vim.wo.signcolumn = "yes"
 -- (auto)commands
 vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#|bd#")
-vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 vim.cmd("command! R w | :e")
 
 function _G.HighlightOnYank()
@@ -103,3 +103,8 @@ if (u.config_file_exists("plugins/init")) then
 end
 if (u.config_file_exists("theme")) then require("theme") end
 if (u.config_file_exists("lsp/init")) then require("lsp") end
+
+require"nvim-treesitter.configs".setup {
+    ensure_installed = {},
+    highlight = {enable = true}
+}

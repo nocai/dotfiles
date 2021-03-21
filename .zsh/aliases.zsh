@@ -1,9 +1,7 @@
 alias mkdir="mkdir -p"
 
-alias vifm="TERM=xterm-256color vifm"
-alias vm="vifm ."
-
-alias code="code-insiders"
+alias nnn="TERM=xterm-256color nnn -e"
+alias n="nnn"
 
 alias ni="npm install"
 alias nid="npm install --save-dev"
@@ -17,6 +15,7 @@ alias npmr="npm run"
 alias nv="nvim"
 alias nvf="nvim -c Files"
 alias nvr="nvim -c Rg"
+alias nvn="nvim -c NnnPicker"
 alias vimdiff="nvim -d"
 
 alias b="brew"
