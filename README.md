@@ -5,8 +5,9 @@ macOS (M1) and Linux (Arch).
 
 ## Terminal
 
-I use [Alacritty](https://github.com/alacritty/alacritty) on macOS and Linux
-(compiled from source for M1 support).
+On macOS I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though
+not the fastest) terminal emulator for the platform. I use
+[Alacritty](https://github.com/alacritty/alacritty) on Linux.
 
 - zsh + a handful of plugins managed with
   [znap](https://github.com/marlonrichert/zsh-snap)

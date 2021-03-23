@@ -1,5 +1,0 @@
-import:
-  - ~/.config/alacritty/config.yml
-
-window:
-  decorations: buttonless
