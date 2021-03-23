@@ -53,6 +53,10 @@ local on_attach = function(client, bufnr)
 end
 
 nvim_lsp.tsserver.setup {
+    cmd = {
+        "typescript-language-server", "--stdio", "--tsserver-path",
+        "/usr/local/bin/tsserver-wrapper"
+    },
     on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
