@@ -14,14 +14,7 @@ return require("packer").startup(function()
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
     }
-    use {
-        "svermeulen/vim-subversive",
-        config = function() require("plugins.subversive") end
-    }
-    use {
-        "svermeulen/vim-cutlass",
-        config = function() require("plugins.cutlass") end
-    }
+    use "vim-scripts/ReplaceWithRegister"
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
 
@@ -59,19 +52,10 @@ return require("packer").startup(function()
     -- development
     use "neovim/nvim-lspconfig"
     use "nvim-lua/plenary.nvim"
-    use {
-        "mfussenegger/nvim-dap",
-        config = function() require("plugins.dap") end
-    }
-    use "jose-elias-alvarez/nvim-lsp-ts-utils"
+    use "~/git/nvim-lsp-ts-utils/"
     use {
         "lewis6991/gitsigns.nvim",
         config = function() require("plugins.gitsigns") end
-    }
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        config = function() require("plugins.treesitter") end
     }
     use "sheerun/vim-polyglot"
     use {
@@ -98,5 +82,4 @@ return require("packer").startup(function()
         cmd = "MarkdownPreview"
     }
     use "tridactyl/vim-tridactyl"
-
 end)

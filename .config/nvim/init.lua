@@ -103,8 +103,3 @@ if (u.config_file_exists("plugins/init")) then
 end
 if (u.config_file_exists("theme")) then require("theme") end
 if (u.config_file_exists("lsp/init")) then require("lsp") end
-
-require"nvim-treesitter.configs".setup {
-    ensure_installed = {},
-    highlight = {enable = true}
-}

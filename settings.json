@@ -30,6 +30,7 @@
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "files.autoGuessEncoding": false,
   "files.autoSave": "onFocusChange",
@@ -131,66 +132,6 @@
     {
       "before": ["<Tab>"],
       "after": ["%"]
-    },
-    {
-      "before": ["g", "m"],
-      "after": ["m"]
-    },
-    {
-      "before": ["g", "m", "m"],
-      "after": ["m", "'"]
-    },
-    {
-      "before": ["g", "R"],
-      "after": ["g", "r", "$"]
-    },
-    {
-      "before": ["K"],
-      "after": ["g", "h"]
-    },
-    {
-      "before": ["m", "m"],
-      "after": ["d", "d"]
-    },
-    {
-      "before": ["m"],
-      "after": ["d"]
-    },
-    {
-      "before": ["M"],
-      "after": ["D"]
-    },
-    {
-      "before": ["d", "d"],
-      "after": ["\"", "_", "d", "d"]
-    },
-    {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
-    },
-    {
-      "before": ["D"],
-      "after": ["\"", "_", "D"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"", "_", "x"]
-    },
-    {
-      "before": ["X"],
-      "after": ["\"", "_", "X"]
-    },
-    {
-      "before": ["c", "c"],
-      "after": ["\"", "_", "c", "c"]
-    },
-    {
-      "before": ["c"],
-      "after": ["\"", "_", "c"]
-    },
-    {
-      "before": ["C"],
-      "after": ["\"", "_", "C"]
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -215,38 +156,6 @@
     {
       "before": ["L"],
       "after": ["$"]
-    },
-    {
-      "before": ["m"],
-      "after": ["d"]
-    },
-    {
-      "before": ["M"],
-      "after": ["D"]
-    },
-    {
-      "before": ["d"],
-      "after": ["\"", "_", "d"]
-    },
-    {
-      "before": ["D"],
-      "after": ["\"", "_", "D"]
-    },
-    {
-      "before": ["x"],
-      "after": ["\"", "_", "x"]
-    },
-    {
-      "before": ["X"],
-      "after": ["\"", "_", "X"]
-    },
-    {
-      "before": ["c"],
-      "after": ["\"", "_", "c"]
-    },
-    {
-      "before": ["C"],
-      "after": ["\"", "_", "C"]
     }
   ],
   "vim.operatorPendingModeKeyBindingsNonRecursive": [
