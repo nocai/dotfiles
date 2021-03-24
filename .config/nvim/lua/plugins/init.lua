@@ -57,6 +57,16 @@ return require("packer").startup(function()
         "lewis6991/gitsigns.nvim",
         config = function() require("plugins.gitsigns") end
     }
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function() require("plugins.treesitter") end
+    }
+    use {"windwp/nvim-ts-autotag", requires = "nvim-treesitter/nvim-treesitter"}
+    use {
+        "nvim-treesitter/playground",
+        requires = "nvim-treesitter/nvim-treesitter"
+    }
     use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
@@ -68,6 +78,11 @@ return require("packer").startup(function()
     use {
         "jose-elias-alvarez/buftabline.nvim",
         config = function() require("plugins.buftabline") end
+    }
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        branch = "lua",
+        config = function() require("plugins.indent-blankline") end
     }
     use "sainnhe/sonokai"
     use "challenger-deep-theme/vim"
