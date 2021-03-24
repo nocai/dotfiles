@@ -3,14 +3,12 @@ local u = require("utils")
 -- options
 vim.g.mapleader = ","
 
-vim.o.backup = false
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menuone,noselect"
 vim.o.expandtab = true
 vim.o.foldlevelstart = 99
 vim.o.hidden = true
 vim.o.ignorecase = true
-vim.o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:·"
 vim.o.mouse = "a"
 vim.o.pumheight = 10
 vim.o.shiftwidth = 4
@@ -25,7 +23,6 @@ vim.o.tabstop = 4
 vim.o.termguicolors = true
 vim.o.undofile = true
 vim.o.updatetime = 100
-vim.o.writebackup = false
 
 vim.wo.cursorline = true
 vim.wo.number = true
