@@ -9,7 +9,10 @@ M.settings = {
     Lua = {
         diagnostics = {
             enable = true,
-            globals = {"vim", "use", "describe", "it", "assert"}
+            globals = {
+                "vim", "use", "describe", "it", "assert", "before_each",
+                "after_each"
+            }
         }
     }
 }
