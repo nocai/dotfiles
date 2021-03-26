@@ -72,7 +72,7 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
-    use {"tpope/vim-fugitive", cmd = {"Git"}}
+    use {"tpope/vim-fugitive", cmd = {"Git", "Gvdiffsplit"}}
 
     -- visual
     use {
