@@ -8,5 +8,5 @@ vim.g.indent_blankline_context_patterns =
         "jsx_self_closing_element"
     }
 
-vim.g.indent_blankline_context_highlight = "MatchParen"
-vim.g.indent_blankline_space_char_highlight = "CursorLine"
+vim.cmd("hi link IndentBlanklineContextChar MatchParen")
+vim.cmd("hi link IndentBlanklineSpaceChar CursorLine")
