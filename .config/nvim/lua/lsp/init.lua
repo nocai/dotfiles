@@ -63,6 +63,8 @@ nvim_lsp.tsserver.setup {
 
         require("nvim-lsp-ts-utils").setup {}
         u.buf_map(bufnr, "n", "gs", ":LspOrganize<CR>", {silent = true})
+        u.buf_map(bufnr, "n", "gr", ":LspRenameFile<CR>", {silent = true})
+        u.buf_map(bufnr, "n", "gA", ":LspImportAll<CR>", {silent = true})
         u.buf_map(bufnr, "n", "qq", ":LspFixCurrent<CR>", {silent = true})
     end
 }
