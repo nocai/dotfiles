@@ -33,6 +33,7 @@ vim.wo.signcolumn = "yes"
 vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#|bd#")
 vim.cmd("command! R w | :e")
+vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 
 function _G.HighlightOnYank()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}

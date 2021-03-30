@@ -6,15 +6,21 @@ return require("packer").startup(function()
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
-    use "tpope/vim-eunuch"
 
     -- additional functionality
-    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
+    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
     }
-    use "vim-scripts/ReplaceWithRegister"
+    use {
+        "svermeulen/vim-subversive",
+        config = function() require("plugins.subversive") end
+    }
+    use {
+        "svermeulen/vim-cutlass",
+        config = function() require("plugins.cutlass") end
+    }
     use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
     use {"hrsh7th/nvim-compe", config = function() require("plugins.compe") end}
 
@@ -78,11 +84,6 @@ return require("packer").startup(function()
     use {
         "jose-elias-alvarez/buftabline.nvim",
         config = function() require("plugins.buftabline") end
-    }
-    use {
-        "lukas-reineke/indent-blankline.nvim",
-        branch = "lua",
-        config = function() require("plugins.indent-blankline") end
     }
     use "sainnhe/sonokai"
     use "challenger-deep-theme/vim"
