@@ -132,6 +132,10 @@
     {
       "before": ["<Tab>"],
       "after": ["%"]
+    },
+    {
+      "before": ["m", "m"],
+      "after": ["m", "'"]
     }
   ],
   "vim.visualModeKeyBindings": [
