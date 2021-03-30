@@ -2,10 +2,13 @@ vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
     -- basic
     use {"wbthomason/packer.nvim", opt = true}
-    use "tpope/vim-commentary"
     use "tpope/vim-repeat"
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
+    use {
+        "terrortylor/nvim-comment",
+        config = function() require("plugins.nvim-comment") end
+    }
 
     -- additional functionality
     use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
