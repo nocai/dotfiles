@@ -1,7 +1,5 @@
 vim.g["nnn#set_default_mappings"] = false
-vim.g["nnn#layout"] = {
-    window = {width = 0.9, height = 0.6, highlight = "Debug"}
-}
+vim.g["nnn#layout"] = {window = {width = 0.9, height = 0.6}}
 vim.g["nnn#action"] = {
     ["<C-t>"] = "tab split",
     ["<C-x>"] = "split",
