@@ -1,15 +1,6 @@
 // vim: ft=jsonc
 {
   "breadcrumbs.enabled": false,
-  "customizeUI.activityBar": "bottom",
-  "customizeUI.activityBarHideSettings": true,
-  "customizeUI.titleBar": "inline",
-  "customizeUI.font.regular": "PragmataPro",
-  "customizeUI.font.monospace": "PragmataPro Mono",
-  "customizeUI.fontSizeMap": {
-    "13px": "12px",
-    "monospace": "12px"
-  },
   "editor.autoClosingQuotes": "beforeWhitespace",
   "editor.cursorBlinking": "phase",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -44,10 +35,6 @@
   "mdb.sendTelemetry": false,
   "settingsSync.keybindingsPerPlatform": false,
   "settingsSync.ignoredSettings": [
-    "customizeUI.font.monospace",
-    "customizeUI.font.regular",
-    "customizeUI.fontSizeMap",
-    "customizeUI.titleBar",
     "editor.fontFamily",
     "workbench.colorTheme",
     "workbench.iconTheme"
