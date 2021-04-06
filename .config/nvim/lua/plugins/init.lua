@@ -57,6 +57,7 @@ return require("packer").startup(function()
         requires = {"kana/vim-textobj-user"},
         ft = {"javascriptreact", "typescriptreact"}
     }
+    use "mg979/vim-visual-multi"
 
     -- development
     use "neovim/nvim-lspconfig"
