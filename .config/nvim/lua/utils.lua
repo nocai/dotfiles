@@ -14,13 +14,9 @@ M.t =
     end
 
 M.config_file_exists = function(name)
-    local f = io.open(nvim_config_dir .. name .. ".lua", "r")
-    if f ~= nil then
-        io.close(f)
-        return true
-    else
-        return false
-    end
+    local f = vim.loop.fs_open(nvim_config_dir .. name .. ".lua", "r", 438)
+    if f then return true end
+    return false
 end
 
 M.map = function(mode, lhs, rhs, opts)
@@ -37,5 +33,9 @@ end
 
 _G.inspect = function(...) print(vim.inspect(...)) end
 M.inspect = _G.inspect
+
+M.concat = function(target, new)
+    for _, v in pairs(new) do table.insert(target, v) end
+end
 
 return M
