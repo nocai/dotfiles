@@ -26,6 +26,9 @@ end
 M.buf_map = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
 end
+M.buf_opt = function(bufnr, opt, val)
+    vim.api.nvim_buf_set_option(bufnr, opt, val)
+end
 
 M.get_os = function()
     return vim.api.nvim_eval([[substitute(system("uname"), "\n", "", "")]])

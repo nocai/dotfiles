@@ -4,7 +4,7 @@ local u = require("utils")
 vim.g.mapleader = ","
 
 vim.o.clipboard = "unnamedplus"
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menuone,noinsert"
 vim.o.expandtab = true
 vim.o.foldlevelstart = 99
 vim.o.hidden = true

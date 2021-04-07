@@ -42,6 +42,8 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>",
               {silent = true})
 
+    u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
     if client.resolved_capabilities.document_formatting then
         u.exec([[
          augroup LspAutocommands
@@ -64,8 +66,9 @@ nvim_lsp.tsserver.setup {
         require("nvim-lsp-ts-utils").setup {}
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
-        u.buf_map(bufnr, "n", "gA", ":TSLspImportAll<CR>", {silent = true})
+        u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>", {silent = true})
         u.buf_map(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
+        u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
     end
 }
 
