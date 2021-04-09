@@ -10,6 +10,7 @@ vim.o.foldlevelstart = 99
 vim.o.hidden = true
 vim.o.ignorecase = true
 vim.o.mouse = "a"
+vim.o.omnifunc = "syntaxcomplete#Complete"
 vim.o.pumheight = 10
 vim.o.shiftwidth = 4
 vim.o.shortmess = "filnxtToOFcA"

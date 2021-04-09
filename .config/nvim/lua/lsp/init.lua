@@ -43,6 +43,7 @@ local on_attach = function(client, bufnr)
               {silent = true})
 
     u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
     if client.resolved_capabilities.document_formatting then
         u.exec([[
@@ -63,12 +64,11 @@ nvim_lsp.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
 
-        require("nvim-lsp-ts-utils").setup {}
+        require("nvim-lsp-ts-utils").setup {enable_import_on_completion = true}
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>", {silent = true})
         u.buf_map(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
-        u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
     end
 }
 
