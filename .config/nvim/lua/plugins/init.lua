@@ -79,7 +79,6 @@ return require("packer").startup(function()
         "nvim-treesitter/playground",
         requires = "nvim-treesitter/nvim-treesitter"
     }
-    use "sheerun/vim-polyglot"
     use {
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
