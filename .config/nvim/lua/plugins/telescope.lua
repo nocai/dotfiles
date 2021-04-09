@@ -4,19 +4,26 @@ local actions = require("telescope.actions")
 local conf = require("telescope.config").values
 local u = require("utils")
 
-telescope.setup {defaults = {mappings = {i = {["<Esc>"] = actions.close}}}}
+telescope.setup {
+    defaults = {mappings = {i = {["<Esc>"] = actions.close, ["<C-u>"] = false}}}
+}
 
 function _G.grep_prompt()
     builtin.grep_string {
         vimgrep_arguments = u.concat(conf.vimgrep_arguments,
                                      {"--hidden", "-g", "!{node_modules,.git}"}),
         shorten_path = true,
-        search = vim.fn.input("grep: ")
+        search = vim.fn.input("grep > ")
     }
 end
 
+function _G.find_files()
+    local status = pcall(builtin.git_files)
+    if status == false then builtin.find_files() end
+end
+
 -- fzf-like aliases
-vim.cmd("command! Files Telescope git_files")
+vim.cmd("command! Files lua find_files()")
 vim.cmd("command! BLines Telescope current_buffer_fuzzy_find")
 vim.cmd("command! History Telescope oldfiles")
 vim.cmd("command! Buffers Telescope buffers")
