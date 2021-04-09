@@ -6,13 +6,8 @@ local diagnosticls = require("lsp.diagnosticls")
 
 vim.lsp.handlers["textDocument/formatting"] = functions.format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        -- only show errors as virtual text
-        virtual_text = {spacing = 2, severity_limit = "Error"},
-        signs = true
-    })
-functions.set_highlights()
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+                 {underline = true, signs = true})
 
 local on_attach = function(client, bufnr)
     -- commands
