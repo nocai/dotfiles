@@ -10,7 +10,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # nnn
-export NNN_BMS='d:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config'
+export NNN_BMS='d:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config;v:~/.config/nvim/lua'
 export NNN_PLUG='d:diffs;p:preview-tui;s:suedit;t:treeview;r:renamer'
 export NNN_FIFO=/tmp/nnn.fifo
 
