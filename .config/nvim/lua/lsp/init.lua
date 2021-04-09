@@ -48,6 +48,8 @@ local on_attach = function(client, bufnr)
          augroup END
          ]])
     end
+
+    require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {

@@ -91,6 +91,10 @@ return require("packer").startup(function()
         config = function() require("plugins.buftabline") end
     }
     use "sainnhe/sonokai"
+    use {
+        "RRethy/vim-illuminate",
+        config = function() require("plugins.illuminate") end
+    }
     use "challenger-deep-theme/vim"
     use "ghifarit53/tokyonight-vim"
 
