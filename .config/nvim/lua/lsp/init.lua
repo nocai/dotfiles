@@ -7,7 +7,7 @@ local efm_languages = require("lsp.efm")
 vim.lsp.handlers["textDocument/formatting"] = functions.format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                 {underline = true, signs = true})
+                 {underline = true, signs = true, virtual_text = false})
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -38,15 +38,20 @@ local on_attach = function(client, bufnr)
               {silent = true})
 
     u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
+    u.exec([[
+    augroup LspAutocommands
+        autocmd! * <buffer>
+        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+    augroup END
+    ]])
     if client.resolved_capabilities.document_formatting then
         u.exec([[
-         augroup LspAutocommands
-             autocmd! * <buffer>
-             autocmd BufWritePost <buffer> LspFormatting
-         augroup END
-         ]])
+        augroup LspFormatOnSave
+            autocmd! * <buffer>
+            autocmd BufWritePost <buffer> LspFormatting
+        augroup END
+        ]])
     end
 
     require("illuminate").on_attach(client)

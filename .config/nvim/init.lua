@@ -23,7 +23,7 @@ vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
 vim.o.tabstop = 4
 vim.o.termguicolors = true
 vim.o.undofile = true
-vim.o.updatetime = 100
+vim.o.updatetime = 300
 
 vim.wo.cursorline = true
 vim.wo.number = true
