@@ -2,7 +2,7 @@ local u = require("utils")
 local functions = require("lsp.functions")
 local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
-local efm_languages = require("lsp.efm")
+local diagnosticls = require("lsp.diagnosticls")
 
 vim.lsp.handlers["textDocument/formatting"] = functions.format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
@@ -96,19 +96,21 @@ nvim_lsp.sumneko_lua.setup {
     settings = sumneko.settings
 }
 
-nvim_lsp.efm.setup {
+nvim_lsp.diagnosticls.setup {
     on_attach = on_attach,
-    rootMarkers = nvim_lsp.util.root_pattern(".git/"),
-    init_options = {documentFormatting = true},
-    settings = {languages = efm_languages},
-    filetypes = vim.tbl_keys(efm_languages)
-}
+    filetypes = vim.tbl_keys(diagnosticls.filetypes),
+    init_options = {
+        filetypes = diagnosticls.filetypes,
+        linters = diagnosticls.linters,
+        formatters = diagnosticls.formatters,
+        formatFiletypes = diagnosticls.formatFiletypes
+    }
 
+}
+nvim_lsp.bashls.setup {on_attach = on_attach}
 nvim_lsp.jsonls.setup {
     on_attach = on_attach,
     filetypes = {"json", "jsonc"},
     init_options = {provideFormatter = false}
 }
-
-nvim_lsp.bashls.setup {on_attach = on_attach}
 nvim_lsp.yamlls.setup {on_attach = on_attach}
