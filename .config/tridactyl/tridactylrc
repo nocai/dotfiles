@@ -1,6 +1,7 @@
 set configversion 2.0
 
 set newtab about:blank
+guiset gui none
 
 bind <Space> fillcmdline_notrail
 bind u scrollpage -0.5
@@ -14,4 +15,10 @@ bind k scrollline -5
 bind F hint -t
 bind ;b hint -b
 
-colorscheme base16-onedark
+colorscheme theme
+
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind ,<Space> nohlsearch
