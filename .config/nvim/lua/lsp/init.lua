@@ -38,6 +38,7 @@ local on_attach = function(client, bufnr)
               {silent = true})
 
     u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
     u.exec([[
     augroup LspAutocommands
@@ -66,7 +67,15 @@ nvim_lsp.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
 
-        require("nvim-lsp-ts-utils").setup {enable_import_on_completion = true}
+        local ts_utils = require("nvim-lsp-ts-utils")
+        ts_utils.setup {
+            enable_import_on_completion = true,
+            eslint_bin = "eslint_d",
+            eslint_fix_current = true
+        }
+        vim.lsp.handlers["textDocument/codeAction"] =
+            ts_utils.code_action_handler
+
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>", {silent = true})
