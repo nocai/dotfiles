@@ -55,6 +55,18 @@ augroup CreateDirectory
 augroup END
 ]])
 
+_G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        return u.t("<C-y>")
+    elseif vim.o.omnifunc then
+        return u.t("<C-x><C-o>")
+    else
+        return u.t("<Tab>")
+    end
+end
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+
 -- maps
 u.map("n", "<Leader>ee", ":edit <C-r>=expand('%:h')<CR>/")
 u.map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")

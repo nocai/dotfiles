@@ -21,7 +21,10 @@ return require("packer").startup(function()
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
     }
-    use {"hrsh7th/vim-vsnip", config = function() require("plugins.vsnip") end}
+    use {
+        "SirVer/ultisnips",
+        config = function() require("plugins.ultisnips") end
+    }
 
     -- integrations
     use {
@@ -67,14 +70,9 @@ return require("packer").startup(function()
     }
     use {"windwp/nvim-ts-autotag", requires = "nvim-treesitter/nvim-treesitter"}
     use {
-        "nvim-treesitter/playground",
-        requires = "nvim-treesitter/nvim-treesitter"
-    }
-    use {
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
-    use {"tpope/vim-fugitive", cmd = {"Git", "Gvdiffsplit"}}
 
     -- visual
     use {
