@@ -8,7 +8,7 @@ return require("packer").startup(function()
     use "tpope/vim-commentary"
 
     -- additional functionality
-    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
+    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
     use {
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
@@ -29,20 +29,15 @@ return require("packer").startup(function()
         requires = {"nvim-lua/popup.nvim"},
         config = function() require("plugins.telescope") end
     }
-    use {"christoomey/vim-tmux-navigator"}
-    use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
+    use "christoomey/vim-tmux-navigator"
     use {
-        "christoomey/vim-tmux-runner",
-        config = function() require("plugins.vtr") end
+        "voldikss/vim-floaterm",
+        config = function() require("plugins.floaterm") end
     }
 
     -- text objects
     use "wellle/targets.vim"
     use {"kana/vim-textobj-entire", requires = {"kana/vim-textobj-user"}}
-    use {
-        "beloglazov/vim-textobj-punctuation",
-        requires = {"kana/vim-textobj-user"}
-    }
     use {
         "Julian/vim-textobj-variable-segment",
         requires = {"kana/vim-textobj-user"}
@@ -52,7 +47,6 @@ return require("packer").startup(function()
         requires = {"kana/vim-textobj-user"},
         ft = {"javascriptreact", "typescriptreact"}
     }
-    use "mg979/vim-visual-multi"
 
     -- development
     use "neovim/nvim-lspconfig"
