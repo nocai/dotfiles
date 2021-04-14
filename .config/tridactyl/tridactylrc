@@ -3,6 +3,8 @@ set configversion 2.0
 set newtab about:blank
 guiset gui none
 
+set homepages ["google.com"]
+
 bind <Space> fillcmdline_notrail
 bind u scrollpage -0.5
 bind d scrollpage 0.5
