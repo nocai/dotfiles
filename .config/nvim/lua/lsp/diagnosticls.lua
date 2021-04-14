@@ -35,7 +35,10 @@ M.linters = {
         rootPatterns = {".git"},
         isStderr = true,
         debounce = 100,
-        args = {"--stdin"},
+        args = {
+            "--config", vim.fn.getenv("HOME") .. "/.markdownlint.json",
+            "--stdin"
+        },
         offsetLine = 0,
         offsetColumn = 0,
         sourceName = "markdownlint",
