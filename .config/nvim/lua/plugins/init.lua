@@ -58,7 +58,7 @@ return require("packer").startup(function()
         "mfussenegger/nvim-dap",
         config = function() require("plugins.dap") end
     }
-    use "~/git/nvim-lsp-ts-utils/"
+    use "jose-elias-alvarez/nvim-lsp-ts-utils"
     use {
         "lewis6991/gitsigns.nvim",
         config = function() require("plugins.gitsigns") end
@@ -95,5 +95,7 @@ return require("packer").startup(function()
         run = "cd app && yarn install",
         cmd = "MarkdownPreview"
     }
+    use "dag/vim-fish"
     use "tridactyl/vim-tridactyl"
+
 end)

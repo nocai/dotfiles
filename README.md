@@ -1,16 +1,16 @@
 # dotfiles
 
-My dotfiles for Neovim, zsh, tmux, and friends, optimized for web development on
+My dotfiles for Neovim, fish, tmux, and friends, optimized for web development on
 macOS (M1) and Linux (Arch).
 
 ## Terminal
 
-On macOS I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though
-not the fastest) terminal emulator for the platform. I use
-[Alacritty](https://github.com/alacritty/alacritty) on Linux.
+On macOS, I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest (though
+not the fastest) terminal emulator for the platform. On Linux, I use
+[Alacritty](https://github.com/alacritty/alacritty).
 
-- zsh + a handful of plugins managed with
-  [znap](https://github.com/marlonrichert/zsh-snap)
+- [fish](https://github.com/fish-shell/fish-shell) with a vanilla (but
+  evolving!) config
 
 - Neovim on its [master branch](https://github.com/neovim/neovim/commits/master)
   with a functional TypeScript setup for its built-in LSP, written entirely in
@@ -22,8 +22,7 @@ not the fastest) terminal emulator for the platform. I use
 - [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
   use git
 
-- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative with a
-  solid Vim plugin
+- [nnn](https://github.com/jarun/nnn), a leaner vifm alternative
 
 ## GUI
 
