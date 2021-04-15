@@ -30,9 +30,6 @@ not the fastest) terminal emulator for the platform. On Linux, I use
   reasonable compromise I've found between having to use (and develop) modern
   websites and wanting keyboard control
 
-- VS Code with its solid [Vim plugin](https://github.com/VSCodeVim/Vim) for
-  debugging and testing, two tasks that Neovim doesn't (yet) excel at
-
 - [bspwm](https://github.com/baskerville/bspwm) +
   [sxhkd](https://github.com/baskerville/sxhkd) for desktop / window management
 
