@@ -10,7 +10,27 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
                  {underline = true, signs = true, virtual_text = false})
 
 vim.lsp.handlers["textDocument/hover"] =
-    vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
+    function(_, method, result, _, _, config)
+        config = config or {}
+        local util = vim.lsp.util
+        local bufnr, winnr = util.focusable_float(method, function()
+            if not (result and result.contents) then return end
+            local markdown_lines = util.convert_input_to_markdown_lines(
+                                       result.contents)
+            markdown_lines = util.trim_empty_lines(markdown_lines)
+            if vim.tbl_isempty(markdown_lines) then return end
+            local bufnr, winnr = util.fancy_floating_markdown(markdown_lines, {
+                border = "single"
+            })
+            util.close_preview_autocmd({
+                "CursorMoved", "BufHidden", "InsertCharPre"
+            }, winnr)
+            return bufnr, winnr
+        end)
+        _G.lsp_hover_winnr = winnr
+        return bufnr, winnr
+    end
+
 vim.lsp.handlers["textDocument/signatureHelp"] =
     vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
 
@@ -28,8 +48,7 @@ local on_attach = function(client, bufnr)
         [[command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})]])
     vim.cmd(
         [[command! LspDiagNext lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})]])
-    vim.cmd(
-        [[command! LspDiagLine lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })]])
+    vim.cmd("command! LspDiagLine lua lsp_line_diagnostics()")
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 
     -- bindings
@@ -47,12 +66,22 @@ local on_attach = function(client, bufnr)
     u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
+    _G.lsp_line_diagnostics = function()
+        local hovering = _G.lsp_hover_winnr and
+                             pcall(vim.api.nvim_win_get_config,
+                                   _G.lsp_hover_winnr) or false
+        if not hovering then
+            vim.lsp.diagnostic.show_line_diagnostics({border = "single"})
+            if _G.lsp_hover_winnr then _G.lsp_hover_winnr = nil end
+        end
+    end
     u.exec([[
     augroup LspAutocommands
         autocmd! * <buffer>
-        autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })
+        autocmd CursorHold * lua lsp_line_diagnostics()
     augroup END
     ]])
+
     if client.resolved_capabilities.document_formatting then
         u.exec([[
         augroup LspFormatOnSave
