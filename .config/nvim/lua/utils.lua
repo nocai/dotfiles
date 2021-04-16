@@ -13,6 +13,13 @@ M.t =
         return vim.api.nvim_replace_termcodes(str, true, true, true)
     end
 
+M.contains = function(list, candidate)
+    for _, element in pairs(list) do
+        if element == candidate then return true end
+    end
+    return false
+end
+
 M.config_file_exists = function(name)
     local f = vim.loop.fs_open(nvim_config_dir .. name .. ".lua", "r", 438)
     if f then return true end
