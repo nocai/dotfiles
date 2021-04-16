@@ -4,6 +4,9 @@ local actions = require("telescope.actions")
 local conf = require("telescope.config").values
 local u = require("utils")
 
+local vimgrep_arguments = u.concat(conf.vimgrep_arguments,
+                                   {"--hidden", "-g", "!{node_modules,.git}"})
+
 telescope.setup {
     defaults = {mappings = {i = {["<Esc>"] = actions.close, ["<C-u>"] = false}}}
 }
@@ -13,14 +16,14 @@ _G.fuzzy_live_grep = function()
         shorten_path = true,
         word_match = "-w",
         only_sort_text = true,
-        search = ""
+        search = "",
+        vimgrep_arguments = vimgrep_arguments
     }
 end
 
 _G.grep_prompt = function()
     builtin.grep_string {
-        vimgrep_arguments = u.concat(conf.vimgrep_arguments,
-                                     {"--hidden", "-g", "!{node_modules,.git}"}),
+        vimgrep_arguments = vimgrep_arguments,
         shorten_path = true,
         search = vim.fn.input("grep > ")
     }
