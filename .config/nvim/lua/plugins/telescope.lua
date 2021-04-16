@@ -8,7 +8,16 @@ telescope.setup {
     defaults = {mappings = {i = {["<Esc>"] = actions.close, ["<C-u>"] = false}}}
 }
 
-function _G.grep_prompt()
+_G.fuzzy_live_grep = function()
+    builtin.grep_string {
+        shorten_path = true,
+        word_match = "-w",
+        only_sort_text = true,
+        search = ""
+    }
+end
+
+_G.grep_prompt = function()
     builtin.grep_string {
         vimgrep_arguments = u.concat(conf.vimgrep_arguments,
                                      {"--hidden", "-g", "!{node_modules,.git}"}),
@@ -17,9 +26,9 @@ function _G.grep_prompt()
     }
 end
 
-function _G.find_files()
-    local status = pcall(builtin.git_files)
-    if status == false then builtin.find_files() end
+_G.find_files = function()
+    local is_git_project = pcall(builtin.git_files)
+    if not is_git_project then builtin.find_files() end
 end
 
 -- fzf-like aliases
@@ -27,7 +36,8 @@ vim.cmd("command! Files lua find_files()")
 vim.cmd("command! BLines Telescope current_buffer_fuzzy_find")
 vim.cmd("command! History Telescope oldfiles")
 vim.cmd("command! Buffers Telescope buffers")
-vim.cmd("command! Rg lua grep_prompt()")
+vim.cmd("command! Rg lua fuzzy_live_grep()")
+vim.cmd("command! RgPrompt lua grep_prompt()")
 vim.cmd("command! LspRef Telescope lsp_references")
 vim.cmd("command! LspSym Telescope lsp_workspace_symbols")
 -- unmapped
@@ -37,6 +47,7 @@ vim.cmd("command! LspAct Telescope lsp_code_actions")
 
 vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Files<CR>", {silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fg", "<cmd>Rg<CR>", {silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fG", "<cmd>RgPrompt<CR>", {silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fb", "<cmd>Buffers<CR>", {silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fh", "<cmd>History<CR>", {silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fl", "<cmd>BLines<CR>", {silent = true})

@@ -64,7 +64,6 @@ local on_attach = function(client, bufnr)
               {silent = true})
 
     u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
     _G.lsp_line_diagnostics = function()
         local hovering = _G.lsp_hover_winnr and
@@ -103,6 +102,8 @@ nvim_lsp.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
         on_attach(client)
 
+        u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
+
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup {
             enable_import_on_completion = true,
@@ -120,7 +121,10 @@ nvim_lsp.tsserver.setup {
 }
 
 nvim_lsp.sumneko_lua.setup {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        on_attach(client)
+        u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
+    end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = sumneko.settings
 }

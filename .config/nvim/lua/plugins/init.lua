@@ -8,7 +8,6 @@ return require("packer").startup(function()
     use "tpope/vim-commentary"
 
     -- additional functionality
-    use {"justinmk/vim-sneak", config = function() require("plugins.sneak") end}
     use {
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
@@ -21,6 +20,7 @@ return require("packer").startup(function()
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
     }
+    use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
     use {
         "SirVer/ultisnips",
         config = function() require("plugins.ultisnips") end
@@ -87,7 +87,7 @@ return require("packer").startup(function()
     use "challenger-deep-theme/vim"
     use "ghifarit53/tokyonight-vim"
 
-    -- other
+    -- misc
     use {
         "iamcco/markdown-preview.nvim",
         ft = {"md", "mkdn", "markdown"},

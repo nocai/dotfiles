@@ -68,10 +68,6 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 
 -- maps
-u.map("n", "<Leader>ee", ":edit <C-r>=expand('%:h')<CR>/")
-u.map("n", "<Leader>ev", ":vsplit <C-r>=expand('%:h')<CR>/")
-u.map("n", "<Leader>es", ":split <C-r>=expand('%:h')<CR>/")
-
 u.map("i", "<S-Tab>", "<C-o>A")
 
 u.map("n", "H", "^")
@@ -88,29 +84,22 @@ u.map("n", "<Tab>", "%", {noremap = false})
 u.map("x", "<Tab>", "%", {noremap = false})
 u.map("o", "<Tab>", "%", {noremap = false})
 
-u.map("i", "<C-h>", "<Left>")
-u.map("i", "<C-j>", "<Down>")
-u.map("i", "<C-k>", "<Up>")
-u.map("i", "<C-l>", "<Right>")
-
 u.map("n", "<BS>", "<C-^>")
 u.map("n", "Y", "y$")
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
-u.map("n", "<Leader>x", ":bd<CR>", {silent = true})
-u.map("t", "<C-o>", [[<C-\><C-n>]])
+u.map("n", "<Leader>cc", ":bd<CR>", {silent = true})
+
 
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",
       {expr = true})
 
 -- add jumps > 1 to jump list
+-- automatically add jumps > 1 to jump list
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
 -- load remaining lua config
-if (u.config_file_exists("plugins/init")) then
-    require("plugins")
-    u.map("n", "<Leader>p", ":PackerSync<CR>", {silent = true})
-end
+if (u.config_file_exists("plugins/init")) then require("plugins") end
 if (u.config_file_exists("theme")) then require("theme") end
 if (u.config_file_exists("lsp/init")) then require("lsp") end
