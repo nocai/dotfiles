@@ -1,8 +1,6 @@
 local u = require("utils")
 
--- options
 vim.g.mapleader = ","
-
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menuone,noinsert"
 vim.o.expandtab = true
@@ -10,7 +8,6 @@ vim.o.foldlevelstart = 99
 vim.o.hidden = true
 vim.o.ignorecase = true
 vim.o.mouse = "a"
-vim.o.omnifunc = "syntaxcomplete#Complete"
 vim.o.pumheight = 10
 vim.o.shiftwidth = 4
 vim.o.shortmess = "filnxtToOFcA"
@@ -58,7 +55,7 @@ augroup END
 _G.tab_complete = function()
     if vim.fn.pumvisible() == 1 then
         return u.t("<C-y>")
-    elseif vim.o.omnifunc then
+    elseif vim.bo.omnifunc ~= "" then
         return u.t("<C-x><C-o>")
     else
         return u.t("<Tab>")
@@ -89,12 +86,10 @@ u.map("n", "Y", "y$")
 u.map("n", "<Esc>", ":nohl<CR>", {silent = true})
 u.map("n", "<Leader>cc", ":bd<CR>", {silent = true})
 
-
 -- save w/ <CR> in non-quickfix buffers
 u.map("n", "<CR>", "(&buftype is# 'quickfix' ? '<CR>' : ':w<CR>')",
       {expr = true})
 
--- add jumps > 1 to jump list
 -- automatically add jumps > 1 to jump list
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
