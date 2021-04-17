@@ -7,6 +7,7 @@ M.binary =
         u.get_os() == "Darwin" and M.root .. "/bin/macOS/lua-language-server"
 M.settings = {
     Lua = {
+        runtime = {version = "Lua 5.1"},
         diagnostics = {
             enable = true,
             globals = {
