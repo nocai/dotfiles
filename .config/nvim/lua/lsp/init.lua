@@ -47,7 +47,7 @@ local on_attach = function(client, bufnr)
     vim.cmd(
         [[command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})]])
     vim.cmd(
-        [[command! LspDiagNext lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})]])
+        [[command! LspDiagNext lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})]])
     vim.cmd("command! LspDiagLine lua lsp_line_diagnostics()")
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 
