@@ -15,7 +15,6 @@ M.format_async = function(err, _, result, _, bufnr)
     end
 end
 
--- still figuring out what groups look best (and are colorscheme-independent)
 M.set_highlights = function()
     u.exec([[
     function! LspHighlights() abort
