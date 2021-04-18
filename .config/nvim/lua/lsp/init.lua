@@ -117,6 +117,9 @@ nvim_lsp.tsserver.setup {
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>", {silent = true})
         u.buf_map(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
+
+        require("telescope.builtin").lsp_code_actions =
+            functions.ts_telescope_code_actions
     end
 }
 
