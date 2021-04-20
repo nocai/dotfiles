@@ -68,19 +68,16 @@ nvim_lsp.tsserver.setup {
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup {
             enable_import_on_completion = true,
-            eslint_bin = "eslint_d",
-            eslint_fix_current = true
+            eslint_bin = "eslint_d"
         }
-        vim.lsp.handlers["textDocument/codeAction"] =
-            ts_utils.code_action_handler
+        vim.lsp.buf_request_sync = ts_utils.buf_request_sync
+        vim.lsp.buf_request = ts_utils.buf_request
 
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>", {silent = true})
         u.buf_map(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
 
-        require("telescope.builtin").lsp_code_actions =
-            functions.ts_telescope_code_actions
     end
 }
 
