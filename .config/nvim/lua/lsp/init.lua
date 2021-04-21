@@ -8,12 +8,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
                  {underline = true, signs = true, virtual_text = false})
 
-vim.lsp.handlers["textDocument/signatureHelp"] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
+local lsp_popup_opts = {border = "single"}
+_G.lsp_popup_opts = lsp_popup_opts
 
-_G.lsp_line_diagnostics = function()
-    vim.lsp.diagnostic.show_line_diagnostics({border = "single"})
-end
+vim.lsp.handlers["textDocument/signatureHelp"] =
+    vim.lsp.with(vim.lsp.handlers.signature_help, lsp_popup_opts)
+vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, lsp_popup_opts)
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -25,10 +26,11 @@ local on_attach = function(client, bufnr)
     vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
     vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
     vim.cmd(
-        [[command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})]])
+        "command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({popup_opts = lsp_popup_opts})")
     vim.cmd(
-        [[command! LspDiagNext lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})]])
-    vim.cmd("command! LspDiagLine lua lsp_line_diagnostics()")
+        "command! LspDiagNext lua vim.lsp.diagnostic.goto_next({popup_opts = lsp_popup_opts})")
+    vim.cmd(
+        "command! LspDiagLine lua vim.lsp.diagnostic.show_line_diagnostics(lsp_popup_opts)")
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 
     -- bindings
@@ -45,7 +47,7 @@ local on_attach = function(client, bufnr)
     u.exec([[
     augroup LspAutocommands
         autocmd! * <buffer>
-        autocmd CursorHold * lua lsp_line_diagnostics()
+        autocmd CursorHold * LspDiagLine
     augroup END
     ]])
 
