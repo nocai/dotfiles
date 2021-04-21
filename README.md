@@ -28,7 +28,7 @@ not the fastest) terminal emulator for the platform. On Linux, I use
 
 - Firefox with [Tridactyl](https://github.com/tridactyl/tridactyl), the most
   reasonable compromise I've found between having to use (and develop) modern
-  websites and wanting keyboard control
+  websites and wanting keyboard control.
 
 - [bspwm](https://github.com/baskerville/bspwm) +
   [sxhkd](https://github.com/baskerville/sxhkd) for desktop / window management
