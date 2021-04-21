@@ -4,13 +4,16 @@ local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local diagnosticls = require("lsp.diagnosticls")
 
-vim.lsp.handlers["textDocument/formatting"] = functions.format_async
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
                  {underline = true, signs = true, virtual_text = false})
 
 vim.lsp.handlers["textDocument/signatureHelp"] =
     vim.lsp.with(vim.lsp.handlers.signature_help, {border = "single"})
+
+_G.lsp_line_diagnostics = function()
+    vim.lsp.diagnostic.show_line_diagnostics({border = "single"})
+end
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -25,8 +28,7 @@ local on_attach = function(client, bufnr)
         [[command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" }})]])
     vim.cmd(
         [[command! LspDiagNext lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" }})]])
-    vim.cmd(
-        "command! LspDiagLine lua vim.lsp.diagnostic.show_line_diagnostics()")
+    vim.cmd("command! LspDiagLine lua lsp_line_diagnostics()")
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 
     -- bindings
@@ -40,16 +42,14 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>",
               {silent = true})
 
-    u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    u.exec([[
+    augroup LspAutocommands
+        autocmd! * <buffer>
+        autocmd CursorHold * lua lsp_line_diagnostics()
+    augroup END
+    ]])
 
-    if client.resolved_capabilities.document_formatting then
-        u.exec([[
-        augroup LspFormatOnSave
-            autocmd! * <buffer>
-            autocmd BufWritePost <buffer> LspFormatting
-        augroup END
-        ]])
-    end
+    u.buf_opt(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     require("illuminate").on_attach(client)
 end
@@ -68,16 +68,17 @@ nvim_lsp.tsserver.setup {
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup {
             enable_import_on_completion = true,
-            eslint_bin = "eslint_d"
+            eslint_bin = "eslint_d",
+            eslint_enable_diagnostics = true,
+            enable_formatting = true,
+            format_on_save = true
         }
-        vim.lsp.buf_request_sync = ts_utils.buf_request_sync
         vim.lsp.buf_request = ts_utils.buf_request
 
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>", {silent = true})
         u.buf_map(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
-
     end
 }
 
@@ -85,6 +86,14 @@ nvim_lsp.sumneko_lua.setup {
     on_attach = function(client, bufnr)
         on_attach(client)
         u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
+
+        vim.lsp.handlers["textDocument/formatting"] = functions.format_async
+        u.exec([[
+        augroup LspFormatOnSave
+            autocmd! * <buffer>
+            autocmd BufWritePost <buffer> LspFormatting
+        augroup END
+        ]])
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = sumneko.settings
@@ -99,8 +108,8 @@ nvim_lsp.diagnosticls.setup {
         formatters = diagnosticls.formatters,
         formatFiletypes = diagnosticls.formatFiletypes
     }
-
 }
+
 nvim_lsp.bashls.setup {on_attach = on_attach}
 nvim_lsp.jsonls.setup {
     on_attach = on_attach,

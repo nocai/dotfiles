@@ -1,35 +1,11 @@
 local M = {}
 
 M.filetypes = {
-    javascript = "eslint",
-    javascriptreact = "eslint",
-    typescript = "eslint",
-    typescriptreact = "eslint",
     markdown = {"markdownlint", "writeGood"},
-    lua = "",
-    yaml = "",
-    json = "",
-    jsonc = ""
+    lua = ""
 }
 
 M.linters = {
-    eslint = {
-        sourceName = "eslint",
-        command = "eslint_d",
-        rootPatterns = {".eslintrc.js", "package.json"},
-        debounce = 100,
-        args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-        parseJson = {
-            errorsRoot = "[0].messages",
-            line = "line",
-            column = "column",
-            endLine = "endLine",
-            endColumn = "endColumn",
-            message = "${message} [${ruleId}]",
-            security = "severity"
-        },
-        securities = {[2] = "error", [1] = "warning"}
-    },
     markdownlint = {
         command = "markdownlint",
         rootPatterns = {".git"},
@@ -68,19 +44,8 @@ M.formatters = {
         command = "lua-format",
         args = {"--single-quote-to-double-quote", "-i"}
     },
-    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
 }
 
-M.formatFiletypes = {
-    lua = "luaFormat",
-    javascript = "prettier",
-    javascriptreact = "prettier",
-    typescript = "prettier",
-    typescriptreact = "prettier",
-    markdown = "prettier",
-    yaml = "prettier",
-    json = "prettier",
-    jsonc = "prettier"
-}
+M.formatFiletypes = {lua = "luaFormat"}
 
 return M
