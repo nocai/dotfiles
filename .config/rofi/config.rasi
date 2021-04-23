@@ -1,7 +1,0 @@
-configuration {
- modi: "window,drun,combi";
- theme: "Arc-Dark";
- font: "Iosevka 12";
- combi-modi: "window,drun";
- }
-
