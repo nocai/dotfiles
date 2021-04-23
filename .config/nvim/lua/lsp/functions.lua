@@ -1,18 +1,17 @@
 local u = require("utils")
-local lsp = vim.lsp
+local api = vim.api
 
 local M = {}
 
-M.format_async = function(err, _, result, _, bufnr)
-    if err ~= nil or result == nil then return end
-    if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-        local view = vim.fn.winsaveview()
-        lsp.util.apply_text_edits(result, bufnr)
-        vim.fn.winrestview(view)
-        if bufnr == vim.api.nvim_get_current_buf() then
-            vim.api.nvim_command("noautocmd :update")
-        end
-    end
+M.lua_format = function()
+    local bufnr = api.nvim_get_current_buf()
+    local formatter_args = {"--single-quote-to-double-quote", "-i"}
+    u.buf_to_stdin("lua-format", formatter_args, function(err, output)
+        if err or not output then return end
+        api.nvim_buf_set_lines(bufnr, 0, api.nvim_buf_line_count(bufnr), false,
+                               u.split_at_newline(output))
+        vim.cmd("noautocmd :update")
+    end)
 end
 
 M.set_highlights = function()

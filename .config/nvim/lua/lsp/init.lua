@@ -2,7 +2,6 @@ local u = require("utils")
 local functions = require("lsp.functions")
 local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
-local diagnosticls = require("lsp.diagnosticls")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -89,7 +88,7 @@ nvim_lsp.sumneko_lua.setup {
         on_attach(client)
         u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
-        vim.lsp.handlers["textDocument/formatting"] = functions.format_async
+        vim.lsp.handlers["textDocument/formatting"] = functions.lua_format
         u.exec([[
         augroup LspFormatOnSave
             autocmd! * <buffer>
@@ -99,17 +98,6 @@ nvim_lsp.sumneko_lua.setup {
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = sumneko.settings
-}
-
-nvim_lsp.diagnosticls.setup {
-    on_attach = on_attach,
-    filetypes = vim.tbl_keys(diagnosticls.filetypes),
-    init_options = {
-        filetypes = diagnosticls.filetypes,
-        linters = diagnosticls.linters,
-        formatters = diagnosticls.formatters,
-        formatFiletypes = diagnosticls.formatFiletypes
-    }
 }
 
 nvim_lsp.bashls.setup {on_attach = on_attach}
