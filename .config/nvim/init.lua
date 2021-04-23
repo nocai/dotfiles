@@ -53,6 +53,19 @@ augroup END
 ]])
 
 -- maps
+_G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+        vim.api.nvim_input("<C-y>")
+    elseif vim.bo.omnifunc ~= "" then
+        vim.api.nvim_input("<C-x><C-o>")
+    else
+        vim.api.nvim_input("<Tab>")
+    end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "<cmd> lua tab_complete()<CR>",
+                        {silent = true})
+
 u.map("i", "<S-Tab>", "<C-o>A")
 
 u.map("n", "H", "^")
