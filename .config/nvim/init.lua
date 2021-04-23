@@ -32,6 +32,15 @@ vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#|bd#")
 vim.cmd("command! R w | :e")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
+vim.cmd("command! Git term lazygit")
+
+u.exec([[
+augroup TermOpts
+    autocmd!
+    autocmd TermOpen * startinsert | setlocal nonumber norelativenumber
+    autocmd TermClose * call feedkeys("i")
+augroup END
+]])
 
 function _G.HighlightOnYank()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
@@ -74,6 +83,11 @@ u.map("x", "H", "^")
 u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
+
+u.map("n", "<Leader>b", ":Bo<CR>")
+u.map("n", "<Leader>B", ":Bd<CR>")
+
+u.map("t", "<Esc>", "<C-\\><C-n>")
 
 u.map("n", "<Space>", ":")
 u.map("v", "<Space>", ":")

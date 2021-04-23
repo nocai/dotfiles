@@ -33,23 +33,7 @@ return require("packer").startup(function()
         config = function() require("plugins.telescope") end
     }
     use "christoomey/vim-tmux-navigator"
-    use {
-        "voldikss/vim-floaterm",
-        config = function() require("plugins.floaterm") end
-    }
-
-    -- text objects
-    use "wellle/targets.vim"
-    use {"kana/vim-textobj-entire", requires = {"kana/vim-textobj-user"}}
-    use {
-        "Julian/vim-textobj-variable-segment",
-        requires = {"kana/vim-textobj-user"}
-    }
-    use {
-        "inside/vim-textobj-jsxattr",
-        requires = {"kana/vim-textobj-user"},
-        ft = {"javascriptreact", "typescriptreact"}
-    }
+    use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
 
     -- development
     use "neovim/nvim-lspconfig"
@@ -97,5 +81,4 @@ return require("packer").startup(function()
     }
     use "dag/vim-fish"
     use "tridactyl/vim-tridactyl"
-
 end)
