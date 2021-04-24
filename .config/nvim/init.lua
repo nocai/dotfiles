@@ -32,14 +32,20 @@ vim.cmd("command! Bd %bd")
 vim.cmd("command! Bo %bd|e#|bd#")
 vim.cmd("command! R w | :e")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
-vim.cmd("command! Git term lazygit")
+vim.cmd("command! Git startinsert | term lazygit")
+
+_G.on_term_close = function()
+    if not string.match(vim.fn.expand("<afile>"), "nnn") then
+        vim.api.nvim_input("<CR>")
+    end
+end
 
 u.exec([[
 augroup TermOpts
     autocmd!
-    autocmd TermOpen * startinsert | setlocal nonumber norelativenumber
-    autocmd TermClose * call feedkeys("i")
-augroup END
+    autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermClose * lua on_term_close()
+    augroup END
 ]])
 
 function _G.HighlightOnYank()
@@ -87,7 +93,7 @@ u.map("x", "L", "$")
 u.map("n", "<Leader>b", ":Bo<CR>")
 u.map("n", "<Leader>B", ":Bd<CR>")
 
-u.map("t", "<Esc>", "<C-\\><C-n>")
+u.map("t", "<C-o>", "<C-\\><C-n>")
 
 u.map("n", "<Space>", ":")
 u.map("v", "<Space>", ":")
