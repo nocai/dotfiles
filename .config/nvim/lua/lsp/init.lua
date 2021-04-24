@@ -72,6 +72,8 @@ nvim_lsp.tsserver.setup {
             eslint_bin = "eslint_d",
             eslint_enable_diagnostics = true,
             enable_formatting = true,
+            formatter = "prettier_d_slim",
+            formatter_args = {"--stdin", "--stdin-filepath", "$FILENAME"},
             format_on_save = true
         }
         vim.lsp.buf_request = ts_utils.buf_request
