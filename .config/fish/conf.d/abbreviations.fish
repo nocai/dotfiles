@@ -28,14 +28,17 @@ if status --is-interactive
     abbr -a -g ext 'exa --tree --level'
 
     abbr -a -g tl 'tmux list-sessions'
+    abbr -a -g td 'tmux detach'
     abbr -a -g ta 'tmux attach-session -t'
     abbr -a -g tn 'tmux new-session -s'
     abbr -a -g tksv 'tmux kill-server'
     abbr -a -g tkss 'tmux kill-session -t'
 
-    abbr -a -g mx tmuxp
-    abbr -a -g mxs 'tmuxp load'
-    abbr -a -g mxf 'tmuxp freeze'
+    abbr -a -g mx tmuxinator
+    abbr -a -g mxs 'tmuxinator start'
+    abbr -a -g mxe 'tmuxinator edit'
+    abbr -a -g mxn 'tmuxinator new'
+    abbr -a -g mxc 'tmuxinator copy'
 
     abbr -a -g g git
     abbr -a -g ga 'git add'
