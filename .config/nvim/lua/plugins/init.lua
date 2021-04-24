@@ -57,6 +57,10 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
+    use {
+        "folke/lsp-trouble.nvim",
+        config = function() require("plugins.trouble") end
+    }
 
     -- visual
     use {
@@ -69,7 +73,7 @@ return require("packer").startup(function()
         config = function() require("plugins.illuminate") end
     }
     use "challenger-deep-theme/vim"
-    use "ghifarit53/tokyonight-vim"
+    use "folke/tokyonight.nvim"
 
     -- misc
     use {
