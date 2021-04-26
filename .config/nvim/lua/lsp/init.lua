@@ -61,7 +61,6 @@ nvim_lsp.tsserver.setup {
         "/usr/local/bin/tsserver-wrapper"
     },
     on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
         on_attach(client)
 
         u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
@@ -69,14 +68,18 @@ nvim_lsp.tsserver.setup {
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup {
             enable_import_on_completion = true,
+            complete_parens = true,
+            signature_help_in_parens = true,
             eslint_bin = "eslint_d",
             eslint_enable_diagnostics = true,
             enable_formatting = true,
-            formatter = "prettier_d_slim",
-            formatter_args = {"--stdin", "--stdin-filepath", "$FILENAME"},
+            formatter = "eslint_d",
+            formatter_args = {
+                "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME"
+            },
             format_on_save = true
         }
-        vim.lsp.buf_request = ts_utils.buf_request
+        ts_utils.setup_client(client)
 
         u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
         u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>", {silent = true})
