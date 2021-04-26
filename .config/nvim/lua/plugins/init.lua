@@ -8,6 +8,7 @@ return require("packer").startup(function()
     use "tpope/vim-commentary"
 
     -- additional functionality
+    use "wellle/targets.vim"
     use {
         "windwp/nvim-autopairs",
         config = function() require("plugins.autopairs") end
@@ -21,10 +22,6 @@ return require("packer").startup(function()
         config = function() require("plugins.cutlass") end
     }
     use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
-    use {
-        "~/git/minsnip.nvim",
-        config = function() require("plugins.minsnip") end
-    }
 
     -- integrations
     use {
@@ -32,7 +29,10 @@ return require("packer").startup(function()
         requires = {"nvim-lua/popup.nvim"},
         config = function() require("plugins.telescope") end
     }
-    use "christoomey/vim-tmux-navigator"
+    use {
+        "numToStr/Navigator.nvim",
+        config = function() require("plugins.navigator") end
+    }
     use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
 
     -- development
