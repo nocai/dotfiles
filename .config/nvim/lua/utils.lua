@@ -13,6 +13,8 @@ local close_handle = function(handle)
     if handle and not handle:is_closing() then handle:close() end
 end
 
+local code_is_ok = function(code) return code == 0 and true or false end
+
 local M = {}
 
 M.exec = function(command) vim.api.nvim_exec(command, false) end
@@ -74,7 +76,8 @@ M.split_at_newline = function(str)
 end
 
 M.buf_to_stdin = function(cmd, args, handler)
-    local output, stderr_output = "", ""
+    local handle, ok
+    local output, error_output = "", ""
 
     local handle_stdout = vim.schedule_wrap(
                               function(err, chunk)
@@ -82,13 +85,21 @@ M.buf_to_stdin = function(cmd, args, handler)
 
             if chunk then output = output .. chunk end
             if not chunk then
-                handler(stderr_output ~= "" and stderr_output or nil, output)
+                vim.wait(5000, function() return ok ~= nil end, 10)
+                if not ok and error_output == "" then
+                    error_output = output
+                    output = ""
+                end
+
+                if output == "" then output = nil end
+                if error_output == "" then error_output = nil end
+                handler(error_output, output)
             end
         end)
 
     local handle_stderr = function(err, chunk)
         if err then error("stderr error: " .. err) end
-        if chunk then stderr_output = stderr_output .. chunk end
+        if chunk then error_output = error_output .. chunk end
     end
 
     local stdin = uv.new_pipe(true)
@@ -96,8 +107,9 @@ M.buf_to_stdin = function(cmd, args, handler)
     local stderr = uv.new_pipe(false)
     local stdio = {stdin, stdout, stderr}
 
-    local handle
-    handle = uv.spawn(cmd, {args = args, stdio = stdio}, function()
+    handle = uv.spawn(cmd, {args = args, stdio = stdio}, function(code)
+        ok = code_is_ok(code)
+
         stdout:read_stop()
         stderr:read_stop()
 
