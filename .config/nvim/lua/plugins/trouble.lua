@@ -1,5 +1,5 @@
 require("trouble").setup {
-    icojns = false,
+    icons = false,
     fold_open = "v",
     fold_closed = ">",
     indent_lines = false,
