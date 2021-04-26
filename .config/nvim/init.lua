@@ -34,6 +34,13 @@ vim.cmd("command! R w | :e")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 vim.cmd("command! Git startinsert | term lazygit")
 
+u.exec([[
+augroup FixFormatOpts
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions=jql
+augroup END
+]])
+
 _G.on_term_close = function()
     if not string.match(vim.fn.expand("<afile>"), "nnn") then
         vim.api.nvim_input("<CR>")
@@ -45,7 +52,7 @@ augroup TermOpts
     autocmd!
     autocmd TermOpen * setlocal nonumber norelativenumber
     autocmd TermClose * lua on_term_close()
-    augroup END
+augroup END
 ]])
 
 function _G.HighlightOnYank()
@@ -80,6 +87,8 @@ end
 
 vim.api.nvim_set_keymap("i", "<Tab>", "<cmd> lua tab_complete()<CR>",
                         {silent = true})
+
+u.map("o", "A", ":<C-u>normal! ggVG<CR>")
 
 u.map("i", "<S-Tab>", "<C-o>A")
 
