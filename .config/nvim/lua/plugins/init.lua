@@ -21,6 +21,10 @@ return require("packer").startup(function()
         "svermeulen/vim-cutlass",
         config = function() require("plugins.cutlass") end
     }
+    use {
+        "SirVer/ultisnips",
+        config = function() require("plugins.ultisnips") end
+    }
     use {"phaazon/hop.nvim", config = function() require("plugins.hop") end}
 
     -- integrations
