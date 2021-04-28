@@ -67,6 +67,7 @@ nvim_lsp.tsserver.setup {
 
         local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup {
+            -- debug = true,
             enable_import_on_completion = true,
             complete_parens = true,
             signature_help_in_parens = true,
@@ -77,7 +78,8 @@ nvim_lsp.tsserver.setup {
             formatter_args = {
                 "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME"
             },
-            format_on_save = true
+            format_on_save = true,
+            update_imports_on_move = true
         }
         ts_utils.setup_client(client)
 
