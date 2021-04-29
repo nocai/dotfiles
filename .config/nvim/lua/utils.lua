@@ -56,6 +56,22 @@ end
 _G.inspect = function(...) print(vim.inspect(...)) end
 M.inspect = _G.inspect
 
+local start_time
+M.timer = {
+    start = function() start_time = uv.now() end,
+    stop = function()
+        print(uv.now() - start_time .. " ms")
+        start_time = nil
+    end,
+
+    start_nano = function() start_time = uv.hrtime() end,
+    stop_nano = function()
+        print(uv.hrtime() - start_time .. " ns")
+        start_time = nil
+    end
+}
+_G.timer = M.timer
+
 M.concat = function(target, new)
     for _, v in pairs(new) do table.insert(target, v) end
 end
