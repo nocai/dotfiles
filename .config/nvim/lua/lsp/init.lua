@@ -18,24 +18,27 @@ lsp.handlers["textDocument/hover"] =
     lsp.with(lsp.handlers.hover, lsp_popup_opts)
 
 -- wrap omnifunc to prevent annoying "can only be used in insert" message
-_G.lsp_omnifunc = function() return pcall(lsp.omnifunc) end
+_G.lsp_omnifunc = function(...)
+    local ok, results = pcall(lsp.omnifunc, ...)
+    return not ok and nil or results
+end
 
 local on_attach = function(client, bufnr)
     -- commands
-    vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-    vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-    vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
-    vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
-    vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
-    vim.cmd("command! LspTypeDef lua vim.lsp.buf.type_definition()")
-    vim.cmd("command! LspImplementation lua vim.lsp.buf.implementation()")
-    vim.cmd(
-        "command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({popup_opts = lsp_popup_opts})")
-    vim.cmd(
-        "command! LspDiagNext lua vim.lsp.diagnostic.goto_next({popup_opts = lsp_popup_opts})")
-    vim.cmd(
-        "command! LspDiagLine lua vim.lsp.diagnostic.show_line_diagnostics(lsp_popup_opts)")
-    vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
+    u.define_command("LspDef", "vim.lsp.buf.definition()")
+    u.define_command("LspFormatting", "vim.lsp.buf.formatting()")
+    u.define_command("LspCodeAction", "vim.lsp.buf.code_action()")
+    u.define_command("LspHover", "vim.lsp.buf.hover()")
+    u.define_command("LspRename", "vim.lsp.buf.rename()")
+    u.define_command("LspTypeDef", "vim.lsp.buf.type_definition()")
+    u.define_command("LspImplementation", "vim.lsp.buf.implementation()")
+    u.define_command("LspDiagPrev",
+                     "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_popup_opts})")
+    u.define_command("LspDiagNext",
+                     "vim.lsp.diagnostic.goto_next({popup_opts = lsp_popup_opts})")
+    u.define_command("LspDiagLine",
+                     "vim.lsp.diagnostic.show_line_diagnostics(lsp_popup_opts)")
+    u.define_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
@@ -47,15 +50,9 @@ local on_attach = function(client, bufnr)
     u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
     u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
 
-    u.exec([[
-    augroup LspAutocommands
-        autocmd! * <buffer>
-        autocmd CursorHold * LspDiagLine
-    augroup END
-    ]])
+    u.define_buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
 
     u.buf_opt(bufnr, "omnifunc", "v:lua.lsp_omnifunc")
-
     require("illuminate").on_attach(client)
 end
 
@@ -100,12 +97,7 @@ nvim_lsp.sumneko_lua.setup {
         u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
         lsp.handlers["textDocument/formatting"] = functions.lua_format
-        u.exec([[
-        augroup LspFormatOnSave
-            autocmd! * <buffer>
-            autocmd BufWritePost <buffer> LspFormatting
-        augroup END
-        ]])
+        u.define_buf_augroup("LspFormatOnSave", "BufWritePost", "LspFormatting")
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = sumneko.settings

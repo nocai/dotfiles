@@ -1,3 +1,4 @@
+local format = string.format
 local uv = vim.loop
 local api = vim.api
 
@@ -19,12 +20,9 @@ local code_is_ok = function(code) return code == 0 and true or false end
 
 local M = {}
 
-M.exec = function(command) vim.api.nvim_exec(command, false) end
+M.exec = function(command) api.nvim_exec(command, false) end
 
-M.t =
-    function(str)
-        return vim.api.nvim_replace_termcodes(str, true, true, true)
-    end
+M.t = function(str) return api.nvim_replace_termcodes(str, true, true, true) end
 
 M.contains = function(list, candidate)
     for _, element in pairs(list) do
@@ -40,19 +38,18 @@ M.config_file_exists = function(name)
 end
 
 M.map = function(mode, lhs, rhs, opts)
-    vim.api.nvim_set_keymap(mode, lhs, rhs, get_map_options(opts))
+    api.nvim_set_keymap(mode, lhs, rhs, get_map_options(opts))
 end
 
 M.buf_map = function(bufnr, mode, lhs, rhs, opts)
-    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
+    api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, get_map_options(opts))
 end
 
-M.buf_opt = function(bufnr, opt, val)
-    vim.api.nvim_buf_set_option(bufnr, opt, val)
-end
+M.buf_opt =
+    function(bufnr, opt, val) api.nvim_buf_set_option(bufnr, opt, val) end
 
 M.get_os = function()
-    return vim.api.nvim_eval([[substitute(system("uname"), "\n", "", "")]])
+    return api.nvim_eval([[substitute(system("uname"), "\n", "", "")]])
 end
 
 _G.inspect = function(...) print(vim.inspect(...)) end
@@ -76,6 +73,28 @@ _G.timer = M.timer
 
 M.concat = function(target, new)
     for _, v in pairs(new) do table.insert(target, v) end
+end
+
+M.define_command = function(name, fn)
+    vim.cmd(format("command! %s lua %s", name, fn))
+end
+
+M.define_augroup = function(name, event, fn)
+    api.nvim_exec(format([[
+    augroup %s
+        autocmd!
+        autocmd %s * %s
+    augroup END
+    ]], name, event, fn), false)
+end
+
+M.define_buf_augroup = function(name, event, fn)
+    api.nvim_exec(format([[
+    augroup %s
+        autocmd! * <buffer>
+        autocmd %s <buffer> %s
+    augroup END
+    ]], name, event, fn), false)
 end
 
 M.buf_to_string = function(bufnr)

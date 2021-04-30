@@ -34,45 +34,24 @@ vim.cmd("command! R w | :e")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 vim.cmd("command! Git startinsert | term lazygit")
 
-u.exec([[
-augroup FixFormatOpts
-    autocmd!
-    autocmd BufEnter * setlocal formatoptions=jql
-augroup END
-]])
+u.define_augroup("FixFormatOpts", "BufEnter", "setlocal formatoptions=jql")
 
 _G.on_term_close = function()
     if not string.match(vim.fn.expand("<afile>"), "nnn") then
         vim.api.nvim_input("<CR>")
     end
 end
+u.define_augroup("OnTermOpen", "TermOpen", "setlocal nonumber norelativenumber")
+u.define_augroup("OnTermClose", "TermClose", "lua on_term_close()")
 
-u.exec([[
-augroup TermOpts
-    autocmd!
-    autocmd TermOpen * setlocal nonumber norelativenumber
-    autocmd TermClose * lua on_term_close()
-augroup END
-]])
-
-function _G.HighlightOnYank()
+function _G.yank_highlight()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
 end
-
-u.exec([[
-augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua HighlightOnYank()
-augroup END
-]])
+u.define_augroup("YankHighlight", "TextYankPost", "lua yank_highlight()")
 
 -- automatically create non-existent directories on :e
-u.exec([[
-augroup CreateDirectory
-    autocmd!
-    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
-augroup END
-]])
+u.define_augroup("CreateDirectory", "BufWritePre,FileWritePre",
+                 "call mkdir(expand('<afile>:p:h'), 'p')")
 
 -- maps
 u.map("o", "ae", ":<C-u>normal! ggVG<CR>")
