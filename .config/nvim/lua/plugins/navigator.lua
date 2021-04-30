@@ -1,16 +1,13 @@
 require("Navigator").setup({auto_save = "current", disable_on_zoom = true})
 
-vim.api.nvim_set_keymap("n", "<A-h>",
+vim.api.nvim_set_keymap("n", "<C-h>",
                         "<cmd> lua require('Navigator').left()<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<A-k>", "<CMD>lua require('Navigator').up()<CR>",
+vim.api.nvim_set_keymap("n", "<C-k>", "<CMD>lua require('Navigator').up()<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<A-l>",
+vim.api.nvim_set_keymap("n", "<C-l>",
                         "<cmd> lua require('Navigator').right()<CR>",
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<A-j>",
+vim.api.nvim_set_keymap("n", "<C-j>",
                         "<cmd> lua require('Navigator').down()<CR>",
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<A-p>",
-                        "<cmd> lua require('Navigator').previous()<CR>",
                         {noremap = true, silent = true})
