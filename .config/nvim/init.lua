@@ -75,20 +75,7 @@ augroup END
 ]])
 
 -- maps
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_input("<C-y>")
-    elseif vim.bo.omnifunc ~= "" then
-        vim.api.nvim_input("<C-x><C-o>")
-    else
-        vim.api.nvim_input("<Tab>")
-    end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "<cmd> lua tab_complete()<CR>",
-                        {silent = true})
-
-u.map("o", "A", ":<C-u>normal! ggVG<CR>")
+u.map("o", "ae", ":<C-u>normal! ggVG<CR>")
 
 u.map("i", "<S-Tab>", "<C-o>A")
 
@@ -104,8 +91,8 @@ u.map("n", "<Leader>B", ":Bd<CR>")
 
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
-u.map("n", "<Space>", ":")
-u.map("v", "<Space>", ":")
+u.map("n", "<Space>", ":", {silent = false})
+u.map("v", "<Space>", ":", {silent = false})
 
 u.map("n", "<Tab>", "%", {noremap = false})
 u.map("x", "<Tab>", "%", {noremap = false})

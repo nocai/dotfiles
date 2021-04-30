@@ -14,23 +14,4 @@ M.lua_format = function()
     end)
 end
 
-M.set_highlights = function()
-    u.exec([[
-    function! LspHighlights() abort
-        hi def link LspDiagnosticsDefaultError ErrorMsg
-        hi def link LspDiagnosticsDefaultWarning WarningMsg
-        hi def link LspDiagnosticsDefaultInformation Title
-        hi def link LspDiagnosticsDefaultHint EndOfBuffer
-        hi def link LspDiagnosticsUnderlineError ErrorMsg
-        hi def link LspDiagnosticsUnderlineWarning WarningMsg
-        hi def link LspDiagnosticsUnderlineInformation Title
-        hi def link LspDiagnosticsUnderlineHint EndOfBuffer
-    endfunction
-    augroup LspHighlights
-        autocmd!
-        autocmd ColorScheme * call LspHighlights()
-    augroup END
-    ]])
-end
-
 return M

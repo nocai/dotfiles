@@ -3,9 +3,11 @@ local api = vim.api
 
 local nvim_config_dir = vim.fn.getenv("HOME") .. "/.config/nvim/lua/"
 
-local get_map_options = function(opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend("force", options, opts) end
+local get_map_options = function(custom_options)
+    local options = {noremap = true, silent = true}
+    if custom_options then
+        options = vim.tbl_extend("force", options, custom_options)
+    end
     return options
 end
 

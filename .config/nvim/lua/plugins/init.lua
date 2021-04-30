@@ -61,23 +61,18 @@ return require("packer").startup(function()
         "vim-test/vim-test",
         config = function() require("plugins.vim-test") end
     }
-    use {
-        "folke/lsp-trouble.nvim",
-        config = function() require("plugins.trouble") end
-    }
 
     -- visual
     use {
         "jose-elias-alvarez/buftabline.nvim",
         config = function() require("plugins.buftabline") end
     }
-    use "sainnhe/sonokai"
     use {
         "RRethy/vim-illuminate",
         config = function() require("plugins.illuminate") end
     }
+    use "sainnhe/sonokai"
     use "challenger-deep-theme/vim"
-    use "folke/tokyonight.nvim"
 
     -- misc
     use {
@@ -88,5 +83,4 @@ return require("packer").startup(function()
         cmd = "MarkdownPreview"
     }
     use "dag/vim-fish"
-    use "tridactyl/vim-tridactyl"
 end)
