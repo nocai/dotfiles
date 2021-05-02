@@ -102,11 +102,3 @@ nvim_lsp.sumneko_lua.setup {
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = sumneko.settings
 }
-
-nvim_lsp.bashls.setup {on_attach = on_attach}
-nvim_lsp.jsonls.setup {
-    on_attach = on_attach,
-    filetypes = {"json", "jsonc"},
-    init_options = {provideFormatter = false}
-}
-nvim_lsp.yamlls.setup {on_attach = on_attach}
