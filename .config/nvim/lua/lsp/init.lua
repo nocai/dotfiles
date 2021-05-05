@@ -96,8 +96,9 @@ nvim_lsp.sumneko_lua.setup {
         on_attach(client)
         u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
 
-        lsp.handlers["textDocument/formatting"] = functions.lua_format
-        u.define_buf_augroup("LspFormatOnSave", "BufWritePost", "LspFormatting")
+        _G.lsp_formatting = functions.lua_format
+        u.define_buf_augroup("LspFormatOnSave", "BufWritePost",
+                             "lua lsp_formatting()")
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
     settings = sumneko.settings
