@@ -38,6 +38,7 @@ return require("packer").startup(function()
         config = function() require("plugins.navigator") end
     }
     use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
+    use "wellle/tmux-complete.vim"
 
     -- development
     use "neovim/nvim-lspconfig"
@@ -56,6 +57,7 @@ return require("packer").startup(function()
         run = ":TSUpdate",
         config = function() require("plugins.treesitter") end
     }
+    use "JoosepAlviste/nvim-ts-context-commentstring"
     use {"windwp/nvim-ts-autotag", requires = "nvim-treesitter/nvim-treesitter"}
     use {
         "vim-test/vim-test",
@@ -64,7 +66,7 @@ return require("packer").startup(function()
 
     -- visual
     use {
-        "jose-elias-alvarez/buftabline.nvim",
+        "~/git/buftabline.nvim",
         config = function() require("plugins.buftabline") end
     }
     use {
@@ -72,7 +74,6 @@ return require("packer").startup(function()
         config = function() require("plugins.illuminate") end
     }
     use "sainnhe/sonokai"
-    use "challenger-deep-theme/vim"
 
     -- misc
     use {

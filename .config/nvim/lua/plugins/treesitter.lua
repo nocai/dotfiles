@@ -1,4 +1,5 @@
 require"nvim-treesitter.configs".setup {
+    context_commentstring = {enable = true},
     ensure_installed = {
         "javascript", "typescript", "tsx", "lua", "json", "jsonc", "yaml",
         "query"
