@@ -30,6 +30,7 @@ local on_attach = function(client, bufnr)
     u.define_command("LspCodeAction", "vim.lsp.buf.code_action()")
     u.define_command("LspHover", "vim.lsp.buf.hover()")
     u.define_command("LspRename", "vim.lsp.buf.rename()")
+    u.define_command("LspRefs", "vim.lsp.buf.references()")
     u.define_command("LspTypeDef", "vim.lsp.buf.type_definition()")
     u.define_command("LspImplementation", "vim.lsp.buf.implementation()")
     u.define_command("LspDiagPrev",
@@ -42,6 +43,8 @@ local on_attach = function(client, bufnr)
 
     -- bindings
     u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
+    u.buf_map(bufnr, "n", "gr", ":LspRefs<CR>")
+    u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
     u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
     u.buf_map(bufnr, "n", "gi", ":LspRename<CR>")
     u.buf_map(bufnr, "n", "K", ":LspHover<CR>")
@@ -54,6 +57,7 @@ local on_attach = function(client, bufnr)
 
     u.buf_opt(bufnr, "omnifunc", "v:lua.lsp_omnifunc")
     require("illuminate").on_attach(client)
+    require("lspfuzzy").setup {}
 end
 
 nvim_lsp.tsserver.setup {

@@ -1,9 +1,8 @@
 set PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
 set -x EDITOR nvim
 
-set -x NNN_BMS 'd:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config;v:~/.config/nvim/lua'
-set -x NNN_PLUG 'd:diffs;p:preview-tui;s:suedit;t:treeview;r:renamer'
-set -x NNN_FIFO /tmp/nnn.fifo
+set -x FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
+set -x FZF_DEFAULT_OPTS '--bind tab:toggle-out,shift-tab:toggle-in,alt-j:preview-down,alt-k:preview-up'
 
 set fish_greeting
 

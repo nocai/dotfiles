@@ -2,7 +2,7 @@ if status --is-interactive
     abbr -a -g mkdir 'mkdir -p'
     abbr -a -- - 'cd -'
 
-    abbr -a -g n nnn -e
+    abbr -a -g v 'vifm .'
 
     abbr -a -g ni 'npm install'
     abbr -a -g nid 'npm install --save-dev'
@@ -15,7 +15,8 @@ if status --is-interactive
 
     abbr -a -g nv nvim
     abbr -a -g nvr 'nvim -c Rg'
-    abbr -a -g nvn 'nvim -c NnnPicker'
+    abbr -a -g nvn 'nvim -c Vifm'
+    abbr -a -g nvf 'nvim -c Files'
     abbr -a -g nvp 'nvim -c PackerSync'
     abbr -a -g vimdiff 'nvim -d'
 

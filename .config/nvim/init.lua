@@ -37,7 +37,7 @@ vim.cmd("command! Git startinsert | term lazygit")
 u.define_augroup("FixFormatOpts", "BufEnter", "setlocal formatoptions=jql")
 
 _G.on_term_close = function()
-    if not string.match(vim.fn.expand("<afile>"), "nnn") then
+    if not string.match(vim.fn.expand("<afile>"), "vifm") then
         vim.api.nvim_input("<CR>")
     end
 end

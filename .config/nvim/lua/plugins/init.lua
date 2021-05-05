@@ -29,15 +29,17 @@ return require("packer").startup(function()
 
     -- integrations
     use {
-        "nvim-telescope/telescope.nvim",
-        requires = {"nvim-lua/popup.nvim"},
-        config = function() require("plugins.telescope") end
+        "junegunn/fzf.vim",
+        requires = {"junegunn/fzf"},
+        run = function() vim.fn["fzf#install"]() end,
+        config = function() require("plugins.fzf") end
     }
     use {
         "numToStr/Navigator.nvim",
         config = function() require("plugins.navigator") end
     }
-    use {"mcchrish/nnn.vim", config = function() require("plugins.nnn") end}
+    use {"vifm/vifm.vim", config = function() require("plugins.vifm") end}
+    use "ojroques/nvim-lspfuzzy"
     use "wellle/tmux-complete.vim"
 
     -- development
