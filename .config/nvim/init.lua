@@ -1,6 +1,7 @@
 local u = require("utils")
 
 vim.g.mapleader = ","
+
 vim.o.clipboard = "unnamedplus"
 vim.o.completeopt = "menuone,noinsert"
 vim.o.expandtab = true
@@ -28,8 +29,11 @@ vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 
 -- (auto)commands
-vim.cmd("command! Bd %bd")
+vim.cmd("command! Bd %bw")
 vim.cmd("command! Bo %bd|e#|bd#")
+u.map("n", "<Leader>b", ":Bo<CR>")
+u.map("n", "<Leader>B", ":Bd<CR>")
+
 vim.cmd("command! R w | :e")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
 vim.cmd("command! Git startinsert | term lazygit")
@@ -44,6 +48,8 @@ end
 u.define_augroup("OnTermOpen", "TermOpen", "setlocal nonumber norelativenumber")
 u.define_augroup("OnTermClose", "TermClose", "lua on_term_close()")
 
+u.define_augroup("Fish", "BufEnter", "set filetype=fish", "*.fish")
+
 function _G.yank_highlight()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
 end
@@ -54,6 +60,7 @@ u.define_augroup("CreateDirectory", "BufWritePre,FileWritePre",
                  "call mkdir(expand('<afile>:p:h'), 'p')")
 
 -- maps
+-- define ae as entire document text object
 u.map("o", "ae", ":<C-u>normal! ggVG<CR>")
 
 u.map("i", "<S-Tab>", "<C-o>A")
@@ -64,9 +71,6 @@ u.map("x", "H", "^")
 u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
-
-u.map("n", "<Leader>b", ":Bo<CR>")
-u.map("n", "<Leader>B", ":Bd<CR>")
 
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
@@ -91,6 +95,6 @@ u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], {expr = true})
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 
 -- load remaining lua config
-if (u.config_file_exists("plugins/init")) then require("plugins") end
-if (u.config_file_exists("theme")) then require("theme") end
-if (u.config_file_exists("lsp/init")) then require("lsp") end
+require("plugins")
+require("theme")
+require("lsp")

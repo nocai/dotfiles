@@ -1,5 +1,4 @@
-vim.g["test#strategy"] = "neovim"
-vim.g["test#strategy"] = {nearest = "neovim", file = "neovim", suite = "basic"}
+vim.g["test#strategy"] = "basic"
 
 vim.cmd("command! TestCoverage term npm run test:cov")
 

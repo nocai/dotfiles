@@ -2,8 +2,6 @@ local format = string.format
 local uv = vim.loop
 local api = vim.api
 
-local nvim_config_dir = vim.fn.getenv("HOME") .. "/.config/nvim/lua/"
-
 local get_map_options = function(custom_options)
     local options = {noremap = true, silent = true}
     if custom_options then
@@ -28,12 +26,6 @@ M.contains = function(list, candidate)
     for _, element in pairs(list) do
         if element == candidate then return true end
     end
-    return false
-end
-
-M.config_file_exists = function(name)
-    local f = vim.loop.fs_open(nvim_config_dir .. name .. ".lua", "r", 438)
-    if f then return true end
     return false
 end
 
@@ -79,13 +71,13 @@ M.define_command = function(name, fn)
     vim.cmd(format("command! %s lua %s", name, fn))
 end
 
-M.define_augroup = function(name, event, fn)
+M.define_augroup = function(name, event, fn, ft)
     api.nvim_exec(format([[
     augroup %s
         autocmd!
-        autocmd %s * %s
+        autocmd %s %s %s
     augroup END
-    ]], name, event, fn), false)
+    ]], name, event, ft or "*", fn), false)
 end
 
 M.define_buf_augroup = function(name, event, fn)
