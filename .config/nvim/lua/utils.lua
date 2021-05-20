@@ -40,10 +40,6 @@ end
 M.buf_opt =
     function(bufnr, opt, val) api.nvim_buf_set_option(bufnr, opt, val) end
 
-M.get_os = function()
-    return api.nvim_eval([[substitute(system("uname"), "\n", "", "")]])
-end
-
 _G.inspect = function(...) print(vim.inspect(...)) end
 M.inspect = _G.inspect
 

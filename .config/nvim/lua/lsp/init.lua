@@ -2,6 +2,7 @@ local u = require("utils")
 local functions = require("lsp.functions")
 local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
+local null_ls = require("lsp.null-ls")
 
 local lsp = vim.lsp
 
@@ -104,6 +105,8 @@ nvim_lsp.sumneko_lua.setup {
         u.define_buf_augroup("LspFormatOnSave", "BufWritePost",
                              "lua lsp_formatting()")
     end,
-    cmd = {sumneko.binary, "-E", sumneko.root .. "/main.lua"},
+    cmd = {sumneko.binary, "-E", sumneko.root .. "main.lua"},
     settings = sumneko.settings
 }
+
+null_ls.setup(on_attach)
