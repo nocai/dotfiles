@@ -20,17 +20,17 @@ return require("packer").startup(function()
     use_with_config("svermeulen/vim-cutlass", "cutlass")
     use_with_config("SirVer/ultisnips", "ultisnips")
     use_with_config("phaazon/hop.nvim", "hop")
+    use_with_config("folke/trouble.nvim", "trouble")
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = {"nvim-lua/popup.nvim"},
+        config = config("telescope")
+    }
+    use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
 
     -- integrations
-    use {
-        "junegunn/fzf.vim",
-        requires = {"junegunn/fzf"},
-        run = function() vim.fn["fzf#install"]() end,
-        config = config("fzf")
-    }
     use_with_config("numToStr/Navigator.nvim", "navigator")
     use_with_config("vifm/vifm.vim", "vifm")
-    use "ojroques/nvim-lspfuzzy"
     use "wellle/tmux-complete.vim"
 
     -- development
@@ -49,11 +49,12 @@ return require("packer").startup(function()
     -- visual
     use_with_config("RRethy/vim-illuminate", "illuminate")
     use "sainnhe/sonokai"
+    use "kyazdani42/nvim-web-devicons"
 
     -- local
-    use_with_config("~/git/null-ls/", "null-ls")
     use_with_config("~/git/buftabline.nvim", "buftabline")
     use "~/git/nvim-lsp-ts-utils"
+    use "~/git/null-ls"
 
     -- misc
     use {

@@ -1,9 +1,6 @@
 set PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
 set -x EDITOR nvim
 
-set -x FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
-set -x FZF_DEFAULT_OPTS '--bind tab:toggle-out,shift-tab:toggle-in,alt-j:preview-down,alt-k:preview-up'
-
 set fish_greeting
 
 functions --copy cd standard_cd
