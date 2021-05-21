@@ -1,4 +1,6 @@
-vim.api.nvim_set_keymap("n", "s", "<Plug>(SubversiveSubstitute)", {})
-vim.api.nvim_set_keymap("x", "s", "<Plug>(SubversiveSubstitute)", {})
-vim.api.nvim_set_keymap("n", "ss", "<Plug>(SubversiveSubstituteLine)", {})
-vim.api.nvim_set_keymap("n", "S", "<Plug>(SubversiveSubstituteToEndOfLine)", {})
+local u = require("utils")
+
+u.map("n", "s", "<Plug>(SubversiveSubstitute)", {noremap = false})
+u.map("x", "s", "<Plug>(SubversiveSubstitute)", {noremap = false})
+u.map("n", "ss", "<Plug>(SubversiveSubstituteLine)", {noremap = false})
+u.map("n", "S", "<Plug>(SubversiveSubstituteToEndOfLine)", {noremap = false})

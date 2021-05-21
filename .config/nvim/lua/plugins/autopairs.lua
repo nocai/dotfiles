@@ -1,4 +1,5 @@
 local npairs = require("nvim-autopairs")
+local u = require("utils")
 
 npairs.setup {
     check_ts = true,
@@ -6,5 +7,5 @@ npairs.setup {
     check_line_pair = false
 }
 
-_G.on_enter = function() return npairs.autopairs_cr() end
-vim.api.nvim_set_keymap("i", "<CR>", "v:lua.on_enter()", {expr = true})
+_G.autopairs_on_enter = function() return npairs.autopairs_cr() end
+u.map("i", "<CR>", "v:lua.autopairs_on_enter()", {expr = true})

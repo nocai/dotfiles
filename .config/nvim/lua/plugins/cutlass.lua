@@ -1,5 +1,7 @@
-vim.api.nvim_set_keymap("n", "m", "d", {noremap = true})
-vim.api.nvim_set_keymap("x", "m", "d", {noremap = true})
-vim.api.nvim_set_keymap("n", "mm", "dd", {noremap = true})
-vim.api.nvim_set_keymap("n", "M", "D", {noremap = true})
-vim.api.nvim_set_keymap("n", "gm", "m", {noremap = true})
+local u = require("utils")
+
+u.map("n", "m", "d", {noremap = true})
+u.map("x", "m", "d", {noremap = true})
+u.map("n", "mm", "dd", {noremap = true})
+u.map("n", "M", "D", {noremap = true})
+u.map("n", "gm", "m", {noremap = true})

@@ -1,20 +1,24 @@
+local u = require("utils")
+
 vim.g.UltiSnipsExpandTrigger = "<C-j>"
 vim.g.UltiSnipsJumpForwardTrigger = "<C-j>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<C-k>"
 
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        vim.api.nvim_input("<C-y>")
-    elseif vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or
-        vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-        return vim.fn["UltiSnips#ExpandSnippetOrJump"]()
+local input = vim.api.nvim_input
+local fn = vim.fn
+
+_G.ultisnips_tab_complete = function()
+    if fn.pumvisible() == 1 then
+        input("<C-y>")
+    elseif fn["UltiSnips#CanExpandSnippet"]() == 1 or
+        fn["UltiSnips#CanJumpForwards"]() == 1 then
+        return fn["UltiSnips#ExpandSnippetOrJump"]()
     elseif vim.bo.omnifunc ~= "" then
-        vim.api.nvim_input("<C-x><C-o>")
+        input("<C-x><C-o>")
     else
-        vim.api.nvim_input("<C-n>")
+        input("<C-n>")
     end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "<cmd> lua tab_complete()<CR>",
-                        {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>V", ":UltiSnipsEdit<CR>", {silent = true})
+u.map("i", "<Tab>", "<cmd> lua ultisnips_tab_complete()<CR>")
+u.map("n", "<Leader>V", ":UltiSnipsEdit<CR>")

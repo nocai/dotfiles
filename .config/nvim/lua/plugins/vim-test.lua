@@ -1,8 +1,10 @@
+local u = require("utils")
+
 vim.g["test#strategy"] = "basic"
 
-vim.cmd("command! TestCoverage term npm run test:cov")
+u.define_command("TestCoverage", "term npm run test:cov")
 
-vim.api.nvim_set_keymap("n", "<Leader>te", ":TestNearest<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>tf", ":TestFile<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>ts", ":TestSuite<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>tc", ":TestCoverage<CR>", {silent = true})
+u.map("n", "<Leader>te", ":TestNearest<CR>")
+u.map("n", "<Leader>tf", ":TestFile<CR>")
+u.map("n", "<Leader>ts", ":TestSuite<CR>")
+u.map("n", "<Leader>tc", ":TestCoverage<CR>")

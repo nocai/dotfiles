@@ -1,64 +1,56 @@
+local ts_utils = require("nvim-lsp-ts-utils")
+
 local u = require("utils")
 local functions = require("lsp.functions")
 local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local null_ls = require("lsp.null-ls")
 
+local api = vim.api
 local lsp = vim.lsp
 
 lsp.handlers["textDocument/publishDiagnostics"] =
     lsp.with(lsp.diagnostic.on_publish_diagnostics,
              {underline = true, signs = true, virtual_text = false})
 
-local lsp_popup_opts = {border = "single"}
-_G.lsp_popup_opts = lsp_popup_opts
+local popup_opts = {border = "single"}
 
 lsp.handlers["textDocument/signatureHelp"] =
-    lsp.with(lsp.handlers.signature_help, lsp_popup_opts)
-lsp.handlers["textDocument/hover"] =
-    lsp.with(lsp.handlers.hover, lsp_popup_opts)
+    lsp.with(lsp.handlers.signature_help, popup_opts)
+lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, popup_opts)
 
--- wrap omnifunc to prevent annoying "can only be used in insert" message
-_G.lsp_omnifunc = function(...)
-    local ok, results = pcall(lsp.omnifunc, ...)
-    return not ok and nil or results
-end
+_G.lsp_custom = {popup_opts = popup_opts}
 
 local on_attach = function(client, bufnr)
     -- commands
-    u.define_command("LspDef", "vim.lsp.buf.definition()")
-    u.define_command("LspFormatting", "vim.lsp.buf.formatting()")
-    u.define_command("LspCodeAction", "vim.lsp.buf.code_action()")
-    u.define_command("LspHover", "vim.lsp.buf.hover()")
-    u.define_command("LspRename", "vim.lsp.buf.rename()")
-    u.define_command("LspRefs", "vim.lsp.buf.references()")
-    u.define_command("LspTypeDef", "vim.lsp.buf.type_definition()")
-    u.define_command("LspImplementation", "vim.lsp.buf.implementation()")
-    u.define_command("LspDiagPrev",
-                     "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_popup_opts})")
-    u.define_command("LspDiagNext",
-                     "vim.lsp.diagnostic.goto_next({popup_opts = lsp_popup_opts})")
-    u.define_command("LspDiagLine",
-                     "vim.lsp.diagnostic.show_line_diagnostics(lsp_popup_opts)")
-    u.define_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
+    u.define_lua_command("LspDef", "vim.lsp.buf.definition()")
+    u.define_lua_command("LspFormatting", "vim.lsp.buf.formatting()")
+    u.define_lua_command("LspHover", "vim.lsp.buf.hover()")
+    u.define_lua_command("LspRename", "vim.lsp.buf.rename()")
+    u.define_lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
+    u.define_lua_command("LspImplementation", "vim.lsp.buf.implementation()")
+    u.define_lua_command("LspDiagPrev",
+                         "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_custom.popup_opts})")
+    u.define_lua_command("LspDiagNext",
+                         "vim.lsp.diagnostic.goto_next({popup_opts = lsp_custom.popup_opts})")
+    u.define_lua_command("LspDiagLine",
+                         "vim.lsp.diagnostic.show_line_diagnostics(lsp_custom.popup_opts)")
+    u.define_lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
-    u.buf_map(bufnr, "n", "gd", ":LspDef<CR>")
-    u.buf_map(bufnr, "n", "gr", ":LspRefs<CR>")
-    u.buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
-    u.buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
-    u.buf_map(bufnr, "n", "gi", ":LspRename<CR>")
-    u.buf_map(bufnr, "n", "K", ":LspHover<CR>")
-    u.buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
-    u.buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
-    u.buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
-    u.buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
+    u.map("n", "gd", ":LspDef<CR>", nil, bufnr)
+    u.map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
+    u.map("n", "gi", ":LspRename<CR>", nil, bufnr)
+    u.map("n", "K", ":LspHover<CR>", nil, bufnr)
+    u.map("n", "[a", ":LspDiagPrev<CR>", nil, bufnr)
+    u.map("n", "]a", ":LspDiagNext<CR>", nil, bufnr)
+    u.map("n", "<Leader>a", ":LspDiagLine<CR>", nil, bufnr)
+    u.map("i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", nil, bufnr)
 
     u.define_buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
+    api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    u.buf_opt(bufnr, "omnifunc", "v:lua.lsp_omnifunc")
     require("illuminate").on_attach(client)
-    require("lspfuzzy").setup {}
 end
 
 nvim_lsp.tsserver.setup {
@@ -68,10 +60,8 @@ nvim_lsp.tsserver.setup {
     },
     on_attach = function(client, bufnr)
         on_attach(client)
+        u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
 
-        u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
-
-        local ts_utils = require("nvim-lsp-ts-utils")
         ts_utils.setup {
             -- debug = true,
             enable_import_on_completion = true,
@@ -89,17 +79,17 @@ nvim_lsp.tsserver.setup {
         }
         ts_utils.setup_client(client)
 
-        u.buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-        u.buf_map(bufnr, "n", "gI", ":TSLspRenameFile<CR>")
-        u.buf_map(bufnr, "n", "gt", ":TSLspImportAll<CR>")
-        u.buf_map(bufnr, "n", "qq", ":TSLspFixCurrent<CR>")
+        u.map("n", "gs", ":TSLspOrganize<CR>", nil, bufnr)
+        u.map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
+        u.map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
+        u.map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
     end
 }
 
 nvim_lsp.sumneko_lua.setup {
     on_attach = function(client, bufnr)
         on_attach(client)
-        u.buf_map(bufnr, "i", ".", ".<C-x><C-o>")
+        u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
 
         _G.lsp_formatting = functions.lua_format
         u.define_buf_augroup("LspFormatOnSave", "BufWritePost",

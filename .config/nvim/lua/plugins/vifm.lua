@@ -1,1 +1,3 @@
-vim.api.nvim_set_keymap("n", "-", ":Vifm<CR>", {silent = true})
+local u = require("utils")
+
+u.map("n", "-", ":Vifm<CR>")

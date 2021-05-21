@@ -1,22 +1,13 @@
+local u = require("utils")
+
 require("buftabline").setup {
     kill_maps = true,
     custom_command = "vertical sb",
     custom_map_prefix = "v",
-    auto_hide = true
+    auto_hide = true,
+    icons = true,
+    icon_colors = "normal"
 }
 
-vim.api.nvim_set_keymap("n", "<C-n>", ":BufPrev<CR>",
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-p>", ":BufNext<CR>",
-                        {noremap = true, silent = true})
-require("buftabline").setup {
-    kill_maps = true,
-    custom_command = "vertical sb",
-    custom_map_prefix = "v",
-    auto_hide = true
-}
-
-vim.api.nvim_set_keymap("n", "<C-n>", ":BufPrev<CR>",
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-p>", ":BufNext<CR>",
-                        {noremap = true, silent = true})
+u.map("n", "<C-n>", ":BufPrev<CR>")
+u.map("n", "<C-p>", ":BufNext<CR>")
