@@ -36,12 +36,11 @@ u.map("n", "<Leader>B", ":Bd<CR>")
 
 vim.cmd("command! R w | :e")
 vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
-vim.cmd("command! Git startinsert | term lazygit")
 
 u.define_augroup("FixFormatOpts", "BufEnter", "setlocal formatoptions=jql")
 
 _G.on_term_close = function()
-    if not string.match(vim.fn.expand("<afile>"), "vifm") then
+    if not string.match(vim.fn.expand("<afile>"), "nnn") then
         vim.api.nvim_input("<CR>")
     end
 end

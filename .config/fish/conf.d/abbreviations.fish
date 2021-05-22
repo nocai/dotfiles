@@ -2,7 +2,7 @@ if status --is-interactive
     abbr -a -g mkdir 'mkdir -p'
     abbr -a -- - 'cd -'
 
-    abbr -a -g v 'vifm .'
+    abbr -a -g n nnn
 
     abbr -a -g ni 'npm install'
     abbr -a -g nid 'npm install --save-dev'
@@ -15,7 +15,8 @@ if status --is-interactive
 
     abbr -a -g nv nvim
     abbr -a -g nvr 'nvim -c Rg'
-    abbr -a -g nvn 'nvim -c Vifm'
+    abbr -a -g nvn 'nvim -c NnnPicker'
+    abbr -a -g nvg 'nvim -c Git'
     abbr -a -g nvp 'nvim -c PackerSync'
     abbr -a -g vimdiff 'nvim -d'
 
@@ -25,6 +26,7 @@ if status --is-interactive
     abbr -a -g bubu 'brew update && brew upgrade'
     abbr -a -g bs 'brew search'
 
+    abbr -a -g exa 'exa --icons --classify'
     abbr -a -g ext 'exa --tree --level'
 
     abbr -a -g tl 'tmux list-sessions'
@@ -42,6 +44,7 @@ if status --is-interactive
 
     abbr -a -g g git
     abbr -a -g ga 'git add'
+    abbr -a -g gd 'git diff'
     abbr -a -g gc 'git commit -v'
     abbr -a -g gco 'git checkout'
     abbr -a -g gcl 'git clone'
@@ -50,5 +53,4 @@ if status --is-interactive
     abbr -a -g gf 'git fetch'
     abbr -a -g gl "git pull"
     abbr -a -g gst 'git status'
-    abbr -a -g lg lazygit
 end

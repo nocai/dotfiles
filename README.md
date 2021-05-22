@@ -7,19 +7,17 @@ macOS (M1).
 
 I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
 
-- [fish](https://github.com/fish-shell/fish-shell)
+- [fish](https://github.com/fish-shell/fish-shell), which does most of what I
+  want out-of-the-box and makes customization approachable
 
 - Neovim on its [master branch](https://github.com/neovim/neovim/commits/master)
-  with a functional TypeScript setup for its built-in LSP
+  with a functional TypeScript setup for its built-in LSP, for programming,
+  writing, Git operations, and (almost) everything else I do on the command line
 
 - [tmux](https://github.com/tmux/tmux) +
   [tmuxp](https://github.com/tmux-python/tmuxp) to manage sessions
 
-- [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
-  use git
-
-- [vifm](https://github.com/vifm/vifm), not the fastest Vim-like file manager,
-  but certainly the most Vim-like one
+- [nnn](https://github.com/jarun/nnn), a lean terminal file manager
 
 ## GUI
 

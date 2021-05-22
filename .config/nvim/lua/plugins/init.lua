@@ -12,6 +12,7 @@ return require("packer").startup(function()
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
     use "tpope/vim-commentary"
+    use "tpope/vim-fugitive"
 
     -- additional functionality
     use "wellle/targets.vim"
@@ -30,7 +31,7 @@ return require("packer").startup(function()
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator")
-    use_with_config("vifm/vifm.vim", "vifm")
+    use_with_config("mcchrish/nnn.vim", "nnn")
     use "wellle/tmux-complete.vim"
 
     -- development
