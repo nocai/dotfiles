@@ -12,7 +12,7 @@ return require("packer").startup(function()
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
     use "tpope/vim-commentary"
-    use "tpope/vim-fugitive"
+    use {"tpope/vim-fugitive", {"tpope/vim-rhubarb", "junegunn/gv.vim"}}
 
     -- additional functionality
     use "wellle/targets.vim"

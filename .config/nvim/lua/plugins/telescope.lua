@@ -35,30 +35,8 @@ _G.telescope_custom = {
             vimgrep_arguments = vimgrep_arguments
         }
     end,
-    find_files = find_files,
-    open = function()
-        local open = function(arg)
-            vim.g.loaded_netrw = true
-            local search_dirs = arg and {arg} or nil
-            find_files({search_dirs = search_dirs})
-        end
-
-        local args = vim.v.argv
-        table.remove(args, 1)
-        if vim.tbl_isempty(args) then
-            open()
-            return
-        end
-
-        for _, arg in pairs(args) do
-            if vim.fn.isdirectory(arg) == 1 then
-                open(arg)
-                return
-            end
-        end
-    end
+    find_files = find_files
 }
-u.define_augroup("TelescopeOnEnter", "VimEnter", "lua telescope_custom.open()")
 
 u.define_lua_command("Files", "telescope_custom.find_files()")
 u.define_lua_command("Rg", "telescope_custom.live_grep()")

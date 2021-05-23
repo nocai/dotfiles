@@ -14,6 +14,7 @@ if status --is-interactive
     abbr -a -g npmr 'npm run'
 
     abbr -a -g nv nvim
+    abbr -a -g nvf 'nvim -c Files'
     abbr -a -g nvr 'nvim -c Rg'
     abbr -a -g nvn 'nvim -c NnnPicker'
     abbr -a -g nvg 'nvim -c Git'
