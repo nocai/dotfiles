@@ -1,6 +1,9 @@
 set PATH /opt/homebrew/bin /opt/homebrew/sbin $PATH
 set -x EDITOR nvim
 
+# tmux extended keys
+printf '\033[>4;1m'
+
 set -x NNN_BMS 'd:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config;v:~/.config/nvim/lua'
 set -x NNN_OPTS "Heo"
 

@@ -64,6 +64,8 @@ u.map("o", "ae", ":<C-u>normal! ggVG<CR>")
 
 u.map("i", "<S-Tab>", "<C-o>A")
 
+u.map("n", "<S-CR>", ":wqall<CR>")
+
 u.map("n", "H", "^")
 u.map("o", "H", "^")
 u.map("x", "H", "^")
