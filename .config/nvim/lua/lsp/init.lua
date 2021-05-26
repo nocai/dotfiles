@@ -1,7 +1,6 @@
 local ts_utils = require("nvim-lsp-ts-utils")
 
 local u = require("utils")
-local functions = require("lsp.functions")
 local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local null_ls = require("lsp.null-ls")
@@ -50,6 +49,11 @@ local on_attach = function(client, bufnr)
     u.define_buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
     api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+    if client.resolved_capabilities.document_formatting then
+        u.define_buf_augroup("LspFormatOnSave", "BufWritePost",
+                             "lua vim.lsp.buf.formatting()")
+    end
+
     require("illuminate").on_attach(client)
 end
 
@@ -59,11 +63,11 @@ nvim_lsp.tsserver.setup {
         "/usr/local/bin/tsserver-wrapper"
     },
     on_attach = function(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
         on_attach(client)
-        u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
 
         ts_utils.setup {
-            -- debug = true,
+            debug = true,
             enable_import_on_completion = true,
             complete_parens = true,
             signature_help_in_parens = true,
@@ -71,10 +75,6 @@ nvim_lsp.tsserver.setup {
             eslint_enable_diagnostics = true,
             enable_formatting = true,
             formatter = "eslint_d",
-            formatter_args = {
-                "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME"
-            },
-            format_on_save = true,
             update_imports_on_move = true
         }
         ts_utils.setup_client(client)
@@ -83,6 +83,7 @@ nvim_lsp.tsserver.setup {
         u.map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
         u.map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
         u.map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
+        u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
     end
 }
 
@@ -90,10 +91,6 @@ nvim_lsp.sumneko_lua.setup {
     on_attach = function(client, bufnr)
         on_attach(client)
         u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
-
-        _G.lsp_formatting = functions.lua_format
-        u.define_buf_augroup("LspFormatOnSave", "BufWritePost",
-                             "lua lsp_formatting()")
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "main.lua"},
     settings = sumneko.settings

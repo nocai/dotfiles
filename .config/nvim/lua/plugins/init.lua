@@ -13,6 +13,7 @@ return require("packer").startup(function()
     use "tpope/vim-unimpaired"
     use "tpope/vim-commentary"
     use {"tpope/vim-fugitive", {"tpope/vim-rhubarb", "junegunn/gv.vim"}}
+    use "https://github.com/justinmk/vim-sneak/"
 
     -- additional functionality
     use "wellle/targets.vim"
