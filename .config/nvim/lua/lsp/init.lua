@@ -46,15 +46,12 @@ local on_attach = function(client, bufnr)
     u.map("n", "<Leader>a", ":LspDiagLine<CR>", nil, bufnr)
     u.map("i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", nil, bufnr)
 
-    u.define_buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
-    api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    u.buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
 
     if client.resolved_capabilities.document_formatting then
-        u.define_buf_augroup("LspFormatOnSave", "BufWritePost",
-                             "lua vim.lsp.buf.formatting()")
+        u.buf_augroup("LspFormatOnSave", "BufWritePost",
+                      "lua vim.lsp.buf.formatting()")
     end
-
-    require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {
@@ -84,6 +81,7 @@ nvim_lsp.tsserver.setup {
         u.map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
         u.map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
         u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
+        vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     end
 }
 
@@ -91,6 +89,7 @@ nvim_lsp.sumneko_lua.setup {
     on_attach = function(client, bufnr)
         on_attach(client)
         u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
+        vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "main.lua"},
     settings = sumneko.settings

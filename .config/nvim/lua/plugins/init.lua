@@ -12,17 +12,20 @@ return require("packer").startup(function()
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
     use "tpope/vim-commentary"
-    use {"tpope/vim-fugitive", {"tpope/vim-rhubarb", "junegunn/gv.vim"}}
-    use "https://github.com/justinmk/vim-sneak/"
+    use {
+        "tpope/vim-fugitive",
+        {"tpope/vim-rhubarb", "junegunn/gv.vim"},
+        config = config("git")
+    }
+    use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
     -- additional functionality
     use "wellle/targets.vim"
+    use_with_config("justinmk/vim-sneak/", "sneak")
     use_with_config("windwp/nvim-autopairs", "autopairs")
     use_with_config("svermeulen/vim-subversive", "subversive")
     use_with_config("svermeulen/vim-cutlass", "cutlass")
     use_with_config("SirVer/ultisnips", "ultisnips")
-    use_with_config("phaazon/hop.nvim", "hop")
-    use_with_config("folke/trouble.nvim", "trouble")
     use {
         "nvim-telescope/telescope.nvim",
         requires = {"nvim-lua/popup.nvim"},
@@ -33,23 +36,20 @@ return require("packer").startup(function()
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator")
     use_with_config("mcchrish/nnn.vim", "nnn")
-    use "wellle/tmux-complete.vim"
 
     -- development
     use "neovim/nvim-lspconfig"
     use "nvim-lua/plenary.nvim"
-    use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = config("treesitter")
     }
     use "JoosepAlviste/nvim-ts-context-commentstring"
-    use {"windwp/nvim-ts-autotag", requires = "nvim-treesitter/nvim-treesitter"}
+    use "windwp/nvim-ts-autotag"
     use_with_config("vim-test/vim-test", "vim-test")
 
     -- visual
-    use_with_config("RRethy/vim-illuminate", "illuminate")
     use "sainnhe/sonokai"
     use "kyazdani42/nvim-web-devicons"
 
