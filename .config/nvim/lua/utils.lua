@@ -12,11 +12,12 @@ end
 
 local M = {}
 
-M.map = function(mode, target, source, opts, bufnr)
-    return bufnr and
-               api.nvim_buf_set_keymap(bufnr, mode, target, source,
-                                       get_map_options(opts)) or
-               api.nvim_set_keymap(mode, target, source, get_map_options(opts))
+M.map = function(mode, target, source, opts)
+    api.nvim_set_keymap(mode, target, source, get_map_options(opts))
+end
+
+M.buf_map = function(mode, target, source, opts, bufnr)
+    api.nvim_buf_set_keymap(bufnr, mode, target, source, get_map_options(opts))
 end
 
 _G.inspect = function(...) print(vim.inspect(...)) end

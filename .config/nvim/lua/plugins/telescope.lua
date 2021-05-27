@@ -12,11 +12,7 @@ telescope.setup {
     extensions = {
         fzf = {override_generic_sorter = true, override_file_sorter = true}
     },
-    defaults = {
-        mappings = {
-            i = {["<Esc>"] = actions.close, ["<C-u>"] = false, ["."] = "."}
-        }
-    }
+    defaults = {mappings = {i = {["<Esc>"] = actions.close, ["<C-u>"] = false}}}
 }
 
 local find_files = function(opts)

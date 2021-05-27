@@ -43,14 +43,6 @@ _G.filetypes.term = {
 ft_autocmd("term", "setup", "TermOpen *")
 ft_autocmd("term", "breakdown", "TermClose *")
 
-_G.filetypes.lua = {
-    setup = function()
-        u.map("n", "<Leader>T", "<Plug>PlenaryTestFile", {noremap = false},
-              api.nvim_get_current_buf())
-    end
-}
-ft_autocmd("lua", "setup")
-
 _G.filetypes.markdown = {
     setup = function()
         vim.bo.textwidth = 80

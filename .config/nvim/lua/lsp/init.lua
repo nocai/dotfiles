@@ -5,7 +5,6 @@ local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local null_ls = require("lsp.null-ls")
 
-local api = vim.api
 local lsp = vim.lsp
 
 lsp.handlers["textDocument/publishDiagnostics"] =
@@ -29,22 +28,21 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
     u.lua_command("LspImplementation", "vim.lsp.buf.implementation()")
     u.lua_command("LspDiagPrev",
-                         "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_custom.popup_opts})")
+                  "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_custom.popup_opts})")
     u.lua_command("LspDiagNext",
-                         "vim.lsp.diagnostic.goto_next({popup_opts = lsp_custom.popup_opts})")
+                  "vim.lsp.diagnostic.goto_next({popup_opts = lsp_custom.popup_opts})")
     u.lua_command("LspDiagLine",
-                         "vim.lsp.diagnostic.show_line_diagnostics(lsp_custom.popup_opts)")
+                  "vim.lsp.diagnostic.show_line_diagnostics(lsp_custom.popup_opts)")
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
-    u.map("n", "gd", ":LspDef<CR>", nil, bufnr)
-    u.map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
-    u.map("n", "gi", ":LspRename<CR>", nil, bufnr)
-    u.map("n", "K", ":LspHover<CR>", nil, bufnr)
-    u.map("n", "[a", ":LspDiagPrev<CR>", nil, bufnr)
-    u.map("n", "]a", ":LspDiagNext<CR>", nil, bufnr)
-    u.map("n", "<Leader>a", ":LspDiagLine<CR>", nil, bufnr)
-    u.map("i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", nil, bufnr)
+    u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
+    u.buf_map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
+    u.buf_map("n", "gi", ":LspRename<CR>", nil, bufnr)
+    u.buf_map("n", "K", ":LspHover<CR>", nil, bufnr)
+    u.buf_map("n", "[a", ":LspDiagPrev<CR>", nil, bufnr)
+    u.buf_map("n", "]a", ":LspDiagNext<CR>", nil, bufnr)
+    u.buf_map("i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", nil, bufnr)
 
     u.buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
 
@@ -76,11 +74,11 @@ nvim_lsp.tsserver.setup {
         }
         ts_utils.setup_client(client)
 
-        u.map("n", "gs", ":TSLspOrganize<CR>", nil, bufnr)
-        u.map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
-        u.map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
-        u.map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
-        u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
+        u.buf_map("n", "gs", ":TSLspOrganize<CR>", nil, bufnr)
+        u.buf_map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
+        u.buf_map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
+        u.buf_map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
+        u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
         vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     end
 }
@@ -88,7 +86,7 @@ nvim_lsp.tsserver.setup {
 nvim_lsp.sumneko_lua.setup {
     on_attach = function(client, bufnr)
         on_attach(client)
-        u.map("i", ".", ".<C-x><C-o>", nil, bufnr)
+        u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
         vim.bo.omnifunc = "v:lua.vim.lsp.omnifunc"
     end,
     cmd = {sumneko.binary, "-E", sumneko.root .. "main.lua"},
