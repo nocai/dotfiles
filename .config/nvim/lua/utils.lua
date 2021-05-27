@@ -21,27 +21,24 @@ end
 
 _G.inspect = function(...) print(vim.inspect(...)) end
 
-local start_time
 M.timer = {
-    start = function() start_time = uv.now() end,
+    start_time = nil,
+    start = function() M.timer.start_time = uv.now() end,
     stop = function()
-        print(uv.now() - start_time .. " ms")
-        start_time = nil
+        print(uv.now() - M.timer.start_time .. " ms")
+        M.timer.start_time = nil
     end,
 
-    start_nano = function() start_time = uv.hrtime() end,
+    start_nano = function() M.timer.start_time = uv.hrtime() end,
     stop_nano = function()
-        print(uv.hrtime() - start_time .. " ns")
-        start_time = nil
+        print(uv.hrtime() - M.timer.start_time .. " ns")
+        M.timer.start_time = nil
     end
 }
-_G.timer = M.timer
 
-M.define_command =
-    function(name, fn) vim.cmd(format("command! %s %s", name, fn)) end
+M.command = function(name, fn) vim.cmd(format("command! %s %s", name, fn)) end
 
-M.define_lua_command =
-    function(name, fn) M.define_command(name, "lua " .. fn) end
+M.lua_command = function(name, fn) M.command(name, "lua " .. fn) end
 
 M.augroup = function(name, event, fn, ft)
     api.nvim_exec(format([[

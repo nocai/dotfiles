@@ -12,7 +12,11 @@ telescope.setup {
     extensions = {
         fzf = {override_generic_sorter = true, override_file_sorter = true}
     },
-    defaults = {mappings = {i = {["<Esc>"] = actions.close, ["<C-u>"] = false}}}
+    defaults = {
+        mappings = {
+            i = {["<Esc>"] = actions.close, ["<C-u>"] = false, ["."] = "."}
+        }
+    }
 }
 
 local find_files = function(opts)
@@ -38,13 +42,13 @@ _G.telescope_custom = {
     find_files = find_files
 }
 
-u.define_lua_command("Files", "telescope_custom.find_files()")
-u.define_lua_command("Rg", "telescope_custom.live_grep()")
-u.define_command("BLines", "Telescope current_buffer_fuzzy_find")
-u.define_command("History", "Telescope oldfiles")
-u.define_command("Buffers", "Telescope buffers")
-u.define_command("BCommits", "Telescope git_bcommits")
-u.define_command("Commits", "Telescope git_commits")
+u.lua_command("Files", "telescope_custom.find_files()")
+u.lua_command("Rg", "telescope_custom.live_grep()")
+u.command("BLines", "Telescope current_buffer_fuzzy_find")
+u.command("History", "Telescope oldfiles")
+u.command("Buffers", "Telescope buffers")
+u.command("BCommits", "Telescope git_bcommits")
+u.command("Commits", "Telescope git_commits")
 
 u.map("n", "<Leader>ff", "<cmd>Files<CR>")
 u.map("n", "<Leader>fg", "<cmd>Rg<CR>")
@@ -54,9 +58,9 @@ u.map("n", "<Leader>fl", "<cmd>BLines<CR>")
 u.map("n", "<Leader>fs", "<cmd>LspSym<CR>")
 
 -- lsp
-u.define_command("LspRef", "Telescope lsp_references")
-u.define_command("LspSym", "Telescope lsp_workspace_symbols")
-u.define_command("LspAct", "Telescope lsp_code_actions")
+u.command("LspRef", "Telescope lsp_references")
+u.command("LspSym", "Telescope lsp_workspace_symbols")
+u.command("LspAct", "Telescope lsp_code_actions")
 
 u.map("n", "ga", "<cmd>LspAct<CR>")
 u.map("n", "gr", "<cmd>LspRef<CR>")

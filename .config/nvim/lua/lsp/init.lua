@@ -22,19 +22,19 @@ _G.lsp_custom = {popup_opts = popup_opts}
 
 local on_attach = function(client, bufnr)
     -- commands
-    u.define_lua_command("LspDef", "vim.lsp.buf.definition()")
-    u.define_lua_command("LspFormatting", "vim.lsp.buf.formatting()")
-    u.define_lua_command("LspHover", "vim.lsp.buf.hover()")
-    u.define_lua_command("LspRename", "vim.lsp.buf.rename()")
-    u.define_lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
-    u.define_lua_command("LspImplementation", "vim.lsp.buf.implementation()")
-    u.define_lua_command("LspDiagPrev",
+    u.lua_command("LspDef", "vim.lsp.buf.definition()")
+    u.lua_command("LspFormatting", "vim.lsp.buf.formatting()")
+    u.lua_command("LspHover", "vim.lsp.buf.hover()")
+    u.lua_command("LspRename", "vim.lsp.buf.rename()")
+    u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
+    u.lua_command("LspImplementation", "vim.lsp.buf.implementation()")
+    u.lua_command("LspDiagPrev",
                          "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_custom.popup_opts})")
-    u.define_lua_command("LspDiagNext",
+    u.lua_command("LspDiagNext",
                          "vim.lsp.diagnostic.goto_next({popup_opts = lsp_custom.popup_opts})")
-    u.define_lua_command("LspDiagLine",
+    u.lua_command("LspDiagLine",
                          "vim.lsp.diagnostic.show_line_diagnostics(lsp_custom.popup_opts)")
-    u.define_lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
+    u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
     u.map("n", "gd", ":LspDef<CR>", nil, bufnr)
@@ -64,7 +64,7 @@ nvim_lsp.tsserver.setup {
         on_attach(client)
 
         ts_utils.setup {
-            debug = true,
+            -- debug = true,
             enable_import_on_completion = true,
             complete_parens = true,
             signature_help_in_parens = true,

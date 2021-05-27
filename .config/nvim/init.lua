@@ -29,42 +29,25 @@ vim.wo.relativenumber = true
 vim.wo.signcolumn = "yes"
 
 -- (auto)commands
-vim.cmd("command! Bd %bw")
-vim.cmd("command! Bo %bd|e#|bd#")
-u.map("n", "<Leader>b", ":Bo<CR>")
-u.map("n", "<Leader>B", ":Bd<CR>")
-
-vim.cmd("command! R w | :e")
-vim.cmd("command! Remove call delete(expand('%')) | bdelete!")
-
-u.define_augroup("FixFormatOpts", "BufEnter", "setlocal formatoptions=jql")
-
-_G.on_term_close = function()
-    if not string.match(vim.fn.expand("<afile>"), "nnn") then
-        vim.api.nvim_input("<CR>")
-    end
-end
-u.define_augroup("OnTermOpen", "TermOpen", "setlocal nonumber norelativenumber")
-u.define_augroup("OnTermClose", "TermClose", "lua on_term_close()")
-
-u.define_augroup("Fish", "BufEnter", "set filetype=fish", "*.fish")
+u.command("Bd", "%bw")
+u.command("Bo", "%bd|e#|bd#")
+u.command("Remove", "call delete(expand('%')) | bdelete!")
+u.command("Git", "term lazygit")
 
 function _G.yank_highlight()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
 end
-u.define_augroup("YankHighlight", "TextYankPost", "lua yank_highlight()")
+u.augroup("YankHighlight", "TextYankPost", "lua yank_highlight()")
 
 -- automatically create non-existent directories on :e
-u.define_augroup("CreateDirectory", "BufWritePre,FileWritePre",
-                 "call mkdir(expand('<afile>:p:h'), 'p')")
+u.augroup("CreateDirectory", "BufWritePre,FileWritePre",
+          "call mkdir(expand('<afile>:p:h'), 'p')")
 
 -- maps
 -- define ae as entire document text object
 u.map("o", "ae", ":<C-u>normal! ggVG<CR>")
 
 u.map("i", "<S-Tab>", "<C-o>A")
-
-u.map("n", "<S-CR>", ":wqall<CR>")
 
 u.map("n", "H", "^")
 u.map("o", "H", "^")
@@ -99,3 +82,4 @@ u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], {expr = true})
 require("plugins")
 require("theme")
 require("lsp")
+require("ft")

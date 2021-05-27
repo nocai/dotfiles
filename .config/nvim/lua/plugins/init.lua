@@ -59,6 +59,7 @@ return require("packer").startup(function()
     use "~/git/null-ls"
 
     -- misc
+    use "blankname/vim-fish"
     use {
         "iamcco/markdown-preview.nvim",
         ft = {"markdown"},
