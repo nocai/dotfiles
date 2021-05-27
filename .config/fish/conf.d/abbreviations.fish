@@ -54,5 +54,5 @@ if status --is-interactive
     abbr -a -g gp 'git push'
     abbr -a -g gf 'git fetch'
     abbr -a -g gl "git pull"
-    abbr -a -g gst 'git status --short'
+    abbr -a -g gst 'git status'
 end

@@ -16,7 +16,7 @@ return require("packer").startup(function()
 
     -- additional functionality
     use "wellle/targets.vim"
-    use_with_config("justinmk/vim-sneak/", "sneak")
+    use_with_config("justinmk/vim-sneak", "sneak")
     use_with_config("windwp/nvim-autopairs", "autopairs")
     use_with_config("svermeulen/vim-subversive", "subversive")
     use_with_config("svermeulen/vim-cutlass", "cutlass")
@@ -31,6 +31,7 @@ return require("packer").startup(function()
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator")
     use_with_config("mcchrish/nnn.vim", "nnn")
+    use_with_config("christoomey/vim-tmux-runner", "vtr")
 
     -- development
     use "neovim/nvim-lspconfig"
@@ -42,7 +43,6 @@ return require("packer").startup(function()
     }
     use "JoosepAlviste/nvim-ts-context-commentstring"
     use "windwp/nvim-ts-autotag"
-    use_with_config("vim-test/vim-test", "vim-test")
 
     -- visual
     use "sainnhe/sonokai"
