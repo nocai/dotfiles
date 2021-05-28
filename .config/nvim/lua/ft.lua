@@ -30,7 +30,8 @@ _G.global.filetypes = {}
 _G.global.filetypes.term = {
     setup = function()
         vim.cmd("startinsert")
-        vim.cmd("setlocal nonumber norelativenumber")
+        vim.opt_local.number = false
+        vim.opt_local.relativenumber = false
     end,
     breakdown = function()
         if not string.match(vim.fn.expand("<afile>"), "nnn") then
@@ -43,8 +44,8 @@ ft_autocmd("term", "breakdown", "TermClose *")
 
 _G.global.filetypes.markdown = {
     setup = function()
-        vim.bo.textwidth = 80
-        vim.cmd("setlocal spell")
+        vim.opt_local.textwidth = 80
+        vim.opt_local.spell = true
     end
 }
 ft_autocmd("markdown", "setup")

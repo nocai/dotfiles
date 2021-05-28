@@ -13,7 +13,7 @@ _G.global.tab_complete = function()
     elseif fn["UltiSnips#CanExpandSnippet"]() == 1 or
         fn["UltiSnips#CanJumpForwards"]() == 1 then
         return fn["UltiSnips#ExpandSnippetOrJump"]()
-    elseif vim.bo.omnifunc ~= "" then
+    elseif vim.opt_local.omnifunc ~= "" then
         input("<C-x><C-o>")
     else
         input("<C-n>")

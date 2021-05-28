@@ -5,31 +5,31 @@ local fn = vim.fn
 
 vim.g.mapleader = ","
 
-vim.o.clipboard = "unnamedplus"
-vim.o.completeopt = "menuone,noinsert"
-vim.o.expandtab = true
-vim.o.foldlevelstart = 99
-vim.o.hidden = true
-vim.o.ignorecase = true
-vim.o.mouse = "a"
-vim.o.pumheight = 10
-vim.o.shiftwidth = 4
-vim.o.shortmess = "filnxtToOFcA"
-vim.o.showcmd = false
-vim.o.showtabline = 2
-vim.o.smartcase = true
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.statusline = [[%f %y %m %= %p%% %l:%c]]
-vim.o.tabstop = 4
-vim.o.termguicolors = true
-vim.o.undofile = true
-vim.o.updatetime = 300
+vim.opt.clipboard = "unnamedplus"
+vim.opt.completeopt = {"menuone", "noinsert"}
+vim.opt.expandtab = true
+vim.opt.foldlevelstart = 99
+vim.opt.hidden = true
+vim.opt.ignorecase = true
+vim.opt.mouse = "a"
+vim.opt.pumheight = 10
+vim.opt.shiftwidth = 4
+vim.opt.shortmess:append("cA")
+vim.opt.showcmd = false
+vim.opt.showtabline = 2
+vim.opt.smartcase = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.statusline = [[%f %y %m %= %p%% %l:%c]]
+vim.opt.tabstop = 4
+vim.opt.termguicolors = true
+vim.opt.undofile = true
+vim.opt.updatetime = 300
 
-vim.wo.cursorline = true
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.signcolumn = "yes"
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
 
 -- (auto)commands
 _G.global = {}
