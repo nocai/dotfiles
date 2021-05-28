@@ -95,9 +95,6 @@ u.map("n", "<Leader>cc", ":Bdelete<CR>")
 
 u.command("Remove", "call delete(expand('%')) | bdelete!")
 
-u.command("Git", "term lazygit")
-u.map("n", "<Leader>g", ":Git<CR>")
-
 function _G.global.yank_highlight()
     vim.highlight.on_yank {higroup = "IncSearch", timeout = 500}
 end

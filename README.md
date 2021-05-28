@@ -1,7 +1,7 @@
 # dotfiles
 
-My dotfiles for Neovim, fish, tmux, and friends, optimized for web development on
-macOS (M1).
+My dotfiles for Neovim, fish, tmux, and friends, optimized for web development
+on macOS (M1).
 
 ## Terminal
 

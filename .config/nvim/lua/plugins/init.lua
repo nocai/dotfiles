@@ -12,6 +12,11 @@ return require("packer").startup(function()
     use "tpope/vim-surround"
     use "tpope/vim-unimpaired"
     use "tpope/vim-commentary"
+    use {
+        "tpope/vim-fugitive",
+        {"tpope/vim-rhubarb", "junegunn/gv.vim"},
+        config = config("git")
+    }
     use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
     -- additional functionality
