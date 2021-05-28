@@ -25,7 +25,7 @@ local commands = {
     }
 }
 
-_G.vtr = {
+_G.global.vtr = {
     test = function()
         local ft, fname = get_params()
         send_command(format(commands.file[ft], fname))
@@ -35,8 +35,8 @@ _G.vtr = {
         send_command(commands.suite[ft])
     end
 }
-u.command("VtrTest", "lua vtr.test()")
-u.command("VtrTestSuite", "lua vtr.test_suite()")
+u.command("VtrTest", "lua global.vtr.test()")
+u.command("VtrTestSuite", "lua global.vtr.test_suite()")
 
 u.augroup("VtrExit", "VimLeave", "silent! VtrKillRunner")
 

@@ -20,6 +20,8 @@ M.buf_map = function(mode, target, source, opts, bufnr)
     api.nvim_buf_set_keymap(bufnr, mode, target, source, get_map_options(opts))
 end
 
+M.for_each = function(tbl, cb) for _, v in ipairs(tbl) do cb(v) end end
+
 _G.inspect = function(...) print(vim.inspect(...)) end
 
 M.timer = {

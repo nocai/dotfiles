@@ -13,30 +13,40 @@ lsp.handlers["textDocument/publishDiagnostics"] =
 
 local popup_opts = {border = "single"}
 
+local peek_definition = function()
+    vim.lsp.buf_request(0, "textDocument/definition",
+                        lsp.util.make_position_params(), function(_, _, result)
+        if result == nil or vim.tbl_isempty(result) then return nil end
+        lsp.util.preview_location(result[1], popup_opts)
+    end)
+end
+
 lsp.handlers["textDocument/signatureHelp"] =
     lsp.with(lsp.handlers.signature_help, popup_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, popup_opts)
 
-_G.lsp_custom = {popup_opts = popup_opts}
+_G.global.lsp = {popup_opts = popup_opts, peek_definition = peek_definition}
 
 local on_attach = function(client, bufnr)
     -- commands
     u.lua_command("LspDef", "vim.lsp.buf.definition()")
+    u.lua_command("LspPeekDef", "global.lsp.peek_definition()")
     u.lua_command("LspFormatting", "vim.lsp.buf.formatting()")
     u.lua_command("LspHover", "vim.lsp.buf.hover()")
     u.lua_command("LspRename", "vim.lsp.buf.rename()")
     u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
     u.lua_command("LspImplementation", "vim.lsp.buf.implementation()")
     u.lua_command("LspDiagPrev",
-                  "vim.lsp.diagnostic.goto_prev({popup_opts = lsp_custom.popup_opts})")
+                  "vim.lsp.diagnostic.goto_prev({popup_opts = global.lsp.popup_opts})")
     u.lua_command("LspDiagNext",
-                  "vim.lsp.diagnostic.goto_next({popup_opts = lsp_custom.popup_opts})")
+                  "vim.lsp.diagnostic.goto_next({popup_opts = global.lsp.popup_opts})")
     u.lua_command("LspDiagLine",
-                  "vim.lsp.diagnostic.show_line_diagnostics(lsp_custom.popup_opts)")
+                  "vim.lsp.diagnostic.show_line_diagnostics(global.lsp.popup_opts)")
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
     u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
+    u.buf_map("n", "gh", ":LspPeekDef<CR>", nil, bufnr)
     u.buf_map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
     u.buf_map("n", "gi", ":LspRename<CR>", nil, bufnr)
     u.buf_map("n", "K", ":LspHover<CR>", nil, bufnr)
@@ -50,6 +60,8 @@ local on_attach = function(client, bufnr)
         u.buf_augroup("LspFormatOnSave", "BufWritePost",
                       "lua vim.lsp.buf.formatting()")
     end
+
+    require("illuminate").on_attach(client)
 end
 
 nvim_lsp.tsserver.setup {
@@ -62,7 +74,7 @@ nvim_lsp.tsserver.setup {
         on_attach(client)
 
         ts_utils.setup {
-            -- debug = true,
+            debug = true,
             enable_import_on_completion = true,
             complete_parens = true,
             signature_help_in_parens = true,

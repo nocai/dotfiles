@@ -25,7 +25,7 @@ local find_files = function(opts)
     if not is_git_project then builtin.find_files(opts) end
 end
 
-_G.telescope_custom = {
+_G.global.telescope = {
     live_grep = function()
         builtin.grep_string {
             shorten_path = true,
@@ -38,8 +38,8 @@ _G.telescope_custom = {
     find_files = find_files
 }
 
-u.lua_command("Files", "telescope_custom.find_files()")
-u.lua_command("Rg", "telescope_custom.live_grep()")
+u.lua_command("Files", "global.telescope.find_files()")
+u.lua_command("Rg", "global.telescope.live_grep()")
 u.command("BLines", "Telescope current_buffer_fuzzy_find")
 u.command("History", "Telescope oldfiles")
 u.command("Buffers", "Telescope buffers")

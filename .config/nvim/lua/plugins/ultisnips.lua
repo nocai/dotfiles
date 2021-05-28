@@ -7,7 +7,7 @@ vim.g.UltiSnipsJumpBackwardTrigger = "<C-k>"
 local input = vim.api.nvim_input
 local fn = vim.fn
 
-_G.ultisnips_tab_complete = function()
+_G.global.tab_complete = function()
     if fn.pumvisible() == 1 then
         input("<C-y>")
     elseif fn["UltiSnips#CanExpandSnippet"]() == 1 or
@@ -20,5 +20,5 @@ _G.ultisnips_tab_complete = function()
     end
 end
 
-u.map("i", "<Tab>", "<cmd> lua ultisnips_tab_complete()<CR>")
+u.map("i", "<Tab>", "<cmd> lua global.tab_complete()<CR>")
 u.map("n", "<Leader>V", ":UltiSnipsEdit<CR>")

@@ -7,5 +7,5 @@ npairs.setup {
     check_line_pair = false
 }
 
-_G.autopairs_on_enter = function() return npairs.autopairs_cr() end
-u.map("i", "<CR>", "v:lua.autopairs_on_enter()", {expr = true})
+_G.global.on_enter = function() return npairs.autopairs_cr() end
+u.map("i", "<CR>", "v:lua.global.on_enter()", {expr = true})

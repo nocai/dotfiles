@@ -1,5 +1,3 @@
-local u = require("utils")
-
 local format = string.format
 local api = vim.api
 local exists = vim.fn.exists
@@ -22,14 +20,14 @@ local ft_autocmd = function(ft, fn, event)
 
     exec(format([[
     augroup %s
-        autocmd %s lua filetypes.%s.%s()
+        autocmd %s lua global.filetypes.%s.%s()
     augroup END
     ]], augroup, event or ("FileType " .. ft), ft, fn))
 end
 
-_G.filetypes = {}
+_G.global.filetypes = {}
 
-_G.filetypes.term = {
+_G.global.filetypes.term = {
     setup = function()
         vim.cmd("startinsert")
         vim.cmd("setlocal nonumber norelativenumber")
@@ -43,7 +41,7 @@ _G.filetypes.term = {
 ft_autocmd("term", "setup", "TermOpen *")
 ft_autocmd("term", "breakdown", "TermClose *")
 
-_G.filetypes.markdown = {
+_G.global.filetypes.markdown = {
     setup = function()
         vim.bo.textwidth = 80
         vim.cmd("setlocal spell")
@@ -51,7 +49,7 @@ _G.filetypes.markdown = {
 }
 ft_autocmd("markdown", "setup")
 
-_G.filetypes.typescriptreact = {
+_G.global.filetypes.typescriptreact = {
     setup = function() vim.cmd("UltiSnipsAddFiletypes typescript") end
 }
 ft_autocmd("typescriptreact", "setup")
