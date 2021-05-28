@@ -3,7 +3,7 @@ require"nvim-treesitter.configs".setup {
     autopairs = {enable = true},
     ensure_installed = {
         "javascript", "typescript", "tsx", "lua", "json", "jsonc", "yaml",
-        "query", "fish"
+        "query"
     },
     highlight = {enable = true},
     autotag = {enable = true}

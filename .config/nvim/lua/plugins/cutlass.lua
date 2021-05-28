@@ -1,7 +1,9 @@
 local u = require("utils")
 
-u.map("n", "m", "d", {noremap = true})
-u.map("x", "m", "d", {noremap = true})
-u.map("n", "mm", "dd", {noremap = true})
-u.map("n", "M", "D", {noremap = true})
-u.map("n", "gm", "m", {noremap = true})
+local opts = {noremap = true}
+
+u.map("n", "m", "d", opts)
+u.map("x", "m", "d", opts)
+u.map("n", "mm", "dd", opts)
+u.map("n", "M", "D", opts)
+u.map("n", "gm", "m", opts)
