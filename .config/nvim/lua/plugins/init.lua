@@ -62,6 +62,7 @@ return require("packer").startup(function()
 
     -- misc
     use "blankname/vim-fish"
+    use "teal-language/vim-teal"
     use {
         "iamcco/markdown-preview.nvim",
         ft = {"markdown"},

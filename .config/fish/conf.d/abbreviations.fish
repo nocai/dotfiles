@@ -30,7 +30,7 @@ if status --is-interactive
     abbr -a -g exa 'exa --icons --classify'
     abbr -a -g ext 'exa --tree --level'
 
-    abbr -a -g tl 'tmux list-sessions'
+    abbr -a -g tls 'tmux list-sessions'
     abbr -a -g td 'tmux detach'
     abbr -a -g ta 'tmux attach-session -t'
     abbr -a -g tn 'tmux new-session -s'

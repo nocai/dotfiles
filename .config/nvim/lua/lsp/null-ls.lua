@@ -1,11 +1,13 @@
 local null_ls = require("null-ls")
+local builtins = null_ls.builtins
 
 local sources = {
-    null_ls.builtins.formatting.prettier.with(
-        {filetypes = {"html", "json", "yaml", "markdown"}}),
-    null_ls.builtins.formatting.lua_format,
-    null_ls.builtins.diagnostics.write_good,
-    null_ls.builtins.diagnostics.markdownlint
+    builtins.formatting.prettier.with({
+        filetypes = {"html", "json", "yaml", "markdown"}
+    }), builtins.formatting.lua_format,
+    builtins.formatting.trailing_whitespace.with({filetypes = {"tmux", "fish"}}),
+    builtins.diagnostics.write_good, builtins.diagnostics.markdownlint,
+    builtins.diagnostics.teal
 }
 
 local M = {}
