@@ -26,6 +26,10 @@ M.for_each = function(tbl, cb)
 	end
 end
 
+M.start_case = function(str)
+	return string.upper(string.sub(str, 1, 1)) .. string.sub(str, 2)
+end
+
 _G.inspect = function(...)
 	print(vim.inspect(...))
 end

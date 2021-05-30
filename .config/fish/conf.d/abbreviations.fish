@@ -44,6 +44,7 @@ if status --is-interactive
     abbr -a -g mxc 'tmuxinator copy'
 
     abbr -a -g g git
+    abbr -a -g lg lazygit
     abbr -a -g ga 'git add'
     abbr -a -g gd 'git diff'
     abbr -a -g gc 'git commit -v'
