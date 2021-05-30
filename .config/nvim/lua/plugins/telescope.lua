@@ -5,37 +5,41 @@ local conf = require("telescope.config").values
 local u = require("utils")
 
 local vimgrep_arguments = vim.list_extend(conf.vimgrep_arguments, {
-    "--hidden", "-g", "!{node_modules,.git}"
+	"--hidden",
+	"-g",
+	"!{node_modules,.git}",
 })
 
-telescope.setup {
-    extensions = {
-        fzf = {override_generic_sorter = true, override_file_sorter = true}
-    },
-    defaults = {mappings = {i = {["<Esc>"] = actions.close, ["<C-u>"] = false}}}
-}
+telescope.setup({
+	extensions = {
+		fzf = { override_generic_sorter = true, override_file_sorter = true },
+	},
+	defaults = { mappings = { i = { ["<Esc>"] = actions.close, ["<C-u>"] = false } } },
+})
 
 local find_files = function(opts)
-    if opts and opts.search_dirs then
-        builtin.find_files(opts)
-        return
-    end
+	if opts and opts.search_dirs then
+		builtin.find_files(opts)
+		return
+	end
 
-    local is_git_project = pcall(builtin.git_files, opts)
-    if not is_git_project then builtin.find_files(opts) end
+	local is_git_project = pcall(builtin.git_files, opts)
+	if not is_git_project then
+		builtin.find_files(opts)
+	end
 end
 
 _G.global.telescope = {
-    live_grep = function()
-        builtin.grep_string {
-            shorten_path = true,
-            word_match = "-w",
-            only_sort_text = true,
-            search = "",
-            vimgrep_arguments = vimgrep_arguments
-        }
-    end,
-    find_files = find_files
+	live_grep = function()
+		builtin.grep_string({
+			shorten_path = true,
+			word_match = "-w",
+			only_sort_text = true,
+			search = "",
+			vimgrep_arguments = vimgrep_arguments,
+		})
+	end,
+	find_files = find_files,
 }
 
 u.lua_command("Files", "global.telescope.find_files()")

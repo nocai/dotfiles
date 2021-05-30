@@ -1,6 +1,6 @@
 local u = require("utils")
 
-local opts = {noremap = true}
+local opts = { noremap = true }
 
 u.map("n", "m", "d", opts)
 u.map("x", "m", "d", opts)

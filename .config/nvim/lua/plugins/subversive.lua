@@ -1,6 +1,6 @@
 local u = require("utils")
 
-local opts = {noremap = false}
+local opts = { noremap = false }
 
 u.map("n", "<Leader>s", "<Plug>(SubversiveSubstitute)", opts)
 u.map("x", "<Leader>s", "<Plug>(SubversiveSubstitute)", opts)

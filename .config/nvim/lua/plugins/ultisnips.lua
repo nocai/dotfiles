@@ -8,16 +8,15 @@ local input = vim.api.nvim_input
 local fn = vim.fn
 
 _G.global.tab_complete = function()
-    if fn.pumvisible() == 1 then
-        input("<C-y>")
-    elseif fn["UltiSnips#CanExpandSnippet"]() == 1 or
-        fn["UltiSnips#CanJumpForwards"]() == 1 then
-        return fn["UltiSnips#ExpandSnippetOrJump"]()
-    elseif vim.opt_local.omnifunc ~= "" then
-        input("<C-x><C-o>")
-    else
-        input("<C-n>")
-    end
+	if fn.pumvisible() == 1 then
+		input("<C-y>")
+	elseif fn["UltiSnips#CanExpandSnippet"]() == 1 or fn["UltiSnips#CanJumpForwards"]() == 1 then
+		return fn["UltiSnips#ExpandSnippetOrJump"]()
+	elseif vim.opt_local.omnifunc ~= "" then
+		input("<C-x><C-o>")
+	else
+		input("<C-n>")
+	end
 end
 
 u.map("i", "<Tab>", "<cmd> lua global.tab_complete()<CR>")
