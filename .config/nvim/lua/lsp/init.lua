@@ -143,15 +143,13 @@ nvim_lsp.tsserver.setup({
         u.buf_map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
         u.buf_map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
         u.buf_map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
-        u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
         vim.opt_local.omnifunc = "v:lua.global.lsp.omnifunc"
     end,
 })
 
 nvim_lsp.sumneko_lua.setup({
-    on_attach = function(client, bufnr)
+    on_attach = function(client)
         on_attach(client)
-        u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
         vim.opt_local.omnifunc = "v:lua.global.lsp.omnifunc"
     end,
     cmd = { sumneko.binary, "-E", sumneko.root .. "main.lua" },

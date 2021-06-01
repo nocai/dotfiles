@@ -8,14 +8,14 @@ local input = vim.api.nvim_input
 local fn = vim.fn
 
 _G.global.tab_complete = function()
-    if fn.pumvisible() == 1 then
-        input("<C-y>")
-    elseif fn["UltiSnips#CanExpandSnippet"]() == 1 or fn["UltiSnips#CanJumpForwards"]() == 1 then
+    if fn["UltiSnips#CanExpandSnippet"]() == 1 or fn["UltiSnips#CanJumpForwards"]() == 1 then
         return fn["UltiSnips#ExpandSnippetOrJump"]()
-    elseif vim.opt_local.omnifunc ~= "" then
+    elseif fn.pumvisible() == 1 then
+        input("<C-y>")
+    elseif vim.opt_local.omnifunc ~= "" and vim.bo.filetype ~= "markdown" then
         input("<C-x><C-o>")
     else
-        input("<C-n>")
+        input("<C-x><C-o>")
     end
 end
 

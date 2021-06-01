@@ -42,6 +42,7 @@ local for_each_buffer = function(cb)
     end)
 end
 
+local complete_timer
 _G.global.commands = {
     bonly = function()
         local current = api.nvim_get_current_buf()
@@ -102,7 +103,32 @@ _G.global.commands = {
 
         vim.cmd("bdelete " .. bufnr)
     end,
+
+    complete = function()
+        local filetype = vim.bo.filetype
+        if not filetype or filetype == "TelescopePrompt" then
+            return
+        end
+
+        if complete_timer then
+            complete_timer.restart()
+            return
+        end
+
+        complete_timer = u.timer(100, nil, true, function()
+            complete_timer = nil
+
+            if vim.fn.pumvisible() == 1 or vim.fn.mode() ~= "i" then
+                return
+            end
+
+            local seq = vim.bo.omnifunc ~= "" and filetype ~= "markdown" and "<C-x><C-o>" or "<C-x><C-n>"
+            api.nvim_input(seq)
+        end)
+    end,
 }
+
+u.augroup("Autocomplete", "InsertCharPre", "lua global.commands.complete()")
 
 u.lua_command("Bdelete", "global.commands.bdelete()")
 u.lua_command("Bwipeall", "global.commands.bwipeall()")

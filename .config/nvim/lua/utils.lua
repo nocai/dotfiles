@@ -96,4 +96,45 @@ M.buf_augroup = function(name, event, fn)
     )
 end
 
+M.timer = function(timeout, interval, should_start, callback)
+    local close_handle = function(handle)
+        if handle and not handle:is_closing() then
+            handle:close()
+        end
+    end
+
+    interval = interval or 0
+
+    local timer = uv.new_timer()
+    local wrapped = vim.schedule_wrap(callback)
+
+    local start = function()
+        timer:start(timeout, interval, wrapped)
+    end
+    local close = function()
+        close_handle(timer)
+    end
+    local stop = function(should_close)
+        timer:stop()
+        if should_close then
+            close()
+        end
+    end
+    local restart = function(new_timeout, new_interval)
+        timer:stop()
+        timer:start(new_timeout or timeout, new_interval or interval, wrapped)
+    end
+
+    if should_start then
+        timer:start(timeout, interval, wrapped)
+    end
+    return {
+        _timer = timer,
+        start = start,
+        stop = stop,
+        restart = restart,
+        close = close,
+    }
+end
+
 return M
