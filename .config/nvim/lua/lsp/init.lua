@@ -5,6 +5,7 @@ local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local null_ls = require("lsp.null-ls")
 
+local api = vim.api
 local lsp = vim.lsp
 
 lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
@@ -24,10 +25,60 @@ local peek_definition = function()
     end)
 end
 
+-- simplified version of original omnifunc to prevent annoying errors
+local omnifunc = function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    local row = vim.api.nvim_get_current_line()
+    local line = string.sub(row, 1, pos[2])
+
+    local text_match = vim.fn.match(line, "\\k*$")
+    local prefix = string.sub(line, text_match + 1)
+
+    lsp.buf_request(
+        api.nvim_get_current_buf(),
+        "textDocument/completion",
+        lsp.util.make_position_params(),
+        function(_, _, result)
+            if not result or vim.fn.mode() ~= "i" then
+                return
+            end
+
+            vim.fn.complete(text_match + 1, lsp.util.text_document_completion_list_to_complete_items(result, prefix))
+        end
+    )
+
+    return -2
+end
+
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, popup_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, popup_opts)
 
-_G.global.lsp = { popup_opts = popup_opts, peek_definition = peek_definition }
+local go_to_diagnostic = function(pos)
+    if not pos then
+        return
+    end
+
+    api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
+    vim.schedule(function()
+        lsp.diagnostic.show_line_diagnostics(popup_opts, api.nvim_win_get_buf(0))
+    end)
+end
+
+local next_diagnostic = function()
+    go_to_diagnostic(lsp.diagnostic.get_next_pos() or lsp.diagnostic.get_prev_pos())
+end
+
+local prev_diagnostic = function()
+    go_to_diagnostic(lsp.diagnostic.get_prev_pos() or lsp.diagnostic.get_next_pos())
+end
+
+_G.global.lsp = {
+    popup_opts = popup_opts,
+    peek_definition = peek_definition,
+    next_diagnostic = next_diagnostic,
+    prev_diagnostic = prev_diagnostic,
+    omnifunc = omnifunc,
+}
 
 local on_attach = function(client, bufnr)
     -- commands
@@ -38,8 +89,8 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspRename", "vim.lsp.buf.rename()")
     u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
     u.lua_command("LspImplementation", "vim.lsp.buf.implementation()")
-    u.lua_command("LspDiagPrev", "vim.lsp.diagnostic.goto_prev({popup_opts = global.lsp.popup_opts})")
-    u.lua_command("LspDiagNext", "vim.lsp.diagnostic.goto_next({popup_opts = global.lsp.popup_opts})")
+    u.lua_command("LspDiagPrev", "global.lsp.prev_diagnostic()")
+    u.lua_command("LspDiagNext", "global.lsp.next_diagnostic()")
     u.lua_command("LspDiagLine", "vim.lsp.diagnostic.show_line_diagnostics(global.lsp.popup_opts)")
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
@@ -74,7 +125,6 @@ nvim_lsp.tsserver.setup({
         on_attach(client)
 
         ts_utils.setup({
-            debug = true,
             enable_import_on_completion = true,
             complete_parens = true,
             signature_help_in_parens = true,
@@ -91,7 +141,7 @@ nvim_lsp.tsserver.setup({
         u.buf_map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
         u.buf_map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
         u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
-        vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+        vim.opt_local.omnifunc = "v:lua.global.lsp.omnifunc"
     end,
 })
 
@@ -99,7 +149,7 @@ nvim_lsp.sumneko_lua.setup({
     on_attach = function(client, bufnr)
         on_attach(client)
         u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
-        vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+        vim.opt_local.omnifunc = "v:lua.global.lsp.omnifunc"
     end,
     cmd = { sumneko.binary, "-E", sumneko.root .. "main.lua" },
     settings = sumneko.settings,
