@@ -82,7 +82,6 @@ _G.global.lsp = {
 
 local on_attach = function(client, bufnr)
     -- commands
-    u.lua_command("LspDef", "vim.lsp.buf.definition()")
     u.lua_command("LspPeekDef", "global.lsp.peek_definition()")
     u.lua_command("LspFormatting", "vim.lsp.buf.formatting()")
     u.lua_command("LspHover", "vim.lsp.buf.hover()")
@@ -95,7 +94,6 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
-    u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
     u.buf_map("n", "gh", ":LspPeekDef<CR>", nil, bufnr)
     u.buf_map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
     u.buf_map("n", "gi", ":LspRename<CR>", nil, bufnr)
@@ -109,6 +107,11 @@ local on_attach = function(client, bufnr)
     if client.resolved_capabilities.document_formatting then
         u.buf_augroup("LspFormatOnSave", "BufWritePost", "lua vim.lsp.buf.formatting()")
     end
+
+    -- telescope
+    u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
+    u.buf_map("n", "gr", ":LspRef<CR>", nil, bufnr)
+    u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
 
     require("illuminate").on_attach(client)
 end

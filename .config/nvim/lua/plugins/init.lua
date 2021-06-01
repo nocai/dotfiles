@@ -30,7 +30,7 @@ return require("packer").startup(function()
     use_with_config({ "svermeulen/vim-cutlass", "cutlass" })
     use_with_config({ "SirVer/ultisnips", "ultisnips" })
     use({
-        "~/git/telescope.nvim",
+        "nvim-telescope/telescope.nvim",
         requires = { "nvim-lua/popup.nvim" },
         config = config("telescope"),
     })

@@ -11,5 +11,5 @@ _G.global.illuminate = {
     end,
 }
 
-u.map("n", "<C-n>", "<cmd> lua global.illuminate.next_ref()<CR>")
-u.map("n", "<C-p>", "<cmd> lua global.illuminate.prev_ref()<CR>")
+u.map("n", "<A-n>", "<cmd> lua global.illuminate.next_ref()<CR>")
+u.map("n", "<A-p>", "<cmd> lua global.illuminate.prev_ref()<CR>")
