@@ -1,20 +1,21 @@
 local null_ls = require("null-ls")
-local builtins = null_ls.builtins
+local b = null_ls.builtins
 
 local sources = {
-	builtins.formatting.prettier.with({
-		filetypes = { "html", "json", "yaml", "markdown" },
-	}),
-	builtins.formatting.stylua,
-	builtins.formatting.trailing_whitespace.with({ filetypes = { "tmux", "fish" } }),
-	builtins.diagnostics.write_good,
-	builtins.diagnostics.markdownlint,
-	builtins.diagnostics.teal,
+    b.formatting.prettier.with({
+        filetypes = { "html", "json", "yaml", "markdown" },
+    }),
+    b.formatting.stylua,
+    b.formatting.trim_whitespace.with({ filetypes = { "tmux", "fish", "teal" } }),
+    b.diagnostics.write_good,
+    b.diagnostics.markdownlint,
+    b.diagnostics.teal,
+    b.code_actions.gitsigns,
 }
 
 local M = {}
 M.setup = function(on_attach)
-	null_ls.setup({ on_attach = on_attach, sources = sources })
+    null_ls.setup({ on_attach = on_attach, sources = sources })
 end
 
 return M
