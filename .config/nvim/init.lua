@@ -35,73 +35,73 @@ vim.opt.signcolumn = "yes"
 _G.global = {}
 
 local for_each_buffer = function(cb)
-	u.for_each(fn.getbufinfo({ buflisted = true }), function(b)
-		if b.changed == 0 then
-			cb(b)
-		end
-	end)
+    u.for_each(fn.getbufinfo({ buflisted = true }), function(b)
+        if b.changed == 0 then
+            cb(b)
+        end
+    end)
 end
 
 _G.global.commands = {
-	bonly = function()
-		local current = api.nvim_get_current_buf()
-		for_each_buffer(function(b)
-			if b.bufnr ~= current then
-				vim.cmd("bdelete " .. b.bufnr)
-			end
-		end)
-	end,
+    bonly = function()
+        local current = api.nvim_get_current_buf()
+        for_each_buffer(function(b)
+            if b.bufnr ~= current then
+                vim.cmd("bdelete " .. b.bufnr)
+            end
+        end)
+    end,
 
-	bwipeall = function()
-		for_each_buffer(function(b)
-			vim.cmd("bdelete " .. b.bufnr)
-		end)
-	end,
+    bwipeall = function()
+        for_each_buffer(function(b)
+            vim.cmd("bdelete " .. b.bufnr)
+        end)
+    end,
 
-	wwipeall = function()
-		local win = api.nvim_get_current_win()
-		u.for_each(fn.getwininfo(), function(w)
-			if w.winid ~= win then
-				if w.loclist == 1 then
-					vim.cmd("lclose")
-				elseif w.quickfix == 1 then
-					vim.cmd("cclose")
-				else
-					vim.cmd(w.winnr .. " close")
-				end
-			end
-		end)
-	end,
+    wwipeall = function()
+        local win = api.nvim_get_current_win()
+        u.for_each(fn.getwininfo(), function(w)
+            if w.winid ~= win then
+                if w.loclist == 1 then
+                    vim.cmd("lclose")
+                elseif w.quickfix == 1 then
+                    vim.cmd("cclose")
+                else
+                    vim.cmd(w.winnr .. " close")
+                end
+            end
+        end)
+    end,
 
-	bdelete = function()
-		local win = api.nvim_get_current_win()
-		local bufnr = api.nvim_win_get_buf(win)
+    bdelete = function()
+        local win = api.nvim_get_current_win()
+        local bufnr = api.nvim_win_get_buf(win)
 
-		local target
-		local previous = fn.bufnr("#")
-		if previous ~= -1 and previous ~= bufnr and fn.buflisted(previous) == 1 then
-			target = previous
-		end
+        local target
+        local previous = fn.bufnr("#")
+        if previous ~= -1 and previous ~= bufnr and fn.buflisted(previous) == 1 then
+            target = previous
+        end
 
-		if not target then
-			for_each_buffer(function(b)
-				if not target and b.bufnr ~= bufnr then
-					target = b.bufnr
-				end
-			end)
-		end
+        if not target then
+            for_each_buffer(function(b)
+                if not target and b.bufnr ~= bufnr then
+                    target = b.bufnr
+                end
+            end)
+        end
 
-		if not target then
-			target = api.nvim_create_buf(false, false)
-		end
+        if not target then
+            target = api.nvim_create_buf(false, false)
+        end
 
-		local windows = fn.getbufinfo(bufnr)[1].windows
-		u.for_each(windows, function(w)
-			api.nvim_win_set_buf(w, target)
-		end)
+        local windows = fn.getbufinfo(bufnr)[1].windows
+        u.for_each(windows, function(w)
+            api.nvim_win_set_buf(w, target)
+        end)
 
-		vim.cmd("bdelete " .. bufnr)
-	end,
+        vim.cmd("bdelete " .. bufnr)
+    end,
 }
 
 u.lua_command("Bdelete", "global.commands.bdelete()")
@@ -113,7 +113,7 @@ u.map("n", "<Leader>cc", ":Bdelete<CR>")
 u.command("Remove", "call delete(expand('%')) | bdelete!")
 
 function _G.global.yank_highlight()
-	vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
 u.augroup("YankHighlight", "TextYankPost", "lua global.yank_highlight()")
 
