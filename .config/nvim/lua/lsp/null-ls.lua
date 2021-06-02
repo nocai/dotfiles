@@ -15,7 +15,11 @@ local sources = {
 
 local M = {}
 M.setup = function(on_attach)
-    null_ls.setup({ on_attach = on_attach, sources = sources })
+    null_ls.setup({
+        -- debug = true,
+        on_attach = on_attach,
+        sources = sources,
+    })
 end
 
 return M

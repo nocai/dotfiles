@@ -1,9 +1,7 @@
-local ts_utils = require("nvim-lsp-ts-utils")
-
 local u = require("utils")
-local nvim_lsp = require("lspconfig")
 local sumneko = require("lsp.sumneko")
 local null_ls = require("lsp.null-ls")
+local tsserver = require("lsp.tsserver")
 
 local api = vim.api
 local lsp = vim.lsp
@@ -25,43 +23,11 @@ local peek_definition = function()
     end)
 end
 
--- simplified version of original omnifunc to prevent annoying errors
-local omnifunc = function()
-    local pos = vim.api.nvim_win_get_cursor(0)
-    local row = vim.api.nvim_get_current_line()
-    local line = string.sub(row, 1, pos[2])
-
-    local text_match = vim.fn.match(line, "\\k*$")
-    local prefix = string.sub(line, text_match + 1)
-
-    lsp.buf_request(
-        api.nvim_get_current_buf(),
-        "textDocument/completion",
-        lsp.util.make_position_params(),
-        function(_, _, result)
-            if not result or vim.fn.mode() ~= "i" then
-                return
-            end
-
-            vim.fn.complete(text_match + 1, lsp.util.text_document_completion_list_to_complete_items(result, prefix))
-        end
-    )
-
-    return -2
-end
-
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, popup_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, popup_opts)
 
 local go_to_diagnostic = function(pos)
-    if not pos then
-        return
-    end
-
-    api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
-    vim.schedule(function()
-        lsp.diagnostic.show_line_diagnostics(popup_opts, api.nvim_win_get_buf(0))
-    end)
+    return pos and api.nvim_win_set_cursor(0, { pos[1] + 1, pos[2] })
 end
 
 local next_diagnostic = function()
@@ -77,7 +43,6 @@ _G.global.lsp = {
     peek_definition = peek_definition,
     next_diagnostic = next_diagnostic,
     prev_diagnostic = prev_diagnostic,
-    omnifunc = omnifunc,
 }
 
 local on_attach = function(client, bufnr)
@@ -116,44 +81,6 @@ local on_attach = function(client, bufnr)
     require("illuminate").on_attach(client)
 end
 
-nvim_lsp.tsserver.setup({
-    cmd = {
-        "typescript-language-server",
-        "--stdio",
-        "--tsserver-path",
-        "/usr/local/bin/tsserver-wrapper",
-    },
-    on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        on_attach(client)
-
-        ts_utils.setup({
-            enable_import_on_completion = true,
-            complete_parens = true,
-            signature_help_in_parens = true,
-            eslint_bin = "eslint_d",
-            eslint_enable_diagnostics = true,
-            enable_formatting = true,
-            formatter = "eslint_d",
-            update_imports_on_move = true,
-        })
-        ts_utils.setup_client(client)
-
-        u.buf_map("n", "gs", ":TSLspOrganize<CR>", nil, bufnr)
-        u.buf_map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
-        u.buf_map("n", "gt", ":TSLspImportAll<CR>", nil, bufnr)
-        u.buf_map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
-        vim.opt_local.omnifunc = "v:lua.global.lsp.omnifunc"
-    end,
-})
-
-nvim_lsp.sumneko_lua.setup({
-    on_attach = function(client)
-        on_attach(client)
-        vim.opt_local.omnifunc = "v:lua.global.lsp.omnifunc"
-    end,
-    cmd = { sumneko.binary, "-E", sumneko.root .. "main.lua" },
-    settings = sumneko.settings,
-})
-
+tsserver.setup(on_attach)
+sumneko.setup(on_attach)
 null_ls.setup(on_attach)
