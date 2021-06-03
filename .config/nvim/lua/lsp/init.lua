@@ -12,7 +12,7 @@ lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_pub
     virtual_text = false,
 })
 
-local popup_opts = { border = "single" }
+local popup_opts = { border = "single", focusable = false }
 
 local peek_definition = function()
     vim.lsp.buf_request(0, "textDocument/definition", lsp.util.make_position_params(), function(_, _, result)
