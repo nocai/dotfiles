@@ -17,19 +17,8 @@ telescope.setup({
     defaults = { mappings = { i = { ["<Esc>"] = actions.close, ["<C-u>"] = false } } },
 })
 
-local find_files = function(opts)
-    if opts and opts.search_dirs then
-        builtin.find_files(opts)
-        return
-    end
-
-    local is_git_project = pcall(builtin.git_files, opts)
-    if not is_git_project then
-        builtin.find_files(opts)
-    end
-end
-
 _G.global.telescope = {
+    -- live grep in project (slow)
     live_grep = function()
         builtin.grep_string({
             shorten_path = true,
@@ -39,13 +28,22 @@ _G.global.telescope = {
             vimgrep_arguments = vimgrep_arguments,
         })
     end,
+
+    -- grep string from prompt (fast, but less convenient)
     grep_prompt = function()
         require("telescope.builtin").grep_string({
             shorten_path = true,
             search = vim.fn.input("grep > "),
         })
     end,
-    find_files = find_files,
+
+    -- try git_files and fall back to find_files
+    find_files = function()
+        local is_git_project = pcall(builtin.git_files)
+        if not is_git_project then
+            builtin.find_files()
+        end
+    end,
 }
 
 u.lua_command("Files", "global.telescope.find_files()")

@@ -2,11 +2,14 @@ local u = require("utils")
 
 local opts = { noremap = false }
 
-u.map("n", "<Leader>s", "<Plug>(SubversiveSubstitute)", opts)
-u.map("x", "<Leader>s", "<Plug>(SubversiveSubstitute)", opts)
-u.map("n", "<Leader>ss", "<Plug>(SubversiveSubstituteLine)", opts)
-u.map("n", "<Leader>S", "<Plug>(SubversiveSubstituteToEndOfLine)", opts)
+-- s for substitute
+u.map("n", "s", "<Plug>(SubversiveSubstitute)", opts)
+u.map("x", "s", "<Plug>(SubversiveSubstitute)", opts)
+u.map("n", "ss", "<Plug>(SubversiveSubstituteLine)", opts)
+u.map("n", "S", "<Plug>(SubversiveSubstituteToEndOfLine)", opts)
 
-u.map("n", "<Leader><Leader>s", "<Plug>(SubversiveSubstituteRange)", opts)
-u.map("x", "<Leader><Leader>s", "<Plug>(SubversiveSubstituteRange)", opts)
-u.map("n", "<Leader><Leader>ss", "<Plug>(SubversiveSubstituteWordRange)", opts)
+-- substitute word in 1st motion over 2nd motion
+u.map("n", "<Leader>s", "<Plug>(SubversiveSubstituteRange)", opts)
+u.map("x", "<Leader>s", "<Plug>(SubversiveSubstituteRange)", opts)
+-- substitute current word over motion
+u.map("n", "<Leader>ss", "<Plug>(SubversiveSubstituteWordRange)", opts)

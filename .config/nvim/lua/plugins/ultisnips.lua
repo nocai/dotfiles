@@ -15,7 +15,7 @@ _G.global.tab_complete = function()
     elseif vim.opt_local.omnifunc ~= "" and vim.bo.filetype ~= "markdown" then
         input("<C-x><C-o>")
     else
-        input("<C-x><C-o>")
+        input("<C-n>")
     end
 end
 
