@@ -120,11 +120,17 @@ commands.remove = function()
     vim.cmd("bdelete!")
 end
 
+commands.restart = function()
+    vim.cmd("w")
+    vim.cmd("e")
+end
+
 u.lua_command("Bonly", "global.commands.bonly()")
 u.lua_command("Bwipeall", "global.commands.bwipeall()")
 u.lua_command("Wwipeall", "global.commands.wwipeall()")
 u.lua_command("Bdelete", "global.commands.bdelete()")
-u.lua_command("Remove", "global.commands.remove()")
+u.lua_command("Rm", "global.commands.remove()")
+u.lua_command("Restart", "global.commands.restart()")
 
 u.map("n", "<CR>", "<cmd> lua global.commands.save_on_cr()<CR>")
 u.map("n", "<Leader>cc", ":Bdelete<CR>")
