@@ -54,7 +54,6 @@ return require("packer").startup(function()
 
     -- visual
     use("sainnhe/sonokai")
-    use("kyazdani42/nvim-web-devicons")
     use_with_config({ "RRethy/vim-illuminate", "illuminate" })
 
     -- local

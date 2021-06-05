@@ -27,7 +27,7 @@ if status --is-interactive
     abbr -a -g bubu 'brew update && brew upgrade'
     abbr -a -g bs 'brew search'
 
-    abbr -a -g exa 'exa --icons --classify'
+    abbr -a -g exa 'exa --classify'
     abbr -a -g ext 'exa --tree --level'
 
     abbr -a -g tls 'tmux list-sessions'
@@ -44,7 +44,6 @@ if status --is-interactive
     abbr -a -g mxc 'tmuxinator copy'
 
     abbr -a -g g git
-    abbr -a -g lg lazygit
     abbr -a -g ga 'git add'
     abbr -a -g gd 'git diff'
     abbr -a -g gc 'git commit -v'
