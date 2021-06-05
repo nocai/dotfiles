@@ -5,7 +5,8 @@ on macOS (M1).
 
 ## Terminal
 
-I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
+I've switched to [Alacritty](https://github.com/alacritty/alacritty) for speed
+and ease of configuration.
 
 - [fish](https://github.com/fish-shell/fish-shell), which does most of what I
   want out-of-the-box and makes customization approachable
@@ -21,6 +22,11 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
 
 ## GUI
 
-- Firefox with [Tridactyl](https://github.com/tridactyl/tridactyl), the most
-  reasonable compromise I've found between having to use (and develop) modern
+- Firefox with [Surfingkeys](https://github.com/brookhong/Surfingkeys), the most
+  reasonable compromise I've found between having to develop (and use) modern
   websites and wanting keyboard control
+
+- [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
+  remap keys
+
+- [Magnet](https://magnet.crowdcafe.com/) for simple window management

@@ -1,0 +1,28 @@
+env:
+  TERM: alacritty
+import:
+  - ~/.config/alacritty/theme.yml
+
+window:
+  padding:
+    x: 2
+    y: 4
+  decorations: buttonless
+
+live_config_reload: true
+
+scrolling:
+  history: 0
+
+font:
+  normal:
+    family: Iosevka Term
+    style: Regular
+  bold:
+    family: Iosevka Term
+    style: Bold
+  italic:
+    family: Iosevka Term
+    style: Italic
+  size: 12
+  use_thin_strokes: true
