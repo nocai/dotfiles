@@ -49,6 +49,7 @@ return require("packer").startup(function()
         run = ":TSUpdate",
         config = config("treesitter"),
     })
+    use("RRethy/nvim-treesitter-textsubjects")
     use("JoosepAlviste/nvim-ts-context-commentstring")
     use("windwp/nvim-ts-autotag")
 

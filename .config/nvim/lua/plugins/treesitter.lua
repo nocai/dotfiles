@@ -11,6 +11,12 @@ require("nvim-treesitter.configs").setup({
         "yaml",
         "query",
     },
+    textsubjects = {
+        enable = true,
+        keymaps = {
+            ["."] = "textsubjects-smart",
+        },
+    },
     highlight = { enable = true },
     autotag = { enable = true },
 })
