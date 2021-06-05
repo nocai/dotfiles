@@ -28,9 +28,26 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
--- maps
-u.map("o", "ae", ":<C-u>normal! ggVG<CR>")
+_G.global = {}
 
+-- terminal
+_G.global.terminal = {
+    on_open = function()
+        vim.cmd("startinsert")
+        vim.cmd("setlocal nonumber norelativenumber")
+    end,
+
+    on_close = function()
+        if not string.match(vim.fn.expand("<afile>"), "nnn") then
+            vim.api.nvim_input("<CR>")
+        end
+    end,
+}
+
+u.augroup("OnTermOpen", "TermOpen", "lua global.terminal.on_open()")
+u.augroup("OnTermClose", "TermClose", "lua global.terminal.on_close()")
+
+-- maps
 u.map("i", "<S-Tab>", "<C-o>A")
 
 u.map("n", "H", "^")
@@ -40,6 +57,7 @@ u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
 
+u.map("n", "<Leader>T", ":term<CR>")
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
 u.map("n", "<Space>", ":", { silent = false })
@@ -58,9 +76,7 @@ u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], { expr = true })
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], { expr = true })
 
 -- load remaining lua config
-_G.global = {}
 require("commands")
 require("plugins")
 require("theme")
 require("lsp")
-require("ft")
