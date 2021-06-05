@@ -72,30 +72,40 @@ commands.bdelete = function()
     vim.cmd("bdelete " .. bufnr)
 end
 
-local complete_timer
-local banned_filetypes = { "TelescopePrompt", "gitcommit" }
-commands.complete = function()
-    local filetype = vim.bo.filetype
-    if not filetype or vim.tbl_contains(banned_filetypes, filetype) then
-        return
-    end
+commands.complete = (function()
+    local complete_timer
+    local banned_filetypes = { "TelescopePrompt", "gitcommit" }
+    local trigger_chars = "[.]"
 
-    if complete_timer then
-        complete_timer.restart()
-        return
-    end
-
-    complete_timer = u.timer(100, nil, true, function()
-        complete_timer = nil
-
-        if vim.fn.pumvisible() == 1 or vim.fn.mode() ~= "i" then
+    return function()
+        local filetype = vim.bo.filetype
+        if not filetype or vim.tbl_contains(banned_filetypes, filetype) then
             return
         end
 
-        local seq = vim.bo.omnifunc ~= "" and filetype ~= "markdown" and "<C-x><C-o>" or "<C-x><C-n>"
-        api.nvim_input(seq)
-    end)
-end
+        if complete_timer then
+            complete_timer.restart()
+            return
+        end
+
+        complete_timer = u.timer(100, nil, true, function()
+            complete_timer = nil
+
+            if vim.fn.pumvisible() == 1 or vim.fn.mode() ~= "i" then
+                return
+            end
+
+            local col = api.nvim_win_get_cursor(0)[2]
+            local prev_char = string.sub(api.nvim_get_current_line(), col, col)
+            if not (string.match(prev_char, "%w") or string.match(prev_char, trigger_chars)) then
+                return
+            end
+
+            local seq = vim.bo.omnifunc ~= "" and filetype ~= "markdown" and "<C-x><C-o>" or "<C-x><C-n>"
+            api.nvim_input(seq)
+        end)
+    end
+end)()
 
 commands.save_on_cr = function()
     return vim.bo.buftype == "quickfix" and api.nvim_input("<CR>") or vim.cmd("silent w")
@@ -106,7 +116,7 @@ commands.yank_highlight = function()
 end
 
 commands.remove = function()
-    vim.fn.delete("%")
+    vim.fn.delete("'%'")
     vim.cmd("bdelete!")
 end
 
