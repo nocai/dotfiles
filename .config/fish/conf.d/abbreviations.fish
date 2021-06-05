@@ -47,6 +47,7 @@ if status --is-interactive
 
     abbr -a -g g git
     abbr -a -g ga 'git add'
+    abbr -a -g gac 'git add . and git commit -v'
     abbr -a -g gd 'git diff'
     abbr -a -g gc 'git commit -v'
     abbr -a -g gco 'git checkout'
