@@ -1,27 +1,11 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
-local conf = require("telescope.config").values
 local action_set = require("telescope.actions.set")
 
 local u = require("utils")
 
 local api = vim.api
-
-local vimgrep_arguments = vim.list_extend(conf.vimgrep_arguments, {
-    "--hidden",
-    "-g",
-    "!{node_modules,.git}",
-})
-
--- try git_files and fall back to find_files
-local find_files = function(opts)
-    opts = opts or {}
-    local is_git_project = pcall(builtin.git_files)
-    if not is_git_project then
-        builtin.find_files()
-    end
-end
 
 telescope.setup({
     extensions = {
@@ -29,6 +13,15 @@ telescope.setup({
     },
     defaults = { mappings = { i = { ["<Esc>"] = actions.close, ["<C-u>"] = false } } },
 })
+
+-- try git_files and fall back to find_files
+local find_files = function(opts)
+    opts = opts or {}
+    local is_git_project = pcall(builtin.git_files, opts)
+    if not is_git_project then
+        builtin.find_files(opts)
+    end
+end
 
 _G.global.telescope = {
     -- live grep in project (slow)
@@ -38,7 +31,11 @@ _G.global.telescope = {
             word_match = "-w",
             only_sort_text = true,
             search = "",
-            vimgrep_arguments = vimgrep_arguments,
+            vimgrep_arguments = vim.list_extend(require("telescope.config").values.vimgrep_arguments, {
+                "--hidden",
+                "-g",
+                "!{node_modules,.git}",
+            }),
         })
     end,
 
@@ -52,14 +49,18 @@ _G.global.telescope = {
 
     find_files = find_files,
 
+    -- delete current buffer after select
     replace = function()
-        local current_bufnr = api.nvim_get_current_buf()
+        local current = api.nvim_get_current_buf()
         find_files({
-            action_set.select:enhance({
-                post = function()
-                    vim.cmd("bdelete " .. current_bufnr)
-                end,
-            }),
+            attach_mappings = function()
+                action_set.select:enhance({
+                    post = function()
+                        require("commands").bdelete(current)
+                    end,
+                })
+                return true
+            end,
         })
     end,
 }
@@ -76,7 +77,10 @@ u.command("Commits", "Telescope git_commits")
 u.command("HelpTags", "Telescope help_tags")
 u.command("ManPages", "Telescope man_pages")
 
+u.map("n", "<Leader>h", "HelpTags")
+
 u.map("n", "<Leader>ff", "<cmd>Files<CR>")
+u.map("n", "<Leader>fn", "<cmd>Replace<CR>")
 u.map("n", "<Leader>fg", "<cmd>Rg<CR>")
 u.map("n", "<Leader>fb", "<cmd>Buffers<CR>")
 u.map("n", "<Leader>fh", "<cmd>History<CR>")

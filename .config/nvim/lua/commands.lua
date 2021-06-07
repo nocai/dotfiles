@@ -12,10 +12,10 @@ end
 
 local commands = {}
 
-commands.bonly = function()
-    local current = api.nvim_get_current_buf()
+commands.bonly = function(bufnr)
+    bufnr = bufnr or api.nvim_get_current_buf()
     for_each_buffer(function(b)
-        if b.bufnr ~= current then
+        if b.bufnr ~= bufnr then
             vim.cmd("bdelete " .. b.bufnr)
         end
     end)
@@ -42,9 +42,9 @@ commands.wwipeall = function()
     end)
 end
 
-commands.bdelete = function()
+commands.bdelete = function(bufnr)
     local win = api.nvim_get_current_win()
-    local bufnr = api.nvim_win_get_buf(win)
+    bufnr = bufnr or api.nvim_win_get_buf(win)
 
     local target
     local previous = vim.fn.bufnr("#")
@@ -108,11 +108,15 @@ commands.complete = (function()
 end)()
 
 commands.save_on_cr = function()
-    return vim.bo.buftype == "quickfix" and api.nvim_input("<CR>") or vim.cmd("silent w")
+    return vim.bo.buftype == "quickfix" and api.nvim_input("<CR>") or vim.cmd("w")
 end
 
 commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
+end
+
+commands.vsplit_last = function()
+    vim.cmd("vsplit #")
 end
 
 u.command("Remove", "call delete(expand('%')) | bdelete!")
@@ -122,13 +126,15 @@ u.lua_command("Bonly", "global.commands.bonly()")
 u.lua_command("Bwipeall", "global.commands.bwipeall()")
 u.lua_command("Wwipeall", "global.commands.wwipeall()")
 u.lua_command("Bdelete", "global.commands.bdelete()")
-u.lua_command("Rm", "global.commands.remove()")
-u.lua_command("Restart", "global.commands.restart()")
+u.lua_command("VsplitLast", "global.commands.vsplit_last()")
 
 u.map("n", "<CR>", "<cmd> lua global.commands.save_on_cr()<CR>")
 u.map("n", "<Leader>cc", ":Bdelete<CR>")
+u.map("n", "<Leader>vv", ":VsplitLast<CR>")
 
 u.augroup("Autocomplete", "InsertCharPre", "lua global.commands.complete()")
 u.augroup("YankHighlight", "TextYankPost", "lua global.commands.yank_highlight()")
 
 _G.global.commands = commands
+
+return commands
