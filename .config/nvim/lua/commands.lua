@@ -115,15 +115,8 @@ commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
 
-commands.remove = function()
-    vim.fn.delete("'%'")
-    vim.cmd("bdelete!")
-end
-
-commands.restart = function()
-    vim.cmd("w")
-    vim.cmd("e")
-end
+u.command("Remove", "call delete(expand('%')) | bdelete!")
+u.command("R", "w | :e")
 
 u.lua_command("Bonly", "global.commands.bonly()")
 u.lua_command("Bwipeall", "global.commands.bwipeall()")

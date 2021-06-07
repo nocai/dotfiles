@@ -2,13 +2,26 @@ local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 local conf = require("telescope.config").values
+local action_set = require("telescope.actions.set")
+
 local u = require("utils")
+
+local api = vim.api
 
 local vimgrep_arguments = vim.list_extend(conf.vimgrep_arguments, {
     "--hidden",
     "-g",
     "!{node_modules,.git}",
 })
+
+-- try git_files and fall back to find_files
+local find_files = function(opts)
+    opts = opts or {}
+    local is_git_project = pcall(builtin.git_files)
+    if not is_git_project then
+        builtin.find_files()
+    end
+end
 
 telescope.setup({
     extensions = {
@@ -31,22 +44,28 @@ _G.global.telescope = {
 
     -- grep string from prompt (fast, but less convenient)
     grep_prompt = function()
-        require("telescope.builtin").grep_string({
+        builtin.grep_string({
             shorten_path = true,
             search = vim.fn.input("grep > "),
         })
     end,
 
-    -- try git_files and fall back to find_files
-    find_files = function()
-        local is_git_project = pcall(builtin.git_files)
-        if not is_git_project then
-            builtin.find_files()
-        end
+    find_files = find_files,
+
+    replace = function()
+        local current_bufnr = api.nvim_get_current_buf()
+        find_files({
+            action_set.select:enhance({
+                post = function()
+                    vim.cmd("bdelete " .. current_bufnr)
+                end,
+            }),
+        })
     end,
 }
 
 u.lua_command("Files", "global.telescope.find_files()")
+u.lua_command("Replace", "global.telescope.replace()")
 u.lua_command("Rg", "global.telescope.live_grep()")
 u.lua_command("GrepPrompt", "global.telescope.grep_prompt()")
 u.command("BLines", "Telescope current_buffer_fuzzy_find")

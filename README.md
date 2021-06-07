@@ -5,8 +5,7 @@ on macOS (M1).
 
 ## Terminal
 
-I've switched to [Alacritty](https://github.com/alacritty/alacritty) for speed
-and ease of configuration.
+I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
 
 - [fish](https://github.com/fish-shell/fish-shell), which does most of what I
   want out-of-the-box and makes customization approachable
@@ -26,7 +25,11 @@ and ease of configuration.
   reasonable compromise I've found between having to develop (and use) modern
   websites and wanting keyboard control
 
-- [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to
-  remap keys
+- [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to remap
+  keys
 
-- [Magnet](https://magnet.crowdcafe.com/) for simple window management
+- [yabai](https://github.com/koekeishiya/yabai) for tiling window management (no
+  space management on M1 yet)
+
+- [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard shortcuts
+  (and controlling yabai)

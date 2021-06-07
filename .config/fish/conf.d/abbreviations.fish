@@ -2,8 +2,6 @@ if status --is-interactive
     abbr -a -g mkdir 'mkdir -p'
     abbr -a -- - 'cd -'
 
-    abbr -a -g c clear
-
     abbr -a -g n nnn
 
     abbr -a -g ni 'npm install'
@@ -28,6 +26,7 @@ if status --is-interactive
     abbr -a -g bu 'brew uninstall'
     abbr -a -g bubu 'brew update && brew upgrade'
     abbr -a -g bs 'brew search'
+    abbr -a -g bss 'brew services'
 
     abbr -a -g exa 'exa --classify'
     abbr -a -g ext 'exa --tree --level'
@@ -46,6 +45,7 @@ if status --is-interactive
     abbr -a -g mxc 'tmuxinator copy'
 
     abbr -a -g g git
+    abbr -a -g lg lazygit
     abbr -a -g ga 'git add'
     abbr -a -g gac 'git add . and git commit -v'
     abbr -a -g gd 'git diff'
