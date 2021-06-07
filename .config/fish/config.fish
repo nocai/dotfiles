@@ -1,5 +1,5 @@
 set PATH /opt/homebrew/bin /opt/homebrew/sbin $HOME/.cargo/bin/ $PATH
-set -x EDITOR nvim
+set -x EDITOR nvr-node
 
 set -x NNN_BMS 'd:~/Documents;n:~/Documents/Downloads;l:~/Local;g:~/git;c:~/.config;v:~/.config/nvim/lua'
 set -x NNN_OPTS "Heo"

@@ -74,7 +74,7 @@ end
 
 commands.complete = (function()
     local complete_timer
-    local banned_filetypes = { "TelescopePrompt", "gitcommit" }
+    local banned_filetypes = { "TelescopePrompt" }
     local trigger_chars = "[.]"
 
     return function()
@@ -101,7 +101,7 @@ commands.complete = (function()
                 return
             end
 
-            local seq = vim.bo.omnifunc ~= "" and filetype ~= "markdown" and "<C-x><C-o>" or "<C-x><C-n>"
+            local seq = vim.bo.omnifunc ~= "" and "<C-x><C-o>" or "<C-n>"
             api.nvim_input(seq)
         end)
     end
@@ -115,11 +115,9 @@ commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
 
-commands.vsplit_last = function()
-    vim.cmd("vsplit #")
-end
-
 u.command("Remove", "call delete(expand('%')) | bdelete!")
+u.command("VsplitLast", "vsplit #")
+u.command("Lazygit", "term lazygit")
 u.command("R", "w | :e")
 
 u.lua_command("Bonly", "global.commands.bonly()")

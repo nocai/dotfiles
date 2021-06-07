@@ -12,6 +12,20 @@ lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_pub
     virtual_text = false,
 })
 
+lsp.util.close_preview_autocmd = function(events, winnr)
+    events = vim.tbl_filter(function(v)
+        return v ~= "CursorMovedI" and v ~= "BufLeave"
+    end, events)
+
+    api.nvim_command(
+        "autocmd "
+            .. table.concat(events, ",")
+            .. " <buffer> ++once lua pcall(vim.api.nvim_win_close, "
+            .. winnr
+            .. ", true)"
+    )
+end
+
 local popup_opts = { border = "single", focusable = false }
 
 local peek_definition = function()

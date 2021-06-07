@@ -34,7 +34,7 @@ Visual.style("cursor", "background-color: #81A2BE;");
 settings.theme = `
 :root {
   --font: Iosevka;
-  --font-size: 12;
+  --font-size: 14;
 
   --fg: #C5C8C6;
   --bg: #282A2E;
@@ -207,7 +207,6 @@ input {
 #sk_editor {
   background: var(--bg-dark) !important;
   height: 50% !important;
-  /* Remove this to restore the default editor size */
 }
 
 .ace_dialog-bottom {

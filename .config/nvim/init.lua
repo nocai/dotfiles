@@ -57,6 +57,11 @@ u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
 
+u.map("i", "<C-h>", "<Left>")
+u.map("i", "<C-j>", "<Down>")
+u.map("i", "<C-k>", "<Up>")
+u.map("i", "<C-l>", "<Right>")
+
 u.map("n", "<Leader>T", ":term<CR>")
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
