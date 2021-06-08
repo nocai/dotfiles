@@ -1,7 +1,6 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
-local action_set = require("telescope.actions.set")
 
 local u = require("utils")
 
@@ -15,11 +14,23 @@ telescope.setup({
 })
 
 -- try git_files and fall back to find_files
-local find_files = function(opts)
-    opts = opts or {}
-    local is_git_project = pcall(builtin.git_files, opts)
+local find_files = function()
+    local current = api.nvim_get_current_buf()
+    local find_files_opts = {
+        attach_mappings = function(_, map)
+            -- replace current buffer with selected
+            map("i", "<C-r>", function(prompt_bufnr)
+                require("telescope.actions.set").edit(prompt_bufnr, "edit")
+                require("commands").bdelete(current)
+            end)
+
+            return true
+        end,
+    }
+
+    local is_git_project = pcall(builtin.git_files, find_files_opts)
     if not is_git_project then
-        builtin.find_files(opts)
+        builtin.find_files(find_files_opts)
     end
 end
 
@@ -48,25 +59,9 @@ _G.global.telescope = {
     end,
 
     find_files = find_files,
-
-    -- delete current buffer after select
-    replace = function()
-        local current = api.nvim_get_current_buf()
-        find_files({
-            attach_mappings = function()
-                action_set.select:enhance({
-                    post = function()
-                        require("commands").bdelete(current)
-                    end,
-                })
-                return true
-            end,
-        })
-    end,
 }
 
 u.lua_command("Files", "global.telescope.find_files()")
-u.lua_command("Replace", "global.telescope.replace()")
 u.lua_command("Rg", "global.telescope.live_grep()")
 u.lua_command("GrepPrompt", "global.telescope.grep_prompt()")
 u.command("BLines", "Telescope current_buffer_fuzzy_find")
@@ -77,10 +72,9 @@ u.command("Commits", "Telescope git_commits")
 u.command("HelpTags", "Telescope help_tags")
 u.command("ManPages", "Telescope man_pages")
 
-u.map("n", "<Leader>h", "HelpTags")
+u.map("n", "<Leader>H", ":HelpTags<CR>")
 
 u.map("n", "<Leader>ff", "<cmd>Files<CR>")
-u.map("n", "<Leader>fn", "<cmd>Replace<CR>")
 u.map("n", "<Leader>fg", "<cmd>Rg<CR>")
 u.map("n", "<Leader>fb", "<cmd>Buffers<CR>")
 u.map("n", "<Leader>fh", "<cmd>History<CR>")

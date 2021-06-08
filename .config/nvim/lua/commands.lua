@@ -2,9 +2,13 @@ local u = require("utils")
 
 local api = vim.api
 
-local for_each_buffer = function(cb)
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local for_each_buffer = function(cb, force)
     u.for_each(vim.fn.getbufinfo({ buflisted = true }), function(b)
-        if b.changed == 0 then
+        if b.changed == 0 and not force then
             cb(b)
         end
     end)
@@ -102,20 +106,24 @@ commands.complete = (function()
             end
 
             local seq = vim.bo.omnifunc ~= "" and "<C-x><C-o>" or "<C-n>"
-            api.nvim_input(seq)
+            api.nvim_feedkeys(t(seq), "i", true)
         end)
     end
 end)()
 
 commands.save_on_cr = function()
-    return vim.bo.buftype == "quickfix" and api.nvim_input("<CR>") or vim.cmd("w")
+    return vim.bo.buftype == "quickfix" and t("<CR>") or t(":w<CR>")
+end
+
+commands.stop_recording = function()
+    return vim.fn.reg_recording() ~= "" and t("q") or ""
 end
 
 commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
 
-u.command("Remove", "call delete(expand('%')) | bdelete!")
+u.command("Remove", "call delete(expand('%')) | lua global.commands.bdelete()")
 u.command("VsplitLast", "vsplit #")
 u.command("Lazygit", "term lazygit")
 u.command("R", "w | :e")
@@ -126,9 +134,13 @@ u.lua_command("Wwipeall", "global.commands.wwipeall()")
 u.lua_command("Bdelete", "global.commands.bdelete()")
 u.lua_command("VsplitLast", "global.commands.vsplit_last()")
 
-u.map("n", "<CR>", "<cmd> lua global.commands.save_on_cr()<CR>")
 u.map("n", "<Leader>cc", ":Bdelete<CR>")
 u.map("n", "<Leader>vv", ":VsplitLast<CR>")
+
+u.map("n", "<CR>", "v:lua.global.commands.save_on_cr()", { expr = true })
+
+u.map("n", "q", "v:lua.global.commands.stop_recording()", { expr = true })
+u.map("n", "<Leader>q", "q", { silent = false })
 
 u.augroup("Autocomplete", "InsertCharPre", "lua global.commands.complete()")
 u.augroup("YankHighlight", "TextYankPost", "lua global.commands.yank_highlight()")
