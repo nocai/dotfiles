@@ -19,6 +19,12 @@ require("nvim-treesitter.configs").setup({
     },
     highlight = { enable = true },
     autotag = { enable = true },
+    playground = {
+        enable = true,
+    },
+    query_linter = {
+        enable = true,
+    },
 })
 
 vim.wo.foldmethod = "expr"

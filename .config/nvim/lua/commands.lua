@@ -123,6 +123,39 @@ commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
 
+commands.edit_test_file = function(cmd)
+    cmd = cmd or "e"
+    local scandir = require("plenary.scandir")
+
+    local root, ft = vim.fn.expand("%:t:r"), vim.bo.filetype
+    local pattern
+    if ft == "lua" then
+        pattern = "_spec"
+    elseif ft == "typescript" or ft == "typescriptreact" then
+        pattern = ".test"
+    end
+    assert(pattern, "pattern not defined for " .. ft)
+
+    -- go from test file to non-test file
+    if root:match(pattern) then
+        pattern = u.replace(root, pattern, "")
+    else
+        pattern = root .. pattern
+    end
+    -- make sure extension matches
+    pattern = pattern .. "." .. vim.fn.expand("%:e") .. "$"
+
+    scandir.scan_dir_async(vim.fn.getcwd(), {
+        depth = 5,
+        search_pattern = pattern,
+        on_exit = vim.schedule_wrap(function(files)
+            assert(files[1], "file not found for pattern " .. pattern)
+
+            vim.cmd(cmd .. " " .. files[1])
+        end),
+    })
+end
+
 u.command("Remove", "call delete(expand('%')) | lua global.commands.bdelete()")
 u.command("VsplitLast", "vsplit #")
 u.command("Lazygit", "term lazygit")
@@ -132,7 +165,7 @@ u.lua_command("Bonly", "global.commands.bonly()")
 u.lua_command("Bwipeall", "global.commands.bwipeall()")
 u.lua_command("Wwipeall", "global.commands.wwipeall()")
 u.lua_command("Bdelete", "global.commands.bdelete()")
-u.lua_command("VsplitLast", "global.commands.vsplit_last()")
+u.lua_command("TestFile", "global.commands.edit_test_file()")
 
 u.map("n", "<Leader>cc", ":Bdelete<CR>")
 u.map("n", "<Leader>vv", ":VsplitLast<CR>")

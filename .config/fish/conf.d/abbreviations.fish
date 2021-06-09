@@ -22,6 +22,7 @@ if status --is-interactive
     abbr -a -g vimdiff 'nvim -d'
 
     abbr -a -g b brew
+    abbr -a -g ib 'arch -x86_64 /usr/local/bin/brew'
     abbr -a -g bi 'brew install'
     abbr -a -g bu 'brew uninstall'
     abbr -a -g bubu 'brew update && brew upgrade'

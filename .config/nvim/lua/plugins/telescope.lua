@@ -1,8 +1,10 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
+local set = require("telescope.actions.set")
 
 local u = require("utils")
+local commands = require("commands")
 
 local api = vim.api
 
@@ -12,27 +14,6 @@ telescope.setup({
     },
     defaults = { mappings = { i = { ["<Esc>"] = actions.close, ["<C-u>"] = false } } },
 })
-
--- try git_files and fall back to find_files
-local find_files = function()
-    local current = api.nvim_get_current_buf()
-    local find_files_opts = {
-        attach_mappings = function(_, map)
-            -- replace current buffer with selected
-            map("i", "<C-r>", function(prompt_bufnr)
-                require("telescope.actions.set").edit(prompt_bufnr, "edit")
-                require("commands").bdelete(current)
-            end)
-
-            return true
-        end,
-    }
-
-    local is_git_project = pcall(builtin.git_files, find_files_opts)
-    if not is_git_project then
-        builtin.find_files(find_files_opts)
-    end
-end
 
 _G.global.telescope = {
     -- live grep in project (slow)
@@ -58,7 +39,35 @@ _G.global.telescope = {
         })
     end,
 
-    find_files = find_files,
+    -- try git_files and fall back to find_files
+    find_files = function()
+        local current = api.nvim_get_current_buf()
+        local opts = {
+            attach_mappings = function(_, map)
+                -- replace current buffer with selected
+                map("i", "<C-r>", function(prompt_bufnr)
+                    set.edit(prompt_bufnr, "edit")
+
+                    commands.bdelete(current)
+                end)
+
+                -- edit file and matching test file in split
+                map("i", "<C-f>", function(prompt_bufnr)
+                    set.edit(prompt_bufnr, "edit")
+
+                    commands.wwipeall()
+                    commands.edit_test_file("vsplit")
+                end)
+
+                return true
+            end,
+        }
+
+        local is_git_project = pcall(builtin.git_files, opts)
+        if not is_git_project then
+            builtin.find_files(opts)
+        end
+    end,
 }
 
 u.lua_command("Files", "global.telescope.find_files()")
