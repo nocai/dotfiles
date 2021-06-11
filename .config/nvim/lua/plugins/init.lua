@@ -39,7 +39,6 @@ return require("packer").startup(function()
     use_with_config({ "windwp/nvim-autopairs", "autopairs" }) -- autocomplete pairs
     use_with_config({ "svermeulen/vim-subversive", "subversive" }) -- adds substitute operator
     use_with_config({ "svermeulen/vim-cutlass", "cutlass" }) -- makes registers less annoying
-    use_with_config({ "SirVer/ultisnips", "ultisnips" }) -- snippets
     use({
         "nvim-telescope/telescope.nvim",
         requires = { "nvim-lua/popup.nvim" },
@@ -73,6 +72,7 @@ return require("packer").startup(function()
     use_with_config({ "~/git/buftabline.nvim", "buftabline" })
     use("~/git/nvim-lsp-ts-utils")
     use("~/git/null-ls")
+    use_with_config({ "~/git/minsnip.nvim", "minsnip" })
 
     -- misc
     use("blankname/vim-fish")

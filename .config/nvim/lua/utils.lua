@@ -95,6 +95,14 @@ M.augroup = function(name, event, fn, ft)
     )
 end
 
+M.t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+M.input = function(keys, mode)
+    vim.api.nvim_feedkeys(M.t(keys), mode or "i", true)
+end
+
 M.buf_augroup = function(name, event, fn)
     api.nvim_exec(
         format(

@@ -42,6 +42,7 @@ _G.global.terminal = {
         vim.cmd("setlocal nonumber norelativenumber")
     end,
 
+    -- suppress exit code message
     on_close = function()
         if not string.match(vim.fn.expand("<afile>"), "nnn") then
             vim.api.nvim_input("<CR>")
@@ -53,7 +54,7 @@ u.augroup("OnTermOpen", "TermOpen", "lua global.terminal.on_open()")
 u.augroup("OnTermClose", "TermClose", "lua global.terminal.on_close()")
 
 -- maps
-u.map("i", "<S-Tab>", "<C-o>A")
+u.map("i", "<S-Tab>", "<Esc>A")
 
 u.map("n", "H", "^")
 u.map("o", "H", "^")

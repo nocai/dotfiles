@@ -2,10 +2,6 @@ local u = require("utils")
 
 local api = vim.api
 
-local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 local for_each_buffer = function(cb, force)
     u.for_each(vim.fn.getbufinfo({ buflisted = true }), function(b)
         if b.changed == 0 and not force then
@@ -106,17 +102,18 @@ commands.complete = (function()
             end
 
             local seq = vim.bo.omnifunc ~= "" and "<C-x><C-o>" or "<C-n>"
-            api.nvim_feedkeys(t(seq), "i", true)
+            -- prefer nvim_input, since it's non-blocking
+            api.nvim_input(seq)
         end)
     end
 end)()
 
 commands.save_on_cr = function()
-    return vim.bo.buftype == "quickfix" and t("<CR>") or t(":w<CR>")
+    return vim.bo.buftype == "quickfix" and u.t("<CR>") or u.t(":w<CR>")
 end
 
 commands.stop_recording = function()
-    return vim.fn.reg_recording() ~= "" and t("q") or ""
+    return vim.fn.reg_recording() ~= "" and u.t("q") or ""
 end
 
 commands.yank_highlight = function()
