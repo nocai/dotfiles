@@ -2,8 +2,6 @@ if status --is-interactive
     abbr -a -g mkdir 'mkdir -p'
     abbr -a -- - 'cd -'
 
-    abbr -a -g n nnn
-
     abbr -a -g ni 'npm install'
     abbr -a -g nid 'npm install --save-dev'
     abbr -a -g ng 'npm install -g'
