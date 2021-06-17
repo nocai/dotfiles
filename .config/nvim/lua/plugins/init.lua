@@ -67,6 +67,7 @@ return require("packer").startup(function()
     -- visual
     use("sainnhe/sonokai")
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlight and jump between references
+    use("kyazdani42/nvim-web-devicons")
 
     -- local
     use_with_config("~/git/buftabline.nvim", "buftabline")

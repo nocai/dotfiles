@@ -9,7 +9,7 @@ set fish_greeting
 
 functions --copy cd standard_cd
 function cd
-    standard_cd $argv; and exa --classify
+    standard_cd $argv; and exa --classify --icons
 end
 
 function update_fasd_db --on-event fish_preexec
