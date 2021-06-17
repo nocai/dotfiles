@@ -10,28 +10,15 @@ local api = vim.api
 
 telescope.setup({
     extensions = {
-        fzf = { override_generic_sorter = true, override_file_sorter = true },
+        fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
     },
     defaults = { mappings = { i = { ["<Esc>"] = actions.close, ["<C-u>"] = false } } },
 })
 
-_G.global.telescope = {
-    -- live grep in project (slow)
-    live_grep = function()
-        builtin.grep_string({
-            shorten_path = true,
-            word_match = "-w",
-            only_sort_text = true,
-            search = "",
-            vimgrep_arguments = vim.list_extend(require("telescope.config").values.vimgrep_arguments, {
-                "--hidden",
-                "-g",
-                "!{node_modules,.git}",
-            }),
-        })
-    end,
+telescope.load_extension("fzf")
 
-    -- grep string from prompt (fast, but less convenient)
+_G.global.telescope = {
+    -- grep string from prompt
     grep_prompt = function()
         builtin.grep_string({
             shorten_path = true,
@@ -71,8 +58,7 @@ _G.global.telescope = {
 }
 
 u.lua_command("Files", "global.telescope.find_files()")
-u.lua_command("Rg", "global.telescope.live_grep()")
-u.lua_command("GrepPrompt", "global.telescope.grep_prompt()")
+u.lua_command("Rg", "global.telescope.grep_prompt()")
 u.command("BLines", "Telescope current_buffer_fuzzy_find")
 u.command("History", "Telescope oldfiles")
 u.command("Buffers", "Telescope buffers")

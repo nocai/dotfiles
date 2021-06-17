@@ -3,10 +3,10 @@ return require("packer").startup(function()
     use({ "wbthomason/packer.nvim", opt = true })
 
     local config = function(name)
-        pcall(require, "plugins." .. name)
+        require("plugins." .. name)
     end
-    local use_with_config = function(opts)
-        local path, name = opts[1], opts[2]
+
+    local use_with_config = function(path, name)
         use({ path, config = config(name) })
     end
 
@@ -19,10 +19,10 @@ return require("packer").startup(function()
         "tpope/vim-fugitive",
         { "tpope/vim-rhubarb", "junegunn/gv.vim" },
     })
-    use_with_config({ "lewis6991/gitsigns.nvim", "gitsigns" })
+    use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
     -- text objects
-    use("wellle/targets.vim")
+    use("wellle/targets.vim") -- many useful additional text objects
     use({
         "kana/vim-textobj-user",
         {
@@ -35,25 +35,25 @@ return require("packer").startup(function()
     })
 
     -- additional functionality
-    use_with_config({ "phaazon/hop.nvim", "hop" }) -- motion
-    use_with_config({ "windwp/nvim-autopairs", "autopairs" }) -- autocomplete pairs
-    use_with_config({ "svermeulen/vim-subversive", "subversive" }) -- adds substitute operator
-    use_with_config({ "svermeulen/vim-cutlass", "cutlass" }) -- makes registers less annoying
+    use_with_config("justinmk/vim-sneak", "sneak") -- motion
+    use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
+    use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
+    use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
         "nvim-telescope/telescope.nvim",
         requires = { "nvim-lua/popup.nvim" },
         config = config("telescope"),
     })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better algorithm
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
 
     -- integrations
-    use_with_config({ "numToStr/Navigator.nvim", "navigator" }) -- tmux / vim pane navigation
-    use_with_config({ "mcchrish/nnn.vim", "nnn" }) -- file manager integration
-    use_with_config({ "christoomey/vim-tmux-runner", "vtr" }) -- run commands in a linked tmux pane
+    use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
+    use_with_config("mcchrish/nnn.vim", "nnn") -- file manager integration
+    use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
 
     -- development
     use("neovim/nvim-lspconfig")
-    use("nvim-lua/plenary.nvim")
+    use("~/git/plenary.nvim")
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -66,13 +66,13 @@ return require("packer").startup(function()
 
     -- visual
     use("sainnhe/sonokai")
-    use_with_config({ "RRethy/vim-illuminate", "illuminate" }) -- highlight and jump between references
+    use_with_config("RRethy/vim-illuminate", "illuminate") -- highlight and jump between references
 
     -- local
-    use_with_config({ "~/git/buftabline.nvim", "buftabline" })
+    use_with_config("~/git/buftabline.nvim", "buftabline")
+    use_with_config("~/git/minsnip.nvim", "minsnip")
     use("~/git/nvim-lsp-ts-utils")
-    use("~/git/null-ls")
-    use_with_config({ "~/git/minsnip.nvim", "minsnip" })
+    use("~/git/null-ls.nvim")
 
     -- misc
     use("blankname/vim-fish")

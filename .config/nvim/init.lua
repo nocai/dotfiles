@@ -54,6 +54,8 @@ u.augroup("OnTermOpen", "TermOpen", "lua global.terminal.on_open()")
 u.augroup("OnTermClose", "TermClose", "lua global.terminal.on_close()")
 
 -- maps
+u.map("n", "\\", ",")
+
 u.map("i", "<S-Tab>", "<Esc>A")
 
 u.map("n", "H", "^")
