@@ -32,10 +32,7 @@ vim.g.fzf_preview_window = { "up:60%", "ctrl-/" }
 -- make :Rg search file contents only, not name
 vim.cmd([[command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)]])
 
--- try :GFiles and fall back to :Files
-vim.cmd([[command! SmartFiles execute (len(system('git rev-parse')) ? ':Files' : ':GFiles --cached --others --exclude-standard')]])
-
-u.map("n", "<Leader>ff", ":SmartFiles<CR>")
+u.map("n", "<Leader>ff", ":Files<CR>")
 u.map("n", "<Leader>fb", ":Buffers<CR>")
 u.map("n", "<Leader>fl", ":BLines<CR>")
 u.map("n", "<Leader>fg", ":Rg<CR>")
