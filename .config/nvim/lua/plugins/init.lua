@@ -40,16 +40,20 @@ return require("packer").startup(function()
     use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
-        "nvim-telescope/telescope.nvim",
-        requires = { "nvim-lua/popup.nvim" },
-        config = config("telescope"),
+        "junegunn/fzf.vim",
+        requires = { "junegunn/fzf" },
+        run = function()
+            vim.fn["fzf#install"]()
+        end,
+        config = config("fzf"),
     })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
     use_with_config("mcchrish/nnn.vim", "nnn") -- file manager integration
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
+    use("wellle/tmux-complete.vim") -- completion from other tmux panes
+    use("ojroques/nvim-lspfuzzy") -- use fzf as lsp handler
 
     -- development
     use("neovim/nvim-lspconfig")
@@ -67,7 +71,6 @@ return require("packer").startup(function()
     -- visual
     use("sainnhe/sonokai")
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlight and jump between references
-    use("kyazdani42/nvim-web-devicons")
 
     -- local
     use_with_config("~/git/buftabline.nvim", "buftabline")

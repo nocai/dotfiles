@@ -12,7 +12,7 @@ if status --is-interactive
     abbr -a -g npmr 'npm run'
 
     abbr -a -g nv nvim
-    abbr -a -g nvf 'nvim -c Files'
+    abbr -a -g nvf 'nvim -c SmartFiles'
     abbr -a -g nvr 'nvim -c Rg'
     abbr -a -g nvn 'nvim -c NnnPicker'
     abbr -a -g nvg 'nvim -c Git'
@@ -27,8 +27,8 @@ if status --is-interactive
     abbr -a -g bs 'brew search'
     abbr -a -g bss 'brew services'
 
-    abbr -a -g exa 'exa --classify --icons'
-    abbr -a -g ext 'exa --icons --tree --level'
+    abbr -a -g exa 'exa --classify'
+    abbr -a -g ext 'exa --tree --level'
 
     abbr -a -g tls 'tmux list-sessions'
     abbr -a -g td 'tmux detach'

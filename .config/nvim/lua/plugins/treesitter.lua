@@ -1,6 +1,9 @@
 require("nvim-treesitter.configs").setup({
     context_commentstring = { enable = true },
     autopairs = { enable = true },
+    indent = {
+        enable = true,
+    },
     ensure_installed = {
         "javascript",
         "typescript",
@@ -27,5 +30,5 @@ require("nvim-treesitter.configs").setup({
     },
 })
 
-vim.wo.foldmethod = "expr"
-vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
