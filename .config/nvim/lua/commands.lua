@@ -79,7 +79,7 @@ commands.complete = (function()
 
     return function()
         local filetype = vim.bo.filetype
-        if not filetype or vim.tbl_contains(banned_filetypes, filetype) then
+        if filetype == "" or vim.tbl_contains(banned_filetypes, filetype) then
             return
         end
 
@@ -120,7 +120,7 @@ commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
 
-commands.edit_test_file = function(cmd, post)
+commands.edit_test_file = function(cmd)
     cmd = cmd or "e"
     local scandir = require("plenary.scandir")
 
@@ -156,9 +156,6 @@ commands.edit_test_file = function(cmd, post)
         on_exit = vim.schedule_wrap(function(files)
             assert(files[1], "test file not found")
             vim.cmd(cmd .. " " .. files[1])
-            if post then
-                post()
-            end
         end),
     })
 end
