@@ -65,11 +65,6 @@ u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
 
-u.map("i", "<C-h>", "<Left>")
-u.map("i", "<C-j>", "<Down>")
-u.map("i", "<C-k>", "<Up>")
-u.map("i", "<C-l>", "<Right>")
-
 u.map("n", "<Leader>T", ":term<CR>")
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
@@ -88,7 +83,7 @@ u.map("n", "<Esc>", ":nohl<CR>")
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], { expr = true })
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], { expr = true })
 
--- load remaining lua config
+-- source remaining lua config
 require("commands")
 require("plugins")
 require("theme")

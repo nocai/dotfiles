@@ -5,11 +5,6 @@ local u = require("utils")
 minsnip.setup({
     snippets = require("snippets"),
     extends = { typescriptreact = { "typescript" } },
-    after = function()
-        if vim.fn.pumvisible() == 1 then
-            u.input("<C-o>i")
-        end
-    end,
 })
 
 _G.global.tab_complete = function()
@@ -24,7 +19,6 @@ _G.global.tab_complete = function()
     end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "<cmd> lua tab_complete()<CR>", {})
-
 u.map("i", "<Tab>", "<cmd> lua global.tab_complete()<CR>")
 u.map("i", "<C-j>", "<cmd> lua require'minsnip'.jump()<CR>")
+u.map("i", "<C-k>", "<cmd> lua require'minsnip'.jump_backwards()<CR>")

@@ -3,7 +3,7 @@ return require("packer").startup(function()
     use({ "wbthomason/packer.nvim", opt = true })
 
     local config = function(name)
-        require("plugins." .. name)
+        pcall(require, "plugins." .. name)
     end
 
     local use_with_config = function(path, name)
@@ -35,7 +35,7 @@ return require("packer").startup(function()
     })
 
     -- additional functionality
-    use_with_config("justinmk/vim-sneak", "sneak") -- motion
+    use_with_config("phaazon/hop.nvim", "hop")
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
     use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
@@ -53,20 +53,17 @@ return require("packer").startup(function()
 
     -- development
     use("neovim/nvim-lspconfig")
-    use("~/git/plenary.nvim")
+    use("nvim-lua/plenary.nvim")
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         config = config("treesitter"),
-        { "nvim-treesitter/playground" },
     })
     use("RRethy/nvim-treesitter-textsubjects") -- adds smart . text object
     use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
-    use("windwp/nvim-ts-autotag") -- autocomplete jsx tags
 
     -- visual
     use("sainnhe/sonokai")
-    use_with_config("RRethy/vim-illuminate", "illuminate") -- highlight and jump between references
 
     -- local
     use_with_config("~/git/buftabline.nvim", "buftabline")

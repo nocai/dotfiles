@@ -1,5 +1,4 @@
 require("nvim-treesitter.configs").setup({
-    context_commentstring = { enable = true },
     autopairs = { enable = true },
     indent = {
         enable = true,
@@ -12,7 +11,6 @@ require("nvim-treesitter.configs").setup({
         "json",
         "jsonc",
         "yaml",
-        "query",
     },
     textsubjects = {
         enable = true,
@@ -21,13 +19,6 @@ require("nvim-treesitter.configs").setup({
         },
     },
     highlight = { enable = true },
-    autotag = { enable = true },
-    playground = {
-        enable = true,
-    },
-    query_linter = {
-        enable = true,
-    },
 })
 
 vim.opt.foldmethod = "expr"

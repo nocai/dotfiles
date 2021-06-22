@@ -91,8 +91,6 @@ local on_attach = function(client, bufnr)
     u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
     u.buf_map("n", "gr", ":LspRef<CR>", nil, bufnr)
     u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
-
-    require("illuminate").on_attach(client)
 end
 
 tsserver.setup(on_attach)
