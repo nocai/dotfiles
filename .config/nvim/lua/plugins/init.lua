@@ -45,6 +45,7 @@ return require("packer").startup(function()
         config = config("telescope"),
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
+    use_with_config("lifepillar/vim-mucomplete", "mucomplete")
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
