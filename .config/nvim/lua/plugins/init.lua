@@ -35,17 +35,18 @@ return require("packer").startup(function()
     })
 
     -- additional functionality
-    use_with_config("phaazon/hop.nvim", "hop")
+    use_with_config("phaazon/hop.nvim", "hop") -- motion
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
     use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
-        "nvim-telescope/telescope.nvim",
+        "nvim-telescope/telescope.nvim", -- fuzzy finder
         requires = { "nvim-lua/popup.nvim" },
         config = config("telescope"),
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
-    use_with_config("lifepillar/vim-mucomplete", "mucomplete")
+    use_with_config("lifepillar/vim-mucomplete", "mucomplete") -- improve built-in completion
+    use_with_config("szw/vim-maximizer", "maximizer") -- maximize and restore current window
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
@@ -61,6 +62,7 @@ return require("packer").startup(function()
         config = config("treesitter"),
     })
     use("RRethy/nvim-treesitter-textsubjects") -- adds smart . text object
+    use("windwp/nvim-ts-autotag")
     use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
 
     -- visual
