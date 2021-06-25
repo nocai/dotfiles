@@ -33,6 +33,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
+vim.g.markdown_fenced_languages = { "lua" }
+
 _G.global = {}
 
 -- terminal

@@ -45,7 +45,6 @@ return require("packer").startup(function()
         config = config("telescope"),
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
-    use_with_config("lifepillar/vim-mucomplete", "mucomplete") -- improve built-in completion
     use_with_config("szw/vim-maximizer", "maximizer") -- maximize and restore current window
 
     -- integrations
@@ -62,11 +61,12 @@ return require("packer").startup(function()
         config = config("treesitter"),
     })
     use("RRethy/nvim-treesitter-textsubjects") -- adds smart . text object
-    use("windwp/nvim-ts-autotag")
+    use("windwp/nvim-ts-autotag") -- automatically complete jsx tags
     use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
 
     -- visual
     use("sainnhe/sonokai")
+    use("sainnhe/gruvbox-material")
 
     -- local
     use_with_config("~/git/buftabline.nvim", "buftabline")
