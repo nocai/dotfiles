@@ -15,7 +15,7 @@ if status --is-interactive
     abbr -a -g nvf 'nvim -c Files'
     abbr -a -g nvr 'nvim -c Rg'
     abbr -a -g nvn 'nvim -c NnnPicker'
-    abbr -a -g nvg 'nvim -c Git'
+    abbr -a -g nvg 'nvim -c Neogit'
     abbr -a -g nvp 'nvim -c PackerSync'
     abbr -a -g vimdiff 'nvim -d'
 
@@ -44,7 +44,6 @@ if status --is-interactive
     abbr -a -g mxc 'tmuxinator copy'
 
     abbr -a -g g git
-    abbr -a -g lg lazygit
     abbr -a -g ga 'git add'
     abbr -a -g gac 'git add . and git commit -v'
     abbr -a -g gd 'git diff'

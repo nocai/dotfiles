@@ -129,7 +129,6 @@ end
 
 u.command("Remove", "call delete(expand('%')) | lua global.commands.bdelete()")
 u.command("VsplitLast", "vsplit #")
-u.command("Lazygit", "term lazygit")
 u.command("R", "w | :e")
 
 u.lua_command("Bonly", "global.commands.bonly()")
@@ -140,9 +139,6 @@ u.lua_command("TestFile", "global.commands.edit_test_file()")
 
 u.map("n", "<Leader>cc", ":Bdelete<CR>")
 u.map("n", "<Leader>vv", ":VsplitLast<CR>")
-
-u.map("n", "<Leader>g", ":Git ", { silent = false })
-u.map("n", "<Leader>G", ":Git<CR>")
 
 u.map("n", "<CR>", "v:lua.global.commands.save_on_cr()", { expr = true })
 

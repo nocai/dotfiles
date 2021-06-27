@@ -70,6 +70,8 @@ u.map("x", "L", "$")
 u.map("n", "<Leader>T", ":term<CR>")
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
+u.map("n", "ZA", ":wqall<CR>")
+
 u.map("n", "<Space>", ":", { silent = false })
 u.map("v", "<Space>", ":", { silent = false })
 

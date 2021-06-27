@@ -15,10 +15,8 @@ return require("packer").startup(function()
     use("tpope/vim-surround")
     use("tpope/vim-unimpaired")
     use("tpope/vim-commentary")
-    use({
-        "tpope/vim-fugitive",
-        { "tpope/vim-rhubarb", "junegunn/gv.vim" },
-    })
+    use_with_config("sindrets/diffview.nvim", "diffview")
+    use_with_config("TimUntersberger/neogit", "neogit")
     use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
     -- text objects
