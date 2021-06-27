@@ -24,5 +24,9 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
 
 ## GUI
 
+- Firefox with [Surfingkeys](https://github.com/brookhong/Surfingkeys), the most
+  reasonable compromise I've found between having to develop (and use) modern
+  websites and wanting keyboard control
+
 - [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to remap
   keys
