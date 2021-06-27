@@ -141,6 +141,9 @@ u.lua_command("TestFile", "global.commands.edit_test_file()")
 u.map("n", "<Leader>cc", ":Bdelete<CR>")
 u.map("n", "<Leader>vv", ":VsplitLast<CR>")
 
+u.map("n", "<Leader>g", ":Git ", { silent = false })
+u.map("n", "<Leader>G", ":Git<CR>")
+
 u.map("n", "<CR>", "v:lua.global.commands.save_on_cr()", { expr = true })
 
 u.map("n", "q", "v:lua.global.commands.stop_recording()", { expr = true })
