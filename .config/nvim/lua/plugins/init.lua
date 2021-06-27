@@ -66,7 +66,6 @@ return require("packer").startup(function()
 
     -- visual
     use("sainnhe/sonokai")
-    use("sainnhe/gruvbox-material")
 
     -- local
     use_with_config("~/git/buftabline.nvim", "buftabline")
