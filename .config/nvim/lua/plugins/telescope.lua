@@ -6,8 +6,6 @@ local set = require("telescope.actions.set")
 local u = require("utils")
 local commands = require("commands")
 
-local api = vim.api
-
 telescope.setup({
     extensions = {
         fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
@@ -34,16 +32,8 @@ telescope.load_extension("fzf")
 _G.global.telescope = {
     -- try git_files and fall back to find_files
     find_files = function()
-        local current = api.nvim_get_current_buf()
         local opts = {
             attach_mappings = function(_, map)
-                -- replace current buffer with selected
-                map("i", "<C-r>", function(prompt_bufnr)
-                    set.edit(prompt_bufnr, "edit")
-
-                    commands.bdelete(current)
-                end)
-
                 -- edit file and matching test file in split
                 map("i", "<C-f>", function(prompt_bufnr)
                     set.edit(prompt_bufnr, "edit")

@@ -24,18 +24,15 @@ return require("packer").startup(function()
     use({
         "kana/vim-textobj-user",
         {
-            "thinca/vim-textobj-between", -- af/if for region between characters
             "Julian/vim-textobj-variable-segment", -- av/iv for variable segment
             "kana/vim-textobj-entire", -- ae/ie for entire buffer
             "beloglazov/vim-textobj-punctuation", -- au/iu for punctuation
-            "preservim/vim-textobj-sentence", -- better sentences
         },
     })
 
     -- additional functionality
     use_with_config("phaazon/hop.nvim", "hop") -- motion
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
-    use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
         "nvim-telescope/telescope.nvim", -- fuzzy finder
@@ -44,6 +41,7 @@ return require("packer").startup(function()
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
     use_with_config("szw/vim-maximizer", "maximizer") -- maximize and restore current window
+    use("tversteeg/registers.nvim") -- show register contents intelligently
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
@@ -66,7 +64,6 @@ return require("packer").startup(function()
     use("sainnhe/sonokai")
 
     -- local
-    use_with_config("~/git/buftabline.nvim", "buftabline")
     use_with_config("~/git/minsnip.nvim", "minsnip")
     use("~/git/nvim-lsp-ts-utils")
     use("~/git/null-ls.nvim")
