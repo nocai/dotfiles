@@ -2,17 +2,46 @@ local u = require("utils")
 
 local commands = {}
 
+commands.vsplit = function(args)
+    if not args then
+        vim.cmd("vsplit")
+        return
+    end
+
+    local edit_in_win = function(winnr)
+        vim.cmd(winnr .. "windo edit " .. args)
+    end
+
+    local current = vim.fn.winnr()
+    local right_split = vim.fn.winnr("l")
+    local left_split = vim.fn.winnr("h")
+    if left_split < current then
+        edit_in_win(left_split)
+        return
+    end
+    if right_split > current then
+        edit_in_win(right_split)
+        return
+    end
+
+    vim.cmd("vsplit " .. args)
+end
+
+vim.cmd("command! -complete=file -nargs=* Vsplit lua global.commands.vsplit(<f-args>)")
+u.command("VsplitLast", "Vsplit #")
+u.map("n", "<Leader>vv", ":VsplitLast<CR>")
+
 commands.save_on_cr = function()
     return vim.bo.buftype ~= "" and u.t("<CR>") or u.t(":w<CR>")
 end
 
-commands.stop_recording = function()
-    return vim.fn.reg_recording() ~= "" and u.t("q") or ""
-end
+u.map("n", "<CR>", "v:lua.global.commands.save_on_cr()", { expr = true })
 
 commands.yank_highlight = function()
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 500 })
 end
+
+u.augroup("YankHighlight", "TextYankPost", "lua global.commands.yank_highlight()")
 
 commands.edit_test_file = function(cmd, post)
     cmd = cmd or "e"
@@ -57,6 +86,9 @@ commands.edit_test_file = function(cmd, post)
     })
 end
 
+vim.cmd("command! -complete=command -nargs=* TestFile lua global.commands.edit_test_file(<f-args>)")
+u.map("n", "<Leader>tv", ":TestFile Vsplit<CR>")
+
 commands.terminal = {
     on_open = function()
         -- start in insert mode and turn off line numbers
@@ -75,18 +107,9 @@ commands.terminal = {
 u.augroup("OnTermOpen", "TermOpen", "lua global.commands.terminal.on_open()")
 u.augroup("OnTermClose", "TermClose", "lua global.commands.terminal.on_close()")
 
-u.command("Remove", "call delete(expand('%')) | lua global.commands.bdelete()")
-u.command("VsplitLast", "vsplit #")
-u.lua_command("TestFile", "global.commands.edit_test_file()")
-
 u.command("R", "w | :e")
 
-u.map("n", "<Leader>vv", ":VsplitLast<CR>")
-u.map("n", "<CR>", "v:lua.global.commands.save_on_cr()", { expr = true })
-u.map("n", "q", "v:lua.global.commands.stop_recording()", { expr = true })
-u.map("n", "<Leader>q", "q", { silent = false })
-
-u.augroup("YankHighlight", "TextYankPost", "lua global.commands.yank_highlight()")
+u.command("Remove", "call delete(expand('%')) | bdelete")
 
 _G.global.commands = commands
 

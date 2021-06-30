@@ -34,12 +34,14 @@ _G.global.telescope = {
     find_files = function()
         local opts = {
             attach_mappings = function(_, map)
+                map("i", "<C-v>", function(prompt_bufnr)
+                    set.edit(prompt_bufnr, "Vsplit")
+                end)
+
                 -- edit file and matching test file in split
                 map("i", "<C-f>", function(prompt_bufnr)
                     set.edit(prompt_bufnr, "edit")
-
-                    commands.wwipeall()
-                    commands.edit_test_file("vsplit", function()
+                    commands.edit_test_file("Vsplit", function()
                         vim.cmd("wincmd w")
                     end)
                 end)
