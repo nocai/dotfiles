@@ -45,7 +45,8 @@ if status --is-interactive
 
     abbr -a -g g git
     abbr -a -g ga 'git add'
-    abbr -a -g gac 'git add . && git commit -v'
+    abbr -a -g gai 'git add --interactive'
+    abbr -a -g gac 'git add . && git commit --verbose'
     abbr -a -g gd 'git diff'
     abbr -a -g gr 'git rebase --interactive'
     abbr -a -g grr 'git rebase --interactive'
@@ -57,9 +58,10 @@ if status --is-interactive
     abbr -a -g gsp 'git stash pop'
     abbr -a -g gss 'git stash push --patch'
     abbr -a -g gcl 'git clone'
-    abbr -a -g gm "git merge"
+    abbr -a -g gm 'git merge'
     abbr -a -g gP 'git push'
     abbr -a -g gf 'git fetch'
-    abbr -a -g gl "git pull"
+    abbr -a -g gl 'git pull'
+    abbr -a -g glo 'git log'
     abbr -a -g gst 'git status'
 end

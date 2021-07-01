@@ -40,7 +40,14 @@ return require("packer").startup(function()
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
     use_with_config("szw/vim-maximizer", "maximizer") -- maximize and restore current window
-    use("tversteeg/registers.nvim") -- show register contents intelligently
+    use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
+    use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
+    use({
+        "tversteeg/registers.nvim", -- show register contents intelligently
+        config = function()
+            vim.g.registers_window_border = "single"
+        end,
+    })
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation

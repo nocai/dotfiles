@@ -3,6 +3,7 @@ local u = require("utils")
 vim.g.mapleader = ","
 
 vim.opt.completeopt = { "menuone", "noinsert" }
+vim.opt.hidden = true
 vim.opt.expandtab = true
 vim.opt.ignorecase = true
 vim.opt.mouse = "a"
@@ -69,11 +70,6 @@ u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], { expr = true })
 u.map("n", "<Leader>cc", ":tabclose<CR>")
 u.map("n", "<Leader>co", ":tabonly<CR>")
 u.map("n", "<Leader>cn", ":tabnew<CR>")
-
--- delete to black hole register
-u.map("n", "<Leader>d", '"_d')
-u.map("n", "<Leader>D", '"_D')
-u.map("n", "<Leader>dd", '"_dd')
 
 -- yank to system clipboard
 u.map("n", "<Leader>y", '"*y')
