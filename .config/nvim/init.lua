@@ -9,7 +9,6 @@ vim.opt.ignorecase = true
 vim.opt.mouse = "a"
 vim.opt.pumheight = 10
 vim.opt.shiftwidth = 4
-vim.opt.shortmess:append("cA")
 vim.opt.showcmd = false
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
@@ -28,6 +27,8 @@ vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
+vim.opt.shortmess:append("cA")
+vim.opt.clipboard:append("unnamedplus")
 
 vim.g.markdown_fenced_languages = { "lua", "typescript", "typescriptreact" }
 
@@ -71,14 +72,10 @@ u.map("n", "<Leader>cc", ":tabclose<CR>")
 u.map("n", "<Leader>co", ":tabonly<CR>")
 u.map("n", "<Leader>cn", ":tabnew<CR>")
 
--- yank to system clipboard
-u.map("n", "<Leader>y", '"*y')
-u.map("n", "<Leader>Y", '"*Y')
-u.map("n", "<Leader>yy", '"*yy')
-
 -- misc
 u.map("n", "Y", "y$")
 u.map("n", "ZA", ":wqall<CR>")
+u.map("i", "<C-Space>", "<C-x><C-o>")
 
 -- source remaining config
 require("commands")
