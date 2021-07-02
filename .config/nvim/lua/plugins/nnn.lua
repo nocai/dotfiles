@@ -7,7 +7,7 @@ require("nnn").setup({
     action = {
         ["<C-t>"] = "tab split",
         ["<C-x>"] = "split",
-        ["<C-v>"] = "vsplit",
+        ["<C-v>"] = "Vsplit",
     },
 })
 

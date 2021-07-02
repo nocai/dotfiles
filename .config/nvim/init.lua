@@ -38,6 +38,10 @@ _G.global = {}
 -- \ to go to previous match
 u.map("n", "\\", ",")
 
+-- edit file from current file's path
+u.map("n", "ee", ":edit <C-r>=expand('%:p')<CR>", { silent = false })
+u.map("n", "ev", ":Vsplit <C-r>=expand('%:p')<CR>", { silent = false })
+
 -- terminal
 u.map("n", "<Leader>T", ":term<CR>")
 u.map("t", "<C-o>", "<C-\\><C-n>")
