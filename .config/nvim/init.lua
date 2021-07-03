@@ -39,8 +39,8 @@ _G.global = {}
 u.map("n", "\\", ",")
 
 -- edit file from current file's path
-u.map("n", "ee", ":edit <C-r>=expand('%:p')<CR>", { silent = false })
-u.map("n", "ev", ":Vsplit <C-r>=expand('%:p')<CR>", { silent = false })
+u.map("n", "<Leader>ee", ":edit <C-r>=expand('%:p')<CR>", { silent = false })
+u.map("n", "<Leader>ev", ":Vsplit <C-r>=expand('%:p')<CR>", { silent = false })
 
 -- terminal
 u.map("n", "<Leader>T", ":term<CR>")
@@ -56,6 +56,7 @@ u.map("x", "<Tab>", "%", { noremap = false })
 u.map("o", "<Tab>", "%", { noremap = false })
 
 u.map("i", "<S-Tab>", "<Esc>A")
+u.map("n", "<S-CR>", ":wqall<CR>")
 
 u.map("n", "H", "^")
 u.map("o", "H", "^")
@@ -78,7 +79,6 @@ u.map("n", "<Leader>cn", ":tabnew<CR>")
 
 -- misc
 u.map("n", "Y", "y$")
-u.map("n", "ZA", ":wqall<CR>")
 u.map("i", "<C-Space>", "<C-x><C-o>")
 
 -- source remaining config
