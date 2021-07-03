@@ -8,6 +8,7 @@ local cmd = { "typescript-language-server", "--stdio", "--tsserver-path", "/usr/
 local ts_utils_settings = {
     -- debug = true,
     enable_import_on_completion = true,
+    import_all_scan_buffers = 100,
     complete_parens = true,
     signature_help_in_parens = true,
     eslint_bin = "eslint_d",

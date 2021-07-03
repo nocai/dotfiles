@@ -58,6 +58,7 @@ if status --is-interactive
     abbr -a -g gsp 'git stash pop'
     abbr -a -g gss 'git stash push --patch'
     abbr -a -g gcl 'git clone'
+    abbr -a -g gcL 'git clean -i'
     abbr -a -g gm 'git merge'
     abbr -a -g gP 'git push'
     abbr -a -g gf 'git fetch'

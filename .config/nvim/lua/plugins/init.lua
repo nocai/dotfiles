@@ -68,6 +68,7 @@ return require("packer").startup(function()
 
     -- visual
     use("sainnhe/sonokai")
+    use_with_config("RRethy/vim-illuminate", "illuminate")
 
     -- local
     use_with_config("~/git/minsnip.nvim", "minsnip")

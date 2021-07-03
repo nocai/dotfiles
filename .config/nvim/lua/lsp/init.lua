@@ -87,6 +87,8 @@ local on_attach = function(client, bufnr)
         u.buf_augroup("LspFormatOnSave", "BufWritePost", "lua vim.lsp.buf.formatting()")
     end
 
+    require("illuminate").on_attach(client)
+
     -- telescope
     u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
     u.buf_map("n", "gr", ":LspRef<CR>", nil, bufnr)
