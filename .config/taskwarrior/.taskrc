@@ -1,0 +1,4 @@
+data.location=~/.task
+uda.taskwarrior-tui.task-report.show-info=false
+
+include /opt/homebrew/Cellar/task/2.5.3/share/doc/task/rc/solarized-dark-256.theme
