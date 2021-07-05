@@ -15,7 +15,6 @@ return require("packer").startup(function()
     use("tpope/vim-surround")
     use("tpope/vim-unimpaired")
     use("tpope/vim-commentary")
-    use({ "tpope/vim-fugitive", { "tpope/vim-rhubarb", "junegunn/gv.vim" }, config = config("git") })
     use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
 
     -- text objects
@@ -39,7 +38,6 @@ return require("packer").startup(function()
         config = config("telescope"),
     })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
-    use_with_config("szw/vim-maximizer", "maximizer") -- maximize and restore current window
     use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
     use({
@@ -72,6 +70,7 @@ return require("packer").startup(function()
 
     -- local
     use_with_config("~/git/minsnip.nvim", "minsnip")
+    use_with_config("~/git/buftabline.nvim", "buftabline")
     use("~/git/nvim-lsp-ts-utils")
     use("~/git/null-ls.nvim")
 

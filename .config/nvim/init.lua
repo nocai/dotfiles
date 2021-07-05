@@ -72,11 +72,6 @@ u.map("v", "<Space>", ":", { silent = false })
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], { expr = true })
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], { expr = true })
 
--- tab management
-u.map("n", "<Leader>cc", ":tabclose<CR>")
-u.map("n", "<Leader>co", ":tabonly<CR>")
-u.map("n", "<Leader>cn", ":tabnew<CR>")
-
 -- misc
 u.map("n", "Y", "y$")
 u.map("i", "<C-Space>", "<C-x><C-o>")

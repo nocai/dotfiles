@@ -4,7 +4,6 @@ if status --is-interactive
 
     abbr -a -g t 'task'
     abbr -a -g tw 'taskwarrior-tui'
-
     abbr -a -g ni 'npm install'
     abbr -a -g nid 'npm install --save-dev'
     abbr -a -g ng 'npm install -g'
@@ -47,6 +46,7 @@ if status --is-interactive
     abbr -a -g mxc 'tmuxinator copy'
 
     abbr -a -g g git
+    abbr -a -g lg lazygit
     abbr -a -g ga 'git add'
     abbr -a -g gai 'git add --interactive'
     abbr -a -g gac 'git add . && git commit --verbose'

@@ -19,6 +19,9 @@ I use [iTerm2](https://github.com/gnachman/iTerm2), the sanest option for macOS.
 
 - [nnn](https://github.com/jarun/nnn), a lean terminal file manager
 
+- [lazygit](https://github.com/jesseduffield/lazygit), the least painful way to
+  use Git
+
 ## GUI
 
 - Firefox with [Surfingkeys](https://github.com/brookhong/Surfingkeys), the most

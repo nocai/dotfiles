@@ -133,6 +133,9 @@ u.command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), [
 u.augroup("OnTermOpen", "TermOpen", "lua global.commands.terminal.on_open()")
 u.augroup("OnTermClose", "TermClose", "lua global.commands.terminal.on_close()")
 
+u.command("Lazygit", "term lazygit")
+u.map("n", "<Leader>g", ":Lazygit<CR>")
+
 u.command("R", "w | :e")
 
 u.command("Remove", "call delete(expand('%')) | bdelete")
