@@ -32,10 +32,23 @@ telescope.load_extension("fzf")
 _G.global.telescope = {
     -- try git_files and fall back to find_files
     find_files = function()
+        local current = vim.api.nvim_get_current_buf()
         local opts = {
             attach_mappings = function(_, map)
                 map("i", "<C-v>", function(prompt_bufnr)
                     set.edit(prompt_bufnr, "Vsplit")
+                end)
+
+                -- replace current buffer
+                map("i", "<C-r>", function(prompt_bufnr)
+                    set.edit(prompt_bufnr, "edit")
+                    commands.bdelete(current)
+                end)
+
+                -- close all other buffers
+                map("i", "<C-o>", function(prompt_bufnr)
+                    commands.bwipeall()
+                    set.edit(prompt_bufnr, "edit")
                 end)
 
                 -- edit file and matching test file in split
