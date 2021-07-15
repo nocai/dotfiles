@@ -43,10 +43,10 @@ return require("packer").startup(function()
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
-    use_with_config("mcchrish/nnn.vim", "nnn") -- file manager integration
+    use_with_config("mcchrish/nnn.vim", "nnn") -- simple nnn integration
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
     use("wellle/tmux-complete.vim") -- completion from tmux panes
-    use("ojroques/nvim-lspfuzzy") -- use fzf as lsp handler
+    use("ojroques/nvim-lspfuzzy") -- sets up fzf as lsp handler
 
     -- development
     use("neovim/nvim-lspconfig")
@@ -63,8 +63,9 @@ return require("packer").startup(function()
     -- visual
     use("sainnhe/sonokai")
     use("folke/tokyonight.nvim")
-    use_with_config("RRethy/vim-illuminate", "illuminate")
     use("kyazdani42/nvim-web-devicons")
+    use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and moves between variable references
+    use_with_config("lukas-reineke/indent-blankline.nvim", "indent-blankline") -- adds indent and treesitter context markers
 
     -- local
     use_with_config("~/git/minsnip.nvim", "minsnip")
