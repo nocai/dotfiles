@@ -59,13 +59,12 @@ return require("packer").startup(function()
     use("RRethy/nvim-treesitter-textsubjects") -- adds smart . text object
     use("windwp/nvim-ts-autotag") -- automatically complete jsx tags
     use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
+    use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and moves between variable references
+    use_with_config("lukas-reineke/indent-blankline.nvim", "indent-blankline") -- adds indent and treesitter context markers
 
     -- visual
     use("sainnhe/sonokai")
-    use("folke/tokyonight.nvim")
     use("kyazdani42/nvim-web-devicons")
-    use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and moves between variable references
-    use_with_config("lukas-reineke/indent-blankline.nvim", "indent-blankline") -- adds indent and treesitter context markers
 
     -- local
     use_with_config("~/git/minsnip.nvim", "minsnip")

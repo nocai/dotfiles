@@ -30,7 +30,7 @@ gui:
 git:
   paging:
     colorArg: always
-    useConfig: false
+    useConfig: true
   merging:
     # only applicable to unix users
     manualCommit: false

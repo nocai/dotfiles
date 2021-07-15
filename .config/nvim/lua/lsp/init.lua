@@ -6,6 +6,8 @@ local tsserver = require("lsp.tsserver")
 local api = vim.api
 local lsp = vim.lsp
 
+require("lspfuzzy").setup({})
+
 lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     signs = true,
@@ -83,7 +85,6 @@ local on_attach = function(client, bufnr)
     end
 
     require("illuminate").on_attach(client)
-    require("lspfuzzy").setup({})
 
     -- telescope
     u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
