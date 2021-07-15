@@ -3,7 +3,6 @@ if status --is-interactive
     abbr -a -- - 'cd -'
 
     abbr -a -g t 'task'
-    abbr -a -g tw 'taskwarrior-tui'
     abbr -a -g ni 'npm install'
     abbr -a -g nid 'npm install --save-dev'
     abbr -a -g ng 'npm install -g'

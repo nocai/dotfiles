@@ -1,8 +1,4 @@
 require("nvim-treesitter.configs").setup({
-    autopairs = { enable = true },
-    autotag = {
-        enable = true,
-    },
     indent = {
         enable = true,
     },
@@ -15,6 +11,15 @@ require("nvim-treesitter.configs").setup({
         "jsonc",
         "yaml",
     },
+    highlight = { enable = true },
+    -- plugins
+    context_commentstring = {
+        enable = true,
+    },
+    autopairs = { enable = true },
+    autotag = {
+        enable = true,
+    },
     textsubjects = {
         enable = true,
         keymaps = {
@@ -22,5 +27,4 @@ require("nvim-treesitter.configs").setup({
             [";"] = "textsubjects-container-outer",
         },
     },
-    highlight = { enable = true },
 })

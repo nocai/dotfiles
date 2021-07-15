@@ -30,7 +30,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.shortmess:append("cA")
 vim.opt.clipboard:append("unnamedplus")
 
-vim.g.markdown_fenced_languages = { "lua", "typescript", "typescriptreact" }
+-- the only way I've found to make this persistent
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
 
 _G.global = {}
 

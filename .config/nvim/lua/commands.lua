@@ -207,10 +207,10 @@ commands.terminal = {
     end,
 }
 
-u.command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor")
-
 u.augroup("OnTermOpen", "TermOpen", "lua global.commands.terminal.on_open()")
 u.augroup("OnTermClose", "TermClose", "lua global.commands.terminal.on_close()")
+
+u.command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor")
 
 u.command("Lazygit", "term lazygit")
 u.map("n", "<Leader>g", ":Lazygit<CR>")
