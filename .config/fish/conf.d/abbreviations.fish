@@ -42,7 +42,6 @@ if status --is-interactive
 
     abbr -a -g mx tmuxinator
     abbr -a -g mxs 'tmuxinator start'
-    abbr -a -g mxr 'tmux kill-server ; tmuxinator start'
     abbr -a -g mxe 'tmuxinator edit'
     abbr -a -g mxn 'tmuxinator new'
     abbr -a -g mxc 'tmuxinator copy'

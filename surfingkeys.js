@@ -1,6 +1,5 @@
 settings.smoothScroll = false;
 settings.showModeStatus = true;
-settings.focusFirstCandidate = true;
 settings.omnibarSuggestion = true;
 settings.hintAlign = "left";
 settings.scrollStepSize = 100;
@@ -18,10 +17,10 @@ unmap("cp");
 unmap(";cp");
 unmap(";ap");
 
-map("J", "E");
-map("K", "R");
-map("H", "S");
-map("L", "D");
+map("q", "E");
+map("w", "R");
+map("h", "S");
+map("l", "D");
 
 map("F", "af");
 map(";b", "C");
