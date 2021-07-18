@@ -160,7 +160,7 @@ commands.edit_test_file = function(cmd, post)
 
     -- check buffers first
     for _, b in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
-        for _, pattern in ipairs(patterns) do
+        for _, pattern in ipairs(final_patterns) do
             if b.name:match(pattern) then
                 vim.cmd(cmd .. " #" .. b.bufnr)
                 return
