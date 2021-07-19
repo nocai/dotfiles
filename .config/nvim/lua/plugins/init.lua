@@ -30,6 +30,17 @@ return require("packer").startup(function()
 
     -- additional functionality
     use_with_config("phaazon/hop.nvim", "hop") -- motion
+    use({
+        "hrsh7th/nvim-compe",
+        config = function()
+            require("compe").setup({ preselect = "always", source = {
+                path = true,
+                buffer = true,
+                nvim_lsp = true,
+                nvim_lua = true,
+            } })
+        end,
+    })
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({

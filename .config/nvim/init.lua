@@ -2,7 +2,7 @@ local u = require("utils")
 
 vim.g.mapleader = ","
 
-vim.opt.completeopt = { "menuone", "noinsert" }
+vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.hidden = true
 vim.opt.expandtab = true
 vim.opt.ignorecase = true
