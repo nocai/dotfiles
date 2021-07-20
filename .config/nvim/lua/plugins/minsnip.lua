@@ -10,9 +10,11 @@ minsnip.setup({
 _G.global.tab_complete = function()
     if not minsnip.jump() then
         if vim.fn.pumvisible() == 1 then
-            vim.fn["compe#confirm"]()
+            u.input("<C-y>")
+        elseif vim.opt_local.omnifunc ~= "" then
+            u.input("<C-x><C-o>")
         else
-            vim.fn["compe#complete"]()
+            u.input("<C-n>")
         end
     end
 end

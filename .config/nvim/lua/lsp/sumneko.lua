@@ -1,5 +1,7 @@
 local lspconfig = require("lspconfig")
 
+local u = require("utils")
+
 local root = vim.fn.getenv("HOME") .. "/git/lua-language-server/"
 local binary = root .. "bin/macOS/lua-language-server"
 local settings = {
@@ -23,8 +25,11 @@ local settings = {
 local M = {}
 M.setup = function(on_attach)
     lspconfig.sumneko_lua.setup({
-        on_attach = function(client)
+        on_attach = function(client, bufnr)
             on_attach(client)
+
+            vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+            u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
         end,
         cmd = { binary, "-E", root .. "main.lua" },
         settings = settings,

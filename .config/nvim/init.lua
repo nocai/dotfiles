@@ -2,7 +2,7 @@ local u = require("utils")
 
 vim.g.mapleader = ","
 
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menuone", "noinsert" }
 vim.opt.hidden = true
 vim.opt.expandtab = true
 vim.opt.ignorecase = true
@@ -76,7 +76,6 @@ u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], { expr = true })
 
 -- misc
 u.map("n", "Y", "y$")
-u.map("i", "<C-Space>", "<C-x><C-o>")
 
 -- source remaining config
 require("commands")

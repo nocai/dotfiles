@@ -7,6 +7,8 @@ local cmd = { "typescript-language-server", "--stdio", "--tsserver-path", "/usr/
 
 local ts_utils_settings = {
     -- debug = true,
+    enable_import_on_completion = true,
+    import_all_scan_buffers = 100,
     eslint_bin = "eslint_d",
     eslint_enable_diagnostics = true,
     enable_formatting = true,
@@ -29,6 +31,9 @@ M.setup = function(on_attach)
             u.buf_map("n", "gI", ":TSLspRenameFile<CR>", nil, bufnr)
             u.buf_map("n", "go", ":TSLspImportAll<CR>", nil, bufnr)
             u.buf_map("n", "qq", ":TSLspFixCurrent<CR>", nil, bufnr)
+            u.buf_map("i", ".", ".<C-x><C-o>", nil, bufnr)
+
+            vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
         end,
     })
 end
