@@ -40,6 +40,8 @@ return require("packer").startup(function()
         "junegunn/fzf.vim", -- fzf integration
         requires = { "junegunn/fzf" },
         config = config("fzf"),
+        opt = true,
+        cmd = { "Files", "Rg" },
     })
     use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
@@ -60,15 +62,18 @@ return require("packer").startup(function()
         run = ":TSUpdate",
         config = config("treesitter"),
     })
-    use("RRethy/nvim-treesitter-textsubjects") -- adds smart . text object
-    use("windwp/nvim-ts-autotag") -- automatically complete jsx tags
-    use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
+    use({
+        "RRethy/nvim-treesitter-textsubjects", -- adds smart . text object
+        ft = { "lua", "typescript", "typescriptreact" },
+    })
+    use({ "windwp/nvim-ts-autotag", ft = { "typescript", "typescriptreact" } }) -- automatically complete jsx tags
+    use({ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "typescript", "typescriptreact" } }) -- makes jsx comments actually work
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and moves between variable references
-    use_with_config("lukas-reineke/indent-blankline.nvim", "indent-blankline") -- adds indent and treesitter context markers
 
     -- visual
     use("sainnhe/sonokai")
     use("kyazdani42/nvim-web-devicons")
+    use_with_config("lukas-reineke/indent-blankline.nvim", "indent-blankline") -- adds indent and treesitter context markers
 
     -- local
     use_with_config("~/git/minsnip.nvim", "minsnip")
@@ -81,6 +86,7 @@ return require("packer").startup(function()
     use("teal-language/vim-teal")
     use({
         "iamcco/markdown-preview.nvim",
+        opt = true,
         ft = { "markdown" },
         config = "vim.cmd[[doautocmd BufEnter]]",
         run = "cd app && yarn install",
