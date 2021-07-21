@@ -3,11 +3,14 @@ return require("packer").startup(function()
     use({ "wbthomason/packer.nvim", opt = true })
 
     local config = function(name)
-        pcall(require, "plugins." .. name)
+        return string.format("pcall(require, 'plugins.%s')", name)
     end
 
     local use_with_config = function(path, name)
-        use({ path, config = config(name) })
+        use({
+            path,
+            config = config(name),
+        })
     end
 
     -- basic
