@@ -27,4 +27,7 @@ require("nvim-treesitter.configs").setup({
             [";"] = "textsubjects-container-outer",
         },
     },
+    matchup = {
+        enable = true,
+    },
 })

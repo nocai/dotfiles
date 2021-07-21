@@ -30,6 +30,7 @@ return require("packer").startup(function()
             "beloglazov/vim-textobj-punctuation", -- au/iu for punctuation
         },
     })
+    use_with_config("andymass/vim-matchup", "matchup") -- improves %
 
     -- additional functionality
     use_with_config("phaazon/hop.nvim", "hop") -- motion
