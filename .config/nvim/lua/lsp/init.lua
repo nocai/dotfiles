@@ -30,6 +30,15 @@ end
 
 local popup_opts = { border = "single", focusable = false }
 
+local peek_definition = function()
+    vim.lsp.buf_request(0, "textDocument/definition", lsp.util.make_position_params(), function(_, _, result)
+        if result == nil or vim.tbl_isempty(result) then
+            return nil
+        end
+        lsp.util.preview_location(result[1], popup_opts)
+    end)
+end
+
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, popup_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, popup_opts)
 
@@ -47,15 +56,14 @@ end
 
 _G.global.lsp = {
     popup_opts = popup_opts,
+    peek_definition = peek_definition,
     next_diagnostic = next_diagnostic,
     prev_diagnostic = prev_diagnostic,
 }
 
 local on_attach = function(client, bufnr)
     -- commands
-    u.lua_command("LspAct", "vim.lsp.buf.code_action()")
-    u.lua_command("LspRef", "vim.lsp.buf.references()")
-    u.lua_command("LspDef", "vim.lsp.buf.definition()")
+    u.lua_command("LspPeekDef", "global.lsp.peek_definition()")
     u.lua_command("LspFormatting", "vim.lsp.buf.formatting()")
     u.lua_command("LspHover", "vim.lsp.buf.hover()")
     u.lua_command("LspRename", "vim.lsp.buf.rename()")
@@ -67,9 +75,6 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
-    u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
-    u.buf_map("n", "gr", ":LspRef<CR>", nil, bufnr)
-    u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
     u.buf_map("n", "gh", ":LspPeekDef<CR>", nil, bufnr)
     u.buf_map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
     u.buf_map("n", "gi", ":LspRename<CR>", nil, bufnr)

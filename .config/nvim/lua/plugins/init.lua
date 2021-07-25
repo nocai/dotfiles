@@ -37,15 +37,19 @@ return require("packer").startup(function()
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
-        "junegunn/fzf.vim", -- fzf integration
-        requires = { "junegunn/fzf" },
-        config = config("fzf"),
-        opt = true,
-        cmd = { "Files", "Rg" },
+        "nvim-telescope/telescope.nvim", -- fuzzy finder
+        requires = { "nvim-lua/popup.nvim" },
+        config = config("telescope"),
     })
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
     use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
     use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
-    use_with_config("tversteeg/registers.nvim", "registers") -- show register contents intelligently
+    use({
+        "tversteeg/registers.nvim", -- show register contents intelligently
+        config = function()
+            vim.g.registers_window_border = "single"
+        end,
+    })
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
