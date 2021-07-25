@@ -1,4 +1,4 @@
-set PATH /opt/homebrew/bin /opt/homebrew/sbin $HOME/.cargo/bin/ $PATH
+set PATH /opt/homebrew/bin /opt/homebrew/sbin $HOME/.cargo/bin/ $HOME/go/bin $PATH
 set -x EDITOR nvr-node
 
 set -x FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
