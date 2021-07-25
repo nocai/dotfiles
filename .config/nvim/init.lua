@@ -48,6 +48,11 @@ u.map("n", "<Leader>ev", ":Vsplit <C-r>=expand('%:p')<CR>", { silent = false })
 u.map("n", "<Leader>T", ":term<CR>")
 u.map("t", "<C-o>", "<C-\\><C-n>")
 
+-- tabpages
+u.map("n", "<Leader>cn", ":tabnew<CR>")
+u.map("n", "<Leader>cx", ":tabclose<CR>")
+u.map("n", "<Leader>co", ":tabonly<CR>")
+
 -- make useless keys useful
 u.map("n", "<BS>", "<C-^>")
 

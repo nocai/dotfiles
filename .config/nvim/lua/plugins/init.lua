@@ -3,7 +3,7 @@ return require("packer").startup(function()
     use({ "wbthomason/packer.nvim", opt = true })
 
     local config = function(name)
-        return string.format("pcall(require, 'plugins.%s')", name)
+        return string.format("require('plugins.%s')", name)
     end
 
     local use_with_config = function(path, name)
@@ -32,31 +32,28 @@ return require("packer").startup(function()
     })
     use_with_config("andymass/vim-matchup", "matchup") -- improves %
 
-    -- additional functionality
-    use_with_config("phaazon/hop.nvim", "hop") -- motion
+    -- improvements to registers
     use_with_config("svermeulen/vim-subversive", "subversive") -- adds substitute operator
+    use_with_config("svermeulen/vim-cutlass", "cutlass") -- separates cut and delete operations
+    use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
+    use_with_config("tversteeg/registers.nvim", "registers") -- shows register contents intelligently
+
+    -- additional functionality
+    use_with_config("justinmk/vim-sneak", "sneak") -- my favorite motion plugin
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
         "nvim-telescope/telescope.nvim", -- fuzzy finder
-        requires = { "nvim-lua/popup.nvim" },
+        requires = {
+            { "nvim-lua/popup.nvim" },
+            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- better search algorithm
+        },
         config = config("telescope"),
-    })
-    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- better search algorithm
-    use_with_config("svermeulen/vim-cutlass", "cutlass") -- makes registers less annoying
-    use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
-    use({
-        "tversteeg/registers.nvim", -- show register contents intelligently
-        config = function()
-            vim.g.registers_window_border = "single"
-        end,
     })
 
     -- integrations
-    use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / vim pane navigation
-    use_with_config("mcchrish/nnn.vim", "nnn") -- simple nnn integration
+    use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / neovim pane navigation
+    use_with_config("vifm/vifm.vim", "vifm") -- simple nnn integration
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
-    use("wellle/tmux-complete.vim") -- completion from tmux panes
-    use("ojroques/nvim-lspfuzzy") -- sets up fzf as lsp handler
 
     -- development
     use("neovim/nvim-lspconfig")
@@ -66,18 +63,18 @@ return require("packer").startup(function()
         run = ":TSUpdate",
         config = config("treesitter"),
     })
+    use("folke/lua-dev.nvim") -- adds completion for neovim api, plugins, and more
     use({
         "RRethy/nvim-treesitter-textsubjects", -- adds smart . text object
         ft = { "lua", "typescript", "typescriptreact" },
     })
-    use({ "windwp/nvim-ts-autotag", ft = { "typescript", "typescriptreact" } }) -- automatically complete jsx tags
+    use({ "windwp/nvim-ts-autotag", ft = { "typescript", "typescriptreact" } }) -- automatically completes jsx tags
     use({ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "typescript", "typescriptreact" } }) -- makes jsx comments actually work
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and moves between variable references
 
     -- visual
     use("sainnhe/sonokai")
     use("kyazdani42/nvim-web-devicons")
-    use_with_config("lukas-reineke/indent-blankline.nvim", "indent-blankline") -- adds indent and treesitter context markers
 
     -- local
     use_with_config("~/git/minsnip.nvim", "minsnip")

@@ -201,7 +201,7 @@ commands.terminal = {
 
     -- suppress exit code message
     on_close = function()
-        if not string.match(vim.fn.expand("<afile>"), "nnn") then
+        if not string.match(vim.fn.expand("<afile>"), "vifm") then
             vim.api.nvim_input("<CR>")
         end
     end,
