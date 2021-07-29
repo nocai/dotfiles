@@ -47,8 +47,8 @@ _G.global.telescope = {
 
                 -- close all other buffers
                 map("i", "<C-o>", function(prompt_bufnr)
-                    commands.bwipeall()
                     set.edit(prompt_bufnr, "edit")
+                    commands.bonly()
                 end)
 
                 -- edit file and matching test file in split

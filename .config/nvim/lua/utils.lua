@@ -15,9 +15,15 @@ local M = {}
 M.map = function(mode, target, source, opts)
     api.nvim_set_keymap(mode, target, source, get_map_options(opts))
 end
+M.nmap = function(...)
+    M.map("n", ...)
+end
+M.imap = function(...)
+    M.map("i", ...)
+end
 
 M.buf_map = function(mode, target, source, opts, bufnr)
-    api.nvim_buf_set_keymap(bufnr, mode, target, source, get_map_options(opts))
+    api.nvim_buf_set_keymap(bufnr or 0, mode, target, source, get_map_options(opts))
 end
 
 M.for_each = function(tbl, cb)

@@ -201,9 +201,7 @@ commands.terminal = {
 
     -- suppress exit code message
     on_close = function()
-        if not string.match(vim.fn.expand("<afile>"), "vifm") then
-            vim.api.nvim_input("<CR>")
-        end
+        vim.api.nvim_input("<CR>")
     end,
 }
 
@@ -212,12 +210,11 @@ u.augroup("OnTermClose", "TermClose", "lua global.commands.terminal.on_close()")
 
 u.command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor")
 
-u.command("Lazygit", "term lazygit")
-u.map("n", "<Leader>g", ":Lazygit<CR>")
-
+-- reset LSP diagnostics and treesitter
 u.command("R", "w | :e")
 
-u.command("Remove", "call delete(expand('%')) | bdelete")
+-- delete current file and buffer
+u.command("Remove", "call delete(expand('%')) | Bdelete")
 
 _G.global.commands = commands
 

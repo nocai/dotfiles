@@ -12,6 +12,7 @@ local sources = {
     b.diagnostics.markdownlint,
     b.diagnostics.teal,
     b.diagnostics.shellcheck,
+    b.diagnostics.misspell,
     b.code_actions.gitsigns,
 }
 

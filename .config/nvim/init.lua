@@ -27,7 +27,6 @@ vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
-vim.opt.shell = "/bin/sh"
 vim.opt.shortmess:append("cA")
 vim.opt.clipboard:append("unnamedplus")
 
@@ -71,6 +70,11 @@ u.map("x", "H", "^")
 u.map("n", "L", "$")
 u.map("o", "L", "$")
 u.map("x", "L", "$")
+
+u.map("i", "<M-h>", "<Left>")
+u.map("i", "<M-j>", "<Down>")
+u.map("i", "<M-k>", "<Up>")
+u.map("i", "<M-l>", "<Right>")
 
 u.map("n", "<Space>", ":", { silent = false })
 u.map("v", "<Space>", ":", { silent = false })
