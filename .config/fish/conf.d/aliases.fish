@@ -1,3 +1,3 @@
 if status --is-interactive
-    alias v="TERM=xterm-256color vifm ."
+    alias n="TERM=xterm-256color nnn -C ."
 end

@@ -4,7 +4,7 @@ if status --is-interactive
     abbr -a -g cdc 'cd ; clear ; tmux clear-history'
     abbr -a -- - 'cd -'
 
-    abbr -a -g t 'task'
+    abbr -a -g t task
     abbr -a -g ni 'npm install'
     abbr -a -g nid 'npm install --save-dev'
     abbr -a -g ng 'npm install -g'
@@ -17,7 +17,7 @@ if status --is-interactive
     abbr -a -g nv nvim
     abbr -a -g nvf 'nvim -c Files'
     abbr -a -g nvr 'nvim -c Rg'
-    abbr -a -g nvn 'nvim -c Vifm'
+    abbr -a -g nvn 'nvim -c NnnPicker'
     abbr -a -g nvg 'nvim -c Git'
     abbr -a -g nvp 'nvim -c PackerSync'
     abbr -a -g vimdiff 'nvim -d'

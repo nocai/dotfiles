@@ -1,10 +1,8 @@
+local buftabline = require("buftabline")
+
 local u = require("utils")
 
-local buftabline = require("buftabline")
-buftabline.setup({
-    tab_format = " #{i} #{n}: #{b}#{f} ",
-    icon_colors = "normal",
-})
+buftabline.setup()
 
 buftabline.map({ prefix = "<Leader>c", cmd = "bdelete" })
 buftabline.map({ prefix = "<Leader>v", cmd = "vertical sb" })

@@ -18,8 +18,6 @@ return require("packer").startup(function()
     use("tpope/vim-surround")
     use("tpope/vim-unimpaired")
     use("tpope/vim-commentary")
-    use_with_config("justinmk/vim-dirvish", "dirvish")
-    use_with_config("justinmk/vim-sneak", "sneak")
 
     -- git
     use({
@@ -48,24 +46,24 @@ return require("packer").startup(function()
     -- additional functionality
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
-        "nvim-telescope/telescope.nvim", -- fuzzy finder
-        requires = {
-            { "nvim-lua/popup.nvim" },
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- better search algorithm
-        },
-        config = config("telescope"),
+        "junegunn/fzf.vim", -- fzf integration
+        requires = { "junegunn/fzf" },
+        config = config("fzf"),
     })
     use_with_config("~/git/minsnip.nvim", "minsnip") -- tiny snippet plugin
+    use_with_config("phaazon/hop.nvim", "hop") -- motion
 
     -- integrations
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / neovim pane navigation
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
+    use_with_config("mcchrish/nnn.vim", "nnn") -- simple nnn integration
 
     -- lsp
     use("neovim/nvim-lspconfig")
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and allows moving between variable references
     use("~/git/nvim-lsp-ts-utils")
     use("~/git/null-ls.nvim")
+    use("ojroques/nvim-lspfuzzy") -- use fzf as lsp handler
 
     -- treesitter
     use({
@@ -77,13 +75,11 @@ return require("packer").startup(function()
         "RRethy/nvim-treesitter-textsubjects", -- adds smart text objects
         ft = { "lua", "typescript", "typescriptreact" },
     })
-    use({ "windwp/nvim-ts-autotag", ft = { "typescript", "typescriptreact" } }) -- automatically completes jsx tags
     use({ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "typescript", "typescriptreact" } }) -- makes jsx comments actually work
 
     -- visual
-    use("sainnhe/sonokai")
-    use("kyazdani42/nvim-web-devicons")
-    use_with_config("~/git/buftabline.nvim", "buftabline")
+    use({ "sainnhe/sonokai", "folke/tokyonight.nvim" }) -- themes
+    use_with_config("~/git/buftabline.nvim", "buftabline") -- show buffers in tabline
 
     -- misc
     use("blankname/vim-fish")

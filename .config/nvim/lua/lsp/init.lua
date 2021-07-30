@@ -51,6 +51,9 @@ _G.global.lsp = {
 
 local on_attach = function(client, bufnr)
     -- commands
+    u.lua_command("LspAct", "vim.lsp.buf.code_action()")
+    u.lua_command("LspRef", "vim.lsp.buf.references()")
+    u.lua_command("LspDef", "vim.lsp.buf.definition()")
     u.lua_command("LspFormatting", "vim.lsp.buf.formatting()")
     u.lua_command("LspHover", "vim.lsp.buf.hover()")
     u.lua_command("LspRename", "vim.lsp.buf.rename()")
@@ -62,6 +65,9 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
+    u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
+    u.buf_map("n", "gr", ":LspRef<CR>", nil, bufnr)
+    u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
     u.buf_map("n", "gy", ":LspTypeDef<CR>", nil, bufnr)
     u.buf_map("n", "gi", ":LspRename<CR>", nil, bufnr)
     u.buf_map("n", "K", ":LspHover<CR>", nil, bufnr)
@@ -76,11 +82,7 @@ local on_attach = function(client, bufnr)
     end
 
     require("illuminate").on_attach(client)
-
-    -- telescope
-    u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
-    u.buf_map("n", "gr", ":LspRef<CR>", nil, bufnr)
-    u.buf_map("n", "gd", ":LspDef<CR>", nil, bufnr)
+    require("lspfuzzy").setup({})
 end
 
 tsserver.setup(on_attach)

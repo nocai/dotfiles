@@ -111,7 +111,7 @@ u.command("VsplitLast", "Vsplit #")
 u.map("n", "<Leader>vv", ":VsplitLast<CR>")
 
 commands.save_on_cr = function()
-    return vim.bo.buftype ~= "" and u.t("<CR>") or u.t(":w<CR>")
+    return vim.bo.buftype ~= "" and u.t("<CR>") or u.t(":write<CR>")
 end
 
 u.map("n", "<CR>", "v:lua.global.commands.save_on_cr()", { expr = true })
@@ -192,23 +192,11 @@ end
 vim.cmd("command! -complete=command -nargs=* TestFile lua global.commands.edit_test_file(<f-args>)")
 u.map("n", "<Leader>tv", ":TestFile Vsplit<CR>")
 
-commands.terminal = {
-    on_open = function()
-        -- start in insert mode and turn off line numbers
-        vim.cmd("startinsert")
-        vim.cmd("setlocal nonumber norelativenumber")
-    end,
-
-    -- suppress exit code message
-    on_close = function()
-        vim.api.nvim_input("<CR>")
-    end,
-}
-
-u.augroup("OnTermOpen", "TermOpen", "lua global.commands.terminal.on_open()")
-u.augroup("OnTermClose", "TermClose", "lua global.commands.terminal.on_close()")
-
-u.command("WipeReg", "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor")
+u.command(
+    "WipeReg",
+    [[for r in split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')| silent! call setreg(r, []) | endfor]]
+)
+u.augroup("WipeRegisters", "VimEnter", "WipeReg")
 
 -- reset LSP diagnostics and treesitter
 u.command("R", "w | :e")
