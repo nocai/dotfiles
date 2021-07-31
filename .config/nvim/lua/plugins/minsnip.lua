@@ -2,10 +2,7 @@ local minsnip = require("minsnip")
 
 local u = require("utils")
 
-minsnip.setup({
-    snippets = require("snippets"),
-    extends = { typescriptreact = { "typescript" } },
-})
+minsnip.setup(require("snippets"))
 
 _G.global.tab_complete = function()
     if not minsnip.jump() then
