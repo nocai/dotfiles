@@ -44,7 +44,7 @@ return {
         return lua(fmt('print("%s", %s)', cb, cb)) or ts(fmt('console.log("%s", %s);', cb, cb))
     end,
     imp = function()
-        return lua("local $1 = require$0)()") or ts('import { $0 } from "$1";')
+        return lua("local $1 = require($0)") or ts('import { $0 } from "$1";')
     end,
     dsc = function()
         return lua([[
