@@ -11,6 +11,7 @@ local ts_utils_settings = {
     import_all_scan_buffers = 100,
     eslint_bin = "eslint_d",
     eslint_enable_diagnostics = true,
+    eslint_show_rule_id = true,
     enable_formatting = true,
     formatter = "eslint_d",
     update_imports_on_move = true,
