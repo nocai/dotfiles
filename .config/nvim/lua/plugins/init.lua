@@ -42,14 +42,14 @@ return require("packer").startup(function()
     use_with_config("svermeulen/vim-yoink", "yoink") -- improves paste
     use_with_config("tversteeg/registers.nvim", "registers") -- shows register contents intelligently
 
-    -- other functionality
+    -- additional functionality
+    use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use({
         "junegunn/fzf.vim", -- fzf integration
         requires = { "junegunn/fzf" },
         config = config("fzf"),
     })
     use_with_config("~/git/minsnip.nvim", "minsnip") -- tiny snippet plugin
-    use_with_config("steelsojka/pears.nvim", "pears") -- auto complete pairs
     use_with_config("phaazon/hop.nvim", "hop") -- motion
 
     -- integrations
