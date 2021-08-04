@@ -79,6 +79,7 @@ return require("packer").startup(function()
     -- visual
     use({ "sainnhe/sonokai", "folke/tokyonight.nvim" }) -- themes
     use_with_config("~/git/buftabline.nvim", "buftabline") -- show buffers in tabline
+    use("kyazdani42/nvim-web-devicons")
 
     -- misc
     use("blankname/vim-fish")
