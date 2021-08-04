@@ -33,6 +33,9 @@ M.setup = function(on_attach)
         end,
         cmd = { binary, "-E", root .. "main.lua" },
         settings = settings,
+        flags = {
+            debounce_text_changes = 150,
+        },
     })
 end
 
