@@ -1,0 +1,16 @@
+# option + command + hjkl: focus windows
+lalt + lcmd - h: yabai -m window --focus west
+lalt + lcmd - j: yabai -m window --focus south
+lalt + lcmd - k: yabai -m window --focus north
+lalt + lcmd - l: yabai -m window --focus east
+
+# add shift to swap windows
+lalt + lcmd + lshift - k: yabai -m window --swap north
+lalt + lcmd + lshift - j: yabai -m window --swap south
+lalt + lcmd + lshift - l: yabai -m window --swap east
+lalt + lcmd + lshift - h: yabai -m window --swap west
+
+# option + command + enter: toggle fullscreen
+lalt + lcmd - return: yabai -m window --toggle zoom-fullscreen
+# option + command + f: toggle float
+lalt + lcmd - f: yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2

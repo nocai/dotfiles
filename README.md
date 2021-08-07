@@ -25,12 +25,8 @@ for macOS.
 
 ## GUI
 
-- Firefox with [Surfingkeys](https://github.com/brookhong/Surfingkeys), the most
-  reasonable compromise I've found between having to develop (and use) modern
-  websites and wanting keyboard control
+- [yabai](https://github.com/koekeishiya/yabai) for tiling window management
+  (no space management on M1 yet, but still a necessity)
 
-- [Amethyst](https://github.com/ianyh/Amethyst), a simple tiling window manager
-  that works well on M1
-
-- [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) to remap
-  keys
+- [skhd](https://github.com/koekeishiya/skhd) for system-wide keyboard shortcuts
+  (and controlling yabai)

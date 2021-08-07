@@ -3,8 +3,6 @@ local ts_utils = require("nvim-lsp-ts-utils")
 
 local u = require("utils")
 
-local cmd = { "typescript-language-server", "--stdio", "--tsserver-path", "/usr/local/bin/tsserver-wrapper" }
-
 local ts_utils_settings = {
     -- debug = true,
     enable_import_on_completion = true,
@@ -20,7 +18,6 @@ local ts_utils_settings = {
 local M = {}
 M.setup = function(on_attach)
     lspconfig.tsserver.setup({
-        cmd = cmd,
         on_attach = function(client, bufnr)
             client.resolved_capabilities.document_formatting = false
             on_attach(client)

@@ -30,8 +30,8 @@ znap source wookayin/fzf-fasd
 znap source zdharma/fast-syntax-highlighting
 znap source lukechilds/zsh-better-npm-completion
 
-znap eval fasd "$(fasd --init auto)"
-znap eval pyenv "$(pyenv init -)"
+znap eval fasd 'fasd --init auto'
+znap eval pyenv 'pyenv init -'
 
 [ -f ~/.config/zsh/opts.zsh ] && source ~/.config/zsh/opts.zsh
 [ -f ~/.config/zsh/functions.zsh ] && source ~/.config/zsh/functions.zsh
