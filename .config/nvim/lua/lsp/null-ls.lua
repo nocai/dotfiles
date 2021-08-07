@@ -11,13 +11,11 @@ local sources = {
         end,
     }),
     b.formatting.trim_whitespace.with({ filetypes = { "tmux", "teal" } }),
-    b.formatting.fish_indent,
     b.formatting.shfmt,
     b.diagnostics.write_good,
     b.diagnostics.markdownlint,
     b.diagnostics.teal,
     b.diagnostics.shellcheck,
-    b.diagnostics.misspell,
     b.code_actions.gitsigns,
 }
 

@@ -82,7 +82,6 @@ return require("packer").startup(function()
     use("kyazdani42/nvim-web-devicons")
 
     -- misc
-    use("blankname/vim-fish")
     use("teal-language/vim-teal")
     use("nvim-lua/plenary.nvim")
     use({
