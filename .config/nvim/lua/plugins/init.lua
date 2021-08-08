@@ -63,6 +63,7 @@ return require("packer").startup(function()
     use("~/git/nvim-lsp-ts-utils")
     use("~/git/null-ls.nvim")
     use("ojroques/nvim-lspfuzzy") -- use fzf as lsp handler
+    use("mfussenegger/nvim-lsp-compl") -- simple lsp completion
 
     -- treesitter
     use({

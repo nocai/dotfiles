@@ -81,6 +81,7 @@ local on_attach = function(client, bufnr)
         u.buf_augroup("LspFormatOnSave", "BufWritePost", "lua vim.lsp.buf.formatting()")
     end
 
+    require("lsp_compl").attach(client, bufnr)
     require("illuminate").on_attach(client)
     require("lspfuzzy").setup({})
 end
