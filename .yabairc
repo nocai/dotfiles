@@ -26,10 +26,8 @@ yc window_opacity off
 
 # rules
 yr app="^Messages$" manage=off
-yr app="^System Preferences$" manage=off
 yr app="^App Store$" manage=off
 yr app="^Activity Monitor$" manage=off
-yr app="^Keychain Access$" manage=off
 yr app="^Calculator$" manage=off
 yr app="^Streaks$" manage=off
 
