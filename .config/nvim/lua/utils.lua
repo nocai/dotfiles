@@ -18,6 +18,9 @@ end
 M.nmap = function(...)
     M.map("n", ...)
 end
+M.omap = function(...)
+    M.map("o", ...)
+end
 M.imap = function(...)
     M.map("i", ...)
 end

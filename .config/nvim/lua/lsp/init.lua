@@ -12,20 +12,6 @@ lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_pub
     virtual_text = false,
 })
 
-lsp.util.close_preview_autocmd = function(events, winnr)
-    events = vim.tbl_filter(function(v)
-        return v ~= "CursorMovedI" and v ~= "BufLeave"
-    end, events)
-
-    api.nvim_command(
-        "autocmd "
-            .. table.concat(events, ",")
-            .. " <buffer> ++once lua pcall(vim.api.nvim_win_close, "
-            .. winnr
-            .. ", true)"
-    )
-end
-
 local popup_opts = { border = "single", focusable = false }
 
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, popup_opts)
@@ -37,10 +23,16 @@ end
 
 local next_diagnostic = function()
     go_to_diagnostic(lsp.diagnostic.get_next_pos() or lsp.diagnostic.get_prev_pos())
+    vim.schedule(function()
+        lsp.diagnostic.show_line_diagnostics(popup_opts)
+    end)
 end
 
 local prev_diagnostic = function()
     go_to_diagnostic(lsp.diagnostic.get_prev_pos() or lsp.diagnostic.get_next_pos())
+    vim.schedule(function()
+        lsp.diagnostic.show_line_diagnostics(popup_opts)
+    end)
 end
 
 _G.global.lsp = {
@@ -62,7 +54,6 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspDiagPrev", "global.lsp.prev_diagnostic()")
     u.lua_command("LspDiagNext", "global.lsp.next_diagnostic()")
     u.lua_command("LspDiagLine", "vim.lsp.diagnostic.show_line_diagnostics(global.lsp.popup_opts)")
-    u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
 
     -- bindings
     u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
@@ -73,9 +64,7 @@ local on_attach = function(client, bufnr)
     u.buf_map("n", "K", ":LspHover<CR>", nil, bufnr)
     u.buf_map("n", "[a", ":LspDiagPrev<CR>", nil, bufnr)
     u.buf_map("n", "]a", ":LspDiagNext<CR>", nil, bufnr)
-    u.buf_map("i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>", nil, bufnr)
-
-    u.buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
+    u.buf_map("n", "<Leader>a", ":LspDiagLine<CR>", nil, bufnr)
 
     if client.resolved_capabilities.document_formatting then
         u.buf_augroup("LspFormatOnSave", "BufWritePre", "lua vim.lsp.buf.formatting_sync()")

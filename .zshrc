@@ -19,7 +19,6 @@ source ~/.config/zsh/zsh-snap/znap.zsh
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 bindkey '^Y' autosuggest-execute
 bindkey '^ ' autosuggest-accept
 

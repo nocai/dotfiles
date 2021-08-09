@@ -7,10 +7,7 @@ return require("packer").startup(function()
     end
 
     local use_with_config = function(path, name)
-        use({
-            path,
-            config = config(name),
-        })
+        use({ path, config = config(name) })
     end
 
     -- basic
@@ -81,7 +78,7 @@ return require("packer").startup(function()
     use({ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "typescript", "typescriptreact" } }) -- makes jsx comments actually work
 
     -- visual
-    use({ "sainnhe/sonokai", "folke/tokyonight.nvim" }) -- themes
+    use({ "sainnhe/sonokai", "folke/tokyonight.nvim", "RRethy/nvim-base16" }) -- themes
     use_with_config("~/git/buftabline.nvim", "buftabline") -- show buffers in tabline
 
     -- misc
