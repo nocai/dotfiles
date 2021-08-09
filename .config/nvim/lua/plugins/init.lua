@@ -58,12 +58,15 @@ return require("packer").startup(function()
     use_with_config("mcchrish/nnn.vim", "nnn") -- simple nnn integration
 
     -- lsp
-    use("neovim/nvim-lspconfig")
+    use("neovim/nvim-lspconfig") -- makes lsp configuration easier
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and allows moving between variable references
-    use("~/git/nvim-lsp-ts-utils")
-    use("~/git/null-ls.nvim")
-    use("ojroques/nvim-lspfuzzy") -- use fzf as lsp handler
-    use("mfussenegger/nvim-lsp-compl") -- simple lsp completion
+    use("~/git/null-ls.nvim") -- allows using neovim as language server
+    use("ojroques/nvim-lspfuzzy") -- allows using fzf as lsp handler
+    use("mfussenegger/nvim-lsp-compl") -- provides simple and fast lsp completion
+
+    -- development
+    use("~/git/nvim-lsp-ts-utils") -- improve typescript experience
+    use_with_config("vuki656/package-info.nvim", "package-info") -- show versions in package.json
 
     -- treesitter
     use({
@@ -80,13 +83,12 @@ return require("packer").startup(function()
     -- visual
     use({ "sainnhe/sonokai", "folke/tokyonight.nvim" }) -- themes
     use_with_config("~/git/buftabline.nvim", "buftabline") -- show buffers in tabline
-    use("kyazdani42/nvim-web-devicons")
 
     -- misc
-    use("teal-language/vim-teal")
-    use("nvim-lua/plenary.nvim")
+    use("teal-language/vim-teal") -- teal language support
+    use("nvim-lua/plenary.nvim") -- required for plugins (and testing)
     use({
-        "iamcco/markdown-preview.nvim",
+        "iamcco/markdown-preview.nvim", -- preview markdown output in browser
         opt = true,
         ft = { "markdown" },
         config = "vim.cmd[[doautocmd BufEnter]]",
