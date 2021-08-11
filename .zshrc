@@ -19,6 +19,8 @@ source ~/.config/zsh/zsh-snap/znap.zsh
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
+
 bindkey '^Y' autosuggest-execute
 bindkey '^ ' autosuggest-accept
 
@@ -35,4 +37,4 @@ znap eval pyenv 'pyenv init -'
 [ -f ~/.config/zsh/opts.zsh ] && source ~/.config/zsh/opts.zsh
 [ -f ~/.config/zsh/functions.zsh ] && source ~/.config/zsh/functions.zsh
 [ -f ~/.config/zsh/aliases.zsh ] && source ~/.config/zsh/aliases.zsh
-[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh 
+[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh

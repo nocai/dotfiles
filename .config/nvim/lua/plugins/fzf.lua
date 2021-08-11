@@ -1,54 +1,73 @@
+local actions = require("fzf-lua.actions")
+
 local u = require("utils")
 local commands = require("commands")
 
 -- replace current buffer with selected
-local breplace = function(names)
+local breplace = function(selected)
     commands.bdelete()
-    for _, name in ipairs(names) do
-        vim.cmd("e " .. name)
+    for _, file in ipairs(vim.list_slice(selected, 2)) do
+        vim.cmd("e " .. file)
     end
 end
 
 -- delete all buffers and open selected
-local bonly = function(names)
+local bonly = function(selected)
     commands.bwipeall()
-    for _, name in ipairs(names) do
-        vim.cmd("e " .. name)
+    for _, file in ipairs(vim.list_slice(selected, 2)) do
+        vim.cmd("e " .. file)
     end
 end
 
 -- open file and test file in split
-local split_test_file = function(names)
-    vim.cmd("e " .. names[1])
+local split_test_file = function(selected)
+    vim.cmd("e " .. selected[2])
     commands.edit_test_file("Vsplit", function()
         vim.cmd("wincmd w")
     end)
 end
 
-vim.g.fzf_action = {
-    enter = "edit",
-    ["ctrl-v"] = "Vsplit",
-    ["ctrl-t"] = "tabedit",
-    ["ctrl-r"] = breplace,
+local vsplit = function(selected)
+    commands.vsplit(selected[2])
+end
+
+local file_actions = {
+    ["default"] = actions.file_edit,
+    ["ctrl-t"] = actions.file_tabedit,
+    ["ctrl-q"] = actions.file_sel_to_qf,
     ["ctrl-f"] = split_test_file,
     ["ctrl-x"] = bonly,
+    ["ctrl-r"] = breplace,
+    ["ctrl-v"] = vsplit,
 }
-vim.g.fzf_layout = { window = { width = 0.90, height = 0.90, highlight = "Comment" } }
-vim.g.fzf_preview_window = { "up:50%", "ctrl-/" }
 
--- make :Rg search file contents only, not name
-vim.cmd(
-    [[command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)]]
-)
+require("fzf-lua").setup({
+    fzf_layout = "default",
+    winopts = { win_height = 0.85, win_width = 0.90 },
+    fzf_binds = {
+        "ctrl-u:clear-query",
+        "alt-p:toggle-preview",
+    },
+    previewers = {
+        bat = { theme = "ansi" },
+    },
+    files = {
+        actions = file_actions,
+    },
+    grep = {
+        rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case",
+        actions = file_actions,
+    },
+})
 
-u.map("n", "<Leader>ff", ":Files<CR>")
-u.map("n", "<Leader>fb", ":Buffers<CR>")
-u.map("n", "<Leader>fl", ":BLines<CR>")
-u.map("n", "<Leader>fg", ":Rg<CR>")
-u.map("n", "<Leader>fh", ":History<CR>")
-u.map("n", "<Leader>fc", ":BCommits<CR>")
+u.lua_command("LspRefs", 'require("fzf-lua").lsp_references({ jump_to_single_result = true })')
+u.lua_command("LspDefs", 'require("fzf-lua").lsp_definitions({ jump_to_single_result = true })')
+u.lua_command("LspTypeDefs", 'require("fzf-lua").lsp_typedefs({ jump_to_single_result = true })')
 
--- use fzf for completion
-u.map("i", "<C-x><C-f>", "<Plug>(fzf-complete-path)", { noremap = false })
-u.map("i", "<C-x><C-l>", "<Plug>(fzf-complete-line)", { noremap = false })
-u.map("i", "<C-x><C-k>", "<Plug>(fzf-complete-word)", { noremap = false })
+u.nmap("<Leader>ff", ":FzfLua files<CR>")
+u.nmap("<Leader>fb", ":FzfLua buffers<CR>")
+u.nmap("<Leader>fl", ":FzfLua grep_curbuf<CR>")
+u.nmap("<Leader>fg", ":FzfLua live_grep<CR>")
+u.nmap("<Leader>fo", ":FzfLua oldfiles<CR>")
+u.nmap("<Leader>fh", ":FzfLua help_tags<CR>")
+u.nmap("<Leader>fc", ":FzfLua git_bcommits<CR>")

@@ -169,9 +169,10 @@ commands.edit_test_file = function(cmd, post)
     end
 
     local scandir = function(path, depth, next)
-        require("plenary.scandir").scan_dir_async(
-            path,
-            { depth = depth, search_pattern = final_patterns, on_exit = vim.schedule_wrap(function(found)
+        require("plenary.scandir").scan_dir_async(path, {
+            depth = depth,
+            search_pattern = final_patterns,
+            on_exit = vim.schedule_wrap(function(found)
                 if found[1] then
                     done(found[1])
                     return
@@ -179,8 +180,8 @@ commands.edit_test_file = function(cmd, post)
 
                 assert(next, "test file not found")
                 next()
-            end) }
-        )
+            end),
+        })
     end
 
     -- check same dir files first, then cwd

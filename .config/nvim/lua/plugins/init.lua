@@ -41,11 +41,6 @@ return require("packer").startup(function()
 
     -- additional functionality
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
-    use({
-        "junegunn/fzf.vim", -- fzf integration
-        requires = { "junegunn/fzf" },
-        config = config("fzf"),
-    })
     use_with_config("~/git/minsnip.nvim", "minsnip") -- tiny snippet plugin
     use_with_config("phaazon/hop.nvim", "hop") -- motion
 
@@ -53,12 +48,18 @@ return require("packer").startup(function()
     use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / neovim pane navigation
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
     use_with_config("mcchrish/nnn.vim", "nnn") -- simple nnn integration
+    use({
+        "ibhagwan/fzf-lua", -- fzf plugin with lua api
+        requires = {
+            "vijaymarupudi/nvim-fzf",
+        },
+        config = config("fzf"),
+    })
 
     -- lsp
     use("neovim/nvim-lspconfig") -- makes lsp configuration easier
     use_with_config("RRethy/vim-illuminate", "illuminate") -- highlights and allows moving between variable references
     use("~/git/null-ls.nvim") -- allows using neovim as language server
-    use("ojroques/nvim-lspfuzzy") -- allows using fzf as lsp handler
     use("mfussenegger/nvim-lsp-compl") -- provides simple and fast lsp completion
 
     -- development
@@ -78,8 +79,13 @@ return require("packer").startup(function()
     use({ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "typescript", "typescriptreact" } }) -- makes jsx comments actually work
 
     -- visual
-    use({ "sainnhe/sonokai", "folke/tokyonight.nvim", "RRethy/nvim-base16" }) -- themes
+    use({ -- themes
+        "sainnhe/sonokai",
+        "sainnhe/everforest",
+        "folke/tokyonight.nvim",
+    })
     use_with_config("~/git/buftabline.nvim", "buftabline") -- show buffers in tabline
+    use("kyazdani42/nvim-web-devicons")
 
     -- misc
     use("teal-language/vim-teal") -- teal language support
