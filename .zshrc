@@ -11,8 +11,6 @@ bindkey "^N" down-line-or-search
 
 fpath+=$HOME/.config/zsh/pure
 zstyle :prompt:pure:git:stash show yes
-autoload -U promptinit; promptinit
-prompt pure
 
 zstyle ':znap:*' repos-dir ~/.config/zsh/plugins
 source ~/.config/zsh/zsh-snap/znap.zsh
@@ -23,6 +21,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=240"
 
 bindkey '^Y' autosuggest-execute
 bindkey '^ ' autosuggest-accept
+
+znap prompt pure
 
 znap source zsh-users/zsh-autosuggestions
 znap source zsh-users/zsh-completions
