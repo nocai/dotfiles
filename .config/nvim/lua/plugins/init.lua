@@ -24,6 +24,7 @@ return require("packer").startup(function()
 
     -- text objects
     use("wellle/targets.vim") -- many useful additional text objects
+    use_with_config("andymass/vim-matchup", "matchup") -- improves %, now with treesitter
     use({
         "kana/vim-textobj-user",
         {
