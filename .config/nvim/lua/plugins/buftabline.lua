@@ -3,6 +3,8 @@ local buftabline = require("buftabline")
 local u = require("utils")
 
 buftabline.setup({
+    tab_format = " #{n}: #{b}#{f} #{i} ",
+    icon_colors = "normal",
     tabpage_buffers = true,
     auto_hide = true,
 })
