@@ -37,7 +37,6 @@ _G.global.lsp = {
 
 local on_attach = function(client, bufnr)
     -- commands
-    u.lua_command("LspAct", "vim.lsp.buf.code_action()")
     u.lua_command("LspFormatting", "vim.lsp.buf.formatting()")
     u.lua_command("LspHover", "vim.lsp.buf.hover()")
     u.lua_command("LspRename", "vim.lsp.buf.rename()")
@@ -49,7 +48,6 @@ local on_attach = function(client, bufnr)
     u.buf_augroup("LspAutocommands", "CursorHold", "LspDiagLine")
 
     -- bindings
-    u.buf_map("n", "ga", ":LspAct<CR>", nil, bufnr)
     u.buf_map("n", "gi", ":LspRename<CR>", nil, bufnr)
     u.buf_map("n", "K", ":LspHover<CR>", nil, bufnr)
     u.buf_map("n", "[a", ":LspDiagPrev<CR>", nil, bufnr)
@@ -60,8 +58,7 @@ local on_attach = function(client, bufnr)
     u.buf_map("n", "gr", ":LspRefs<CR>", nil, bufnr)
     u.buf_map("n", "gd", ":LspDefs<CR>", nil, bufnr)
     u.buf_map("n", "gy", ":LspTypeDefs<CR>", nil, bufnr)
-    -- disabled pending issue resolution
-    -- u.buf_map("n", "ga", ":FzfLua lsp_code_actions<CR>", nil, bufnr)
+    u.buf_map("n", "ga", ":LspActions<CR>", nil, bufnr)
 
     if client.resolved_capabilities.document_formatting then
         u.buf_augroup("LspFormatOnSave", "BufWritePre", "lua vim.lsp.buf.formatting_sync()")

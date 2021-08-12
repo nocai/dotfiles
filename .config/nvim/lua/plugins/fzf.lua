@@ -55,11 +55,17 @@ require("fzf-lua").setup({
         actions = file_actions,
     },
     grep = {
+        -- only search file content, not names
         rg_opts = "--hidden --column --line-number --no-heading --color=always --smart-case",
         actions = file_actions,
     },
+    lsp = {
+        -- make lsp requests synchronous so they work with null-ls
+        async_or_timeout = 3000,
+    },
 })
 
+u.lua_command("LspActions", 'require("fzf-lua").lsp_code_actions()')
 u.lua_command("LspRefs", 'require("fzf-lua").lsp_references({ jump_to_single_result = true })')
 u.lua_command("LspDefs", 'require("fzf-lua").lsp_definitions({ jump_to_single_result = true })')
 u.lua_command("LspTypeDefs", 'require("fzf-lua").lsp_typedefs({ jump_to_single_result = true })')
