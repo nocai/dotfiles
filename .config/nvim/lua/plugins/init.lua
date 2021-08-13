@@ -24,7 +24,7 @@ return require("packer").startup(function()
 
     -- text objects
     use("wellle/targets.vim") -- many useful additional text objects
-    use_with_config("andymass/vim-matchup", "matchup") -- improves %, now with treesitter
+    use_with_config("andymass/vim-matchup", "matchup") -- improves %
     use({
         "kana/vim-textobj-user",
         {
@@ -67,24 +67,13 @@ return require("packer").startup(function()
     use("~/git/nvim-lsp-ts-utils") -- improve typescript experience
     use_with_config("vuki656/package-info.nvim", "package-info") -- show versions in package.json
 
-    -- treesitter
-    use({
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        config = config("treesitter"),
-    })
-    use({
-        "RRethy/nvim-treesitter-textsubjects", -- adds smart text objects
-        ft = { "lua", "typescript", "typescriptreact" },
-    })
-    use({ "JoosepAlviste/nvim-ts-context-commentstring", ft = { "typescript", "typescriptreact" } }) -- makes jsx comments actually work
-
     -- visual
     use({ -- themes
         "sainnhe/sonokai",
         "sainnhe/everforest",
         "folke/tokyonight.nvim",
     })
+    use("sheerun/vim-polyglot") -- syntax highlighting
     use_with_config("~/git/buftabline.nvim", "buftabline") -- show buffers in tabline
     use("kyazdani42/nvim-web-devicons")
 

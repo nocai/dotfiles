@@ -1,9 +1,7 @@
 local npairs = require("nvim-autopairs")
 local u = require("utils")
 
-npairs.setup({
-    check_ts = true,
-})
+npairs.setup()
 
 _G.global.on_enter = function()
     if vim.fn.pumvisible() ~= 0 then
