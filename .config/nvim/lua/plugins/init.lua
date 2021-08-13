@@ -19,7 +19,7 @@ return require("packer").startup(function()
     -- git
     use({
         { "lewis6991/gitsigns.nvim", config = config("git") },
-        { "tpope/vim-fugitive", "tpope/vim-rhubarb", "junegunn/gv.vim" },
+        { "tpope/vim-fugitive", requires = "tpope/vim-rhubarb", cmd = "Git" },
     })
 
     -- text objects
