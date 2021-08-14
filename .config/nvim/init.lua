@@ -79,12 +79,29 @@ u.map("i", "<M-l>", "<Right>")
 u.map("n", "<Space>", ":", { silent = false })
 u.map("v", "<Space>", ":", { silent = false })
 
+u.map("n", "q", ":close<CR>")
+u.map("n", "Q", "q")
+
+-- misc
+u.map("v", ">", ">gv")
+u.map("v", "<", "<gv")
+
+u.map("i", "jk", "<Esc>")
+u.map("i", "kj", "<Esc>")
+
+u.map("n", "Y", "y$")
+
+u.map("n", "n", "nzz")
+u.map("n", "N", "Nzz")
+
+-- expand and indent pair
+u.map("i", "(;", "{<CR>}<C-c>O")
+u.map("i", "{;", "{<CR>}<C-c>O")
+u.map("i", "[;", "{<CR>}<C-c>O")
+
 -- automatically add jumps > 1 to jump list
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], { expr = true })
 u.map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'j'"]], { expr = true })
-
--- misc
-u.map("n", "Y", "y$")
 
 -- source remaining config
 require("commands")
