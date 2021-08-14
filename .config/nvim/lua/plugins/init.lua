@@ -46,7 +46,6 @@ return require("packer").startup(function()
     use_with_config("justinmk/vim-sneak", "sneak") -- motion
 
     -- integrations
-    use_with_config("numToStr/Navigator.nvim", "navigator") -- tmux / neovim pane navigation
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
     use_with_config("mcchrish/nnn.vim", "nnn") -- simple nnn integration
     use({
