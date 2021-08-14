@@ -29,6 +29,64 @@ local prev_diagnostic = function()
     go_to_diagnostic(lsp.diagnostic.get_prev_pos() or lsp.diagnostic.get_next_pos())
 end
 
+-- trigger only on letters and .
+local trigger_characters = {
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "0",
+    ".",
+}
+
 _G.global.lsp = {
     popup_opts = popup_opts,
     next_diagnostic = next_diagnostic,
@@ -64,7 +122,13 @@ local on_attach = function(client, bufnr)
         u.buf_augroup("LspFormatOnSave", "BufWritePre", "lua vim.lsp.buf.formatting_sync()")
     end
 
-    require("lsp_compl").attach(client, bufnr)
+    if client.resolved_capabilities.completion then
+        client.server_capabilities.completionProvider.triggerCharacters = trigger_characters
+        require("lsp_compl").attach(client, bufnr)
+
+        _G.global.lsp.completion = true
+    end
+
     require("illuminate").on_attach(client)
 end
 

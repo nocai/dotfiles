@@ -8,8 +8,10 @@ _G.global.tab_complete = function()
     if not minsnip.jump() then
         if vim.fn.pumvisible() == 1 then
             u.input("<C-y>")
-        else
+        elseif _G.global.lsp.completion then
             require("lsp_compl").trigger_completion()
+        else
+            u.input("<C-n>")
         end
     end
 end
