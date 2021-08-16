@@ -70,6 +70,8 @@ u.lua_command("LspRefs", 'require("fzf-lua").lsp_references({ jump_to_single_res
 u.lua_command("LspDefs", 'require("fzf-lua").lsp_definitions({ jump_to_single_result = true })')
 u.lua_command("LspTypeDefs", 'require("fzf-lua").lsp_typedefs({ jump_to_single_result = true })')
 
+u.command("Files", "FzfLua files")
+
 u.nmap("<Leader>ff", ":FzfLua files<CR>")
 u.nmap("<Leader>fb", ":FzfLua buffers<CR>")
 u.nmap("<Leader>fl", ":FzfLua grep_curbuf<CR>")
