@@ -87,18 +87,10 @@ u.map("n", "Q", "q")
 u.map("v", ">", ">gv")
 u.map("v", "<", "<gv")
 
-u.map("i", "jk", "<Esc>")
-u.map("i", "kj", "<Esc>")
-
 u.map("n", "Y", "y$")
 
 u.map("n", "n", "nzz")
 u.map("n", "N", "Nzz")
-
--- expand and indent pair
-u.map("i", "(;", "{<CR>}<C-c>O")
-u.map("i", "{;", "{<CR>}<C-c>O")
-u.map("i", "[;", "{<CR>}<C-c>O")
 
 -- automatically add jumps > 1 to jump list
 u.map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'k'"]], { expr = true })
