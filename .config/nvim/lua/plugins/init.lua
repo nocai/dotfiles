@@ -43,7 +43,7 @@ return require("packer").startup(function()
     -- additional functionality
     use_with_config("windwp/nvim-autopairs", "autopairs") -- autocomplete pairs
     use_with_config("~/git/minsnip.nvim", "minsnip") -- tiny snippet plugin
-    use_with_config("justinmk/vim-sneak", "sneak") -- motion
+    use_with_config("phaazon/hop.nvim", "hop") -- motion
 
     -- integrations
     use_with_config("christoomey/vim-tmux-runner", "vtr") -- run commands in a linked tmux pane
