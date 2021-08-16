@@ -31,6 +31,7 @@ return require("packer").startup(function()
             "kana/vim-textobj-entire", -- ae/ie for entire buffer
             "Julian/vim-textobj-variable-segment", -- av/iv for variable segment
             "beloglazov/vim-textobj-punctuation", -- au/iu for punctuation
+            "michaeljsmith/vim-indent-object", -- ai/ii for indentation area
         },
     })
 
