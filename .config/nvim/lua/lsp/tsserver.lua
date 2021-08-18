@@ -12,6 +12,8 @@ local ts_utils_settings = {
     enable_formatting = true,
     formatter = "eslint_d",
     update_imports_on_move = true,
+    -- filter out dumb module warning
+    filter_out_diagnostics_by_code = { 80001 },
 }
 
 local M = {}
